@@ -15,15 +15,20 @@ class StationsListTableViewController: UITableViewController {
         super.viewDidLoad()
         
         if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
-            let storyboard: UIStoryboard = UIStoryboard(name: "FirstTimeUse", bundle: nil)
+            let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
             let firstVC: UIViewController = storyboard.instantiateInitialViewController() as! UIViewController
             
             self.presentViewController(firstVC, animated: true, completion: nil)
         }
         else {
         
-            stations = StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY))
-            self.tableView.reloadData()
+            StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+                responseObject, error in
+                
+                self.stations = responseObject
+                self.tableView.reloadData()
+            }
+            
         }
     }
     
@@ -52,7 +57,7 @@ class StationsListTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_RESUE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
 
         cell.textLabel?.text = stations[indexPath.row].stationName
 

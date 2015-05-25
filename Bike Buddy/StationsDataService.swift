@@ -22,7 +22,7 @@ class StationsDataService {
         
     }
     
-    func getAllStationData(apiUrl: String) -> [Station]  {
+    /*func getAllStationData(apiUrl: String) -> [Station]  {
         var returnStations = [Station]()
         
         Alamofire.request(.GET, apiUrl).response{ (_, _, data, _) in
@@ -30,6 +30,15 @@ class StationsDataService {
         }
         
         return returnStations
+    }*/
+    
+    func getAllStationData(apiUrl: String, completionHandler: (responseObject: [Station], error: NSError?) -> ()) {
+        var returnStations = [Station]()
+        
+        Alamofire.request(.GET, apiUrl).response{ (_, _, data, error) in
+            returnStations = self.parseStationDataToDictonary(data as! NSData)
+            completionHandler(responseObject: returnStations, error: error)
+        }
     }
     
     func loadStationDataFromFile(fileName: String) -> [Station] {
