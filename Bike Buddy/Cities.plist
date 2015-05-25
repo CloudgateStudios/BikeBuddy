@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Chicago</string>
+		<key>serviceName</key>
+		<string>Divvy</string>
+		<key>apiUrl</key>
+		<string>http://www.divvybikes.com/stations/json/</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Chattanooga</string>
+		<key>serviceName</key>
+		<string>Bike Chattanooga</string>
+		<key>apiUrl</key>
+		<string>http://www.bikechattanooga.com/stations/json</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Columbus</string>
+		<key>serviceName</key>
+		<string>CoGo</string>
+		<key>apiUrl</key>
+		<string>http://www.cogobikeshare.com/stations/json/</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>New York City</string>
+		<key>serviceName</key>
+		<string>Citi Bike</string>
+		<key>apiUrl</key>
+		<string>http://www.citibikenyc.com/stations/json</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>San Fansisco</string>
+		<key>serviceName</key>
+		<string>Bay Area Bike Share</string>
+		<key>apiUrl</key>
+		<string>http://www.bayareabikeshare.com/stations/json/</string>
+	</dict>
+</array>
+</plist>
