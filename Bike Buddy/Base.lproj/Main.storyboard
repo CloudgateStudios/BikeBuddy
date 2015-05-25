@@ -115,7 +115,7 @@
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="dYm-5B-eDr" detailTextLabel="68I-eo-Ntf" style="IBUITableViewCellStyleValue1" id="1wY-uD-XZ8">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1wY-uD-XZ8" id="tVj-vd-ZiI">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="1wY-uD-XZ8" id="tVj-vd-ZiI">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Version" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dYm-5B-eDr">
@@ -157,6 +157,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="pm0-1g-0fV"/>
                     <connections>
+                        <outlet property="cityLabel" destination="CUF-Ga-ogf" id="M9J-Mv-YVo"/>
                         <outlet property="versionLabel" destination="68I-eo-Ntf" id="6aH-tV-QDe"/>
                     </connections>
                 </tableViewController>

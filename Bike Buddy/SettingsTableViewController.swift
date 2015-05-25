@@ -11,11 +11,13 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         versionLabel.text = UIApplication.versionBuild()
+        cityLabel.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
     }
 
     override func didReceiveMemoryWarning() {
