@@ -2,7 +2,7 @@
 //  MapViewController.swift
 //  Bike Buddy
 //
-//  Created by Arra Tom, US-L-4 on 5/20/15.
+//  Created by Tom Arra on 5/20/15.
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 
@@ -25,16 +25,4 @@ class MapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

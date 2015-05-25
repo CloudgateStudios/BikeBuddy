@@ -2,7 +2,7 @@
 //  Bike_BuddyTests.swift
 //  Bike BuddyTests
 //
-//  Created by Arra Tom, US-L-4 on 5/20/15.
+//  Created by Tom Arra on 5/20/15.
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 

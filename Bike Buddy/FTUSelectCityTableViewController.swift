@@ -2,7 +2,7 @@
 //  FTUSelectCityTableViewController.swift
 //  Bike Buddy
 //
-//  Created by Arra Tom, US-L-4 on 5/22/15.
+//  Created by Tom Arra on 5/22/15.
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 

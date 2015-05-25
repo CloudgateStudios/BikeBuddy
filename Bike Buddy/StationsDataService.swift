@@ -2,7 +2,7 @@
 //  StationsDataService.swift
 //  Bike Buddy
 //
-//  Created by Arra Tom, US-L-4 on 5/21/15.
+//  Created by Tom Arra on 5/21/15.
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 
@@ -22,13 +22,14 @@ class StationsDataService {
         
     }
     
-    func getAllStationData(apiUrl: String) -> [Station] {
-        Alamofire.request(.GET, apiUrl)
-            .responseJSON { (_, _, JSON, _) in
-                println(JSON)
-                
-                //self.parseStationDataToDictonary(JSON as! NSData)
+    func getAllStationData(apiUrl: String) -> [Station]  {
+        var returnStations = [Station]()
+        
+        Alamofire.request(.GET, apiUrl).response{ (_, _, data, _) in
+                returnStations = self.parseStationDataToDictonary(data as! NSData)
         }
+        
+        return returnStations
     }
     
     func loadStationDataFromFile(fileName: String) -> [Station] {
