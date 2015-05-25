@@ -10,20 +10,22 @@ import UIKit
 import CoreLocation
 
 class FTULocationAccessViewController: UIViewController, CLLocationManagerDelegate {
+    //MARK: - Class Variables
     
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
 
+    //MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - User Interaction
     
     @IBAction func giveLocationAccessButtonClicked(sender: UIButton) {
         if(CLLocationManager.authorizationStatus() == .NotDetermined) {
@@ -39,6 +41,8 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
         }
     }
 
+    //MARK: - Location Manager
+    
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if(status == CLAuthorizationStatus.AuthorizedWhenInUse) {
             goToNextView()
@@ -47,6 +51,8 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
             showNoLocationAccessMessage()
         }
     }
+    
+    //MARK: - View Specific Functions
     
     private func goToNextView() {
         self.performSegueWithIdentifier("GoToFTUFinished", sender: self)

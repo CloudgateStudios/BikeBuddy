@@ -10,8 +10,11 @@ import UIKit
 import Foundation
 
 class FTUSelectCityTableViewController: UITableViewController {
+    //MARK: - Class Variables
+    
     var citiesArray = [City]()
     
+    //MARK: - View Lifecycle
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
     }
@@ -40,28 +43,21 @@ class FTUSelectCityTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return citiesArray.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FTUCityServiceCell", forIndexPath: indexPath) as! UITableViewCell
 
-        // Configure the cell...
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
 
@@ -70,11 +66,7 @@ class FTUSelectCityTableViewController: UITableViewController {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        
         let indexPath = self.tableView.indexPathForSelectedRow()!
         
         println(citiesArray[indexPath.row])
@@ -83,6 +75,4 @@ class FTUSelectCityTableViewController: UITableViewController {
         SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].serviceName)
         SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_API_URL_SETTINGS_KEY, value: citiesArray[indexPath.row].apiUrl)
     }
-    
-
 }

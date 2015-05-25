@@ -9,20 +9,53 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
-
+class MapViewController: UIViewController, MKMapViewDelegate {
+    //MARK: - Class Variables
+    
     var stationsArray = [Station]()
+    
+    //MARK: - View Outlets
     
     @IBOutlet weak var mapView: MKMapView!
     
+    //MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.mapView.delegate = self
 
-        // Do any additional setup after loading the view.
+        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+            responseObject, error in
+            
+            self.stationsArray = responseObject
+            self.loadAnnotationsOnMapView()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: - Map View
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if (annotation is MKUserLocation) {
+            return nil
+        }
+        
+        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "FullMapPinID")
+        annotationView.animatesDrop = false
+        annotationView.canShowCallout = true
+        
+        return annotationView
+    }
+    
+    /** 
+        Take the current stationsArray and load the needed annotations on the map
+    */
+    private func loadAnnotationsOnMapView() {
+        mapView.addAnnotations(stationsArray)
+        mapView.showAnnotations(stationsArray, animated: true)
     }
 }

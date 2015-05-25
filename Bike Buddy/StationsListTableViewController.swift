@@ -9,8 +9,12 @@
 import UIKit
 
 class StationsListTableViewController: UITableViewController {
+    // MARK: - Class Variables
+    
     var stations = [Station]()
 
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,31 +35,21 @@ class StationsListTableViewController: UITableViewController {
             
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-       
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return stations.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_RESUE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
 

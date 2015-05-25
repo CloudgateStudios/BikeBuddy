@@ -8,10 +8,13 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
-
+class SettingsTableViewController: UITableViewController {   
+    //MARK: - View Outlets
+    
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    
+    //MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +25,9 @@ class SettingsTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - Table View
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!

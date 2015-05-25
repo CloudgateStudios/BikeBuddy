@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import MapKit
 
-class Station {
+class Station: NSObject, MKAnnotation {
     var id: Int = -1
     var stationName: String = ""
     var availableDocks: Int = -1
@@ -27,6 +28,18 @@ class Station {
     var lastCommunicationTime: String = ""
     var landMark: String = ""
     
-    init() {
+    @objc var coordinate : CLLocationCoordinate2D {
+        get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
+    }
+    
+    var title : String {
+        get { return self.stationName }
+    }
+    
+    var subtitle : String {
+        get { return "Bikes: \(availableBikes) Open Docks: \(availableDocks)" }
+    }
+    
+    override init() {
     }
 }

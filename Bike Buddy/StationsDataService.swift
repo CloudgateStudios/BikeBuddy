@@ -21,7 +21,9 @@ class StationsDataService {
         return Static.instance
     }
     
-    
+    /**
+        **Should not be used. Call StationsDataService.sharedInstance instead.**
+    */
     private init(){
     }
     
@@ -77,11 +79,15 @@ class StationsDataService {
                     var newStation = Station()
                     if let stationName = stationBean.valueForKey("stationName") as? String,
                            latitude = stationBean.valueForKey("latitude") as? Double,
-                           longitude = stationBean.valueForKey("longitude") as? Double {
+                           longitude = stationBean.valueForKey("longitude") as? Double,
+                           availableBikes = stationBean.valueForKey("availableBikes") as? Int,
+                           availableDocks = stationBean.valueForKey("availableDocks") as? Int {
                         
                         newStation.stationName = stationName
                         newStation.latitude = latitude
                         newStation.longitude = longitude
+                        newStation.availableBikes = availableBikes
+                        newStation.availableDocks = availableDocks
                     
                         stations.append(newStation)
                     }
