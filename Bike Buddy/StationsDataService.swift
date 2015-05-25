@@ -11,6 +11,9 @@ import Alamofire
 
 class StationsDataService {
     
+    /**
+        The shared instanace that should be used to access all members of the service.
+    */
     class var sharedInstance : StationsDataService {
         struct Static {
             static let instance : StationsDataService = StationsDataService()
@@ -18,20 +21,18 @@ class StationsDataService {
         return Static.instance
     }
     
+    
     private init(){
-        
     }
     
-    /*func getAllStationData(apiUrl: String) -> [Station]  {
-        var returnStations = [Station]()
+    /**
+        Go get all the station data for the given API and return it as an array of Station objects
         
-        Alamofire.request(.GET, apiUrl).response{ (_, _, data, _) in
-                returnStations = self.parseStationDataToDictonary(data as! NSData)
-        }
+        :param: apiUrl The URL to the API to call. The API should return data in the format found in Supporting Files/Divvy_API_Response.json
+        :param: completionHandler The closure to call when the response is received. Takes 2 parameters, responseObject as an Array of Station objects and an error as NSError
         
-        return returnStations
-    }*/
-    
+        :returns: void
+    */
     func getAllStationData(apiUrl: String, completionHandler: (responseObject: [Station], error: NSError?) -> ()) {
         var returnStations = [Station]()
         
@@ -41,6 +42,13 @@ class StationsDataService {
         }
     }
     
+    /**
+        Load in Station data from a file. **Should only be used for development purposes**
+    
+        :param: fileName The name of the file to be loaded. Method makes the assumption that the file is part of the main bundle and is not in a subfolder.
+    
+        :returns: [Station]
+    */
     func loadStationDataFromFile(fileName: String) -> [Station] {
         var jsonString:NSData = NSData()
         var fileNameParts:[String] = fileName.componentsSeparatedByString(".")
