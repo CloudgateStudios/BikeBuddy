@@ -76,6 +76,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         Take the current stationsArray and load the needed annotations on the map
     */
     private func loadAnnotationsOnMapView() {
+        if let pins = mapView?.annotations {
+            mapView.removeAnnotations(pins)
+        }
+        
         mapView?.addAnnotations(Stations.sharedInstance.list)
         mapView?.showAnnotations(Stations.sharedInstance.list, animated: true)
     }

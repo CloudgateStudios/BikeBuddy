@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Stations-->
@@ -43,11 +44,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="F8u-L6-G2C">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8u-L6-G2C">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F8u-L6-G2C" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="topMargin" id="C0a-Og-4S0"/>
+                            <constraint firstItem="F8u-L6-G2C" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="jCE-eJ-4qc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F8u-L6-G2C" secondAttribute="trailing" constant="-16" id="qrm-ms-vIQ"/>
+                            <constraint firstItem="F8u-L6-G2C" firstAttribute="bottom" secondItem="QS5-Rx-YEW" secondAttribute="bottomMargin" id="zVC-gI-MAD"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="7I6-3x-W88"/>
                     <connections>
@@ -69,7 +76,7 @@
                         <sections>
                             <tableViewSection headerTitle="Service" id="Hjq-Pg-lW6">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="82T-5S-cxQ" detailTextLabel="CUF-Ga-ogf" style="IBUITableViewCellStyleValue1" id="iiB-bZ-tEX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="82T-5S-cxQ" detailTextLabel="CUF-Ga-ogf" style="IBUITableViewCellStyleValue1" id="iiB-bZ-tEX">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iiB-bZ-tEX" id="x4i-KL-8K0">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -96,7 +103,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="General" id="7cm-dx-bI0">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="SHI-ls-hUg" style="IBUITableViewCellStyleDefault" id="Coi-eb-ydJ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="SHI-ls-hUg" style="IBUITableViewCellStyleDefault" id="Coi-eb-ydJ">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Coi-eb-ydJ" id="7Fm-SK-lXW">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -110,7 +117,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="dYm-5B-eDr" detailTextLabel="68I-eo-Ntf" style="IBUITableViewCellStyleValue1" id="1wY-uD-XZ8">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="dYm-5B-eDr" detailTextLabel="68I-eo-Ntf" style="IBUITableViewCellStyleValue1" id="1wY-uD-XZ8">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="1wY-uD-XZ8" id="tVj-vd-ZiI">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -173,24 +180,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nW4-1w-6fE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2293" y="1086"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="gE2-8n-VCx">
-            <objects>
-                <viewController id="1qL-at-LLK" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Sze-bu-dCU"/>
-                        <viewControllerLayoutGuide type="bottom" id="UKq-hq-Ngz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="M1S-FI-cpa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6H5-x0-fG5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2293" y="1844"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
