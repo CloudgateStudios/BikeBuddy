@@ -20,7 +20,10 @@ public let STORYBOARD_FIRST_TIME_USE_FILE_NAME = "FirstTimeUse"
 public let LAUNCH_SCREEN_VIEW_FILE_NAME = "LaunchScreen"
 
 // MARK: - Table View Cell Resuse Identifiers
-public let STATIONS_LIST_TABLE_CELL_RESUE_IDENTIFIER = "StationListCell"
+public let STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER = "StationListCell"
+public let SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER = "SettingsCityCells"
 
 // MARK: - NSNotificationCenter Names
 public let NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED = "FirstTimeUseCompleted"
+public let NOTIFICATION_CENTER_NEW_CITY_SELECTED = "NewCitySelected"
+public let NOTIFICATION_CENTER_STATIONS_LIST_UPDATED = "StationsListUpdated"

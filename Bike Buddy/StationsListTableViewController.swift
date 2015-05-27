@@ -19,10 +19,12 @@ class StationsListTableViewController: UITableViewController {
         super.init(coder: aDecoder)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
     }
 
     override func viewDidLoad() {
@@ -32,7 +34,7 @@ class StationsListTableViewController: UITableViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
             let firstVC: UIViewController = storyboard.instantiateInitialViewController() as! UIViewController
             
-            self.presentViewController(firstVC, animated: true, completion: nil)
+            self.view.window?.rootViewController!.presentViewController(firstVC, animated: true, completion: nil)
         }
         else {
             refreshStationsData()
@@ -54,7 +56,7 @@ class StationsListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_RESUE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
 
         cell.textLabel?.text = stations[indexPath.row].stationName
 
@@ -68,6 +70,7 @@ class StationsListTableViewController: UITableViewController {
             responseObject, error in
             
             self.stations = responseObject
+            Stations.sharedInstance.list = responseObject
             self.tableView.reloadData()
         }
     }

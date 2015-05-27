@@ -36,7 +36,7 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>San Fansisco</string>
+		<string>San Francisco</string>
 		<key>serviceName</key>
 		<string>Bay Area Bike Share</string>
 		<key>apiUrl</key>

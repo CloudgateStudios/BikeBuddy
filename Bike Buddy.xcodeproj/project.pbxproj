@@ -30,6 +30,7 @@
 		C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */; };
 		C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
 		D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */; };
+		D146DC811B156D3000F7456E /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC801B156D3000F7456E /* Stations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		C5E873321B10A5BA00217C93 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSelectCityTableViewController.swift; sourceTree = "<group>"; };
+		D146DC801B156D3000F7456E /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			children = (
 				C516F0161B0CF11100CF4468 /* Station.swift */,
 				C5C2158B1B0F785B00FEB01C /* City.swift */,
+				D146DC801B156D3000F7456E /* Stations.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				C516F00F1B0CE7EB00CF4468 /* StationsListTableViewController.swift in Sources */,
 				D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */,
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
+				D146DC811B156D3000F7456E /* Stations.swift in Sources */,
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
 				C5C2158C1B0F785B00FEB01C /* City.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,

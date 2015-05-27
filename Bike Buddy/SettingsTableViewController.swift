@@ -20,10 +20,13 @@ class SettingsTableViewController: UITableViewController {
         super.init(coder: aDecoder)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
+        
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
     }
     
     override func viewDidLoad() {

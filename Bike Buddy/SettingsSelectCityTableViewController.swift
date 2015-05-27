@@ -52,11 +52,21 @@ class SettingsSelectCityTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].name)
+        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].serviceName)
+        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_API_URL_SETTINGS_KEY, value: citiesArray[indexPath.row].apiUrl)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: self)
+        
+        navigationController?.popViewControllerAnimated(true)
     }
 
     /*
