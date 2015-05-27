@@ -37,8 +37,8 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func setupUI() {
-        versionLabel.text = UIApplication.versionBuild()
-        cityLabel.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
+        versionLabel?.text = UIApplication.versionBuild()
+        cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
     }
     
     //MARK: - Table View
