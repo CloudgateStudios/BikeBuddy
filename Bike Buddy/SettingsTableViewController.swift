@@ -16,15 +16,29 @@ class SettingsTableViewController: UITableViewController {
     
     //MARK: - View Lifecycle
     
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        versionLabel.text = UIApplication.versionBuild()
-        cityLabel.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
+        setupUI()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setupUI() {
+        versionLabel.text = UIApplication.versionBuild()
+        cityLabel.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
     }
     
     //MARK: - Table View

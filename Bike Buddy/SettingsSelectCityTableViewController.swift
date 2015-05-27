@@ -1,27 +1,23 @@
 //
-//  FTUSelectCityTableViewController.swift
+//  SettingsSelectCityTableViewController.swift
 //  Bike Buddy
 //
-//  Created by Tom Arra on 5/22/15.
+//  Created by Tom Arra on 5/25/15.
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 
 import UIKit
-import Foundation
 
-class FTUSelectCityTableViewController: UITableViewController {
+class SettingsSelectCityTableViewController: UITableViewController {
     //MARK: - Class Variables
     
     var citiesArray = [City]()
     
     //MARK: - View Lifecycle
-    required init!(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
-    }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource("Cities", withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
@@ -54,23 +50,23 @@ class FTUSelectCityTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return citiesArray.count
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FTUCityServiceCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
-        cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
 
         return cell
     }
 
+    /*
     // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let indexPath = self.tableView.indexPathForSelectedRow()!
-        
-        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].name)
-        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].serviceName)
-        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_API_URL_SETTINGS_KEY, value: citiesArray[indexPath.row].apiUrl)
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
     }
+    */
+
 }

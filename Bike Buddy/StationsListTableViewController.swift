@@ -15,6 +15,16 @@ class StationsListTableViewController: UITableViewController {
 
     // MARK: - View Lifecycle
     
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,14 +35,7 @@ class StationsListTableViewController: UITableViewController {
             self.presentViewController(firstVC, animated: true, completion: nil)
         }
         else {
-        
-            StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
-                responseObject, error in
-                
-                self.stations = responseObject
-                self.tableView.reloadData()
-            }
-            
+            refreshStationsData()
         }
     }
 
@@ -56,5 +59,16 @@ class StationsListTableViewController: UITableViewController {
         cell.textLabel?.text = stations[indexPath.row].stationName
 
         return cell
+    }
+    
+    // MARK: - Stations Loading
+    
+    func refreshStationsData() {
+        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+            responseObject, error in
+            
+            self.stations = responseObject
+            self.tableView.reloadData()
+        }
     }
 }

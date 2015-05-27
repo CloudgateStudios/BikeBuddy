@@ -21,3 +21,6 @@ public let LAUNCH_SCREEN_VIEW_FILE_NAME = "LaunchScreen"
 
 // MARK: - Table View Cell Resuse Identifiers
 public let STATIONS_LIST_TABLE_CELL_RESUE_IDENTIFIER = "StationListCell"
+
+// MARK: - NSNotificationCenter Names
+public let NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED = "FirstTimeUseCompleted"

@@ -29,6 +29,7 @@
 		C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */; };
 		C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */; };
 		C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
+		D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUFinishedViewController.swift; sourceTree = "<group>"; };
 		C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		C5E873321B10A5BA00217C93 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSelectCityTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				C516F00C1B0CE79100CF4468 /* SettingsTableViewController.swift */,
+				D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */,
 				C516F00E1B0CE7EB00CF4468 /* StationsListTableViewController.swift */,
 				C516F0101B0CE80F00CF4468 /* MapViewController.swift */,
 				C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */,
@@ -342,6 +345,7 @@
 				C5C215991B0F809C00FEB01C /* Constants.swift in Sources */,
 				C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */,
 				C516F00F1B0CE7EB00CF4468 /* StationsListTableViewController.swift in Sources */,
+				D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */,
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
 				C5C2158C1B0F785B00FEB01C /* City.swift in Sources */,
