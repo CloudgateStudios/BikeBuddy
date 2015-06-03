@@ -10,9 +10,6 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
-    //MARK: - Class Variables
-    
-    var stationsArray = [Station]()
     
     //MARK: - View Outlets
     
@@ -23,15 +20,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        /*NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)*/
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
     deinit {
-        /*NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)*/
-    
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
@@ -44,13 +36,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func setupUI() {
-        /*StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
-            responseObject, error in
-            
-            self.stationsArray = responseObject
-            self.loadAnnotationsOnMapView()
-        }*/
-        
         self.loadAnnotationsOnMapView()
     }
 
@@ -73,7 +58,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     /** 
-        Take the current stationsArray and load the needed annotations on the map
+        Take the current Stations.list and load the needed annotations on the map
     */
     private func loadAnnotationsOnMapView() {
         if let pins = mapView?.annotations {

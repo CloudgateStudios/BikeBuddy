@@ -42,5 +42,13 @@
 		<key>apiUrl</key>
 		<string>http://www.bayareabikeshare.com/stations/json/</string>
 	</dict>
+	<dict>
+		<key>name</key>
+		<string>Toronto</string>
+		<key>serviceName</key>
+		<string>Bike Share Toronto</string>
+		<key>apiUrl</key>
+		<string>http://www.bikesharetoronto.com/stations/json</string>
+	</dict>
 </array>
 </plist>

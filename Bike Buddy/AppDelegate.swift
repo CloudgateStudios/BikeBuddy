@@ -17,6 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         SettingsService.sharedInstance
         
+        if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
+            let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
+            let firstVC: UIViewController = storyboard.instantiateInitialViewController() as! UIViewController
+            
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController!.presentViewController(firstVC, animated: true, completion: nil)
+        } else {
+            StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+                responseObject, error in
+                
+                Stations.sharedInstance.list = responseObject
+            }
+        }
+        
         return true
     }
 
