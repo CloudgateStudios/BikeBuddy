@@ -90,6 +90,35 @@
             </objects>
             <point key="canvasLocation" x="1562" y="-324"/>
         </scene>
+        <!--Station Detail View Controller-->
+        <scene sceneID="BWI-Af-NTY">
+            <objects>
+                <viewController id="0Kp-FQ-qp6" customClass="StationDetailViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XuK-sg-XoZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="CLU-4w-InM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t94-84-lGd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Station Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYK-m7-Ffu">
+                                <rect key="frame" x="16" y="72" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="stationNameLabel" destination="LYK-m7-Ffu" id="GGj-Eb-0vb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lcd-If-sKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2338" y="-324"/>
+        </scene>
         <!--Map-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -117,6 +146,7 @@
                     <navigationItem key="navigationItem" title="Map" id="7I6-3x-W88"/>
                     <connections>
                         <outlet property="mapView" destination="F8u-L6-G2C" id="B7i-pK-oxV"/>
+                        <segue destination="0Kp-FQ-qp6" kind="show" identifier="showStationDetailFromMap" id="5GW-YV-tis"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

@@ -53,8 +53,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "FullMapPinID")
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
+        annotationView.rightCalloutAccessoryView =  UIButton.buttonWithType(UIButtonType.DetailDisclosure) as! UIView
         
         return annotationView
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        //showStationDetailFromMap
+        self.performSegueWithIdentifier("showStationDetailFromMap", sender: self)
     }
     
     /** 
