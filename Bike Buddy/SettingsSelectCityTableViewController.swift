@@ -18,14 +18,14 @@ class SettingsSelectCityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource("Cities", withExtension: "plist") {
+        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
                     var newCity = City()
                     
-                    newCity.name = city.valueForKey("name") as! String
-                    newCity.serviceName = city.valueForKey("serviceName") as! String
-                    newCity.apiUrl = city.valueForKey("apiUrl") as! String
+                    newCity.name = city.valueForKey(CITIES_PLIST_NAME_FIELD_KEY) as! String
+                    newCity.serviceName = city.valueForKey(CITIES_PLIST_SERVICE_NAME_FIELD_KEY) as! String
+                    newCity.apiUrl = city.valueForKey(CITIES_PLIST_API_URL_FIELD_KEY) as! String
                     
                     citiesArray.append(newCity)
                 }

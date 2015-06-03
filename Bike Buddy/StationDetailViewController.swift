@@ -44,7 +44,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
             return nil
         }
         
-        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "StationDetailMapPinID")
+        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: STATION_DETAIL_MAP_RESUE_IDENTIFIER)
         annotationView.animatesDrop = false
         
         return annotationView

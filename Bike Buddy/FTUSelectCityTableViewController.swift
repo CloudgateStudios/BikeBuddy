@@ -22,14 +22,14 @@ class FTUSelectCityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource("Cities", withExtension: "plist") {
+        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
                     var newCity = City()
                     
-                    newCity.name = city.valueForKey("name") as! String
-                    newCity.serviceName = city.valueForKey("serviceName") as! String
-                    newCity.apiUrl = city.valueForKey("apiUrl") as! String
+                    newCity.name = city.valueForKey(CITIES_PLIST_NAME_FIELD_KEY) as! String
+                    newCity.serviceName = city.valueForKey(CITIES_PLIST_SERVICE_NAME_FIELD_KEY) as! String
+                    newCity.apiUrl = city.valueForKey(CITIES_PLIST_API_URL_FIELD_KEY) as! String
                     
                     citiesArray.append(newCity)
                 }
@@ -56,7 +56,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FTUCityServiceCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName

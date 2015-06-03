@@ -47,7 +47,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "showStationDetailFromMap") {
+        if(segue.identifier == SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER) {
             var vc = (segue.destinationViewController as! StationDetailViewController)
             vc.stationObject = self.tappedStation
             
@@ -62,7 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             return nil
         }
         
-        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "FullMapPinID")
+        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: FULL_MAP_VEIW_MAP_REUSE_IDENTIFIER)
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
         annotationView.rightCalloutAccessoryView =  UIButton.buttonWithType(UIButtonType.DetailDisclosure) as! UIView
@@ -71,12 +71,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        //showStationDetailFromMap
-        //MapViewAnnotation *annotationTapped = (MapViewAnnotation *)view.annotation;
-        
         self.tappedStation = view.annotation as! Station
         
-        self.performSegueWithIdentifier("showStationDetailFromMap", sender: self)
+        self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER, sender: self)
     }
     
     /** 
