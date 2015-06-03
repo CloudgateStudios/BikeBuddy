@@ -49,4 +49,19 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         
         return annotationView
     }
+    
+    //MARK: - User Actions
+    
+    @IBAction func userClickedOnDirectionsToStationButton(sender: UIButton) {
+        var placemark: MKPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(stationObject.latitude, stationObject.longitude), addressDictionary: nil)
+        var mapItem: MKMapItem = MKMapItem(placemark: placemark)
+        
+        mapItem.name = stationObject.stationName
+        
+        var optionsDictonary = [String: String]()
+        optionsDictonary[MKLaunchOptionsDirectionsModeKey] = MKLaunchOptionsDirectionsModeWalking
+
+        mapItem.openInMapsWithLaunchOptions(optionsDictonary)
+    }
+    
 }
