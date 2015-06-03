@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -102,16 +102,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Station Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYK-m7-Ffu">
-                                <rect key="frame" x="16" y="72" width="105" height="21"/>
+                            <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5J-4b-6c6">
+                                <rect key="frame" x="16" y="72" width="568" height="132"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="132" id="ipm-q4-bW0"/>
+                                </constraints>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYK-m7-Ffu">
+                                <rect key="frame" x="16" y="212" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LYK-m7-Ffu" firstAttribute="top" secondItem="P5J-4b-6c6" secondAttribute="bottom" constant="8" id="3ZC-qe-3kO"/>
+                            <constraint firstItem="P5J-4b-6c6" firstAttribute="leading" secondItem="t94-84-lGd" secondAttribute="leadingMargin" id="9tq-Op-woG"/>
+                            <constraint firstItem="P5J-4b-6c6" firstAttribute="top" secondItem="XuK-sg-XoZ" secondAttribute="bottom" constant="8" id="bTS-72-PaO"/>
+                            <constraint firstItem="LYK-m7-Ffu" firstAttribute="leading" secondItem="t94-84-lGd" secondAttribute="leadingMargin" id="cZx-RF-WMJ"/>
+                            <constraint firstItem="P5J-4b-6c6" firstAttribute="trailing" secondItem="t94-84-lGd" secondAttribute="trailingMargin" id="odw-qz-ZCl"/>
+                            <constraint firstAttribute="centerX" secondItem="P5J-4b-6c6" secondAttribute="centerX" id="tDx-m1-O2W"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="P5J-4b-6c6" id="wDD-gu-EEP"/>
                         <outlet property="stationNameLabel" destination="LYK-m7-Ffu" id="GGj-Eb-0vb"/>
                     </connections>
                 </viewController>

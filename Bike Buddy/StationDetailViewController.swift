@@ -7,31 +7,46 @@
 //
 
 import UIKit
+import MapKit
 
-class StationDetailViewController: UIViewController {
-
+class StationDetailViewController: UIViewController, MKMapViewDelegate {
+    //MARK: - Class Variables
+    
+    var stationObject: Station!
+    
+    //MARK: - View Outlets
+    
     @IBOutlet weak var stationNameLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    //MARK: - View Lifecycle
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        mapView.addAnnotation(stationObject)
+        mapView.showAnnotations([stationObject], animated: false)
+        stationNameLabel.text = stationObject.stationName
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //MARK: - Map View
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if (annotation is MKUserLocation) {
+            return nil
+        }
+        
+        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "StationDetailMapPinID")
+        annotationView.animatesDrop = false
+        
+        return annotationView
     }
-    */
-
 }

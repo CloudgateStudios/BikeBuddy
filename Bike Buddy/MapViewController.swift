@@ -10,6 +10,9 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
+    //MARK: - Class Variables
+    
+    private var tappedStation: Station!
     
     //MARK: - View Outlets
     
@@ -43,6 +46,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "showStationDetailFromMap") {
+            var vc = (segue.destinationViewController as! StationDetailViewController)
+            vc.stationObject = self.tappedStation
+            
+            self.tappedStation = nil
+        }
+    }
+    
     //MARK: - Map View
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -60,6 +72,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         //showStationDetailFromMap
+        //MapViewAnnotation *annotationTapped = (MapViewAnnotation *)view.annotation;
+        
+        self.tappedStation = view.annotation as! Station
+        
         self.performSegueWithIdentifier("showStationDetailFromMap", sender: self)
     }
     
