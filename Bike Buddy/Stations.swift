@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class Stations {
     class var sharedInstance: Stations {
@@ -29,5 +30,21 @@ class Stations {
     }
     
     private init() {
+    }
+    
+    class func getClosestStations(latitude: Double, longitude: Double, numberOfStations: Int) -> [Station] {
+        for station in self.sharedInstance.list {
+            station.setDistanceFromUser(latitude, usersLongitude: longitude)
+        }
+        
+        self.sharedInstance.list.sort({ $0.distanceFromUser < $1.distanceFromUser })
+        
+        var stationsToReturn = [Station]()
+        
+        for(var i = 0; i < numberOfStations; i++) {
+            stationsToReturn.append(self.sharedInstance.list[i])
+        }
+        
+        return stationsToReturn
     }
 }

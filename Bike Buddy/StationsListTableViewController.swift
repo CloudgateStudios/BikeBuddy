@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import CoreLocation
 
-class StationsListTableViewController: UITableViewController {
+class StationsListTableViewController: UITableViewController, CLLocationManagerDelegate {
+    // MARK: - Class Variables
+    
+    var locationManager = CLLocationManager()
+    var closestStations = [Station]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     // MARK: - View Lifecycle
     
@@ -28,6 +37,11 @@ class StationsListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +55,7 @@ class StationsListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Stations.sharedInstance.list.count
+        return self.closestStations.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -52,6 +66,18 @@ class StationsListTableViewController: UITableViewController {
         cell.numberOfAvailableDocksLabel.text = String(Stations.sharedInstance.list[indexPath.row].availableDocks)
 
         return cell
+    }
+    
+    // MARK: - Location Manager
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        locationManager.stopUpdatingLocation()
+        
+        var locationArray = locations as NSArray
+        var locationObj = locationArray.lastObject as! CLLocation
+        var coord = locationObj.coordinate
+        
+        self.closestStations = Stations.getClosestStations(coord.latitude, longitude: coord.longitude, numberOfStations: 3)
     }
     
     // MARK: - Stations Loading

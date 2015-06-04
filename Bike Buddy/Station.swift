@@ -8,7 +8,13 @@
 
 import Foundation
 import MapKit
+import CoreLocation
 
+/**
+    Represents a bike sharing station.
+
+    :Implements: MKAnnotation - Allows Station objects to be passed to MapView's for quick annotation loading
+*/
 class Station: NSObject, MKAnnotation {
     var id: Int = -1
     var stationName: String = ""
@@ -28,6 +34,8 @@ class Station: NSObject, MKAnnotation {
     var lastCommunicationTime: String = ""
     var landMark: String = ""
     
+    internal private(set) var distanceFromUser: Double = 0.0
+    
     @objc var coordinate : CLLocationCoordinate2D {
         get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
     }
@@ -41,5 +49,12 @@ class Station: NSObject, MKAnnotation {
     }
     
     override init() {
+    }
+    
+    func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {
+        var usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
+        var stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        
+        self.distanceFromUser = usersLocation.distanceFromLocation(stationLocation)
     }
 }
