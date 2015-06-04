@@ -13,6 +13,10 @@ public let FIRST_TIME_USE_COMPLETED_SETTINGS_KEY = "IsFirstTimeUseCompleted"
 public let BIKE_SERVICE_API_URL_SETTINGS_KEY = "BikeServiceApiUrl"
 public let BIKE_SERVICE_CITY_NAME_SETTINGS_KEY = "BikeServiceCityName"
 public let BIKE_SERVICE_NAME_SETTINGS_KEY = "BikeServiceName"
+public let NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY = "NumberOfClosestStations"
+
+// MARK: - Settings Defaults
+public let NUMBER_OF_CLOSEST_STATIONS_SETTINGS_DEFAULT_VALUE = 3
 
 // MARK: - Storyboard/View Names
 public let STORYBOARD_MAIN_FILE_NAME = "Main"
@@ -27,6 +31,7 @@ public let SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER = "showStationDetailFro
 public let STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER = "StationListCell"
 public let SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER = "SettingsCityCells"
 public let FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER = "FTUCityServiceCell"
+public let SETTINGS_NUMBER_OF_CLOSEST_STATIONS_CELL_REUSE_IDENTIFIER = "SettingsNumberOfClosestStationsCell"
 
 // MARK: - Map View Reuse Identifiers
 public let STATION_DETAIL_MAP_RESUE_IDENTIFIER = "StationDetailMapPinID"
@@ -36,6 +41,7 @@ public let FULL_MAP_VEIW_MAP_REUSE_IDENTIFIER = "FullMapPinID"
 public let NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED = "FirstTimeUseCompleted"
 public let NOTIFICATION_CENTER_NEW_CITY_SELECTED = "NewCitySelected"
 public let NOTIFICATION_CENTER_STATIONS_LIST_UPDATED = "StationsListUpdated"
+public let NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED = "NumberOfClosestStationsUpdated"
 
 // MARK: - Cities Plist
 public let CITIES_PLIST_FILE_NAME = "Cities"
