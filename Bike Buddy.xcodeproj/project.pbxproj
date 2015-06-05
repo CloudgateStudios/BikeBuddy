@@ -18,6 +18,7 @@
 		C516F0171B0CF11100CF4468 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516F0161B0CF11100CF4468 /* Station.swift */; };
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
 		C516F0201B0DC1DE00CF4468 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516F01F1B0DC1DE00CF4468 /* StationsDataService.swift */; };
+		C587A4211B21EF8500F2CA1F /* Double_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C587A4201B21EF8500F2CA1F /* Double_BikeBuddyExt.swift */; };
 		C59090481B0F1E8E0043FFFD /* Divvy_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = C59090471B0F1E8E0043FFFD /* Divvy_API_Response.json */; };
 		C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */; };
 		C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */; };
@@ -63,6 +64,7 @@
 		C516F01A1B0DAA7C00CF4468 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C516F01F1B0DC1DE00CF4468 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BikeBuddy-Bridging-Header.h"; sourceTree = "<group>"; };
+		C587A4201B21EF8500F2CA1F /* Double_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		C59090471B0F1E8E0043FFFD /* Divvy_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Divvy_API_Response.json; sourceTree = "<group>"; };
 		C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FirstTimeUse.storyboard; sourceTree = "<group>"; };
 		C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUSelectCityTableViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */,
+				C587A4201B21EF8500F2CA1F /* Double_BikeBuddyExt.swift */,
 			);
 			name = "Class Extensions";
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
 				D146DC811B156D3000F7456E /* Stations.swift in Sources */,
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
+				C587A4211B21EF8500F2CA1F /* Double_BikeBuddyExt.swift in Sources */,
 				C5C2158C1B0F785B00FEB01C /* City.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,
 			);

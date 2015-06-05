@@ -32,7 +32,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(stationObject)
         mapView.showAnnotations([stationObject], animated: false)
         stationNameLabel.text = stationObject.stationName
-        stationDistanceLabel.text = String(stringInterpolationSegment: stationObject.distanceFromUserInMiles) + " Miles"
+        stationDistanceLabel.text = stationObject.distanceFromUserInMiles.format(".2")
     }
 
     override func didReceiveMemoryWarning() {
