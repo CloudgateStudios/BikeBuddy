@@ -13,6 +13,11 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     // MARK: - Class Variables
     
     var locationManager = CLLocationManager()
+    var usersCurrentLocation = CLLocationCoordinate2D() {
+        didSet {
+            updateClosestStations()
+        }
+    }
     var closestStations = [Station]() {
         didSet {
             self.tableView.reloadData()
@@ -24,11 +29,13 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateClosestStations", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateClosestStations", name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
     }
 
     override func viewDidLoad() {
@@ -69,15 +76,12 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         
         var locationArray = locations as NSArray
         var locationObj = locationArray.lastObject as! CLLocation
-        var coord = locationObj.coordinate
-        
-        self.closestStations = Stations.getClosestStations(coord.latitude, longitude: coord.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY))
+        self.usersCurrentLocation = locationObj.coordinate
     }
     
     // MARK: - Stations Loading
     
-    func setupUI() {
-        println("SETUP TABLE UI")
-        self.tableView.reloadData()
+    func updateClosestStations() {
+        self.closestStations = Stations.getClosestStations(self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY))
     }
 }

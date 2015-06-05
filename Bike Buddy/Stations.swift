@@ -37,12 +37,14 @@ class Stations {
             station.setDistanceFromUser(latitude, usersLongitude: longitude)
         }
         
-        self.sharedInstance.list.sort({ $0.distanceFromUser < $1.distanceFromUser })
+        var listCopy = self.sharedInstance.list
+        
+        listCopy.sort({ $0.distanceFromUser < $1.distanceFromUser })
         
         var stationsToReturn = [Station]()
         
         for(var i = 0; i < numberOfStations; i++) {
-            stationsToReturn.append(self.sharedInstance.list[i])
+            stationsToReturn.append(listCopy[i])
         }
         
         return stationsToReturn
