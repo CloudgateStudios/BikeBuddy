@@ -36,6 +36,10 @@ class Station: NSObject, MKAnnotation {
     
     internal private(set) var distanceFromUser: Double = 0.0
     
+    var distanceFromUserInMiles: Double {
+        get { return distanceFromUser * 0.00062137 }
+    }
+    
     @objc var coordinate : CLLocationCoordinate2D {
         get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
     }

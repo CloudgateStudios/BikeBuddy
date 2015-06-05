@@ -18,6 +18,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var stationDistanceLabel: UILabel!
     
     //MARK: - View Lifecycle
     
@@ -31,6 +32,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(stationObject)
         mapView.showAnnotations([stationObject], animated: false)
         stationNameLabel.text = stationObject.stationName
+        stationDistanceLabel.text = String(stringInterpolationSegment: stationObject.distanceFromUserInMiles) + " Miles"
     }
 
     override func didReceiveMemoryWarning() {
