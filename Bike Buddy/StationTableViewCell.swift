@@ -11,6 +11,7 @@ import UIKit
 class StationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stationNameLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

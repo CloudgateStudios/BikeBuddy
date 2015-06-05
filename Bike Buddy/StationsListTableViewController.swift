@@ -65,6 +65,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! StationTableViewCell
         
         cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
+        cell.distanceLabel.text = self.closestStations[indexPath.row].distanceFromUserInMiles.format(".2")
 
         return cell
     }

@@ -9,31 +9,46 @@
         <scene sceneID="Cd0-8R-1m8">
             <objects>
                 <tableViewController storyboardIdentifier="StationsListView" id="hSw-bG-Kyq" customClass="StationsListTableViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="39" sectionHeaderHeight="22" sectionFooterHeight="22" id="OTq-HH-LrO">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="OTq-HH-LrO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationListCell" rowHeight="39" id="vQQ-be-0nZ" customClass="StationTableViewCell" customModule="Bike_Buddy" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationListCell" rowHeight="70" id="vQQ-be-0nZ" customClass="StationTableViewCell" customModule="Bike_Buddy" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vQQ-be-0nZ" id="vtP-YG-3V3">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Station Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54Q-6B-aAZ">
-                                            <rect key="frame" x="8" y="8" width="584" height="23"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54Q-6B-aAZ">
+                                            <rect key="frame" x="8" y="8" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmw-On-Ybt">
+                                            <rect key="frame" x="8" y="37" width="584" height="20"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="54Q-6B-aAZ" firstAttribute="leading" secondItem="vtP-YG-3V3" secondAttribute="leadingMargin" id="Gt5-Za-FOB"/>
                                         <constraint firstItem="54Q-6B-aAZ" firstAttribute="top" secondItem="vtP-YG-3V3" secondAttribute="topMargin" id="Ikg-T3-aOr"/>
+                                        <constraint firstItem="xmw-On-Ybt" firstAttribute="top" secondItem="54Q-6B-aAZ" secondAttribute="bottom" constant="8" id="NPs-5g-Y9d"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="xmw-On-Ybt" secondAttribute="trailing" id="TlV-QW-KPx"/>
+                                        <constraint firstItem="xmw-On-Ybt" firstAttribute="leading" secondItem="vtP-YG-3V3" secondAttribute="leadingMargin" id="i4A-Jo-uPh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="54Q-6B-aAZ" secondAttribute="trailing" id="mzx-9F-edr"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="54Q-6B-aAZ" secondAttribute="bottom" id="paA-7J-i6b"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="paA-7J-i6b"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="distanceLabel" destination="xmw-On-Ybt" id="xL0-5Y-UoP"/>
                                     <outlet property="stationNameLabel" destination="54Q-6B-aAZ" id="z9a-gO-hho"/>
                                 </connections>
                             </tableViewCell>
