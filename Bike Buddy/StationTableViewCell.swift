@@ -11,8 +11,6 @@ import UIKit
 class StationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stationNameLabel: UILabel!
-    @IBOutlet weak var numberOfBikesLabel: UILabel!
-    @IBOutlet weak var numberOfAvailableDocksLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
