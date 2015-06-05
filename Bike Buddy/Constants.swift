@@ -26,6 +26,7 @@ public let LAUNCH_SCREEN_VIEW_FILE_NAME = "LaunchScreen"
 // MARK: - Segue Names
 public let GO_TO_FTU_SEGUE_IDENTIFIER = "GoToFTUFinished"
 public let SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER = "showStationDetailFromMap"
+public let SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER = "showStationDetailFromStationsList"
 
 // MARK: - Table View Cell Resuse Identifiers
 public let STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER = "StationListCell"

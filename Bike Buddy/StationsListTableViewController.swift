@@ -23,6 +23,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
             self.tableView.reloadData()
         }
     }
+    private var tappedStation: Station!
     
     // MARK: - View Lifecycle
     
@@ -50,6 +51,16 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER) {
+            var vc = (segue.destinationViewController as! StationDetailViewController)
+            vc.stationObject = self.tappedStation
+            
+            self.tappedStation = nil
+        }
+
+    }
 
     // MARK: - Table View
 
@@ -68,6 +79,20 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         cell.distanceLabel.text = self.closestStations[indexPath.row].distanceFromUserInMiles.format(".2")
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+            case 0: return "Closest Stations"
+            case 1: return "Favorite Stations"
+            default: return ""
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tappedStation = self.closestStations[indexPath.row]
+        
+        self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER, sender: self)
     }
     
     // MARK: - Location Manager

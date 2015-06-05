@@ -59,6 +59,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Stations" id="xaa-yd-zgi"/>
+                    <connections>
+                        <segue destination="0Kp-FQ-qp6" kind="show" identifier="showStationDetailFromStationsList" id="gq2-lT-KRa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NxK-Lk-6xT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -446,4 +449,7 @@
         <image name="mapTabBarIcon" width="32" height="32"/>
         <image name="settingsTabBarIcon" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gq2-lT-KRa"/>
+    </inferredMetricsTieBreakers>
 </document>

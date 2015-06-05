@@ -47,6 +47,6 @@ class Stations {
             stationsToReturn.append(listCopy[i])
         }
         
-        return stationsToReturn.reverse()
+        return stationsToReturn
     }
 }
