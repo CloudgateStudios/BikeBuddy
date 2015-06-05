@@ -29,7 +29,6 @@
 		C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */; };
 		C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */; };
 		C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
-		D10242FA1B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */; };
 		D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */; };
 		D146DC811B156D3000F7456E /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC801B156D3000F7456E /* Stations.swift */; };
 		D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC841B1E98A200F7456E /* StationTableViewCell.swift */; };
@@ -74,7 +73,6 @@
 		C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUFinishedViewController.swift; sourceTree = "<group>"; };
 		C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		C5E873321B10A5BA00217C93 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNumberOfClosestStationsTableViewController.swift; sourceTree = "<group>"; };
 		D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSelectCityTableViewController.swift; sourceTree = "<group>"; };
 		D146DC801B156D3000F7456E /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 		D146DC841B1E98A200F7456E /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */,
 				C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */,
 				D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */,
-				D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -354,7 +351,6 @@
 				C516F00D1B0CE79100CF4468 /* SettingsTableViewController.swift in Sources */,
 				D146DC871B1EA55D00F7456E /* StationDetailViewController.swift in Sources */,
 				C516F0171B0CF11100CF4468 /* Station.swift in Sources */,
-				D10242FA1B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift in Sources */,
 				C516F0201B0DC1DE00CF4468 /* StationsDataService.swift in Sources */,
 				C516EFEB1B0CE6CB00CF4468 /* AppDelegate.swift in Sources */,
 				C5C215991B0F809C00FEB01C /* Constants.swift in Sources */,

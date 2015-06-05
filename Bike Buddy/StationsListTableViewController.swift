@@ -73,7 +73,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         var locationObj = locationArray.lastObject as! CLLocation
         var coord = locationObj.coordinate
         
-        self.closestStations = Stations.getClosestStations(coord.latitude, longitude: coord.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY))
+        self.closestStations = Stations.getClosestStations(coord.latitude, longitude: coord.longitude, numberOfStations: 3)
     }
     
     // MARK: - Stations Loading
