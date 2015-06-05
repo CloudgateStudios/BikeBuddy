@@ -20,6 +20,13 @@ class SettingsService {
     
     private init() {
         defaults = NSUserDefaults.standardUserDefaults()
+        setupDefaults()
+    }
+    
+    private func setupDefaults() {
+        if(self.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY) == 0) {
+            self.saveSetting(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY, value: NUMBER_OF_CLOSEST_STATIONS_SETTINGS_DEFAULT_VALUE)
+        }
     }
     
     func clearAllSettings() {
@@ -57,6 +64,10 @@ class SettingsService {
         else {
             return ""
         }
+    }
+    
+    func getSettingAsInt(key: String) -> Int {
+        return defaults.integerForKey(key)
     }
 
 }
