@@ -11,6 +11,9 @@ import Foundation
 class SettingsService {
     var defaults: NSUserDefaults
     
+    /**
+        The shared instanace that should be used to access all members of the service.
+    */
     class var sharedInstance : SettingsService {
         struct Static {
             static let instance : SettingsService = SettingsService()
@@ -18,22 +21,38 @@ class SettingsService {
         return Static.instance
     }
     
+    /**
+        **Should not be used. Call StationsDataService.sharedInstance instead.**
+    */
     private init() {
         defaults = NSUserDefaults.standardUserDefaults()
         setupDefaults()
     }
     
+    /**
+        All default values should be set here. Most values can be added at runtime but any values that are needed during the first execution should be set here.
+    */
     private func setupDefaults() {
         if(self.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY) == 0) {
             self.saveSetting(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY, value: NUMBER_OF_CLOSEST_STATIONS_SETTINGS_DEFAULT_VALUE)
         }
     }
     
+    /**
+        Will completely wipe out all settings. There's no going back after calling this.
+    */
     func clearAllSettings() {
         var appDomain: String = NSBundle.mainBundle().bundleIdentifier!
         defaults.removePersistentDomainForName(appDomain as String)
+        defaults.synchronize()
     }
     
+    /**
+        Quickly save a setting in the settings store.
+    
+        :param: key The key that should be used to save the setting.
+        :param: value The value that should be stored. This can be any object and saveSetting will determine the best way to save it
+    */
     func saveSetting(key: String, value: AnyObject) {
         //Need to determine type of object
         switch value {

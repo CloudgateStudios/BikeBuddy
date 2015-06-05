@@ -66,4 +66,15 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         mapItem.openInMapsWithLaunchOptions(optionsDictonary)
     }
     
+    @IBAction func userClickedShareStation(sender: UIButton) {
+        var sharingItems = [AnyObject]()
+        sharingItems.append(stationObject.shareStringDescription)
+        
+        let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func userClickedFavoriteButton(sender: UIBarButtonItem) {
+        
+    }
 }

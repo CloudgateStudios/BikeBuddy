@@ -32,13 +32,13 @@ extension UIApplication {
         Convience method to pretty up the version number for display purposes.
     
         - If the version number and build number are the same only one number will be returned
-        - If the version number and build number are different the returned string will follow the format of "version(build)"
+        - If the version number and build number are different the returned string will follow the format of "version (build)"
     
         :returns: The version number in a user displayable string
     */
     class func versionBuild() -> String {
         let version = appVersion(), build = appBuild()
         
-        return version == build ? "\(version)" : "\(version)(\(build))"
+        return version == build ? "\(version)" : "\(version) (\(build))"
     }
 }

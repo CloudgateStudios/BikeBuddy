@@ -40,6 +40,12 @@ class Station: NSObject, MKAnnotation {
         get { return distanceFromUser * 0.00062137 }
     }
     
+    var shareStringDescription: String {
+        get {
+            return "Station Name\n" + stationName + "\n\nAddress\n" + streetAddress
+        }
+    }
+    
     @objc var coordinate : CLLocationCoordinate2D {
         get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
     }

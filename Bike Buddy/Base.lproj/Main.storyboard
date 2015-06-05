@@ -118,6 +118,15 @@
                                     <action selector="userClickedOnDirectionsToStationButton:" destination="0Kp-FQ-qp6" eventType="touchUpInside" id="TcB-kl-RLY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-Zg-4qW">
+                                <rect key="frame" x="16" y="337" width="568" height="30"/>
+                                <state key="normal" title="Share Station">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="userClickedShareStation:" destination="0Kp-FQ-qp6" eventType="touchUpInside" id="1BI-h4-wFC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -126,7 +135,9 @@
                             <constraint firstItem="J3R-Yu-9k4" firstAttribute="top" secondItem="yNY-Nb-y0z" secondAttribute="bottom" constant="8" id="FZF-sj-i6U"/>
                             <constraint firstItem="jEp-Yy-oJo" firstAttribute="leading" secondItem="GNM-Pf-cqz" secondAttribute="trailing" constant="20" id="JAL-eT-yMg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yNY-Nb-y0z" secondAttribute="trailing" id="KK5-0d-Oqm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zqP-Zg-4qW" secondAttribute="trailing" id="L8e-Qi-otn"/>
                             <constraint firstItem="J3R-Yu-9k4" firstAttribute="leading" secondItem="t94-84-lGd" secondAttribute="leadingMargin" id="QCS-Lt-jww"/>
+                            <constraint firstItem="zqP-Zg-4qW" firstAttribute="leading" secondItem="t94-84-lGd" secondAttribute="leadingMargin" id="T0H-aL-Aj6"/>
                             <constraint firstItem="GNM-Pf-cqz" firstAttribute="top" secondItem="LYK-m7-Ffu" secondAttribute="bottom" constant="8" id="VIH-hB-Ufc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="J3R-Yu-9k4" secondAttribute="trailing" id="W32-xr-0cS"/>
                             <constraint firstItem="jEp-Yy-oJo" firstAttribute="top" secondItem="LYK-m7-Ffu" secondAttribute="bottom" constant="8" id="XJw-uk-LZ4"/>
@@ -134,13 +145,18 @@
                             <constraint firstItem="P5J-4b-6c6" firstAttribute="top" secondItem="XuK-sg-XoZ" secondAttribute="bottom" constant="8" id="bTS-72-PaO"/>
                             <constraint firstItem="LYK-m7-Ffu" firstAttribute="leading" secondItem="t94-84-lGd" secondAttribute="leadingMargin" id="cZx-RF-WMJ"/>
                             <constraint firstItem="GNM-Pf-cqz" firstAttribute="leading" secondItem="t94-84-lGd" secondAttribute="leadingMargin" id="fHo-Wp-0uh"/>
+                            <constraint firstItem="zqP-Zg-4qW" firstAttribute="top" secondItem="J3R-Yu-9k4" secondAttribute="bottom" constant="8" id="fNP-ja-cwH"/>
                             <constraint firstItem="P5J-4b-6c6" firstAttribute="trailing" secondItem="t94-84-lGd" secondAttribute="trailingMargin" id="odw-qz-ZCl"/>
                             <constraint firstAttribute="centerX" secondItem="P5J-4b-6c6" secondAttribute="centerX" id="tDx-m1-O2W"/>
                             <constraint firstItem="yNY-Nb-y0z" firstAttribute="top" secondItem="jEp-Yy-oJo" secondAttribute="bottom" constant="8" id="tMT-mb-MSS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Station Detail" id="o6H-2S-pRq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="GIY-pG-WVD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="GIY-pG-WVD">
+                            <connections>
+                                <action selector="userClickedFavoriteButton:" destination="0Kp-FQ-qp6" id="PdW-Ca-YbM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="P5J-4b-6c6" id="wDD-gu-EEP"/>
