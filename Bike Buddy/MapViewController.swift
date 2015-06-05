@@ -23,10 +23,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
     deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
@@ -52,6 +56,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             vc.stationObject = self.tappedStation
             
             self.tappedStation = nil
+        }
+    }
+    
+    //MARK: - Stations List
+    
+    func refreshStationsData() {
+        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+            responseObject, error in
+            
+            Stations.sharedInstance.list = responseObject
         }
     }
     
