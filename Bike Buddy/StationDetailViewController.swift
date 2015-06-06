@@ -20,6 +20,8 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var stationDistanceLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var shareStationButton: UIButton!
+    @IBOutlet weak var directionToStationsButton: UIButton!
     
     //MARK: - View Lifecycle
     
@@ -38,6 +40,9 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         if(stationObject.isFavorite) {
             favoriteButton.image = UIImage(named: FAVORITE_NAV_BAR_ICON_NAME)
         }
+        
+        ThemeService.themeButton(shareStationButton)
+        ThemeService.themeButton(directionToStationsButton)
     }
 
     override func didReceiveMemoryWarning() {

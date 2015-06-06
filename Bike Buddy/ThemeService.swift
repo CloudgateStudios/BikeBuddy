@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 class ThemeService {
-    static let navigationBarBackgroundColor = UIColor(red: 22.0/255.0, green: 173.0/255.0, blue: 81.0/255.0, alpha: 1.0)
-    static let tabBarTintColor = UIColor(red: 22.0/255.0, green: 173.0/255.0, blue: 81.0/255.0, alpha: 1.0)
+    static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
+    static let tabBarTintColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
+    static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
     
     class func themeNavigationBar() {
         let navigationAppearance = UINavigationBar.appearance()
@@ -34,10 +35,10 @@ class ThemeService {
     class func themeButton(button: UIButton) {
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         
-        var defaultImage = UIImage.imageWithUIColor(navigationBarBackgroundColor)
+        var defaultImage = UIImage.imageWithUIColor(buttonBackgroundColor)
         button.setBackgroundImage(defaultImage, forState: UIControlState.Normal)
         
-        var highlightImage = UIImage.imageWithUIColor(navigationBarBackgroundColor)
+        var highlightImage = UIImage.imageWithUIColor(buttonBackgroundColor)
         button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
     }
 
