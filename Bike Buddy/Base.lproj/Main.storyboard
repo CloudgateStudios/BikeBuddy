@@ -109,15 +109,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3R-Yu-9k4">
-                                <rect key="frame" x="16" y="299" width="568" height="30"/>
-                                <state key="normal" title="Directions to Station">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="userClickedOnDirectionsToStationButton:" destination="0Kp-FQ-qp6" eventType="touchUpInside" id="TcB-kl-RLY"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-Zg-4qW">
                                 <rect key="frame" x="16" y="337" width="568" height="30"/>
                                 <state key="normal" title="Share Station">
@@ -125,6 +116,15 @@
                                 </state>
                                 <connections>
                                     <action selector="userClickedShareStation:" destination="0Kp-FQ-qp6" eventType="touchUpInside" id="1BI-h4-wFC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3R-Yu-9k4">
+                                <rect key="frame" x="16" y="299" width="568" height="30"/>
+                                <state key="normal" title="Directions to Station">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="userClickedOnDirectionsToStationButton:" destination="0Kp-FQ-qp6" eventType="touchUpInside" id="TcB-kl-RLY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -159,6 +159,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="favoriteButton" destination="GIY-pG-WVD" id="y55-3N-CAK"/>
                         <outlet property="mapView" destination="P5J-4b-6c6" id="wDD-gu-EEP"/>
                         <outlet property="stationDistanceLabel" destination="yNY-Nb-y0z" id="2MX-5R-7gG"/>
                         <outlet property="stationNameLabel" destination="LYK-m7-Ffu" id="GGj-Eb-0vb"/>
@@ -406,7 +407,7 @@
         <scene sceneID="Blm-eb-fxA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sGW-jV-Y56" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Station List" image="first" id="StL-iU-sYK"/>
+                    <tabBarItem key="tabBarItem" title="Station List" image="stationsNavBarIcon" id="StL-iU-sYK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7x1-WE-zqk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -461,10 +462,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
         <image name="mapTabBarIcon" width="32" height="32"/>
         <image name="notFavoriteNavBarIcon" width="32" height="32"/>
         <image name="settingsTabBarIcon" width="32" height="32"/>
+        <image name="stationsNavBarIcon" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gq2-lT-KRa"/>

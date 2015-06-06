@@ -19,6 +19,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var stationDistanceLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     //MARK: - View Lifecycle
     
@@ -33,6 +34,10 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.showAnnotations([stationObject], animated: false)
         stationNameLabel.text = stationObject.stationName
         stationDistanceLabel.text = stationObject.distanceFromUserInMiles.format(".2")
+        
+        if(stationObject.isFavorite) {
+            favoriteButton.image = UIImage(named: FAVORITE_NAV_BAR_ICON_NAME)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +80,6 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func userClickedFavoriteButton(sender: UIBarButtonItem) {
-        
+
     }
 }

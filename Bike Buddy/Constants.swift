@@ -18,6 +18,9 @@ public let NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY = "NumberOfClosestStations"
 // MARK: - Settings Defaults
 public let NUMBER_OF_CLOSEST_STATIONS_SETTINGS_DEFAULT_VALUE = 3
 
+// MARK: - Archive Names
+public let FAVORITE_STATIONS_ARCHIVE_NAME_ENDING = "favoriteStations.archive"
+
 // MARK: - Storyboard/View Names
 public let STORYBOARD_MAIN_FILE_NAME = "Main"
 public let STORYBOARD_FIRST_TIME_USE_FILE_NAME = "FirstTimeUse"
@@ -43,9 +46,14 @@ public let NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED = "FirstTimeUseCompleted
 public let NOTIFICATION_CENTER_NEW_CITY_SELECTED = "NewCitySelected"
 public let NOTIFICATION_CENTER_STATIONS_LIST_UPDATED = "StationsListUpdated"
 public let NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED = "NumberOfClosestStationsUpdated"
+public let NOTIFICATION_CENTER_FAVORITE_STATIONS_LIST_UPDATED = "FavoriteStationsListUpdated"
 
 // MARK: - Cities Plist
 public let CITIES_PLIST_FILE_NAME = "Cities"
 public let CITIES_PLIST_NAME_FIELD_KEY = "name"
 public let CITIES_PLIST_SERVICE_NAME_FIELD_KEY = "serviceName"
 public let CITIES_PLIST_API_URL_FIELD_KEY = "apiUrl"
+
+// MARK: - Image Names
+public let FAVORITE_NAV_BAR_ICON_NAME = "favoriteNavBarIcon"
+public let NOT_FAVORITE_NAV_BAR_ICON_NAME = "notFavoriteNavBarIcon"
