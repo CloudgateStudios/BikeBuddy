@@ -15,10 +15,16 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
 
+    //MARK: - View Outlets
+    
+    @IBOutlet weak var giveLocationAccessButton: UIButton!
+    
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ThemeService.themeButton(giveLocationAccessButton)
     }
 
     override func didReceiveMemoryWarning() {

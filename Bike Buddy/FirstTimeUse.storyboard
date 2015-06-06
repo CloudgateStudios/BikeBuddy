@@ -95,7 +95,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
-                                <rect key="frame" x="226" y="285" width="149" height="30"/>
+                                <rect key="frame" x="182" y="272" width="236" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="236" id="Dzt-2B-yLg"/>
+                                    <constraint firstAttribute="height" constant="56" id="mZy-NQ-bX3"/>
+                                </constraints>
                                 <state key="normal" title="Give Location Access">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -112,6 +116,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Location Access" id="siy-fV-atj"/>
                     <connections>
+                        <outlet property="giveLocationAccessButton" destination="Fzn-Qe-wpc" id="4cV-pE-Zg7"/>
                         <segue destination="vJd-cQ-7bo" kind="show" identifier="GoToFTUFinished" id="HG9-U4-bHY"/>
                     </connections>
                 </viewController>

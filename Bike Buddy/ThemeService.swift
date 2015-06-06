@@ -30,5 +30,15 @@ class ThemeService {
         tabBarAppearance.translucent = false
         tabBarAppearance.tintColor = tabBarTintColor
     }
+    
+    class func themeButton(button: UIButton) {
+        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        
+        var defaultImage = UIImage.imageWithUIColor(navigationBarBackgroundColor)
+        button.setBackgroundImage(defaultImage, forState: UIControlState.Normal)
+        
+        var highlightImage = UIImage.imageWithUIColor(navigationBarBackgroundColor)
+        button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
+    }
 
 }
