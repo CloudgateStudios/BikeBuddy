@@ -9,10 +9,16 @@
 import UIKit
 
 class FTUFinishedViewController: UIViewController {
+    //MARK: _ View Outlets
+    
+    @IBOutlet weak var getStartedButton: UIButton!
+    
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ThemeService.themeButton(getStartedButton)
     }
 
     override func didReceiveMemoryWarning() {

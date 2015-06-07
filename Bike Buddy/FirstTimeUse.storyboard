@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="x0g-jN-aat">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="x0g-jN-aat">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Welcome-->
         <scene sceneID="RQM-xF-CfX">
             <objects>
-                <viewController title="Welcome" id="9fG-UD-a7M" sceneMemberID="viewController">
+                <viewController title="Welcome" id="9fG-UD-a7M" customClass="FTUWelcomeViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="erk-gr-I6G"/>
                         <viewControllerLayoutGuide type="bottom" id="7Ac-86-SVu"/>
@@ -16,8 +18,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
+                                <rect key="frame" x="175" y="175" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="0R5-eP-Ywe"/>
+                                    <constraint firstAttribute="width" constant="250" id="gJr-Pu-vqb"/>
+                                    <constraint firstAttribute="width" secondItem="rBP-Fi-Taj" secondAttribute="height" multiplier="15:8" id="jM9-HZ-FiI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="jM9-HZ-FiI"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <rect key="frame" x="260" y="285" width="80" height="30"/>
+                                <rect key="frame" x="200" y="460" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
+                                </constraints>
                                 <state key="normal" title="Get Started">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,11 +46,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0Ib-PO-9a9" firstAttribute="top" secondItem="rBP-Fi-Taj" secondAttribute="bottom" constant="35" id="9rB-cN-fcu"/>
+                            <constraint firstAttribute="centerY" secondItem="rBP-Fi-Taj" secondAttribute="centerY" id="GAT-yj-Vj9"/>
+                            <constraint firstAttribute="centerX" secondItem="0Ib-PO-9a9" secondAttribute="centerX" id="GaB-7K-0Ce"/>
+                            <constraint firstItem="7Ac-86-SVu" firstAttribute="top" secondItem="0Ib-PO-9a9" secondAttribute="bottom" constant="90" id="XrG-ip-soZ"/>
+                            <constraint firstItem="0Ib-PO-9a9" firstAttribute="leading" secondItem="nl3-5f-GMK" secondAttribute="leadingMargin" constant="184" id="Yhb-i5-vH7"/>
                             <constraint firstAttribute="centerY" secondItem="0Ib-PO-9a9" secondAttribute="centerY" id="gIH-eg-XQP"/>
                             <constraint firstAttribute="centerX" secondItem="0Ib-PO-9a9" secondAttribute="centerX" id="kgc-0h-nMQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Ib-PO-9a9" secondAttribute="trailing" constant="184" id="xZ2-3P-hSY"/>
+                            <constraint firstAttribute="centerX" secondItem="rBP-Fi-Taj" secondAttribute="centerX" id="yfJ-km-hYb"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GaB-7K-0Ce"/>
+                                <exclude reference="Yhb-i5-vH7"/>
+                                <exclude reference="gIH-eg-XQP"/>
+                                <exclude reference="xZ2-3P-hSY"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="9Ar-BB-nMV"/>
+                    <connections>
+                        <outlet property="getStartedButton" destination="0Ib-PO-9a9" id="ioM-MI-XnU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wT-Fc-w5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,10 +131,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
-                                <rect key="frame" x="182" y="272" width="236" height="56"/>
+                                <rect key="frame" x="200" y="275" width="200" height="49"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="236" id="Dzt-2B-yLg"/>
-                                    <constraint firstAttribute="height" constant="56" id="mZy-NQ-bX3"/>
+                                    <constraint firstAttribute="width" constant="200" id="Dzt-2B-yLg"/>
+                                    <constraint firstAttribute="height" constant="49" id="mZy-NQ-bX3"/>
                                 </constraints>
                                 <state key="normal" title="Give Location Access">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,7 +173,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
-                                <rect key="frame" x="260" y="285" width="80" height="30"/>
+                                <rect key="frame" x="200" y="275" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4Bu-r0-zH1"/>
+                                    <constraint firstAttribute="width" constant="200" id="qtU-gg-anE"/>
+                                </constraints>
                                 <state key="normal" title="Get Started">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -148,11 +188,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="O5u-mS-eKX" firstAttribute="leading" secondItem="9YZ-8D-rFZ" secondAttribute="leadingMargin" constant="184" id="Gu3-HF-eUV"/>
                             <constraint firstAttribute="centerY" secondItem="O5u-mS-eKX" secondAttribute="centerY" id="Nfc-oT-Uah"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O5u-mS-eKX" secondAttribute="trailing" constant="184" id="bV9-1f-LWY"/>
                             <constraint firstAttribute="centerX" secondItem="O5u-mS-eKX" secondAttribute="centerX" id="jpv-SJ-24D"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Gu3-HF-eUV"/>
+                                <exclude reference="bV9-1f-LWY"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Finished" id="ZHk-ip-LA7"/>
+                    <connections>
+                        <outlet property="getStartedButton" destination="O5u-mS-eKX" id="IKa-px-PFN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yab-QQ-V3J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,4 +228,7 @@
             <point key="canvasLocation" x="153" y="268"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ftuWelcome" width="512" height="512"/>
+    </resources>
 </document>
