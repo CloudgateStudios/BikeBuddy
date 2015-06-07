@@ -55,6 +55,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
+        cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
 
         return cell
     }

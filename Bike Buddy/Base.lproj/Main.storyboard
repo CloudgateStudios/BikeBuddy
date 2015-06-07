@@ -300,6 +300,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="MmD-nc-dyF" kind="show" id="YEz-3Y-dPn"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="dYm-5B-eDr" detailTextLabel="68I-eo-Ntf" style="IBUITableViewCellStyleValue1" id="1wY-uD-XZ8">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -340,7 +343,57 @@
             </objects>
             <point key="canvasLocation" x="1562" y="1086"/>
         </scene>
-        <!--Settings Select City Table View Controller-->
+        <!--About-->
+        <scene sceneID="W7c-3j-582">
+            <objects>
+                <viewController id="MmD-nc-dyF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dr6-1A-VHw"/>
+                        <viewControllerLayoutGuide type="bottom" id="1FU-Ky-reE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o5y-25-eIB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vym-EB-oLL">
+                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bike Share Buddy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haU-aw-1mo">
+                                        <rect key="frame" x="215" y="85" width="138" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="haU-aw-1mo" firstAttribute="leading" secondItem="Vym-EB-oLL" secondAttribute="leading" id="IUj-dt-FCx"/>
+                                    <constraint firstAttribute="trailing" secondItem="haU-aw-1mo" secondAttribute="trailing" id="akb-CL-FWx"/>
+                                    <constraint firstItem="haU-aw-1mo" firstAttribute="top" secondItem="Vym-EB-oLL" secondAttribute="top" constant="85" id="s9y-RW-mnp"/>
+                                    <constraint firstAttribute="centerX" secondItem="haU-aw-1mo" secondAttribute="centerX" id="tV0-RC-eFU"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IUj-dt-FCx"/>
+                                        <exclude reference="akb-CL-FWx"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vym-EB-oLL" firstAttribute="top" secondItem="o5y-25-eIB" secondAttribute="topMargin" id="8BN-pk-zFQ"/>
+                            <constraint firstItem="Vym-EB-oLL" firstAttribute="bottom" secondItem="o5y-25-eIB" secondAttribute="bottomMargin" id="Os3-sD-TTe"/>
+                            <constraint firstItem="Vym-EB-oLL" firstAttribute="leading" secondItem="o5y-25-eIB" secondAttribute="leadingMargin" id="bVk-BY-H3o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vym-EB-oLL" secondAttribute="trailing" id="dj7-BV-3QP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="yPV-ZG-LWd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="74y-CG-AKr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2294" y="2435"/>
+        </scene>
+        <!--Select City-->
         <scene sceneID="vEm-Ia-6UH">
             <objects>
                 <tableViewController id="2ga-wz-k7f" customClass="SettingsSelectCityTableViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
@@ -349,10 +402,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCityCells" id="ucx-iI-137">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCityCells" textLabel="iBd-dG-AuQ" detailTextLabel="BQe-Yi-1MA" style="IBUITableViewCellStyleValue1" id="ucx-iI-137">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ucx-iI-137" id="bsl-xi-LLX">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iBd-dG-AuQ">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BQe-Yi-1MA">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -361,12 +428,13 @@
                             <outlet property="delegate" destination="2ga-wz-k7f" id="7bf-ZN-Vxx"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Select City" id="Pm3-Wh-Jwb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nW4-1w-6fE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2293" y="1086"/>
         </scene>
-        <!--Settings Number Of Closest Stations Table View Controller-->
+        <!--Stations to Show-->
         <scene sceneID="7Jv-gH-HMA">
             <objects>
                 <tableViewController id="vIM-Pm-O2c" customClass="SettingsNumberOfClosestStationsTableViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
@@ -396,6 +464,7 @@
                             <outlet property="delegate" destination="vIM-Pm-O2c" id="gZP-Cg-Fc3"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Stations to Show" id="A7H-50-fuq"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pk-f6-RY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
