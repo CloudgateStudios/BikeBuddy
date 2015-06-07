@@ -19,7 +19,6 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var stationDistanceLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var shareStationButton: UIButton!
     @IBOutlet weak var directionToStationsButton: UIButton!
     
@@ -36,10 +35,6 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.showAnnotations([stationObject], animated: false)
         stationNameLabel.text = stationObject.stationName
         stationDistanceLabel.text = stationObject.distanceFromUserInMiles.format(".2")
-        
-        if(stationObject.isFavorite) {
-            favoriteButton.image = UIImage(named: FAVORITE_NAV_BAR_ICON_NAME)
-        }
         
         ThemeService.themeButton(shareStationButton)
         ThemeService.themeButton(directionToStationsButton)
@@ -82,9 +77,5 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
         self.presentViewController(activityViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func userClickedFavoriteButton(sender: UIBarButtonItem) {
-
     }
 }

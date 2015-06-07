@@ -118,8 +118,8 @@
                                     <action selector="userClickedOnDirectionsToStationButton:" destination="0Kp-FQ-qp6" eventType="touchUpInside" id="TcB-kl-RLY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-Zg-4qW">
-                                <rect key="frame" x="444" y="300" width="140" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-Zg-4qW">
+                                <rect key="frame" x="444" y="299" width="140" height="30"/>
                                 <state key="normal" title="Share Station">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -179,16 +179,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Station Detail" id="o6H-2S-pRq">
-                        <barButtonItem key="rightBarButtonItem" image="notFavoriteNavBarIcon" id="GIY-pG-WVD">
-                            <connections>
-                                <action selector="userClickedFavoriteButton:" destination="0Kp-FQ-qp6" id="PdW-Ca-YbM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Station Detail" id="o6H-2S-pRq"/>
                     <connections>
                         <outlet property="directionToStationsButton" destination="J3R-Yu-9k4" id="RdO-0X-mNf"/>
-                        <outlet property="favoriteButton" destination="GIY-pG-WVD" id="y55-3N-CAK"/>
                         <outlet property="mapView" destination="P5J-4b-6c6" id="wDD-gu-EEP"/>
                         <outlet property="shareStationButton" destination="zqP-Zg-4qW" id="8sV-jc-kfm"/>
                         <outlet property="stationDistanceLabel" destination="yNY-Nb-y0z" id="2MX-5R-7gG"/>
@@ -493,7 +486,6 @@
     </scenes>
     <resources>
         <image name="mapTabBarIcon" width="32" height="32"/>
-        <image name="notFavoriteNavBarIcon" width="32" height="32"/>
         <image name="settingsTabBarIcon" width="32" height="32"/>
         <image name="stationsNavBarIcon" width="32" height="32"/>
     </resources>

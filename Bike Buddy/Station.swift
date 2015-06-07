@@ -33,7 +33,6 @@ class Station: NSObject, MKAnnotation {
     var testStation: Bool = false
     var lastCommunicationTime: String = ""
     var landMark: String = ""
-    var isFavorite: Bool = false
     
     internal private(set) var distanceFromUser: Double = 0.0
     
