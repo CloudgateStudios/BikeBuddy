@@ -10,26 +10,48 @@ import Foundation
 import UIKit
 
 class ThemeService {
-    static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
-    static let tabBarTintColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
-    static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
+    private static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
+    private static let tabBarTintColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
+    private static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
+    private static let fontName = "AppleSDGothicNeo-Regular"
     
-    class func themeNavigationBar() {
+    class func applyTheme() {
+        themeNavigationBar()
+        themeTabBar()
+        themeLabel()
+    }
+    
+    private static func themeNavigationBar() {
         let navigationAppearance = UINavigationBar.appearance()
         
         navigationAppearance.barTintColor = navigationBarBackgroundColor
         navigationAppearance.tintColor = UIColor.whiteColor()
-        navigationAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
+        navigationAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: fontName, size: 19)!]
         navigationAppearance.barStyle = UIBarStyle.Black
         navigationAppearance.translucent = false
+        
+        let barButtonItemApperance = UIBarButtonItem.appearance()
+        
+        barButtonItemApperance.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: fontName, size: 19)!], forState: UIControlState.Normal)
     }
-    
-    class func themeTabBar() {
+
+    private static func themeTabBar() {
         let tabBarAppearance = UITabBar.appearance()
 
         tabBarAppearance.translucent = false
         tabBarAppearance.tintColor = tabBarTintColor
+        
+        let tabBarItemAppearance = UITabBarItem.appearance()
+        
+        tabBarItemAppearance.setTitleTextAttributes([NSFontAttributeName: UIFont(name: fontName, size: 10)!], forState: UIControlState.Normal)
+    }
+    
+    private static func themeLabel() {
+        let labelApperance = UILabel.appearance()
+        
+        labelApperance.substituteFontName = fontName
     }
     
     class func themeButton(button: UIButton) {
@@ -41,5 +63,4 @@ class ThemeService {
         var highlightImage = UIImage.imageWithUIColor(buttonBackgroundColor)
         button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
     }
-
 }
