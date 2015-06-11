@@ -2,24 +2,51 @@
 //  ThemeService.swift
 //  Bike Buddy
 //
-//  Created by Arra Tom, US-L-4 on 6/5/15.
+//  Created by Tom Arra on 6/5/15.
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class ThemeService {
+    //MARK: - Theme Variables
+    
     private static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
     private static let tabBarTintColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
     private static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
     private static let fontName = "AppleSDGothicNeo-Regular"
     
+    //MARK: - Class Functions
+    
+    /**
+        Apply all the overall themes for the application. 
+    
+        **Should only be called once from the AppDelegate. If this needs to be called again your probably doing something wrong.**
+    */
     class func applyTheme() {
         themeNavigationBar()
         themeTabBar()
         themeLabel()
     }
+    
+    /**
+        Theme a button to give a consistent look and feel.
+    
+        Best place to use this is viewDidLoad in each ViewController that needs to theme a button.
+    
+        :param: button The UIButton that should be themed. It will be themed in place, not returned.
+    */
+    class func themeButton(button: UIButton) {
+        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        
+        var defaultImage = UIImage.imageWithUIColor(buttonBackgroundColor)
+        button.setBackgroundImage(defaultImage, forState: UIControlState.Normal)
+        
+        var highlightImage = UIImage.imageWithUIColor(buttonBackgroundColor)
+        button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
+    }
+    
+    //MARK: - Private Functions
     
     private static func themeNavigationBar() {
         let navigationAppearance = UINavigationBar.appearance()
@@ -52,15 +79,5 @@ class ThemeService {
         let labelApperance = UILabel.appearance()
         
         labelApperance.substituteFontName = fontName
-    }
-    
-    class func themeButton(button: UIButton) {
-        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        
-        var defaultImage = UIImage.imageWithUIColor(buttonBackgroundColor)
-        button.setBackgroundImage(defaultImage, forState: UIControlState.Normal)
-        
-        var highlightImage = UIImage.imageWithUIColor(buttonBackgroundColor)
-        button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
     }
 }
