@@ -48,6 +48,9 @@ class ThemeService {
     
     //MARK: - Private Functions
     
+    /**
+        Theme the navigation bar object for the whole app.
+    */
     private static func themeNavigationBar() {
         let navigationAppearance = UINavigationBar.appearance()
         
@@ -64,6 +67,9 @@ class ThemeService {
             NSFontAttributeName: UIFont(name: fontName, size: 19)!], forState: UIControlState.Normal)
     }
 
+    /**
+        Theme the tab bar object for the whole app.
+    */
     private static func themeTabBar() {
         let tabBarAppearance = UITabBar.appearance()
 
@@ -75,6 +81,9 @@ class ThemeService {
         tabBarItemAppearance.setTitleTextAttributes([NSFontAttributeName: UIFont(name: fontName, size: 10)!], forState: UIControlState.Normal)
     }
     
+    /**
+        Theme the labels for the whole app. This effects almost everything including labels inside of Map View annotations.
+    */
     private static func themeLabel() {
         let labelApperance = UILabel.appearance()
         
