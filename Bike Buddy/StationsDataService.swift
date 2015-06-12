@@ -79,16 +79,18 @@ class StationsDataService {
                            latitude = stationBean.valueForKey("latitude") as? Double,
                            longitude = stationBean.valueForKey("longitude") as? Double,
                            availableBikes = stationBean.valueForKey("availableBikes") as? Int,
-                           availableDocks = stationBean.valueForKey("availableDocks") as? Int,
-                           address1 = stationBean.valueForKey("stAddress1") as? String,
-                           address2 = stationBean.valueForKey("stAddress2") as? String {
+                           availableDocks = stationBean.valueForKey("availableDocks") as? Int {
                         
                         newStation.stationName = stationName
                         newStation.latitude = latitude
                         newStation.longitude = longitude
                         newStation.availableBikes = availableBikes
                         newStation.availableDocks = availableDocks
-                        newStation.streetAddress = address1 + " " + address2
+                            
+                            if let address1 = stationBean.valueForKey("stAddress1") as? String,
+                                address2 = stationBean.valueForKey("stAddress2") as? String {
+                                    newStation.streetAddress = address1 + " " + address2
+                            }
                     
                         stations.append(newStation)
                     }

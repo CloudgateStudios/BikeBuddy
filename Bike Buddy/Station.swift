@@ -42,7 +42,13 @@ class Station: NSObject, MKAnnotation {
     
     var shareStringDescription: String {
         get {
-            return "Station Name\n" + stationName + "\n\nAddress\n" + streetAddress
+            var returnString = "Station Name\n" + stationName
+            
+            if(streetAddress != "") {
+                returnString += "\n\nAddress\n" + streetAddress
+            }
+            
+            return returnString
         }
     }
     
