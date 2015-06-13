@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreLocation
 
 class Stations {
     class var sharedInstance: Stations {

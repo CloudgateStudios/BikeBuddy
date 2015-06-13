@@ -9,7 +9,15 @@
 import Foundation
 
 extension Double {
-    func format(f: String) -> String {
-        return NSString(format: "%\(f)f", self) as String
+    
+    /**
+        Quick and easy formatting of a Double to a viewable String
+    
+        :param: formatString The way the number should be formatted. Example: ".2" will mean rounding to the first 2 decimal places
+    
+        :returns: The formatted String
+    */
+    func format(formatString: String) -> String {
+        return NSString(format: "%\(formatString)f", self) as String
     }
 }

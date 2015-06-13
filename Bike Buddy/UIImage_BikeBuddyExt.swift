@@ -10,8 +10,14 @@ import UIKit
 
 extension UIImage {
     
+    /**
+        Create an image from a given color.
+    
+        :param: color The color that the image should be as a UIColor
+    
+        :returns: The image that was created
+    */
     class func imageWithUIColor(color: UIColor) -> UIImage {
-        
         UIGraphicsBeginImageContext(CGSizeMake(1, 1))
         var context = UIGraphicsGetCurrentContext()
         CGContextSetFillColorWithColor(context, color.CGColor)
