@@ -32,18 +32,20 @@ class Stations {
     }
     
     class func getClosestStations(latitude: Double, longitude: Double, numberOfStations: Int) -> [Station] {
+        var stationsToReturn = [Station]()
+        
         for station in self.sharedInstance.list {
             station.setDistanceFromUser(latitude, usersLongitude: longitude)
         }
         
         var listCopy = self.sharedInstance.list
         
-        listCopy.sort({ $0.distanceFromUser < $1.distanceFromUser })
-        
-        var stationsToReturn = [Station]()
-        
-        for(var i = 0; i < numberOfStations; i++) {
-            stationsToReturn.append(listCopy[i])
+        if listCopy.count > 0 {
+            listCopy.sort({ $0.distanceFromUser < $1.distanceFromUser })
+            
+            for(var i = 0; i < numberOfStations; i++) {
+                stationsToReturn.append(listCopy[i])
+            }
         }
         
         return stationsToReturn
