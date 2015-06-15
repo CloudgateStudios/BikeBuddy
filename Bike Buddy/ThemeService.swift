@@ -11,9 +11,9 @@ import UIKit
 class ThemeService {
     //MARK: - Theme Variables
     
-    private static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
-    private static let tabBarTintColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
-    private static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 145, blue: 77, alpha: 1.0)
+    private static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
+    private static let tabBarTintColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
+    private static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
     private static let fontName = "AppleSDGothicNeo-Regular"
     
     //MARK: - Class Functions
