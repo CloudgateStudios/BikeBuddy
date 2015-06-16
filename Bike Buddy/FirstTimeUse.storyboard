@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="x0g-jN-aat">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="x0g-jN-aat">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -32,7 +32,7 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <rect key="frame" x="200" y="460" width="200" height="50"/>
+                                <rect key="frame" x="200" y="460" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
                                 </constraints>
@@ -44,12 +44,11 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95959595959595956" green="0.95959595959595956" blue="0.95959595959595956" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0Ib-PO-9a9" firstAttribute="top" secondItem="rBP-Fi-Taj" secondAttribute="bottom" constant="35" id="9rB-cN-fcu"/>
                             <constraint firstAttribute="centerY" secondItem="rBP-Fi-Taj" secondAttribute="centerY" id="GAT-yj-Vj9"/>
                             <constraint firstAttribute="centerX" secondItem="0Ib-PO-9a9" secondAttribute="centerX" id="GaB-7K-0Ce"/>
-                            <constraint firstItem="7Ac-86-SVu" firstAttribute="top" secondItem="0Ib-PO-9a9" secondAttribute="bottom" constant="90" id="XrG-ip-soZ"/>
                             <constraint firstItem="0Ib-PO-9a9" firstAttribute="leading" secondItem="nl3-5f-GMK" secondAttribute="leadingMargin" constant="184" id="Yhb-i5-vH7"/>
                             <constraint firstAttribute="centerY" secondItem="0Ib-PO-9a9" secondAttribute="centerY" id="gIH-eg-XQP"/>
                             <constraint firstAttribute="centerX" secondItem="0Ib-PO-9a9" secondAttribute="centerX" id="kgc-0h-nMQ"/>
@@ -229,6 +228,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ftuWelcome" width="512" height="512"/>
+        <image name="ftuWelcome" width="300" height="300"/>
     </resources>
 </document>
