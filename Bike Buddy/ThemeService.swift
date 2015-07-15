@@ -38,12 +38,8 @@ class ThemeService {
     */
     class func themeButton(button: UIButton) {
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        
-        var defaultImage = UIImage.imageWithUIColor(buttonBackgroundColor)
-        button.setBackgroundImage(defaultImage, forState: UIControlState.Normal)
-        
-        var highlightImage = UIImage.imageWithUIColor(buttonBackgroundColor)
-        button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
+        button.backgroundColor = buttonBackgroundColor
+        button.layer.cornerRadius = 4.0
     }
     
     //MARK: - Private Functions
