@@ -47,7 +47,7 @@ class StationsDataService {
     
         :param: fileName The name of the file to be loaded. Method makes the assumption that the file is part of the main bundle and is not in a subfolder.
     
-        :returns: [Station]
+        :returns: An array of Station objects
     */
     func loadStationDataFromFile(fileName: String) -> [Station] {
         var jsonString:NSData = NSData()
@@ -64,6 +64,13 @@ class StationsDataService {
         return parseStationDataToDictonary(jsonString)
     }
     
+    /**
+        Does the heavy lifting of converting raw JSON into a usable object.
+    
+        :param: data The raw JSON data as NSData
+    
+        :returns: An array of Station objects
+    */
     private func parseStationDataToDictonary(data: NSData) -> [Station] {
         var stations = [Station]()
         var jsonError: NSError?

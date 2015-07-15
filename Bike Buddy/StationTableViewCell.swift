@@ -12,6 +12,7 @@ class StationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var numberOfBikesLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

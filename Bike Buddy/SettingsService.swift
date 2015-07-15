@@ -72,10 +72,24 @@ class SettingsService {
         defaults.synchronize()
     }
     
+    /**
+        Get a setting that was saved as a Bool value. Will return false if the there is no value for the key that is supplied
+    
+        :param: key The key of the value to be retrieved
+    
+        :returns: The value per the key given as a Bool
+    */
     func getSettingAsBool(key: String) -> Bool {
         return defaults.boolForKey(key)
     }
     
+    /**
+        Get a setting that was saved as a String value. Will return an empty string if the there is no value for the key that is supplied
+    
+        :param: key The key of the value to be retrieved
+    
+        :returns: The value per the key given as a String
+    */
     func getSettingAsString(key: String) -> String {
         if let result = defaults.stringForKey(key) {
             return result
@@ -85,6 +99,13 @@ class SettingsService {
         }
     }
     
+    /**
+        Get a setting that was saved as an Int value. Will return 0 if the there is no value for the key that is supplied
+    
+        :param: key The key of the value to be retrieved
+    
+        :returns: The value per the key given as a Int
+    */
     func getSettingAsInt(key: String) -> Int {
         return defaults.integerForKey(key)
     }
