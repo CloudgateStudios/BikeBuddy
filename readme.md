@@ -1,4 +1,6 @@
 # Bike Buddy
+![Bike Buddy Icon]
+(https://raw.githubusercontent.com/tomarra/Bike-Buddy/master/Bike%20Buddy/Images.xcassets/AppIcon.appiconset/AppIcon%403x.png)
 
 ## Overview
 A simple iOS app to get the nearest bike sharing stations to you. Works off of the fact that the company Bixi has a similar API for a lot of their bike sharing systems.
