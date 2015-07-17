@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="x0g-jN-aat">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="x0g-jN-aat">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -31,14 +31,26 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
+                                <rect key="frame" x="16" y="72" width="568" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <rect key="frame" x="200" y="460" width="200" height="30"/>
+                                <rect key="frame" x="250" y="554" width="100" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Get Started">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="cXm-Js-4Lj"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="box-K7-zqB" kind="show" id="p2A-XY-NhF"/>
                                 </connections>
@@ -46,9 +58,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95959595959595956" green="0.95959595959595956" blue="0.95959595959595956" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="leading" secondItem="nl3-5f-GMK" secondAttribute="leadingMargin" id="323-ud-lg1"/>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="trailing" secondItem="nl3-5f-GMK" secondAttribute="trailingMargin" id="7xp-bH-y6Q"/>
                             <constraint firstItem="0Ib-PO-9a9" firstAttribute="top" secondItem="rBP-Fi-Taj" secondAttribute="bottom" constant="35" id="9rB-cN-fcu"/>
                             <constraint firstAttribute="centerY" secondItem="rBP-Fi-Taj" secondAttribute="centerY" id="GAT-yj-Vj9"/>
                             <constraint firstAttribute="centerX" secondItem="0Ib-PO-9a9" secondAttribute="centerX" id="GaB-7K-0Ce"/>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="top" secondItem="erk-gr-I6G" secondAttribute="bottom" constant="8" id="UZg-OP-XE3"/>
+                            <constraint firstItem="7Ac-86-SVu" firstAttribute="top" secondItem="0Ib-PO-9a9" secondAttribute="bottom" constant="8" symbolic="YES" id="YI2-kz-t5T"/>
                             <constraint firstItem="0Ib-PO-9a9" firstAttribute="leading" secondItem="nl3-5f-GMK" secondAttribute="leadingMargin" constant="184" id="Yhb-i5-vH7"/>
                             <constraint firstAttribute="centerY" secondItem="0Ib-PO-9a9" secondAttribute="centerY" id="gIH-eg-XQP"/>
                             <constraint firstAttribute="centerX" secondItem="0Ib-PO-9a9" secondAttribute="centerX" id="kgc-0h-nMQ"/>
@@ -57,6 +73,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="9rB-cN-fcu"/>
                                 <exclude reference="GaB-7K-0Ce"/>
                                 <exclude reference="Yhb-i5-vH7"/>
                                 <exclude reference="gIH-eg-XQP"/>
@@ -64,7 +81,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome" id="9Ar-BB-nMV"/>
+                    <navigationItem key="navigationItem" title="Bike Buddy" id="9Ar-BB-nMV"/>
                     <connections>
                         <outlet property="getStartedButton" destination="0Ib-PO-9a9" id="ioM-MI-XnU"/>
                     </connections>
@@ -129,25 +146,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-NP-MTb">
+                                <rect key="frame" x="16" y="72" width="568" height="41"/>
+                                <string key="text">In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
+                                <rect key="frame" x="172" y="172" width="256" height="256"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
-                                <rect key="frame" x="200" y="275" width="200" height="49"/>
+                                <rect key="frame" x="216" y="554" width="169" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Dzt-2B-yLg"/>
                                     <constraint firstAttribute="height" constant="49" id="mZy-NQ-bX3"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Give Location Access">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Dzt-2B-yLg"/>
+                                        <exclude reference="mZy-NQ-bX3"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="giveLocationAccessButtonClicked:" destination="UAK-ec-VcK" eventType="touchUpInside" id="OnN-IK-i0I"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="Fzn-Qe-wpc" secondAttribute="centerY" id="joG-xw-Rza"/>
+                            <constraint firstAttribute="centerY" secondItem="6z7-8Y-cCL" secondAttribute="centerY" id="DBq-5u-Tfu"/>
+                            <constraint firstAttribute="centerX" secondItem="Fzn-Qe-wpc" secondAttribute="centerX" id="Dbe-bK-frR"/>
+                            <constraint firstItem="dwg-NP-MTb" firstAttribute="trailing" secondItem="z20-Vy-X9z" secondAttribute="trailingMargin" id="Luc-zR-rMU"/>
+                            <constraint firstAttribute="centerY" secondItem="Fzn-Qe-wpc" secondAttribute="centerY" constant="-263" id="Nsk-qR-uUg"/>
+                            <constraint firstAttribute="centerY" secondItem="Fzn-Qe-wpc" secondAttribute="centerY" constant="-255.5" id="joG-xw-Rza"/>
+                            <constraint firstAttribute="centerX" secondItem="6z7-8Y-cCL" secondAttribute="centerX" id="kJ9-ul-8m9"/>
                             <constraint firstAttribute="centerX" secondItem="Fzn-Qe-wpc" secondAttribute="centerX" constant="-0.5" id="mX2-Ej-ZLI"/>
+                            <constraint firstItem="dwg-NP-MTb" firstAttribute="leading" secondItem="z20-Vy-X9z" secondAttribute="leadingMargin" id="qQ2-Te-f4I"/>
+                            <constraint firstItem="dwg-NP-MTb" firstAttribute="top" secondItem="wGk-PF-kJh" secondAttribute="bottom" constant="8" symbolic="YES" id="tfo-VN-nCj"/>
+                            <constraint firstItem="rCr-if-gpY" firstAttribute="top" secondItem="Fzn-Qe-wpc" secondAttribute="bottom" constant="8" symbolic="YES" id="vtP-bp-AjZ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Nsk-qR-uUg"/>
+                                <exclude reference="joG-xw-Rza"/>
+                                <exclude reference="mX2-Ej-ZLI"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Location Access" id="siy-fV-atj"/>
                     <connections>
@@ -172,20 +221,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
-                                <rect key="frame" x="200" y="275" width="200" height="50"/>
+                                <rect key="frame" x="253" y="281" width="95" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4Bu-r0-zH1"/>
                                     <constraint firstAttribute="width" constant="200" id="qtU-gg-anE"/>
                                 </constraints>
-                                <state key="normal" title="Get Started">
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Let's Start!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4Bu-r0-zH1"/>
+                                        <exclude reference="qtU-gg-anE"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="vJd-cQ-7bo" eventType="touchUpInside" id="XQu-X7-WJd"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="O5u-mS-eKX" firstAttribute="leading" secondItem="9YZ-8D-rFZ" secondAttribute="leadingMargin" constant="184" id="Gu3-HF-eUV"/>
                             <constraint firstAttribute="centerY" secondItem="O5u-mS-eKX" secondAttribute="centerY" id="Nfc-oT-Uah"/>
@@ -228,6 +284,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ftuLocationAccess" width="256" height="256"/>
         <image name="ftuWelcome" width="300" height="300"/>
     </resources>
 </document>
