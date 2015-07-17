@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
             let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
             let firstVC: UIViewController = storyboard.instantiateInitialViewController() as! UIViewController
+            firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
             
             self.window?.makeKeyAndVisible()
             self.window?.rootViewController!.presentViewController(firstVC, animated: true, completion: nil)
