@@ -57,3 +57,6 @@ public let CITIES_PLIST_API_URL_FIELD_KEY = "apiUrl"
 // MARK: - Image Names
 public let FAVORITE_NAV_BAR_ICON_NAME = "favoriteNavBarIcon"
 public let NOT_FAVORITE_NAV_BAR_ICON_NAME = "notFavoriteNavBarIcon"
+
+// MARK: - Share to your friends 
+public let TELL_FRIENDS_MESSAGE_CONTENT = "Check out Bike Buddy on iOS."

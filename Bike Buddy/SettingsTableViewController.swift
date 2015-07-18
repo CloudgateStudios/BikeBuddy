@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class SettingsTableViewController: UITableViewController {   
     //MARK: - View Outlets
@@ -55,24 +56,68 @@ class SettingsTableViewController: UITableViewController {
         
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
-            case "deleteData":
-                let deleteDataActionSheet = UIAlertController(title: "Do you want to delete all of Bike Buddy's data? This will start the application from scratch again.", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-                deleteDataActionSheet.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (alertAction) -> Void in
-                    SettingsService.sharedInstance.clearAllSettings()
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                    
-                    let storyboard: UIStoryboard = UIStoryboard(name: "FirstTimeUse", bundle: nil)
-                    let firstVC: UIViewController = storyboard.instantiateInitialViewController() as! UIViewController
-                    
-                    self.presentViewController(firstVC, animated: true, completion: nil)
-                }))
-                deleteDataActionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (alertAction) -> Void in
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                }))
-                presentViewController(deleteDataActionSheet, animated: true, completion: nil)
+            case "tellYourFriends":
+                showTellYourFriendsActionSheet(indexPath)
             default: break
             }
         }
 
+    }
+    
+    private func showTellYourFriendsActionSheet(indexPath: NSIndexPath) {
+        let tellYourFriendsActionSheet = UIAlertController(title: nil, message: "Tell your friends about Bike Buddy", preferredStyle: .ActionSheet)
+        
+        let emailAction = UIAlertAction(title: "Email", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        let smsAction = UIAlertAction(title: "Text Message", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        let facebookAction = UIAlertAction(title: "Facebook", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            var facebookDialog = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            
+            facebookDialog.completionHandler = {
+                result -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            }
+            facebookDialog.setInitialText(TELL_FRIENDS_MESSAGE_CONTENT)
+            
+            self.presentViewController(facebookDialog, animated: true, completion: nil)
+        })
+        
+        let twitterAction = UIAlertAction(title: "Twitter", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            var twitterDialog = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            
+            twitterDialog.completionHandler = {
+                result -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            }
+            twitterDialog.setInitialText(TELL_FRIENDS_MESSAGE_CONTENT)
+            
+            self.presentViewController(twitterDialog, animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        })
+        
+        tellYourFriendsActionSheet.addAction(emailAction)
+        tellYourFriendsActionSheet.addAction(smsAction)
+        if(SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook)) {
+            tellYourFriendsActionSheet.addAction(facebookAction)
+        }
+        if(SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter)) {
+            tellYourFriendsActionSheet.addAction(twitterAction)
+        }
+        tellYourFriendsActionSheet.addAction(cancelAction)
+        
+        self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
     }
 }
