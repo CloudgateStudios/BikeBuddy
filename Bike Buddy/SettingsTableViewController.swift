@@ -8,8 +8,9 @@
 
 import UIKit
 import Social
+import MessageUI
 
-class SettingsTableViewController: UITableViewController {   
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     //MARK: - View Outlets
     
     @IBOutlet weak var versionLabel: UILabel!
@@ -69,10 +70,21 @@ class SettingsTableViewController: UITableViewController {
         
         let emailAction = UIAlertAction(title: "Email", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
+            var mailViewController = MFMailComposeViewController()
+            mailViewController.mailComposeDelegate = self
+            mailViewController.setSubject("Check out Bike Share Buddy")
+            mailViewController.setMessageBody(TELL_FRIENDS_MESSAGE_CONTENT, isHTML: true)
+            
+            self.presentViewController(mailViewController, animated: true, completion: nil)
         })
         
         let smsAction = UIAlertAction(title: "Text Message", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
+            var smsViewController = MFMessageComposeViewController()
+            smsViewController.body = TELL_FRIENDS_MESSAGE_CONTENT
+            smsViewController.messageComposeDelegate = self
+            
+            self.presentViewController(smsViewController, animated: true, completion: nil)
         })
         
         let facebookAction = UIAlertAction(title: "Facebook", style: .Default, handler: {
@@ -108,8 +120,12 @@ class SettingsTableViewController: UITableViewController {
                 self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         })
         
-        tellYourFriendsActionSheet.addAction(emailAction)
-        tellYourFriendsActionSheet.addAction(smsAction)
+        if(MFMailComposeViewController.canSendMail()) {
+            tellYourFriendsActionSheet.addAction(emailAction)
+        }
+        if(MFMessageComposeViewController.canSendText()) {
+            tellYourFriendsActionSheet.addAction(smsAction)
+        }
         if(SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook)) {
             tellYourFriendsActionSheet.addAction(facebookAction)
         }
@@ -119,5 +135,15 @@ class SettingsTableViewController: UITableViewController {
         tellYourFriendsActionSheet.addAction(cancelAction)
         
         self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
+    }
+    
+    // MARK: - Delegate functions
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
