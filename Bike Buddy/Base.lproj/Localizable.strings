@@ -9,9 +9,18 @@
 // MARK: - General Strings
 
 /* Button label for OK */
-"GenrealButtonOK" = "OK";
+"GeneralButtonOK" = "OK";
+
+/* App name for use around the app like nav bars */
+"GeneralAppName" = "Bike Buddy";
 
 // MARK: - First Time Use
+
+/* Message on the first time use main screen */
+"WelcomeMessageContent" = "Welcome to Bike Buddy \r\n We need to setup a few things before we begin";
+
+/* Button text on the first time use main screen */
+"WelcomeGetStartedButton" = "Get Started";
 
 /* Message box title for when the user doesn't grant location access */
 "LocationAccessNotGrantedMessageTitle" = "Bike Buddy Needs Location Access";

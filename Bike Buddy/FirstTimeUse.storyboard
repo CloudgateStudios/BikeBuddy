@@ -84,6 +84,8 @@
                     <navigationItem key="navigationItem" title="Bike Buddy" id="9Ar-BB-nMV"/>
                     <connections>
                         <outlet property="getStartedButton" destination="0Ib-PO-9a9" id="ioM-MI-XnU"/>
+                        <outlet property="navBarItem" destination="9Ar-BB-nMV" id="cn3-l2-1vd"/>
+                        <outlet property="welcomeMessageLabel" destination="iLX-qq-O20" id="Shq-Lz-OHk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wT-Fc-w5N" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -11,7 +11,9 @@ import UIKit
 class FTUWelcomeViewController: UIViewController {
     // MARK: - View Outlets
     
+    @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var getStartedButton: UIButton!
+    @IBOutlet weak var welcomeMessageLabel: UILabel!
     
     // MARK: - View Lifecycle
     
@@ -19,6 +21,10 @@ class FTUWelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         ThemeService.themeButton(getStartedButton)
+        
+        navBarItem.title = NSLocalizedString("GeneralAppName", comment: "")
+        welcomeMessageLabel.text = NSLocalizedString("WelcomeMessageContent", comment: "")
+        getStartedButton.titleLabel?.text = NSLocalizedString("WelcomeGetStartedButton", comment: "")
     }
 
     override func didReceiveMemoryWarning() {
