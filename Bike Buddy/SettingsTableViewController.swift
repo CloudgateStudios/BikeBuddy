@@ -10,7 +10,7 @@ import UIKit
 import Social
 import MessageUI
 
-class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
+class SettingsTableViewController: UITableViewController {
     //MARK: - View Outlets
     
     @IBOutlet weak var versionLabel: UILabel!
@@ -65,6 +65,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             }
         }
     }
+    
+    //MARK: - Table View Actions
     
     private func goToAppStorePage() {
         let url = NSURL(string: APP_STORE_URL)
@@ -138,17 +140,33 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         if(SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter)) {
             tellYourFriendsActionSheet.addAction(twitterAction)
         }
-        tellYourFriendsActionSheet.addAction(cancelAction)
         
-        self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
+        if(tellYourFriendsActionSheet.actions.count != 0) {
+            
+            tellYourFriendsActionSheet.addAction(cancelAction)
+        
+            self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
+        }
+        else {
+            let noActionsAlert = UIAlertController(title: "No sharing actions", message: "You don't seem to have Email, SMS, Facebook, or Twitter setup on this device. Go to Settings to setup one of these accounts and then you can share.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+            noActionsAlert.addAction(alertAction)
+            presentViewController(noActionsAlert, animated: true) {}
+        }
     }
-    
-    // MARK: - Delegate functions
-    
+}
+
+// MARK: - Mail Compose View Delegate
+
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+}
+
+// MARK: - Message Compose View Delegate
+
+extension SettingsTableViewController: MFMessageComposeViewControllerDelegate {
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
