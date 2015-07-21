@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C513A7131B5E8547003BA84F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C513A7151B5E8547003BA84F /* Localizable.strings */; };
 		C516EFEB1B0CE6CB00CF4468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516EFEA1B0CE6CB00CF4468 /* AppDelegate.swift */; };
 		C516EFF21B0CE6CB00CF4468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C516EFF01B0CE6CB00CF4468 /* Main.storyboard */; };
 		C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C516EFF31B0CE6CB00CF4468 /* Images.xcassets */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C513A7141B5E8547003BA84F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C516EFE51B0CE6CB00CF4468 /* Bike Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C516EFE91B0CE6CB00CF4468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C516EFEA1B0CE6CB00CF4468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				C516EFE91B0CE6CB00CF4468 /* Info.plist */,
 				C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */,
 				C5C2158D1B0F78C900FEB01C /* Cities.plist */,
+				C513A7151B5E8547003BA84F /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				C59090481B0F1E8E0043FFFD /* Divvy_API_Response.json in Resources */,
 				C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */,
 				C516EFF21B0CE6CB00CF4468 /* Main.storyboard in Resources */,
+				C513A7131B5E8547003BA84F /* Localizable.strings in Resources */,
 				C516EFF71B0CE6CB00CF4468 /* LaunchScreen.xib in Resources */,
 				C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */,
 				C5C2158E1B0F78C900FEB01C /* Cities.plist in Resources */,
@@ -425,6 +429,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C513A7151B5E8547003BA84F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C513A7141B5E8547003BA84F /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		C516EFF01B0CE6CB00CF4468 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -480,7 +492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -519,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Bike Buddy
+
+  Created by Tom Arra on 7/21/15.
+  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
+*/
+
+// MARK: - General Strings
+
+/* Button label for OK */
+"GenrealButtonOK" = "OK";
+
+// MARK: - First Time Use
+
+/* Message box title for when the user doesn't grant location access */
+"LocationAccessNotGrantedMessageTitle" = "Bike Buddy Needs Location Access";
+
+/* Message box content for when the user doesn't grant location access */
+"LocationAccessNotGrantedMessageContent" = "Please give us location access so that we can find the closest bike stations to your location. Go to the Settings app to change this later on.";
+
+// MARK: - Settings
+
+/* Message used for sharing the app through settings */
+"ShareBikeBuddyMessage" = "Check out Bike Buddy on iOS.";

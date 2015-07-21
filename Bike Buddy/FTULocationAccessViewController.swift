@@ -65,8 +65,8 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     }
     
     private func showNoLocationAccessMessage() {
-        let alert = UIAlertController(title: "Bike Buddy Needs Location Access", message: "Please give us location access so that we can find the closest bike stations to your location. Go to the Settings app to change this later on.", preferredStyle: UIAlertControllerStyle.Alert)
-        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+        let alert = UIAlertController(title: NSLocalizedString("LocationAccessNotGrantedMessageTitle", comment: ""), message: NSLocalizedString("LocationAccessNotGrantedMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+        let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
         alert.addAction(alertAction)
         presentViewController(alert, animated: true) { () -> Void in self.goToNextView() }
 

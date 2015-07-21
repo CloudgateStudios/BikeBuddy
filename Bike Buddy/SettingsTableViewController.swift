@@ -74,6 +74,8 @@ class SettingsTableViewController: UITableViewController {
     }
     
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath) {
+        let sharingMessage = NSLocalizedString("ShareBikeBuddyMessage", comment: "")
+        
         let tellYourFriendsActionSheet = UIAlertController(title: nil, message: "Tell your friends about Bike Buddy", preferredStyle: .ActionSheet)
         
         let emailAction = UIAlertAction(title: "Email", style: .Default, handler: {
@@ -81,7 +83,7 @@ class SettingsTableViewController: UITableViewController {
             var mailViewController = MFMailComposeViewController()
             mailViewController.mailComposeDelegate = self
             mailViewController.setSubject("Check out Bike Share Buddy")
-            mailViewController.setMessageBody(TELL_FRIENDS_MESSAGE_CONTENT, isHTML: true)
+            mailViewController.setMessageBody(sharingMessage, isHTML: true)
             
             self.presentViewController(mailViewController, animated: true, completion: nil)
         })
@@ -89,7 +91,7 @@ class SettingsTableViewController: UITableViewController {
         let smsAction = UIAlertAction(title: "Text Message", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             var smsViewController = MFMessageComposeViewController()
-            smsViewController.body = TELL_FRIENDS_MESSAGE_CONTENT
+            smsViewController.body = sharingMessage
             smsViewController.messageComposeDelegate = self
             
             self.presentViewController(smsViewController, animated: true, completion: nil)
@@ -104,7 +106,7 @@ class SettingsTableViewController: UITableViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
                 self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
             }
-            facebookDialog.setInitialText(TELL_FRIENDS_MESSAGE_CONTENT)
+            facebookDialog.setInitialText(sharingMessage)
             
             self.presentViewController(facebookDialog, animated: true, completion: nil)
         })
@@ -118,7 +120,7 @@ class SettingsTableViewController: UITableViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
                 self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
             }
-            twitterDialog.setInitialText(TELL_FRIENDS_MESSAGE_CONTENT)
+            twitterDialog.setInitialText(sharingMessage)
             
             self.presentViewController(twitterDialog, animated: true, completion: nil)
         })
