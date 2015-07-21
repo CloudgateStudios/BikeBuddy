@@ -14,6 +14,10 @@ class FTUSelectCityTableViewController: UITableViewController {
     
     var citiesArray = [City]()
     
+    //MARK: - View Outlets
+    
+    @IBOutlet weak var navBarItem: UINavigationItem!
+    
     //MARK: - View Lifecycle
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -21,6 +25,8 @@ class FTUSelectCityTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navBarItem.title = NSLocalizedString("SelectCityNavBarTitle", comment: "")
     
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {

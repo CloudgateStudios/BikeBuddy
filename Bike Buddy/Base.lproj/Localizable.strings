@@ -22,11 +22,29 @@
 /* Button text on the first time use main screen */
 "WelcomeGetStartedButton" = "Get Started";
 
+/* Title in the nav bar when selecting city */
+"SelectCityNavBarTitle" = "Select City/Service";
+
+/* Title in the nav bar when asking for location access */
+"LocationAccessNavBarTitle" = "Location Access";
+
+/* Message content when asking for location access */
+"LocationAccessMessageContent" = "In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.";
+
+/* Button text when asking for location access */
+"LocationAccessButton" = "Give Location Access";
+
 /* Message box title for when the user doesn't grant location access */
 "LocationAccessNotGrantedMessageTitle" = "Bike Buddy Needs Location Access";
 
 /* Message box content for when the user doesn't grant location access */
 "LocationAccessNotGrantedMessageContent" = "Please give us location access so that we can find the closest bike stations to your location. Go to the Settings app to change this later on.";
+
+/* Title in the nav bar at the end of First Time Use */
+"FTUFinishedNavBarTitle" = "Finished"
+
+/* Button text when user completes First Time Use */
+"FTUFinishedButton" = "Let's Start!"
 
 // MARK: - Settings
 

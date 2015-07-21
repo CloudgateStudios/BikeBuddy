@@ -12,6 +12,7 @@ class FTUFinishedViewController: UIViewController {
     //MARK: _ View Outlets
     
     @IBOutlet weak var getStartedButton: UIButton!
+    @IBOutlet weak var navBarItem: UINavigationItem!
     
     //MARK: - View Lifecycle
     
@@ -19,6 +20,9 @@ class FTUFinishedViewController: UIViewController {
         super.viewDidLoad()
         
         ThemeService.themeButton(getStartedButton)
+        
+        navBarItem.title = NSLocalizedString("FTUFinishedNavBarTitle", comment: "")
+        getStartedButton.titleLabel?.text = NSLocalizedString("FTUFinishedButton", comment: "")
     }
 
     override func didReceiveMemoryWarning() {

@@ -18,6 +18,8 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     //MARK: - View Outlets
     
     @IBOutlet weak var giveLocationAccessButton: UIButton!
+    @IBOutlet weak var navBarItem: UINavigationItem!
+    @IBOutlet weak var mainMessageLabel: UILabel!
     
     //MARK: - View Lifecycle
     
@@ -25,6 +27,10 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
         super.viewDidLoad()
         
         ThemeService.themeButton(giveLocationAccessButton)
+        
+        navBarItem.title = NSLocalizedString("LocationAccessNavBarTitle", comment: "")
+        mainMessageLabel.text = NSLocalizedString("LocationAccessMessageContent", comment: "")
+        mainMessageLabel.text = NSLocalizedString("LocationAccessButton", comment: "")
     }
 
     override func didReceiveMemoryWarning() {

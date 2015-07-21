@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController {
     //MARK: - Class Variables
     
     private var tappedStation: Station!
@@ -68,9 +68,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             Stations.sharedInstance.list = responseObject
         }
     }
-    
-    //MARK: - Map View
-    
+}
+
+//MARK: - Map View
+
+extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if (annotation is MKUserLocation) {
             return nil
@@ -90,8 +92,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER, sender: self)
     }
     
-    /** 
-        Take the current Stations.list and load the needed annotations on the map
+    /**
+    Take the current Stations.list and load the needed annotations on the map
     */
     private func loadAnnotationsOnMapView() {
         if let pins = mapView?.annotations {

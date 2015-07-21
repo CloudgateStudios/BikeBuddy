@@ -131,6 +131,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select City/Service" id="hGr-6O-kPA"/>
+                    <connections>
+                        <outlet property="navBarItem" destination="hGr-6O-kPA" id="chj-Nd-J9e"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Dy-Pb-nnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -203,6 +206,8 @@
                     <navigationItem key="navigationItem" title="Location Access" id="siy-fV-atj"/>
                     <connections>
                         <outlet property="giveLocationAccessButton" destination="Fzn-Qe-wpc" id="4cV-pE-Zg7"/>
+                        <outlet property="mainMessageLabel" destination="dwg-NP-MTb" id="gF9-JE-hap"/>
+                        <outlet property="navBarItem" destination="siy-fV-atj" id="FLT-CM-TTv"/>
                         <segue destination="vJd-cQ-7bo" kind="show" identifier="GoToFTUFinished" id="HG9-U4-bHY"/>
                     </connections>
                 </viewController>
@@ -260,6 +265,7 @@
                     <navigationItem key="navigationItem" title="Finished" id="ZHk-ip-LA7"/>
                     <connections>
                         <outlet property="getStartedButton" destination="O5u-mS-eKX" id="IKa-px-PFN"/>
+                        <outlet property="navBarItem" destination="ZHk-ip-LA7" id="vVz-2k-6DN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yab-QQ-V3J" userLabel="First Responder" sceneMemberID="firstResponder"/>

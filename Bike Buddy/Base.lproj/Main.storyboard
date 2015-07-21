@@ -419,12 +419,12 @@
             <objects>
                 <viewController id="MmD-nc-dyF" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dr6-1A-VHw"/>
-                        <viewControllerLayoutGuide type="bottom" id="1FU-Ky-reE"/>
+                        <viewControllerLayoutGuide type="top" id="Yc2-Ad-bDK"/>
+                        <viewControllerLayoutGuide type="bottom" id="OuH-fH-0Z4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="o5y-25-eIB">
+                    <view key="view" contentMode="scaleToFill" id="zFz-2I-eBO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="yPV-ZG-LWd"/>
