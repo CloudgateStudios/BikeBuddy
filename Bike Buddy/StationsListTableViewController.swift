@@ -85,7 +85,6 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
             case 0: return "Closest Stations"
-            case 1: return "Favorite Stations"
             default: return ""
         }
     }

@@ -164,8 +164,8 @@
 				C59090471B0F1E8E0043FFFD /* Divvy_API_Response.json */,
 				C516EFF31B0CE6CB00CF4468 /* Images.xcassets */,
 				C516EFE91B0CE6CB00CF4468 /* Info.plist */,
-				C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */,
 				C5C2158D1B0F78C900FEB01C /* Cities.plist */,
+				C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */,
 				C513A7151B5E8547003BA84F /* Localizable.strings */,
 			);
 			name = "Supporting Files";

@@ -11,6 +11,8 @@
 /* Button label for OK */
 "GeneralButtonOK" = "OK";
 
+"GeneralButtonCancel" = "Cancel";
+
 /* App name for use around the app like nav bars */
 "GeneralAppName" = "Bike Buddy";
 
@@ -41,12 +43,86 @@
 "LocationAccessNotGrantedMessageContent" = "Please give us location access so that we can find the closest bike stations to your location. Go to the Settings app to change this later on.";
 
 /* Title in the nav bar at the end of First Time Use */
-"FTUFinishedNavBarTitle" = "Finished"
+"FTUFinishedNavBarTitle" = "Finished";
 
 /* Button text when user completes First Time Use */
-"FTUFinishedButton" = "Let's Start!"
+"FTUFinishedButton" = "Let's Start!";
+
+// MARK: - Stations List
+
+"StationsListTabBarItemLabel" = "Stations List";
+
+"StationsListNavBarTitle" = "Stations";
+
+"StationsListClosestStationsSectionHeader" = "Closest Stations";
+
+"StationsListDistanceAway" = "away";
+
+// MARK: - Map View
+
+"MapTabBarItemLabel" = "Map";
+
+"MapNavBarTitle" = "Map";
+
+// MARK: - Station Detail
+
+"StationDetailNavBarTitle" = "Station Detail";
+
+"StationDetailDirectionsButton" = "Directions to Station";
+
+"StationDetailShareButton" = "Share Station";
 
 // MARK: - Settings
 
+"SettingsTabBarItemLabel" = "Settings";
+
+"SettingsNavBarTitle" = "Settings";
+
+"SettingsServiceGroup" = "Service";
+
+"SettingsServiceCity" = "City";
+
+"SettingsServiceNumberOfStations" = "Number of Closest Stations";
+
+"SettingsGeneralGroup" = "General";
+
+"SettingsGeneralAbout" = "About";
+
+"SettingsGeneralVersion" = "Version";
+
+"SettingsGeneralTellYourFriends" = "Tell Your Friends About Bike Buddy";
+
+"SettingsGeneralRateApp" = "Rate Bike Buddy";
+
+// MARK: - Settings - Select City
+
+"SettingsSelectCityNavBarTitle" = "Select City";
+
+// MARK: - Settings - Select Number of Stations
+
+"SettingsSelectNumOfStationsNavBarTitle" = "Stations to Show";
+
+// MARK: - Settings - About
+
+"SettingsAboutNavBarTitle" = "About";
+
+// MARK: - Settings - Sharing App
+
+"SettingsShareActionSheetTitle" = "";
+
+"SettingsShareEmail" = "Email";
+
+"SettingsShareSMS" = "SMS";
+
+"SettingsShareTwitter" = "Twitter";
+
+"SettingsShareFacebook" = "Facebook";
+
+"SettingsShareMessageTitle" = "";
+
 /* Message used for sharing the app through settings */
-"ShareBikeBuddyMessage" = "Check out Bike Buddy on iOS.";
+"SettingsShareMessageContent" = "Check out Bike Buddy on iOS.";
+
+"SettingsShareNoServicesMessageBoxTitle" = ""
+
+"SettingsShareNoServicesMessageBoxContent" = ""

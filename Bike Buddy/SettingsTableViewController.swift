@@ -74,7 +74,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath) {
-        let sharingMessage = NSLocalizedString("ShareBikeBuddyMessage", comment: "")
+        let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "")
         
         let tellYourFriendsActionSheet = UIAlertController(title: nil, message: "Tell your friends about Bike Buddy", preferredStyle: .ActionSheet)
         
