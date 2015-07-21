@@ -59,10 +59,16 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             switch cellReuseID {
             case "tellYourFriends":
                 showTellYourFriendsActionSheet(indexPath)
+            case "rateBikeBuddy":
+                goToAppStorePage()
             default: break
             }
         }
-
+    }
+    
+    private func goToAppStorePage() {
+        let url = NSURL(string: APP_STORE_URL)
+        UIApplication.sharedApplication().openURL(url!)
     }
     
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath) {
