@@ -11,6 +11,7 @@
 /* Button label for OK */
 "GeneralButtonOK" = "OK";
 
+/* Button label for Cancel */
 "GeneralButtonCancel" = "Cancel";
 
 /* App name for use around the app like nav bars */
@@ -50,79 +51,123 @@
 
 // MARK: - Stations List
 
+/*  Name of the tab bar item for the Stations List */
 "StationsListTabBarItemLabel" = "Stations List";
 
+/* Title in the nav bar of the Stations List view */
 "StationsListNavBarTitle" = "Stations";
 
+/* Table section header in the Stations List for the Closest Stations */
 "StationsListClosestStationsSectionHeader" = "Closest Stations";
 
+/* Label ending for the distance away the user is from the station */
 "StationsListDistanceAway" = "away";
 
 // MARK: - Map View
 
+/* Name of the tab bar item for the Map view */
 "MapTabBarItemLabel" = "Map";
 
+/* Title in the nav bar of the Map view */
 "MapNavBarTitle" = "Map";
 
 // MARK: - Station Detail
 
+/* Title in the nav bar for the Station Detail view */
 "StationDetailNavBarTitle" = "Station Detail";
 
+/* Button text when the user wants directions to the station they are currently viewing */
 "StationDetailDirectionsButton" = "Directions to Station";
 
+/* Button text when the user wants to share the details of the station via the iOS Share Sheet */
 "StationDetailShareButton" = "Share Station";
 
 // MARK: - Settings
 
+/* Name of the tab bar item for the Settings view */
 "SettingsTabBarItemLabel" = "Settings";
 
+/* Title in the nav bar of the Settings view */
 "SettingsNavBarTitle" = "Settings";
 
+/* Setting group label for items specific to the bike service */
 "SettingsServiceGroup" = "Service";
 
+/* Setting label for the city that is currently selected */
 "SettingsServiceCity" = "City";
 
+/* Setting label for the number of closest stations to show in the Stations list view */
 "SettingsServiceNumberOfStations" = "Number of Closest Stations";
 
+/* Setting group label for general setting items */
 "SettingsGeneralGroup" = "General";
 
+/* Setting label for getting to the about screen */
 "SettingsGeneralAbout" = "About";
 
+/* Setting label for the version of the app */
 "SettingsGeneralVersion" = "Version";
 
+/* Setting label for sending a link to the app to your friends */
 "SettingsGeneralTellYourFriends" = "Tell Your Friends About Bike Buddy";
 
+/* Setting label for going to the App Store to rate the app */
 "SettingsGeneralRateApp" = "Rate Bike Buddy";
 
 // MARK: - Settings - Select City
 
+/* Title in the nav bar of the Settings - Select City view */
 "SettingsSelectCityNavBarTitle" = "Select City";
 
-// MARK: - Settings - Select Number of Stations
+// MARK: - Settings - Select Number of Closest Stations
 
-"SettingsSelectNumOfStationsNavBarTitle" = "Stations to Show";
+/* Title in the nav bar of the Settings - Select Number of Clostest Stations view */
+"SettingsSelectNumOfClosestStationsNavBarTitle" = "Stations to Show";
 
 // MARK: - Settings - About
 
+/* Title in the nav bar of the Settings - About view */
 "SettingsAboutNavBarTitle" = "About";
 
 // MARK: - Settings - Sharing App
 
-"SettingsShareActionSheetTitle" = "";
+/* Title in the Action Sheet when the user wants to tell their friends about the app */
+"SettingsShareActionSheetTitle" = "Tell your friends about Bike Buddy";
 
+/* Share option for Email */
 "SettingsShareEmail" = "Email";
 
-"SettingsShareSMS" = "SMS";
+/* Share option for Text Message */
+"SettingsShareText Message" = "Text Message";
 
+/* Share option for Twitter */
 "SettingsShareTwitter" = "Twitter";
 
+/* Share option for Facebook */
 "SettingsShareFacebook" = "Facebook";
 
-"SettingsShareMessageTitle" = "";
+/* Share message title. Mostly used for the subject line of the email. */
+"SettingsShareMessageTitle" = "Check out Bike Buddy";
 
-/* Message used for sharing the app through settings */
-"SettingsShareMessageContent" = "Check out Bike Buddy on iOS.";
+/* Share message content. Should be used for all sharing options as content. */
+"SettingsShareMessageContent" = "Check out Bike Buddy on iOS. LINK GOES HERE";
 
-"SettingsShareNoServicesMessageBoxTitle" = ""
+/* Message box title for when the user doesn't have any sharing options hooked up */
+"SettingsShareNoServicesMessageBoxTitle" = "No sharing actions";
 
-"SettingsShareNoServicesMessageBoxContent" = ""
+/* Message box content for when the user doesn't have any sharing options hooked up */
+"SettingsShareNoServicesMessageBoxContent" = "You don't seem to have Email, SMS, Facebook, or Twitter setup on this device. Go to Settings to setup one of these accounts and then you can share.";
+
+// MARK: - Station Model
+
+/* Used when creating the station detail share string */
+"StationModelShareStationName" = "Station Name";
+
+/* Used when creating the station detail share string. Only if an address is available. */
+"StationModelShareAddress" = "Address";
+
+/* Used in the Map Annotation string for the number of bikes that are available. */
+"StationModelAnnotationBikes" = "Bikes";
+
+/* Used in the Map Annotation string for the number of open docks that are available */
+"StationModelAnnotationOpenDocks" = "Open Docks";

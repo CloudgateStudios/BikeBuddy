@@ -59,5 +59,4 @@ public let FAVORITE_NAV_BAR_ICON_NAME = "favoriteNavBarIcon"
 public let NOT_FAVORITE_NAV_BAR_ICON_NAME = "notFavoriteNavBarIcon"
 
 // MARK: - Sharing and Rating
-public let TELL_FRIENDS_MESSAGE_CONTENT = "Check out Bike Buddy on iOS."
 public let APP_STORE_URL = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=998776734&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
