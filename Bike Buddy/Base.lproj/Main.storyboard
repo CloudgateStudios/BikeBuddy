@@ -78,6 +78,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Stations" id="xaa-yd-zgi"/>
                     <connections>
+                        <outlet property="navBarItem" destination="xaa-yd-zgi" id="Bgw-gA-JSx"/>
                         <segue destination="0Kp-FQ-qp6" kind="show" identifier="showStationDetailFromStationsList" id="gq2-lT-KRa"/>
                     </connections>
                 </tableViewController>
@@ -104,31 +105,31 @@
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYK-m7-Ffu">
-                                <rect key="frame" x="16" y="280" width="105" height="21"/>
+                                <rect key="frame" x="16" y="280" width="104.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNM-Pf-cqz">
-                                <rect key="frame" x="16" y="309" width="42" height="21"/>
+                                <rect key="frame" x="16" y="308.5" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEp-Yy-oJo">
-                                <rect key="frame" x="66" y="309" width="42" height="21"/>
+                                <rect key="frame" x="66" y="308.5" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNY-Nb-y0z">
-                                <rect key="frame" x="16" y="338" width="568" height="21"/>
+                                <rect key="frame" x="16" y="337" width="568" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-Zg-4qW">
-                                <rect key="frame" x="434" y="367" width="150" height="28"/>
+                                <rect key="frame" x="434" y="365.5" width="150" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="Lp2-Am-z1Y"/>
                                 </constraints>
@@ -146,7 +147,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3R-Yu-9k4">
-                                <rect key="frame" x="16" y="367" width="150" height="28"/>
+                                <rect key="frame" x="16" y="365.5" width="150" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="r6g-FB-qRw"/>
                                 </constraints>
@@ -222,6 +223,7 @@
                     <connections>
                         <outlet property="directionToStationsButton" destination="J3R-Yu-9k4" id="RdO-0X-mNf"/>
                         <outlet property="mapView" destination="P5J-4b-6c6" id="wDD-gu-EEP"/>
+                        <outlet property="navBarItem" destination="o6H-2S-pRq" id="3aZ-Ny-pOB"/>
                         <outlet property="shareStationButton" destination="zqP-Zg-4qW" id="8sV-jc-kfm"/>
                         <outlet property="stationDistanceLabel" destination="yNY-Nb-y0z" id="2MX-5R-7gG"/>
                         <outlet property="stationNameLabel" destination="LYK-m7-Ffu" id="GGj-Eb-0vb"/>
@@ -406,7 +408,14 @@
                     <navigationItem key="navigationItem" title="Settings" id="pm0-1g-0fV"/>
                     <connections>
                         <outlet property="cityLabel" destination="CUF-Ga-ogf" id="M9J-Mv-YVo"/>
+                        <outlet property="generalAboutLabel" destination="SHI-ls-hUg" id="qOl-RQ-lis"/>
+                        <outlet property="generalRateTheAppLabel" destination="W7E-1S-IZd" id="V0n-gr-Xfl"/>
+                        <outlet property="generalTellYourFriendsLabel" destination="lcP-Sg-46K" id="2AR-5w-95r"/>
+                        <outlet property="generalVersionLabel" destination="dYm-5B-eDr" id="N1t-CT-Lol"/>
+                        <outlet property="navBarItem" destination="pm0-1g-0fV" id="6UP-gb-LIV"/>
                         <outlet property="numberOfClosestStationsLabel" destination="DKb-nM-QBI" id="qSa-dy-yY8"/>
+                        <outlet property="serviceCityLabel" destination="82T-5S-cxQ" id="BdI-s5-izi"/>
+                        <outlet property="serviceNumberOfClosestStationsLabel" destination="ED2-RA-teu" id="Vtf-AZ-p4l"/>
                         <outlet property="versionLabel" destination="68I-eo-Ntf" id="6aH-tV-QDe"/>
                     </connections>
                 </tableViewController>

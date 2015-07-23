@@ -22,7 +22,7 @@ class FTUFinishedViewController: UIViewController {
         ThemeService.themeButton(getStartedButton)
         
         navBarItem.title = NSLocalizedString("FTUFinishedNavBarTitle", comment: "")
-        getStartedButton.titleLabel?.text = NSLocalizedString("FTUFinishedButton", comment: "")
+        getStartedButton.setTitle(NSLocalizedString("FTUFinishedButton", comment: ""), forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {

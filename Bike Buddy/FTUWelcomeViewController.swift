@@ -24,7 +24,7 @@ class FTUWelcomeViewController: UIViewController {
         
         navBarItem.title = NSLocalizedString("GeneralAppName", comment: "")
         welcomeMessageLabel.text = NSLocalizedString("WelcomeMessageContent", comment: "")
-        getStartedButton.titleLabel?.text = NSLocalizedString("WelcomeGetStartedButton", comment: "")
+        getStartedButton.setTitle(NSLocalizedString("WelcomeGetStartedButton", comment: ""), forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {

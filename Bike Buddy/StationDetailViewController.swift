@@ -21,6 +21,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var stationDistanceLabel: UILabel!
     @IBOutlet weak var shareStationButton: UIButton!
     @IBOutlet weak var directionToStationsButton: UIButton!
+    @IBOutlet weak var navBarItem: UINavigationItem!
     
     //MARK: - View Lifecycle
     
@@ -38,6 +39,10 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
         
         ThemeService.themeButton(shareStationButton)
         ThemeService.themeButton(directionToStationsButton)
+        
+        navBarItem.title = NSLocalizedString("StationDetailNavBarTitle", comment: "")
+        shareStationButton.setTitle(NSLocalizedString("StationDetailShareButton", comment: ""), forState: .Normal)
+        directionToStationsButton.setTitle(NSLocalizedString("StationDetailDirectionsButton", comment: ""), forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {

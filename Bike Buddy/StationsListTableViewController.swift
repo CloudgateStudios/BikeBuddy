@@ -10,6 +10,10 @@ import UIKit
 import CoreLocation
 
 class StationsListTableViewController: UITableViewController, CLLocationManagerDelegate {
+    // MARK: - View Outlets
+    
+    @IBOutlet weak var navBarItem: UINavigationItem!
+    
     // MARK: - Class Variables
     
     var locationManager = CLLocationManager()
@@ -46,6 +50,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
+        navBarItem.title = NSLocalizedString("StationsListNavBarTitle", comment: "")
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,7 +90,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-            case 0: return "Closest Stations"
+            case 0: return NSLocalizedString("StationsListClosestStationsSectionHeader", comment: "")
             default: return ""
         }
     }
@@ -96,7 +102,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
     
     private func createDistanceAwayLabel(distance: String) -> String {
-        return "~ \(distance) away"
+        return "~ \(distance) " + NSLocalizedString("StationsListDistanceAway", comment: "")
     }
     
     // MARK: - Location Manager

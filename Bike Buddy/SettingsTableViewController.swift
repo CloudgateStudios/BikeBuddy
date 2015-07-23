@@ -16,8 +16,16 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var numberOfClosestStationsLabel: UILabel!
+    @IBOutlet weak var navBarItem: UINavigationItem!
+    @IBOutlet weak var serviceCityLabel: UILabel!
+    @IBOutlet weak var serviceNumberOfClosestStationsLabel: UILabel!
+    @IBOutlet weak var generalAboutLabel: UILabel!
+    @IBOutlet weak var generalVersionLabel: UILabel!
+    @IBOutlet weak var generalTellYourFriendsLabel: UILabel!
+    @IBOutlet weak var generalRateTheAppLabel: UILabel!
     
     //MARK: - View Lifecycle
+    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -76,19 +84,19 @@ class SettingsTableViewController: UITableViewController {
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath) {
         let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "")
         
-        let tellYourFriendsActionSheet = UIAlertController(title: nil, message: "Tell your friends about Bike Buddy", preferredStyle: .ActionSheet)
+        let tellYourFriendsActionSheet = UIAlertController(title: nil, message: NSLocalizedString("SettingsShareActionSheetTitle", comment: ""), preferredStyle: .ActionSheet)
         
-        let emailAction = UIAlertAction(title: "Email", style: .Default, handler: {
+        let emailAction = UIAlertAction(title: NSLocalizedString("SettingsShareEmail", comment: ""), style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             var mailViewController = MFMailComposeViewController()
             mailViewController.mailComposeDelegate = self
-            mailViewController.setSubject("Check out Bike Share Buddy")
+            mailViewController.setSubject(NSLocalizedString("SettingsShareMessageTitle", comment: ""))
             mailViewController.setMessageBody(sharingMessage, isHTML: true)
             
             self.presentViewController(mailViewController, animated: true, completion: nil)
         })
         
-        let smsAction = UIAlertAction(title: "Text Message", style: .Default, handler: {
+        let smsAction = UIAlertAction(title: NSLocalizedString("SettingsShareTextMessage", comment: ""), style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             var smsViewController = MFMessageComposeViewController()
             smsViewController.body = sharingMessage
@@ -97,7 +105,7 @@ class SettingsTableViewController: UITableViewController {
             self.presentViewController(smsViewController, animated: true, completion: nil)
         })
         
-        let facebookAction = UIAlertAction(title: "Facebook", style: .Default, handler: {
+        let facebookAction = UIAlertAction(title: NSLocalizedString("SettingsShareFacebook", comment: ""), style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             var facebookDialog = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             
@@ -111,7 +119,7 @@ class SettingsTableViewController: UITableViewController {
             self.presentViewController(facebookDialog, animated: true, completion: nil)
         })
         
-        let twitterAction = UIAlertAction(title: "Twitter", style: .Default, handler: {
+        let twitterAction = UIAlertAction(title: NSLocalizedString("SettingsShareTwitter", comment: ""), style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             var twitterDialog = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
             
@@ -125,7 +133,7 @@ class SettingsTableViewController: UITableViewController {
             self.presentViewController(twitterDialog, animated: true, completion: nil)
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+        let cancelAction = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
                 self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         })
@@ -150,8 +158,8 @@ class SettingsTableViewController: UITableViewController {
             self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
         }
         else {
-            let noActionsAlert = UIAlertController(title: "No sharing actions", message: "You don't seem to have Email, SMS, Facebook, or Twitter setup on this device. Go to Settings to setup one of these accounts and then you can share.", preferredStyle: UIAlertControllerStyle.Alert)
-            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+            let noActionsAlert = UIAlertController(title: NSLocalizedString("SettingsShareNoServicesMessageBoxTitle",comment: ""), message: NSLocalizedString("SettingsShareNoServicesMessageBoxContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
             noActionsAlert.addAction(alertAction)
             presentViewController(noActionsAlert, animated: true) {}
         }

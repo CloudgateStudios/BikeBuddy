@@ -42,10 +42,10 @@ class Station: NSObject, MKAnnotation {
     
     var shareStringDescription: String {
         get {
-            var returnString = "Station Name\n" + stationName
+            var returnString = NSLocalizedString("StationModelShareStationName", comment: "") + "\n" + stationName
             
             if(streetAddress != "") {
-                returnString += "\n\nAddress\n" + streetAddress
+                returnString += "\n\n" + NSLocalizedString("StationModelShareAddress", comment: "") + "\n" + streetAddress
             }
             
             return returnString
@@ -61,7 +61,7 @@ class Station: NSObject, MKAnnotation {
     }
     
     var subtitle : String {
-        get { return "Bikes: \(availableBikes) Open Docks: \(availableDocks)" }
+        get { return NSLocalizedString("StationModelAnnotationBikes", comment: "") + ": \(availableBikes) " +  NSLocalizedString("StationModelAnnotationOpenDocks", comment: "") + ": \(availableDocks)" }
     }
     
     override init() {

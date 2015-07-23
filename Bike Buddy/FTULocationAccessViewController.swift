@@ -30,7 +30,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
         
         navBarItem.title = NSLocalizedString("LocationAccessNavBarTitle", comment: "")
         mainMessageLabel.text = NSLocalizedString("LocationAccessMessageContent", comment: "")
-        mainMessageLabel.text = NSLocalizedString("LocationAccessButton", comment: "")
+        giveLocationAccessButton.setTitle(NSLocalizedString("LocationAccessButton", comment: ""), forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {
