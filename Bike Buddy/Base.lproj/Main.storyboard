@@ -427,7 +427,7 @@
         <!--About-->
         <scene sceneID="W7c-3j-582">
             <objects>
-                <viewController id="MmD-nc-dyF" sceneMemberID="viewController">
+                <viewController id="MmD-nc-dyF" customClass="SettingsAboutViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yc2-Ad-bDK"/>
                         <viewControllerLayoutGuide type="bottom" id="OuH-fH-0Z4"/>
@@ -438,6 +438,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="yPV-ZG-LWd"/>
+                    <connections>
+                        <outlet property="navBarItem" destination="yPV-ZG-LWd" id="jSk-qd-rlh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74y-CG-AKr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
