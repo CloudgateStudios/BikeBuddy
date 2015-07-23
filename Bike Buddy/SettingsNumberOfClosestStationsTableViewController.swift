@@ -14,10 +14,16 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     
     var options = [1,2,3,4,5]
     
+    //MARK: - View Outlets
+    
+    @IBOutlet weak var navBarItem: UINavigationItem!
+    
     //MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navBarItem.title = NSLocalizedString("SettingsSelectNumOfClosestStationsNavBarTitle", comment: "")
     }
 
     override func didReceiveMemoryWarning() {

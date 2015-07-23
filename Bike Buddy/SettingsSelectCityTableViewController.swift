@@ -10,8 +10,12 @@ import UIKit
 
 class SettingsSelectCityTableViewController: UITableViewController {
     //MARK: - Class Variables
-    
+
     var citiesArray = [City]()
+    
+    //MARK: - View Outlets
+    
+    @IBOutlet weak var navBarItem: UINavigationItem!
     
     //MARK: - View Lifecycle
     
@@ -35,6 +39,8 @@ class SettingsSelectCityTableViewController: UITableViewController {
         citiesArray.sort { (item1, item2) -> Bool in
             item1.name < item2.name
         }
+        
+        navBarItem.title = NSLocalizedString("SettingsSelectCityNavBarTitle", comment: "")
     }
 
     override func didReceiveMemoryWarning() {

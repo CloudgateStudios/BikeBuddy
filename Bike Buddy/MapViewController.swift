@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     //MARK: - View Outlets
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var navBarItem: UINavigationItem!
     
     //MARK: - View Lifecycle
     
@@ -39,11 +40,13 @@ class MapViewController: UIViewController {
         
         self.mapView.delegate = self
         
-        setupUI()
+        navBarItem.title = NSLocalizedString("MapNavBarTitle", comment: "")
+        
+        self.loadAnnotationsOnMapView()
     }
     
     func setupUI() {
-        self.loadAnnotationsOnMapView()
+        
     }
 
     override func didReceiveMemoryWarning() {

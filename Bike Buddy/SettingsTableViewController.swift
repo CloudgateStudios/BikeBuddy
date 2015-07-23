@@ -33,7 +33,6 @@ class SettingsTableViewController: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
-        
     }
     
     deinit {
@@ -56,9 +55,28 @@ class SettingsTableViewController: UITableViewController {
         versionLabel?.text = UIApplication.versionBuild()
         cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
         numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY)
+        
+        navBarItem.title = NSLocalizedString("SettingsNavBarTitle", comment: "")
+        serviceCityLabel.text = NSLocalizedString("SettingsServiceCity", comment: "")
+        serviceNumberOfClosestStationsLabel.text = NSLocalizedString("SettingsServiceNumberOfStations", comment: "")
+        generalAboutLabel.text = NSLocalizedString("SettingsGeneralAbout", comment: "")
+        generalVersionLabel.text = NSLocalizedString("SettingsGeneralVersion", comment: "")
+        generalTellYourFriendsLabel.text = NSLocalizedString("SettingsGeneralTellYourFriends", comment: "")
+        generalRateTheAppLabel.text = NSLocalizedString("SettingsGeneralRateApp", comment: "")
     }
     
     //MARK: - Table View
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return NSLocalizedString("SettingsServiceGroup", comment: "")
+        case 1:
+            return NSLocalizedString("SettingsGeneralGroup", comment: "")
+        default:
+            return ""
+        }
+    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!

@@ -260,6 +260,7 @@
                     <navigationItem key="navigationItem" title="Map" id="7I6-3x-W88"/>
                     <connections>
                         <outlet property="mapView" destination="F8u-L6-G2C" id="B7i-pK-oxV"/>
+                        <outlet property="navBarItem" destination="7I6-3x-W88" id="cy9-ux-bPf"/>
                         <segue destination="0Kp-FQ-qp6" kind="show" identifier="showStationDetailFromMap" id="5GW-YV-tis"/>
                     </connections>
                 </viewController>
@@ -478,6 +479,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select City" id="Pm3-Wh-Jwb"/>
+                    <connections>
+                        <outlet property="navBarItem" destination="Pm3-Wh-Jwb" id="vhv-Sn-5jf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nW4-1w-6fE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -514,6 +518,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Stations to Show" id="A7H-50-fuq"/>
+                    <connections>
+                        <outlet property="navBarItem" destination="A7H-50-fuq" id="4bB-nl-CLa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pk-f6-RY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -609,6 +616,6 @@
         <image name="stationsNavBarIcon" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gq2-lT-KRa"/>
+        <segue reference="5GW-YV-tis"/>
     </inferredMetricsTieBreakers>
 </document>
