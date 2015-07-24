@@ -34,6 +34,7 @@
 		C5C2158E1B0F78C900FEB01C /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5C2158D1B0F78C900FEB01C /* Cities.plist */; };
 		C5C215951B0F7D5100FEB01C /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C215941B0F7D5100FEB01C /* SettingsService.swift */; };
 		C5C215991B0F809C00FEB01C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C215981B0F809C00FEB01C /* Constants.swift */; };
+		C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */; };
 		C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */; };
 		C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */; };
 		C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */; };
@@ -90,6 +91,7 @@
 		C5C2158D1B0F78C900FEB01C /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
 		C5C215941B0F7D5100FEB01C /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		C5C215981B0F809C00FEB01C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTULocationAccessViewController.swift; sourceTree = "<group>"; };
 		C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUFinishedViewController.swift; sourceTree = "<group>"; };
 		C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_BikeBuddyExt.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */,
 				C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */,
 				C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */,
+				C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */,
 				C516F0101B0CE80F00CF4468 /* MapViewController.swift */,
 				C516F00E1B0CE7EB00CF4468 /* StationsListTableViewController.swift */,
 				D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */,
@@ -405,6 +408,7 @@
 				D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */,
 				D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */,
 				C52CD21C1B61484700B0C16D /* SettingsAboutViewController.swift in Sources */,
+				C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */,
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
 				D146DC811B156D3000F7456E /* Stations.swift in Sources */,
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
