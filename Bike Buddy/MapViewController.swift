@@ -26,13 +26,13 @@ class MapViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshMapAnnotations", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
-        //NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
     override func viewDidLoad() {
@@ -41,11 +41,14 @@ class MapViewController: UIViewController {
         setupStrings()
         
         self.mapView.delegate = self
-        self.loadAnnotationsOnMapView()
     }
     
     func setupStrings() {
         navBarItem.title = NSLocalizedString("MapNavBarTitle", comment: "")
+    }
+    
+    func refreshMapAnnotations() {
+        self.loadAnnotationsOnMapView()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
