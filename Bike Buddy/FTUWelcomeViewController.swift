@@ -20,14 +20,17 @@ class FTUWelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTheme()
+        setupStrings()
+    }
+    
+    private func setupTheme() {
         ThemeService.themeButton(getStartedButton)
-        
+    }
+    
+    private func setupStrings() {
         navBarItem.title = NSLocalizedString("GeneralAppName", comment: "")
         welcomeMessageLabel.text = NSLocalizedString("WelcomeMessageContent", comment: "")
         getStartedButton.setTitle(NSLocalizedString("WelcomeGetStartedButton", comment: ""), forState: .Normal)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

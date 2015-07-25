@@ -21,6 +21,8 @@ class SettingsSelectCityTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupStrings()
 
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
@@ -39,12 +41,10 @@ class SettingsSelectCityTableViewController: UITableViewController {
         citiesArray.sort { (item1, item2) -> Bool in
             item1.name < item2.name
         }
-        
-        navBarItem.title = NSLocalizedString("SettingsSelectCityNavBarTitle", comment: "")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    private func setupStrings() {
+        navBarItem.title = NSLocalizedString("SettingsSelectCityNavBarTitle", comment: "")
     }
 
     // MARK: - Table View

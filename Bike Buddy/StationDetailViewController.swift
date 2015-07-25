@@ -31,22 +31,26 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTheme()
+        setupStrings()
 
         mapView.addAnnotation(stationObject)
         mapView.showAnnotations([stationObject], animated: false)
-        stationNameLabel.text = stationObject.stationName
-        stationDistanceLabel.text = stationObject.distanceFromUserInMiles.format(".2")
-        
+    }
+    
+    private func setupTheme() {
         ThemeService.themeButton(shareStationButton)
         ThemeService.themeButton(directionToStationsButton)
+    }
+    
+    private func setupStrings() {
+        stationNameLabel.text = stationObject.stationName
+        stationDistanceLabel.text = stationObject.distanceFromUserInMiles.format(".2")
         
         navBarItem.title = NSLocalizedString("StationDetailNavBarTitle", comment: "")
         shareStationButton.setTitle(NSLocalizedString("StationDetailShareButton", comment: ""), forState: .Normal)
         directionToStationsButton.setTitle(NSLocalizedString("StationDetailDirectionsButton", comment: ""), forState: .Normal)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     //MARK: - Map View

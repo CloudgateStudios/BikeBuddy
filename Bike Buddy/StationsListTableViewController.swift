@@ -46,16 +46,16 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupStrings()
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        
-        navBarItem.title = NSLocalizedString("StationsListNavBarTitle", comment: "")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    private func setupStrings() {
+        navBarItem.title = NSLocalizedString("StationsListNavBarTitle", comment: "")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

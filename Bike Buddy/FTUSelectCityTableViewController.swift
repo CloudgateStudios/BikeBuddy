@@ -26,7 +26,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBarItem.title = NSLocalizedString("SelectCityNavBarTitle", comment: "")
+        setupStrings()
     
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
@@ -46,9 +46,9 @@ class FTUSelectCityTableViewController: UITableViewController {
             item1.name < item2.name
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    private func setupStrings() {
+        navBarItem.title = NSLocalizedString("SelectCityNavBarTitle", comment: "")
     }
 
     // MARK: - Table View

@@ -19,14 +19,17 @@ class FTUFinishedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTheme()
+        setupStrings()
+    }
+    
+    private func setupTheme() {
         ThemeService.themeButton(getStartedButton)
-        
+    }
+    
+    private func setupStrings() {
         navBarItem.title = NSLocalizedString("FTUFinishedNavBarTitle", comment: "")
         getStartedButton.setTitle(NSLocalizedString("FTUFinishedButton", comment: ""), forState: .Normal)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     //MARK: - User Interaction

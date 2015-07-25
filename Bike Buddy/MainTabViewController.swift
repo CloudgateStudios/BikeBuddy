@@ -10,9 +10,15 @@ import UIKit
 
 class MainTabViewController: UITabBarController {
 
+    //MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupStrings()
+    }
+    
+    private func setupStrings() {
         var stationsTab = self.tabBar.items?[0] as! UITabBarItem
         stationsTab.title = NSLocalizedString("StationsListTabBarItemLabel", comment: "")
         

@@ -26,31 +26,26 @@ class MapViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUI", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        //NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupStrings()
+        
         self.mapView.delegate = self
-        
-        navBarItem.title = NSLocalizedString("MapNavBarTitle", comment: "")
-        
         self.loadAnnotationsOnMapView()
     }
     
-    func setupUI() {
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func setupStrings() {
+        navBarItem.title = NSLocalizedString("MapNavBarTitle", comment: "")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

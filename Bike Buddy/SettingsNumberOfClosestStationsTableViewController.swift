@@ -23,11 +23,11 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBarItem.title = NSLocalizedString("SettingsSelectNumOfClosestStationsNavBarTitle", comment: "")
+        setupStrings()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    private func setupStrings() {
+        navBarItem.title = NSLocalizedString("SettingsSelectNumOfClosestStationsNavBarTitle", comment: "")
     }
 
     // MARK: - Table View

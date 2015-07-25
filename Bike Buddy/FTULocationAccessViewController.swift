@@ -26,15 +26,18 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTheme()
+        setupStrings()
+    }
+    
+    private func setupTheme() {
         ThemeService.themeButton(giveLocationAccessButton)
-        
+    }
+    
+    private func setupStrings() {
         navBarItem.title = NSLocalizedString("LocationAccessNavBarTitle", comment: "")
         mainMessageLabel.text = NSLocalizedString("LocationAccessMessageContent", comment: "")
         giveLocationAccessButton.setTitle(NSLocalizedString("LocationAccessButton", comment: ""), forState: .Normal)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     //MARK: - User Interaction

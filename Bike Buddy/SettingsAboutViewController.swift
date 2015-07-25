@@ -19,10 +19,10 @@ class SettingsAboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBarItem.title = NSLocalizedString("SettingsAboutNavBarTitle", comment: "")
+        setupStrings()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    private func setupStrings() {
+        navBarItem.title = NSLocalizedString("SettingsAboutNavBarTitle", comment: "")
     }
 }
