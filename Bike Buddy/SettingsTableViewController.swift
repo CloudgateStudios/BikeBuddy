@@ -86,6 +86,7 @@ class SettingsTableViewController: UITableViewController {
             case "tellYourFriends":
                 showTellYourFriendsActionSheet(indexPath)
             case "rateBikeBuddy":
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 goToAppStorePage()
             default: break
             }

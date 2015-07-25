@@ -138,7 +138,7 @@
 "SettingsShareEmail" = "Email";
 
 /* Share option for Text Message */
-"SettingsShareText Message" = "Text Message";
+"SettingsShareTextMessage" = "Text Message";
 
 /* Share option for Twitter */
 "SettingsShareTwitter" = "Twitter";
