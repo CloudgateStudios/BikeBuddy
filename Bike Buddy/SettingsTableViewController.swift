@@ -84,13 +84,14 @@ class SettingsTableViewController: UITableViewController {
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
             case "tellYourFriends":
-                showTellYourFriendsActionSheet(indexPath)
+                showTellYourFriendsActionSheet(indexPath, sender: selectedCell)
             case "rateBikeBuddy":
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 goToAppStorePage()
             default: break
             }
         }
+        
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     //MARK: - Table View Actions
@@ -100,7 +101,7 @@ class SettingsTableViewController: UITableViewController {
         UIApplication.sharedApplication().openURL(url!)
     }
     
-    private func showTellYourFriendsActionSheet(indexPath: NSIndexPath) {
+    private func showTellYourFriendsActionSheet(indexPath: NSIndexPath, sender: UIView) {
         let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "")
         
         let tellYourFriendsActionSheet = UIAlertController(title: nil, message: NSLocalizedString("SettingsShareActionSheetTitle", comment: ""), preferredStyle: .ActionSheet)
@@ -173,6 +174,12 @@ class SettingsTableViewController: UITableViewController {
         if(tellYourFriendsActionSheet.actions.count != 0) {
             
             tellYourFriendsActionSheet.addAction(cancelAction)
+    
+            // Only for iPad
+            if let popoverController = tellYourFriendsActionSheet.popoverPresentationController {
+                popoverController.sourceView = sender
+                popoverController.sourceRect = sender.bounds
+            }
         
             self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
         }
