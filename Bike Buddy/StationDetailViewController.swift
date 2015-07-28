@@ -22,6 +22,8 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var shareStationButton: UIButton!
     @IBOutlet weak var directionToStationsButton: UIButton!
     @IBOutlet weak var navBarItem: UINavigationItem!
+    @IBOutlet weak var bikesAvailableLabel: UILabel!
+    @IBOutlet weak var docksAvailableLabel: UILabel!
     
     //MARK: - View Lifecycle
     
@@ -46,7 +48,9 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     
     private func setupStrings() {
         stationNameLabel.text = stationObject.stationName
-        stationDistanceLabel.text = stationObject.distanceFromUserInMiles.format(".2")
+        stationDistanceLabel.text = stationObject.approximateDistanceAwayFromUser
+        bikesAvailableLabel.text = String(stationObject.availableBikes)
+        docksAvailableLabel.text = String(stationObject.availableDocks)
         
         navBarItem.title = NSLocalizedString("StationDetailNavBarTitle", comment: "")
         shareStationButton.setTitle(NSLocalizedString("StationDetailShareButton", comment: ""), forState: .Normal)

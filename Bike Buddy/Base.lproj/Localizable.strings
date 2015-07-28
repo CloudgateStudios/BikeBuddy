@@ -60,9 +60,6 @@
 /* Table section header in the Stations List for the Closest Stations */
 "StationsListClosestStationsSectionHeader" = "Closest Stations";
 
-/* Label ending for the distance away the user is from the station */
-"StationsListDistanceAway" = "away";
-
 // MARK: - Map View
 
 /* Name of the tab bar item for the Map view */

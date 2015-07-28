@@ -82,7 +82,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! StationTableViewCell
         
         cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
-        cell.distanceLabel.text = createDistanceAwayLabel(self.closestStations[indexPath.row].distanceFromUserInMiles.format(".2"))
+        cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser
         cell.numberOfBikesLabel.text = String(self.closestStations[indexPath.row].availableBikes)
 
         return cell
@@ -99,10 +99,6 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         self.tappedStation = self.closestStations[indexPath.row]
         
         self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER, sender: self)
-    }
-    
-    private func createDistanceAwayLabel(distance: String) -> String {
-        return "~ \(distance) " + NSLocalizedString("StationsListDistanceAway", comment: "")
     }
     
     // MARK: - Location Manager

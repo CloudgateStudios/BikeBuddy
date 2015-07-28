@@ -25,12 +25,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmw-On-Ybt">
-                                            <rect key="frame" x="8" y="37" width="584" height="20"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bikeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="RBv-8F-zqF">
                                             <rect key="frame" x="8" y="65" width="50" height="50"/>
                                             <constraints>
@@ -42,6 +36,12 @@
                                             <rect key="frame" x="71" y="79" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmw-On-Ybt">
+                                            <rect key="frame" x="8" y="37" width="584" height="20"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -221,7 +221,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Station Detail" id="o6H-2S-pRq"/>
                     <connections>
+                        <outlet property="bikesAvailableLabel" destination="GNM-Pf-cqz" id="Om3-9A-BSl"/>
                         <outlet property="directionToStationsButton" destination="J3R-Yu-9k4" id="RdO-0X-mNf"/>
+                        <outlet property="docksAvailableLabel" destination="jEp-Yy-oJo" id="sGE-Vd-1JA"/>
                         <outlet property="mapView" destination="P5J-4b-6c6" id="wDD-gu-EEP"/>
                         <outlet property="navBarItem" destination="o6H-2S-pRq" id="3aZ-Ny-pOB"/>
                         <outlet property="shareStationButton" destination="zqP-Zg-4qW" id="8sV-jc-kfm"/>
@@ -619,6 +621,6 @@
         <image name="stationsNavBarIcon" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5GW-YV-tis"/>
+        <segue reference="gq2-lT-KRa"/>
     </inferredMetricsTieBreakers>
 </document>

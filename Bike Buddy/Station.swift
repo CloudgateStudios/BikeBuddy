@@ -36,8 +36,16 @@ class Station: NSObject, MKAnnotation {
     
     internal private(set) var distanceFromUser: Double = 0.0
     
-    var distanceFromUserInMiles: Double {
-        get { return distanceFromUser * 0.00062137 }
+    var approximateDistanceAwayFromUser: String {
+        get {
+            let formatter = MKDistanceFormatter()
+            formatter.units = .Default
+            formatter.unitStyle = .Full
+            
+            let prettyString = "~ " + formatter.stringFromDistance(self.distanceFromUser)
+            
+            return prettyString
+        }
     }
     
     var shareStringDescription: String {
