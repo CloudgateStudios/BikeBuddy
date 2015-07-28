@@ -79,6 +79,12 @@
 /* Button text when the user wants to share the details of the station via the iOS Share Sheet */
 "StationDetailShareButton" = "Share Station";
 
+/* Label that follows the number of bikes that are available at the station */
+"StationDetailBikesAvailable" = "Bikes";
+
+/* Label that follows the number of docks that are available at the station */
+"StationDetailDocksAvailable" = "Docks";
+
 // MARK: - Settings
 
 /* Name of the tab bar item for the Settings view */

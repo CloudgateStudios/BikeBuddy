@@ -49,8 +49,8 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     private func setupStrings() {
         stationNameLabel.text = stationObject.stationName
         stationDistanceLabel.text = stationObject.approximateDistanceAwayFromUser
-        bikesAvailableLabel.text = String(stationObject.availableBikes)
-        docksAvailableLabel.text = String(stationObject.availableDocks)
+        bikesAvailableLabel.text = String(stationObject.availableBikes) + " " + NSLocalizedString("StationDetailBikesAvailable", comment: "")
+        docksAvailableLabel.text = String(stationObject.availableDocks) + " " + NSLocalizedString("StationDetailDocksAvailable", comment: "")
         
         navBarItem.title = NSLocalizedString("StationDetailNavBarTitle", comment: "")
         shareStationButton.setTitle(NSLocalizedString("StationDetailShareButton", comment: ""), forState: .Normal)
