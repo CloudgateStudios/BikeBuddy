@@ -10,24 +10,23 @@ devices([
 ])
 
 languages([
-  'en-US',
-  'de-DE',
-  'it-IT'
+  'en-US'
 ])
 
 # Where should the resulting screenshots be stored?
 screenshots_path "./screenshots"
 
-# clear_previous_screenshots # remove the '#'' to clear all previously generated screenshots before creating new ones
+# remove the '#'' to clear all previously generated screenshots before creating new ones
+clear_previous_screenshots
 
 # JavaScript UIAutomation file
-# js_file './snapshot.js'
+js_file './snapshot.js'
 
 # The name of the project's scheme
 # scheme 'SchemeName'
 
 # Where is your project (or workspace)? Provide the full path here
-# project_path './YourProject.xcworkspace'
+project_path './Bike Buddy.xcodeproj'
 
 # By default, the latest version should be used automatically. If you want to change it, do it here
 # ios_version '8.1'
