@@ -19,7 +19,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     @IBOutlet weak var navBarItem: UINavigationItem!
     
     //MARK: - View Lifecycle
-    required init!(coder aDecoder: NSCoder!) {
+    required init!(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -31,7 +31,7 @@ class FTUSelectCityTableViewController: UITableViewController {
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
-                    var newCity = City()
+                    let newCity = City()
                     
                     newCity.name = city.valueForKey(CITIES_PLIST_NAME_FIELD_KEY) as! String
                     newCity.serviceName = city.valueForKey(CITIES_PLIST_SERVICE_NAME_FIELD_KEY) as! String
@@ -42,7 +42,7 @@ class FTUSelectCityTableViewController: UITableViewController {
             }
         }
         
-        citiesArray.sort { (item1, item2) -> Bool in
+        citiesArray.sortInPlace { (item1, item2) -> Bool in
             item1.name < item2.name
         }
     }
@@ -62,7 +62,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) 
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
@@ -73,7 +73,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let indexPath = self.tableView.indexPathForSelectedRow()!
+        let indexPath = self.tableView.indexPathForSelectedRow!
         
         SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].name)
         SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].serviceName)

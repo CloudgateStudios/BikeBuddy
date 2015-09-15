@@ -64,11 +64,11 @@ class Station: NSObject, MKAnnotation {
         get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
     }
     
-    var title : String {
+    var title : String? {
         get { return self.stationName }
     }
     
-    var subtitle : String {
+    var subtitle : String? {
         get { return NSLocalizedString("StationModelAnnotationBikes", comment: "") + ": \(availableBikes) " +  NSLocalizedString("StationModelAnnotationOpenDocks", comment: "") + ": \(availableDocks)" }
     }
     
@@ -76,8 +76,8 @@ class Station: NSObject, MKAnnotation {
     }
     
     func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {
-        var usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
-        var stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        let usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
+        let stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
         
         self.distanceFromUser = usersLocation.distanceFromLocation(stationLocation)
     }

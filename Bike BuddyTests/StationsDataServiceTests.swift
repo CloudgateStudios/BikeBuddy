@@ -22,7 +22,7 @@ class StationsDataServiceTests: XCTestCase {
     }
 
     func testExample() {
-        var result = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
+        let result = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
         
         XCTAssertNotNil(result, "Result is nil, should have at least some Stations objects in it.")
         XCTAssertEqual(result.count, 466, "Result should be 466 long")

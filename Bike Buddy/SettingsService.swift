@@ -42,7 +42,7 @@ class SettingsService {
         Will completely wipe out all settings. There's no going back after calling this.
     */
     func clearAllSettings() {
-        var appDomain: String = NSBundle.mainBundle().bundleIdentifier!
+        let appDomain: String = NSBundle.mainBundle().bundleIdentifier!
         defaults.removePersistentDomainForName(appDomain as String)
         defaults.synchronize()
     }
@@ -50,8 +50,8 @@ class SettingsService {
     /**
         Quickly save a setting in the settings store.
     
-        :param: key The key that should be used to save the setting.
-        :param: value The value that should be stored. This can be any object and saveSetting will determine the best way to save it
+        - parameter key: The key that should be used to save the setting.
+        - parameter value: The value that should be stored. This can be any object and saveSetting will determine the best way to save it
     */
     func saveSetting(key: String, value: AnyObject) {
         //Need to determine type of object
@@ -75,9 +75,9 @@ class SettingsService {
     /**
         Get a setting that was saved as a Bool value. Will return false if the there is no value for the key that is supplied
     
-        :param: key The key of the value to be retrieved
+        - parameter key: The key of the value to be retrieved
     
-        :returns: The value per the key given as a Bool
+        - returns: The value per the key given as a Bool
     */
     func getSettingAsBool(key: String) -> Bool {
         return defaults.boolForKey(key)
@@ -86,9 +86,9 @@ class SettingsService {
     /**
         Get a setting that was saved as a String value. Will return an empty string if the there is no value for the key that is supplied
     
-        :param: key The key of the value to be retrieved
+        - parameter key: The key of the value to be retrieved
     
-        :returns: The value per the key given as a String
+        - returns: The value per the key given as a String
     */
     func getSettingAsString(key: String) -> String {
         if let result = defaults.stringForKey(key) {
@@ -102,9 +102,9 @@ class SettingsService {
     /**
         Get a setting that was saved as an Int value. Will return 0 if the there is no value for the key that is supplied
     
-        :param: key The key of the value to be retrieved
+        - parameter key: The key of the value to be retrieved
     
-        :returns: The value per the key given as a Int
+        - returns: The value per the key given as a Int
     */
     func getSettingAsInt(key: String) -> Int {
         return defaults.integerForKey(key)

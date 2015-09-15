@@ -27,7 +27,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: - View Lifecycle
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -59,12 +59,12 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: - Map View
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if (annotation is MKUserLocation) {
             return nil
         }
         
-        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: STATION_DETAIL_MAP_RESUE_IDENTIFIER)
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: STATION_DETAIL_MAP_RESUE_IDENTIFIER)
         annotationView.animatesDrop = false
         
         return annotationView
@@ -73,8 +73,8 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     //MARK: - User Actions
     
     @IBAction func userClickedOnDirectionsToStationButton(sender: UIButton) {
-        var placemark: MKPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(stationObject.latitude, stationObject.longitude), addressDictionary: nil)
-        var mapItem: MKMapItem = MKMapItem(placemark: placemark)
+        let placemark: MKPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(stationObject.latitude, stationObject.longitude), addressDictionary: nil)
+        let mapItem: MKMapItem = MKMapItem(placemark: placemark)
         
         mapItem.name = stationObject.stationName
         

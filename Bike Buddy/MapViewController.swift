@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
     
     //MARK: - View Lifecycle
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
@@ -53,7 +53,7 @@ class MapViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER) {
-            var vc = (segue.destinationViewController as! StationDetailViewController)
+            let vc = (segue.destinationViewController as! StationDetailViewController)
             vc.stationObject = self.tappedStation
             
             self.tappedStation = nil
@@ -74,23 +74,27 @@ class MapViewController: UIViewController {
 //MARK: - Map View
 
 extension MapViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if (annotation is MKUserLocation) {
             return nil
         }
         
-        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: FULL_MAP_VEIW_MAP_REUSE_IDENTIFIER)
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: FULL_MAP_VEIW_MAP_REUSE_IDENTIFIER)
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView =  UIButton.buttonWithType(UIButtonType.DetailDisclosure) as! UIView
+        annotationView.rightCalloutAccessoryView =  UIButton(type: UIButtonType.DetailDisclosure) as UIView
         
         return annotationView
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         self.tappedStation = view.annotation as! Station
         
         self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER, sender: self)
+    }
+    
+    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
+        self.loadAnnotationsOnMapView()
     }
     
     /**
@@ -100,7 +104,7 @@ extension MapViewController: MKMapViewDelegate {
         if let pins = mapView?.annotations {
             mapView.removeAnnotations(pins)
         }
-        
+
         mapView?.addAnnotations(Stations.sharedInstance.list)
         mapView?.showAnnotations(Stations.sharedInstance.list, animated: true)
     }

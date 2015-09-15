@@ -27,7 +27,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
-                    var newCity = City()
+                    let newCity = City()
                     
                     newCity.name = city.valueForKey(CITIES_PLIST_NAME_FIELD_KEY) as! String
                     newCity.serviceName = city.valueForKey(CITIES_PLIST_SERVICE_NAME_FIELD_KEY) as! String
@@ -38,7 +38,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
             }
         }
         
-        citiesArray.sort { (item1, item2) -> Bool in
+        citiesArray.sortInPlace { (item1, item2) -> Bool in
             item1.name < item2.name
         }
     }
@@ -58,7 +58,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) 
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName

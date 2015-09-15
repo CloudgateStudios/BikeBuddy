@@ -31,7 +31,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     
     // MARK: - View Lifecycle
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateClosestStations", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
@@ -60,7 +60,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER) {
-            var vc = (segue.destinationViewController as! StationDetailViewController)
+            let vc = (segue.destinationViewController as! StationDetailViewController)
             vc.stationObject = self.tappedStation
             
             self.tappedStation = nil
@@ -103,11 +103,11 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     
     // MARK: - Location Manager
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
         
-        var locationArray = locations as NSArray
-        var locationObj = locationArray.lastObject as! CLLocation
+        let locationArray = locations as NSArray
+        let locationObj = locationArray.lastObject as! CLLocation
         self.usersCurrentLocation = locationObj.coordinate
     }
     

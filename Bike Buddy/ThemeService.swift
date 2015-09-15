@@ -34,7 +34,7 @@ class ThemeService {
     
         Best place to use this is viewDidLoad in each ViewController that needs to theme a button.
     
-        :param: button The UIButton that should be themed. It will be themed in place, not returned.
+        - parameter button: The UIButton that should be themed. It will be themed in place, not returned.
     */
     class func themeButton(button: UIButton) {
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)

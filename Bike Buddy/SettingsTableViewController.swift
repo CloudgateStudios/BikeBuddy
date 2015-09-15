@@ -27,7 +27,7 @@ class SettingsTableViewController: UITableViewController {
     //MARK: - View Lifecycle
     
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateViewableStrings", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
@@ -107,8 +107,8 @@ class SettingsTableViewController: UITableViewController {
         let tellYourFriendsActionSheet = UIAlertController(title: nil, message: NSLocalizedString("SettingsShareActionSheetTitle", comment: ""), preferredStyle: .ActionSheet)
         
         let emailAction = UIAlertAction(title: NSLocalizedString("SettingsShareEmail", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            var mailViewController = MFMailComposeViewController()
+            (alert: UIAlertAction) -> Void in
+            let mailViewController = MFMailComposeViewController()
             mailViewController.mailComposeDelegate = self
             mailViewController.setSubject(NSLocalizedString("SettingsShareMessageTitle", comment: ""))
             mailViewController.setMessageBody(sharingMessage, isHTML: true)
@@ -117,8 +117,8 @@ class SettingsTableViewController: UITableViewController {
         })
         
         let smsAction = UIAlertAction(title: NSLocalizedString("SettingsShareTextMessage", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            var smsViewController = MFMessageComposeViewController()
+            (alert: UIAlertAction) -> Void in
+            let smsViewController = MFMessageComposeViewController()
             smsViewController.body = sharingMessage
             smsViewController.messageComposeDelegate = self
             
@@ -126,8 +126,8 @@ class SettingsTableViewController: UITableViewController {
         })
         
         let facebookAction = UIAlertAction(title: NSLocalizedString("SettingsShareFacebook", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            var facebookDialog = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            (alert: UIAlertAction) -> Void in
+            let facebookDialog = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             
             facebookDialog.completionHandler = {
                 result -> Void in
@@ -140,8 +140,8 @@ class SettingsTableViewController: UITableViewController {
         })
         
         let twitterAction = UIAlertAction(title: NSLocalizedString("SettingsShareTwitter", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            var twitterDialog = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            (alert: UIAlertAction) -> Void in
+            let twitterDialog = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
             
             twitterDialog.completionHandler = {
                 result -> Void in
@@ -154,7 +154,7 @@ class SettingsTableViewController: UITableViewController {
         })
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+            (alert: UIAlertAction) -> Void in
                 self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         })
         
@@ -195,7 +195,7 @@ class SettingsTableViewController: UITableViewController {
 // MARK: - Mail Compose View Delegate
 
 extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
@@ -203,7 +203,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 // MARK: - Message Compose View Delegate
 
 extension SettingsTableViewController: MFMessageComposeViewControllerDelegate {
-    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

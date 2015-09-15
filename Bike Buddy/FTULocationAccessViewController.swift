@@ -58,7 +58,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
 
     //MARK: - Location Manager
     
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if(status == CLAuthorizationStatus.AuthorizedWhenInUse) {
             goToNextView()
         }

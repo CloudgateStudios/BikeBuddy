@@ -30,58 +30,70 @@ class StationsDataService {
     /**
         Go get all the station data for the given API and return it as an array of Station objects
         
-        :param: apiUrl The URL to the API to call. The API should return data in the format found in Supporting Files/Divvy_API_Response.json
-        :param: completionHandler The closure to call when the response is received. Takes 2 parameters, responseObject as an Array of Station objects and an error as NSError
+        - parameter apiUrl: The URL to the API to call. The API should return data in the format found in Supporting Files/Divvy_API_Response.json
+        - parameter completionHandler: The closure to call when the response is received. Takes 2 parameters, responseObject as an Array of Station objects and an error as NSError
     */
     func getAllStationData(apiUrl: String, completionHandler: (responseObject: [Station], error: NSError?) -> ()) {
         var returnStations = [Station]()
         
         Alamofire.request(.GET, apiUrl).response{ (_, _, data, error) in
-            returnStations = self.parseStationDataToDictonary(data as! NSData)
-            completionHandler(responseObject: returnStations, error: error)
+            do {
+                try returnStations = self.parseStationDataToDictonary(data!)
+            }
+            catch { }
+            completionHandler(responseObject: returnStations, error: error as? NSError)
         }
     }
     
     /**
         Load in Station data from a file. **Should only be used for development purposes**
     
-        :param: fileName The name of the file to be loaded. Method makes the assumption that the file is part of the main bundle and is not in a subfolder.
+        - parameter fileName: The name of the file to be loaded. Method makes the assumption that the file is part of the main bundle and is not in a subfolder.
     
-        :returns: An array of Station objects
+        - returns: An array of Station objects
     */
     func loadStationDataFromFile(fileName: String) -> [Station] {
         var jsonString:NSData = NSData()
         var fileNameParts:[String] = fileName.componentsSeparatedByString(".")
         
         if(fileNameParts.count == 2) {
-            var path = NSBundle.mainBundle().pathForResource(fileNameParts[0] as String, ofType: fileNameParts[1] as String)
-            var possibleContent = String(contentsOfFile: path!, encoding:NSUTF8StringEncoding, error: nil)
-            var data = possibleContent!.dataUsingEncoding(NSUTF8StringEncoding)
+            let path = NSBundle.mainBundle().pathForResource(fileNameParts[0] as String, ofType: fileNameParts[1] as String)
+            let possibleContent = try? String(contentsOfFile: path!, encoding:NSUTF8StringEncoding)
+            let data = possibleContent!.dataUsingEncoding(NSUTF8StringEncoding)
             
             jsonString = data!
         }
         
-        return parseStationDataToDictonary(jsonString)
+        var returnData = [Station]()
+        
+        do  {
+            try returnData = parseStationDataToDictonary(jsonString)
+        }
+        catch {
+            
+        }
+        
+        return returnData
     }
     
     /**
         Does the heavy lifting of converting raw JSON into a usable object.
     
-        :param: data The raw JSON data as NSData
+        - parameter data: The raw JSON data as NSData
     
-        :returns: An array of Station objects
+        - returns: An array of Station objects
     */
-    private func parseStationDataToDictonary(data: NSData) -> [Station] {
+    private func parseStationDataToDictonary(data: NSData) throws -> [Station] {
         var stations = [Station]()
-        var jsonError: NSError?
+        //var jsonError: NSError?
         
-        if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError) as? [String: AnyObject] {
+        if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String: AnyObject] {
             
             if let stationsBeanList = json["stationBeanList"] as? NSArray {
             
                 for stationBean in stationsBeanList {
                     
-                    var newStation = Station()
+                    let newStation = Station()
                     if let stationName = stationBean.valueForKey("stationName") as? String,
                            latitude = stationBean.valueForKey("latitude") as? Double,
                            longitude = stationBean.valueForKey("longitude") as? Double,

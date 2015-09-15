@@ -19,13 +19,16 @@ class MainTabViewController: UITabBarController {
     }
     
     private func setupStrings() {
-        var stationsTab = self.tabBar.items?[0] as! UITabBarItem
-        stationsTab.title = NSLocalizedString("StationsListTabBarItemLabel", comment: "")
+        if let stationsTab = self.tabBar.items?[0] {
+            stationsTab.title = NSLocalizedString("StationsListTabBarItemLabel", comment: "")
+        }
         
-        var mapTab = self.tabBar.items?[1] as! UITabBarItem
-        mapTab.title = NSLocalizedString("MapTabBarItemLabel", comment: "")
+        if let mapTab = self.tabBar.items?[1] {
+            mapTab.title = NSLocalizedString("MapTabBarItemLabel", comment: "")
+        }
         
-        var settingsTab = self.tabBar.items?[2] as! UITabBarItem
-        settingsTab.title = NSLocalizedString("SettingsTabBarItemLabel", comment: "")
+        if let settingsTab = self.tabBar.items?[2] {
+            settingsTab.title = NSLocalizedString("SettingsTabBarItemLabel", comment: "")
+        }
     }
 }

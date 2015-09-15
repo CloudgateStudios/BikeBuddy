@@ -339,7 +339,9 @@
 		C516EFDD1B0CE6CB00CF4468 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Cloudgate Studios";
 				TargetAttributes = {
 					C516EFE41B0CE6CB00CF4468 = {
@@ -520,6 +522,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -596,6 +599,7 @@
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.$(PRODUCT_NAME:rfc1034identifier)${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bike Buddy/BikeBuddy-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -615,6 +619,7 @@
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.$(PRODUCT_NAME:rfc1034identifier)${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bike Buddy/BikeBuddy-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -636,6 +641,7 @@
 				);
 				INFOPLIST_FILE = "Bike BuddyTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CloudgateStudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike Buddy.app/Bike Buddy";
 			};
@@ -652,6 +658,7 @@
 				);
 				INFOPLIST_FILE = "Bike BuddyTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CloudgateStudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike Buddy.app/Bike Buddy";
 			};

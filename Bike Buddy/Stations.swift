@@ -41,7 +41,7 @@ class Stations {
         var listCopy = self.sharedInstance.list
         
         if listCopy.count > 0 {
-            listCopy.sort({ $0.distanceFromUser < $1.distanceFromUser })
+            listCopy.sortInPlace({ $0.distanceFromUser < $1.distanceFromUser })
             
             for(var i = 0; i < numberOfStations; i++) {
                 stationsToReturn.append(listCopy[i])
