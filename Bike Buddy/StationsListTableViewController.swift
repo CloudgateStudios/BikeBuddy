@@ -83,7 +83,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         
         cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
         cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser
-        cell.numberOfBikesLabel.text = String(self.closestStations[indexPath.row].availableBikes)
+        cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle)
 
         return cell
     }

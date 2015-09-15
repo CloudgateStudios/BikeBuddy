@@ -49,8 +49,8 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     private func setupStrings() {
         stationNameLabel.text = stationObject.stationName
         stationDistanceLabel.text = stationObject.approximateDistanceAwayFromUser
-        bikesAvailableLabel.text = String(stationObject.availableBikes) + " " + NSLocalizedString("StationDetailBikesAvailable", comment: "")
-        docksAvailableLabel.text = String(stationObject.availableDocks) + " " + NSLocalizedString("StationDetailDocksAvailable", comment: "")
+        bikesAvailableLabel.text = NSNumberFormatter.localizedStringFromNumber(stationObject.availableBikes, numberStyle: .NoStyle) + " " + NSLocalizedString("StationDetailBikesAvailable", comment: "")
+        docksAvailableLabel.text = NSNumberFormatter.localizedStringFromNumber(stationObject.availableDocks, numberStyle: .NoStyle) + " " + NSLocalizedString("StationDetailDocksAvailable", comment: "")
         
         navBarItem.title = NSLocalizedString("StationDetailNavBarTitle", comment: "")
         shareStationButton.setTitle(NSLocalizedString("StationDetailShareButton", comment: ""), forState: .Normal)
@@ -59,7 +59,7 @@ class StationDetailViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: - Map View
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if (annotation is MKUserLocation) {
             return nil
         }
