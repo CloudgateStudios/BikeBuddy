@@ -18,6 +18,34 @@ class MainTabViewController: UITabBarController {
         setupStrings()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
+            let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
+            if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
+                firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
+                
+                presentViewController(firstVC, animated: true, completion: nil)
+            }
+        } else {
+#if SCREENSHOTS
+            Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
+#else
+            if(UIApplication.isConnectedToNetwork()) {
+                StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+                    responseObject, error in
+                    
+                    Stations.sharedInstance.list = responseObject
+                }
+            } else {
+                let alert = UIAlertController(title: "Hello!", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+                let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+                alert.addAction(alertAction)
+                presentViewController(alert, animated: true) { () -> Void in }
+            }
+#endif
+        }
+    }
+    
     private func setupStrings() {
         if let stationsTab = self.tabBar.items?[0] {
             stationsTab.title = NSLocalizedString("StationsListTabBarItemLabel", comment: "")

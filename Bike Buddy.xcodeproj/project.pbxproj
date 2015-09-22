@@ -53,6 +53,7 @@
 		D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC841B1E98A200F7456E /* StationTableViewCell.swift */; };
 		D146DC871B1EA55D00F7456E /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
+		D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		D146DC841B1E98A200F7456E /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
+		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */,
 				C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */,
 				C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */,
 				C5721B4F1B5A7A58009C5EFF /* Twitter.framework in Frameworks */,
@@ -285,6 +288,7 @@
 		E9678157F4E75F6588D67B18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */,
 				C5721B4A1B5A7A58009C5EFF /* Accounts.framework */,
 				C5721B4B1B5A7A58009C5EFF /* Social.framework */,
 				C5721B4C1B5A7A58009C5EFF /* Twitter.framework */,
