@@ -1,45 +1,66 @@
-# Always check for a fastlane update
-update_fastlane
-
-# This is the minimum version number required.
-fastlane_version "1.22.0"
-
 default_platform :ios
 
 platform :ios do
 
   before_all do
-    increment_build_number
-    gym
+    # Always check for a fastlane update
+    update_fastlane
 
-    # xctool # run the tests of your app
+    # This is the minimum version number required.
+    fastlane_version "1.22.0"
+  end
+
+  desc "Setup the workspace for development"
+  desc "Should be ran by all developers before starting any development"
+  lane :setup do
+    carthage(platform: "iOS")
   end
 
   desc "Build and create Screenshots"
   lane :screenshots do
+    gym(configuration: "Screenshots")
     snapshot
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
+  desc "This action does the following:"
+  desc ""
+  desc "- Increment the build number"
+  desc "- Build the app in 'Release' configuration"
+  desc "- Check all mobile provisioning"
+  desc "- Upload to TestFlight (User needs to pull release trigger)"
+  desc "- Commit the build number change, tag and push to git"
+  lane :testflight do
+    # Build
+    increment_build_number
+    gym(configuration: "Release")
+
+    # Push
     sigh
-    deliver(beta: true)
+    testflight(skip_deploy: true)
+
+    # Commit Build Number Change
+    version = get_build_number(xcodeproj: "Bike Buddy.xcodeproj")
+    commit_version_bump(message: "Version Bump to #{version}")
+    add_git_tag tag: version
+    push_to_git_remote
   end
 
-  desc "Deploy a new version to the App Store"
-  desc "** Full Markdown** Support: `code`"
-  lane :deploy do
-    sigh
-    deliver(skip_deploy: true, force: true)
-  end
+  #desc "Deploy a new version to the App Store"
+  #desc "** Full Markdown** Support: `code`"
+  #lane :deploy do
+  #  sigh
+  #  deliver(skip_deploy: true, force: true)
+  #end
 
   # After Actions
 
   after_all do |lane|
     # Only called if successful
+    notify "Finished driving #{lane} lane"
   end
 
   error do |lane, exception|
+    notify "Error in driving #{lane} lane"
   end
 end
