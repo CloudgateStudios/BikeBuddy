@@ -17,6 +17,12 @@
 /* App name for use around the app like nav bars */
 "GeneralAppName" = "Bike Buddy";
 
+/* Title of the message box that pops up when the user doesn't have a network connection */
+"GeneralNoNetworkConnectionMessageTitle" = "No Network Connection";
+
+/* Content of the message box that pops up when the user doesn't have a network connection */
+"GeneralNoNetworkConnectionMessageContent" = "Please connect to a network (WiFi or Celluar) in order to use Bike Buddy";
+
 // MARK: - First Time Use
 
 /* Message on the first time use main screen */
