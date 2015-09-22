@@ -40,9 +40,11 @@ platform :ios do
     testflight(skip_deploy: true)
 
     # Commit Build Number Change
-    version = get_build_number(xcodeproj: "Bike Buddy.xcodeproj")
-    commit_version_bump(message: "Version Bump to #{version}")
-    add_git_tag tag: version
+    version = get_version_number(xcodeproj: "Bike Buddy.xcodeproj")
+    build = get_build_number(xcodeproj: "Bike Buddy.xcodeproj")
+
+    commit_version_bump(xcodeproj: "Bike Buddy.xcodeproj", message: "Version Bump to #{version}-#{build}")
+    add_git_tag tag: "#{version}-#{build}"
     push_to_git_remote
   end
 
