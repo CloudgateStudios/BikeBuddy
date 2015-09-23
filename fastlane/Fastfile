@@ -17,6 +17,10 @@ platform :ios do
   end
 
   desc "Build and create Screenshots"
+  desc "This action does the following:"
+  desc ""
+  desc "- Build the app with the 'Screenshots' Build Conifg"
+  desc "- Invoke the Snapfile to create all the screenshots"
   lane :screenshots do
     gym(configuration: "Screenshots")
     snapshot
