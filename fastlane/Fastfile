@@ -7,7 +7,7 @@ platform :ios do
     update_fastlane
 
     # This is the minimum version number required.
-    fastlane_version "1.22.0"
+    fastlane_version "1.29.1"
   end
 
   desc "Setup the workspace for development"
@@ -19,10 +19,8 @@ platform :ios do
   desc "Build and create Screenshots"
   desc "This action does the following:"
   desc ""
-  desc "- Build the app with the 'Screenshots' Build Conifg"
   desc "- Invoke the Snapfile to create all the screenshots"
   lane :screenshots do
-    gym(configuration: "Screenshots")
     snapshot
   end
 

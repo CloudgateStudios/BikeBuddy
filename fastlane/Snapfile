@@ -26,7 +26,7 @@ scheme 'Bike Buddy'
 # Where is your project (or workspace)? Provide the full path here
 project_path '../Bike Buddy.xcodeproj'
 
-custom_build_args "-configuration Screenshots"
+custom_build_args '-configuration Screenshots'
 
 # By default, the latest version should be used automatically. If you want to change it, do it here
 # ios_version '8.1'

@@ -19,6 +19,9 @@ class MainTabViewController: UITabBarController {
     }
     
     override func viewDidAppear(animated: Bool) {
+#if SCREENSHOTS
+        Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
+#else
         if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
             let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
             if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
@@ -27,9 +30,6 @@ class MainTabViewController: UITabBarController {
                 presentViewController(firstVC, animated: true, completion: nil)
             }
         } else {
-#if SCREENSHOTS
-            Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
-#else
             if(UIApplication.isConnectedToNetwork()) {
                 StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
                     responseObject, error in
@@ -42,8 +42,8 @@ class MainTabViewController: UITabBarController {
                 alert.addAction(alertAction)
                 presentViewController(alert, animated: true) { () -> Void in }
             }
-#endif
         }
+#endif
     }
     
     private func setupStrings() {
