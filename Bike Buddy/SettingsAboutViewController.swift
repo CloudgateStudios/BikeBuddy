@@ -13,6 +13,7 @@ class SettingsAboutViewController: UIViewController {
     //MARK: - View Outlets
     
     @IBOutlet weak var navBarItem: UINavigationItem!
+    @IBOutlet weak var webView: UIWebView!
     
     //MARK: - View Lifecycle
     

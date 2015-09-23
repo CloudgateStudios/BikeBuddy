@@ -19,6 +19,7 @@
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
 		C516F0201B0DC1DE00CF4468 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516F01F1B0DC1DE00CF4468 /* StationsDataService.swift */; };
 		C52CD21C1B61484700B0C16D /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52CD21B1B61484700B0C16D /* SettingsAboutViewController.swift */; };
+		C55D2C671BB208C600363FE6 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = C55D2C661BB208C600363FE6 /* about.html */; settings = {ASSET_TAGS = (); }; };
 		C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4A1B5A7A58009C5EFF /* Accounts.framework */; };
 		C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4B1B5A7A58009C5EFF /* Social.framework */; };
 		C5721B4F1B5A7A58009C5EFF /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4C1B5A7A58009C5EFF /* Twitter.framework */; };
@@ -84,6 +85,7 @@
 		C516F01F1B0DC1DE00CF4468 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		C52CD21B1B61484700B0C16D /* SettingsAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutViewController.swift; sourceTree = "<group>"; };
 		C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BikeBuddy-Bridging-Header.h"; sourceTree = "<group>"; };
+		C55D2C661BB208C600363FE6 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		C5721B4A1B5A7A58009C5EFF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C5721B4B1B5A7A58009C5EFF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C5721B4C1B5A7A58009C5EFF /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
@@ -243,6 +245,7 @@
 				C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */,
 				C516EFF51B0CE6CB00CF4468 /* LaunchScreen.xib */,
 				D146DC841B1E98A200F7456E /* StationTableViewCell.swift */,
+				C55D2C661BB208C600363FE6 /* about.html */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				C516EFF21B0CE6CB00CF4468 /* Main.storyboard in Resources */,
 				C513A7131B5E8547003BA84F /* Localizable.strings in Resources */,
 				C516EFF71B0CE6CB00CF4468 /* LaunchScreen.xib in Resources */,
+				C55D2C671BB208C600363FE6 /* about.html in Resources */,
 				C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */,
 				C5C2158E1B0F78C900FEB01C /* Cities.plist in Resources */,
 			);
@@ -600,6 +604,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -620,6 +625,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
