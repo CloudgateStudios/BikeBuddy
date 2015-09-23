@@ -48,6 +48,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         
         setupStrings()
         
+        disableEmptyCellsInTableView()
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()
@@ -99,6 +101,10 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         self.tappedStation = self.closestStations[indexPath.row]
         
         self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER, sender: self)
+    }
+    
+    private func disableEmptyCellsInTableView() {
+        self.tableView.tableFooterView = UIView()
     }
     
     // MARK: - Location Manager
