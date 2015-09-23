@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+@testable import Bike_Buddy
 
 class StationsDataServiceTests: XCTestCase {
 
