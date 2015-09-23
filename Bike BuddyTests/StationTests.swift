@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 
-import UIKit
 import XCTest
+import CoreLocation
 @testable import Bike_Buddy
 
 class StationTests: XCTestCase {
@@ -20,11 +20,9 @@ class StationTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
@@ -60,5 +58,13 @@ class StationTests: XCTestCase {
         let newStation = createBasicTestStation()
         
         XCTAssertEqual(newStation.title, testStationName, "Station title should match \(testStationName)")
+    }
+    
+    func testStationCoordinate() {
+        let newStation = createBasicTestStation()
+        let expectedCoordinate = CLLocationCoordinate2D(latitude: testLatitude, longitude: testLongitude)
+        
+        XCTAssertEqual(newStation.coordinate.longitude, expectedCoordinate.longitude, "Coordinate longitude should be \(expectedCoordinate.longitude)")
+        XCTAssertEqual(newStation.coordinate.latitude, expectedCoordinate.latitude, "Coordinate latitude should be \(expectedCoordinate.latitude)")
     }
 }
