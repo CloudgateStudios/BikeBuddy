@@ -34,3 +34,4 @@ Carthage/
 fastlane/report.xml
 *.mobileprovision
 Bike Buddy.app.dSYM.zip
+fastlane/screenshots
