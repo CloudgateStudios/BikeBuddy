@@ -8,6 +8,9 @@ platform :ios do
 
     # This is the minimum version number required.
     fastlane_version "1.29.1"
+
+    # Make sure the repo is in a clean state
+    ensure_git_status_clean
   end
 
   desc "Setup the workspace for development"
@@ -39,7 +42,7 @@ platform :ios do
 
     # Push
     sigh
-    testflight(skip_deploy: true)
+    testflight(skip_submission: true)
 
     # Commit Build Number Change
     version = get_version_number(xcodeproj: "Bike Buddy.xcodeproj")
@@ -65,6 +68,9 @@ platform :ios do
   end
 
   error do |lane, exception|
+    # Reset the repo back to it's original state
+    reset_git_repo
+    
     notification(subtitle: "Fastlane Failure :(", message: "Error in driving #{lane} lane")
   end
 end
