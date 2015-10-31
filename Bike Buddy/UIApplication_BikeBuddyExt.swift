@@ -47,31 +47,20 @@ extension UIApplication {
         Quickly check to see if the device has connectivity. 
     
         - returns: Bool True if there is connectivity, False if there is no connectivity
-    */
+    */    
     class func isConnectedToNetwork() -> Bool {
-        var status:Bool = false
-        
-        let url = NSURL(string: "https://google.com")
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "HEAD"
-        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
-        request.timeoutInterval = 10.0
-        
-        var response:NSURLResponse?
-        
-        do{
-            let _ = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }
-        catch let error as NSError
-        {
-            print(error.localizedDescription)
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
         }
-        
-        if let httpResponse = response as? NSHTTPURLResponse {
-            if httpResponse.statusCode == 200 {
-                status = true
-            }
-        }
-        return status
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
 
@@ -37,15 +38,6 @@ class StationsDataService {
     func getAllStationData(apiUrl: String, completionHandler: (responseObject: [Station], error: NSError?) -> ()) {
         var returnStations = [Station]()
         
-        /*Alamofire.request(.GET, apiUrl).response{ (_, _, data, error) in
-            do {
-                try returnStations = self.parseStationDataToDictonary(data!)
-            }
-            catch { }
-            completionHandler(responseObject: returnStations, error: error as? NSError)
-        }*/
-        
-        //let URL = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json"
         Alamofire.request(.GET, apiUrl, parameters: nil)
             .responseObject { (response: BixiAPIResponse?, error: ErrorType?) in
                 returnStations = (response?.stationBeanList)!
@@ -61,72 +53,21 @@ class StationsDataService {
     
         - returns: An array of Station objects
     */
-    /*func loadStationDataFromFile(fileName: String) -> [Station] {
-        var jsonString:NSData = NSData()
+    func loadStationDataFromFile(fileName: String) -> [Station] {
         var fileNameParts:[String] = fileName.componentsSeparatedByString(".")
+        var returnData = [Station]()
         
         if(fileNameParts.count == 2) {
             let path = NSBundle.mainBundle().pathForResource(fileNameParts[0] as String, ofType: fileNameParts[1] as String)
             let possibleContent = try? String(contentsOfFile: path!, encoding:NSUTF8StringEncoding)
-            let data = possibleContent!.dataUsingEncoding(NSUTF8StringEncoding)
             
-            jsonString = data!
-        }
-        
-        var returnData = [Station]()
-        
-        do  {
-            try returnData = parseStationDataToDictonary(jsonString)
-        }
-        catch {
-            
-        }
-        
-        return returnData
-    }*/
-    
-    /**
-        Does the heavy lifting of converting raw JSON into a usable object.
-    
-        - parameter data: The raw JSON data as NSData
-    
-        - returns: An array of Station objects
-    */
-    /*private func parseStationDataToDictonary(data: NSData) throws -> [Station] {
-        var stations = [Station]()
-        //var jsonError: NSError?
-        
-        if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String: AnyObject] {
-            
-            if let stationsBeanList = json["stationBeanList"] as? NSArray {
-            
-                for stationBean in stationsBeanList {
-                    
-                    let newStation = Station()
-                    if let stationName = stationBean.valueForKey("stationName") as? String,
-                           latitude = stationBean.valueForKey("latitude") as? Double,
-                           longitude = stationBean.valueForKey("longitude") as? Double,
-                           availableBikes = stationBean.valueForKey("availableBikes") as? Int,
-                           availableDocks = stationBean.valueForKey("availableDocks") as? Int {
-                        
-                        newStation.stationName = stationName
-                        newStation.latitude = latitude
-                        newStation.longitude = longitude
-                        newStation.availableBikes = availableBikes
-                        newStation.availableDocks = availableDocks
-                            
-                            if let address1 = stationBean.valueForKey("stAddress1") as? String,
-                                address2 = stationBean.valueForKey("stAddress2") as? String {
-                                    newStation.streetAddress = address1 + " " + address2
-                            }
-                    
-                        stations.append(newStation)
-                    }
-                    
-                }
+            if let data = possibleContent!.dataUsingEncoding(NSUTF8StringEncoding) {
+                let responseObject = Mapper<BixiAPIResponse>().map(String(data: data, encoding: NSUTF8StringEncoding))
+                returnData = (responseObject?.stationBeanList)!
             }
+
         }
-        
-        return stations
-    }*/
+    
+        return returnData
+    }
 }

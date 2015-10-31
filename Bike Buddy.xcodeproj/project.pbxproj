@@ -22,10 +22,8 @@
 		C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4A1B5A7A58009C5EFF /* Accounts.framework */; };
 		C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4B1B5A7A58009C5EFF /* Social.framework */; };
 		C5721B4F1B5A7A58009C5EFF /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4C1B5A7A58009C5EFF /* Twitter.framework */; };
-		C587A4211B21EF8500F2CA1F /* Double_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C587A4201B21EF8500F2CA1F /* Double_BikeBuddyExt.swift */; };
 		C5886ACB1B22944500FF6D0E /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5886ACA1B22944500FF6D0E /* ThemeService.swift */; };
 		C5886ACD1B22A07100FF6D0E /* UIColor_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5886ACC1B22A07100FF6D0E /* UIColor_BikeBuddyExt.swift */; };
-		C5886ACF1B22A12900FF6D0E /* UIImage_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5886ACE1B22A12900FF6D0E /* UIImage_BikeBuddyExt.swift */; };
 		C59090481B0F1E8E0043FFFD /* Divvy_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = C59090471B0F1E8E0043FFFD /* Divvy_API_Response.json */; };
 		C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */; };
 		C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */; };
@@ -87,10 +85,8 @@
 		C5721B4A1B5A7A58009C5EFF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C5721B4B1B5A7A58009C5EFF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C5721B4C1B5A7A58009C5EFF /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		C587A4201B21EF8500F2CA1F /* Double_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		C5886ACA1B22944500FF6D0E /* ThemeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
 		C5886ACC1B22A07100FF6D0E /* UIColor_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor_BikeBuddyExt.swift; sourceTree = "<group>"; };
-		C5886ACE1B22A12900FF6D0E /* UIImage_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		C59090471B0F1E8E0043FFFD /* Divvy_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Divvy_API_Response.json; sourceTree = "<group>"; };
 		C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FirstTimeUse.storyboard; sourceTree = "<group>"; };
 		C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUSelectCityTableViewController.swift; sourceTree = "<group>"; };
@@ -267,9 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */,
-				C587A4201B21EF8500F2CA1F /* Double_BikeBuddyExt.swift */,
 				C5886ACC1B22A07100FF6D0E /* UIColor_BikeBuddyExt.swift */,
-				C5886ACE1B22A12900FF6D0E /* UIImage_BikeBuddyExt.swift */,
 				D131EA461B2919D500F08241 /* UILabel_BikeBuddyExt.swift */,
 			);
 			name = "Class Extensions";
@@ -438,7 +432,6 @@
 				C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */,
 				D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */,
 				C516F00D1B0CE79100CF4468 /* SettingsTableViewController.swift in Sources */,
-				C5886ACF1B22A12900FF6D0E /* UIImage_BikeBuddyExt.swift in Sources */,
 				D146DC871B1EA55D00F7456E /* StationDetailViewController.swift in Sources */,
 				C516F0171B0CF11100CF4468 /* Station.swift in Sources */,
 				C5886ACB1B22944500FF6D0E /* ThemeService.swift in Sources */,
@@ -457,7 +450,6 @@
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
 				D146DC811B156D3000F7456E /* Stations.swift in Sources */,
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
-				C587A4211B21EF8500F2CA1F /* Double_BikeBuddyExt.swift in Sources */,
 				C5C2158C1B0F785B00FEB01C /* City.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,
 				D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */,
