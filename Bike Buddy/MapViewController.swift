@@ -93,7 +93,7 @@ extension MapViewController: MKMapViewDelegate {
         self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER, sender: self)
     }
     
-    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
+    func mapViewDidFinishRenderingMap(mapView: MKMapView) {
         self.loadAnnotationsOnMapView()
     }
     
