@@ -41,6 +41,8 @@ class MapViewController: UIViewController {
         setupStrings()
         
         self.mapView.delegate = self
+        
+        SVProgressHUD.showWithStatus(NSLocalizedString("MapLoadingPopupMessage", comment: ""))
     }
     
     func setupStrings() {
@@ -93,14 +95,12 @@ extension MapViewController: MKMapViewDelegate {
         self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER, sender: self)
     }
     
-    func mapViewDidFinishRenderingMap(mapView: MKMapView) {
-        self.loadAnnotationsOnMapView()
-    }
-    
     /**
     Take the current Stations.list and load the needed annotations on the map
     */
     private func loadAnnotationsOnMapView() {
+        SVProgressHUD.popActivity()
+        
         if let pins = mapView?.annotations {
             mapView.removeAnnotations(pins)
         }

@@ -74,6 +74,9 @@
 /* Title in the nav bar of the Map view */
 "MapNavBarTitle" = "Map";
 
+/* Loading message popup when locations are loading over the network */
+"MapLoadingPopupMessage" = "Loading Stations....";
+
 // MARK: - Station Detail
 
 /* Title in the nav bar for the Station Detail view */
