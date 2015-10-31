@@ -9,13 +9,14 @@
 import Foundation
 import MapKit
 import CoreLocation
+import ObjectMapper
 
 /**
     Represents a bike sharing station.
 
     :Implements: MKAnnotation - Allows Station objects to be passed to MapView's for quick annotation loading
 */
-class Station: NSObject, MKAnnotation {
+class Station: NSObject, MKAnnotation, Mappable {
     var id: Int = -1
     var stationName: String = ""
     var availableDocks: Int = -1
@@ -25,7 +26,8 @@ class Station: NSObject, MKAnnotation {
     var statusValue: String = ""
     var statusKey: Int = -1
     var availableBikes: Int = -1
-    var streetAddress: String = ""
+    var addressLineOne: String = ""
+    var addressLineTwo: String = ""
     var city: String = ""
     var postalCode: String = ""
     var location: String = ""
@@ -45,6 +47,12 @@ class Station: NSObject, MKAnnotation {
             let prettyString = "~ " + formatter.stringFromDistance(self.distanceFromUser)
             
             return prettyString
+        }
+    }
+    
+    var streetAddress: String {
+        get {
+            return addressLineOne + " " + addressLineTwo
         }
     }
     
@@ -73,6 +81,22 @@ class Station: NSObject, MKAnnotation {
     }
     
     override init() {
+    }
+    
+    required convenience init?(_ map: Map){
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        stationName <- map["stationName"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
+        availableBikes <- map["availableBikes"]
+        availableDocks <- map["availableDocks"]
+        addressLineOne <- map["stAddress1"]
+        addressLineTwo <- map["stAddress2"]
+        
     }
     
     func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {

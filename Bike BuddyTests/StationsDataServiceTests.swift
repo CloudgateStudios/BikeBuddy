@@ -21,12 +21,4 @@ class StationsDataServiceTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
-    func testExample() {
-        let result = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
-        
-        XCTAssertNotNil(result, "Result is nil, should have at least some Stations objects in it.")
-        XCTAssertEqual(result.count, 466, "Result should be 466 long")
-    }
-
 }

@@ -50,6 +50,9 @@
 		D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC841B1E98A200F7456E /* StationTableViewCell.swift */; };
 		D146DC871B1EA55D00F7456E /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
+		D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */; };
+		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
+		D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */; };
 		D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +113,9 @@
 		D146DC841B1E98A200F7456E /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
+		D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
+		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BixiAPIResponse.swift; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -119,10 +125,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */,
+				D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */,
 				C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */,
 				C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */,
 				C5721B4F1B5A7A58009C5EFF /* Twitter.framework in Frameworks */,
 				C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */,
+				D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */,
 				C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +237,7 @@
 				C516F0161B0CF11100CF4468 /* Station.swift */,
 				C5C2158B1B0F785B00FEB01C /* City.swift */,
 				D146DC801B156D3000F7456E /* Stations.swift */,
+				D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -285,6 +294,8 @@
 		E9678157F4E75F6588D67B18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */,
+				D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */,
 				D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */,
 				C5721B4A1B5A7A58009C5EFF /* Accounts.framework */,
 				C5721B4B1B5A7A58009C5EFF /* Social.framework */,
@@ -407,6 +418,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
 			);
 			outputPaths = (
 			);
@@ -447,6 +460,7 @@
 				C587A4211B21EF8500F2CA1F /* Double_BikeBuddyExt.swift in Sources */,
 				C5C2158C1B0F785B00FEB01C /* City.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,
+				D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

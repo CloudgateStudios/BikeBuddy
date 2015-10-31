@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireObjectMapper
 
 class StationsDataService {
     
@@ -36,12 +37,20 @@ class StationsDataService {
     func getAllStationData(apiUrl: String, completionHandler: (responseObject: [Station], error: NSError?) -> ()) {
         var returnStations = [Station]()
         
-        Alamofire.request(.GET, apiUrl).response{ (_, _, data, error) in
+        /*Alamofire.request(.GET, apiUrl).response{ (_, _, data, error) in
             do {
                 try returnStations = self.parseStationDataToDictonary(data!)
             }
             catch { }
             completionHandler(responseObject: returnStations, error: error as? NSError)
+        }*/
+        
+        //let URL = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json"
+        Alamofire.request(.GET, apiUrl, parameters: nil)
+            .responseObject { (response: BixiAPIResponse?, error: ErrorType?) in
+                returnStations = (response?.stationBeanList)!
+                
+                completionHandler(responseObject: returnStations, error: error as? NSError)
         }
     }
     
@@ -52,7 +61,7 @@ class StationsDataService {
     
         - returns: An array of Station objects
     */
-    func loadStationDataFromFile(fileName: String) -> [Station] {
+    /*func loadStationDataFromFile(fileName: String) -> [Station] {
         var jsonString:NSData = NSData()
         var fileNameParts:[String] = fileName.componentsSeparatedByString(".")
         
@@ -74,7 +83,7 @@ class StationsDataService {
         }
         
         return returnData
-    }
+    }*/
     
     /**
         Does the heavy lifting of converting raw JSON into a usable object.
@@ -83,7 +92,7 @@ class StationsDataService {
     
         - returns: An array of Station objects
     */
-    private func parseStationDataToDictonary(data: NSData) throws -> [Station] {
+    /*private func parseStationDataToDictonary(data: NSData) throws -> [Station] {
         var stations = [Station]()
         //var jsonError: NSError?
         
@@ -119,5 +128,5 @@ class StationsDataService {
         }
         
         return stations
-    }
+    }*/
 }
