@@ -61,10 +61,10 @@ platform :ios do
 
   after_all do |lane|
     # Only called if successful
-    notify "Finished driving #{lane} lane"
+    notification(subtitle: "Fastlane Success!", message: "Finished driving #{lane} lane")
   end
 
   error do |lane, exception|
-    notify "Error in driving #{lane} lane"
+    notification(subtitle: "Fastlane Failure :(", message: "Error in driving #{lane} lane")
   end
 end

@@ -19,7 +19,7 @@
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
 		C516F0201B0DC1DE00CF4468 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516F01F1B0DC1DE00CF4468 /* StationsDataService.swift */; };
 		C52CD21C1B61484700B0C16D /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52CD21B1B61484700B0C16D /* SettingsAboutViewController.swift */; };
-		C55D2C671BB208C600363FE6 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = C55D2C661BB208C600363FE6 /* about.html */; settings = {ASSET_TAGS = (); }; };
+		C55D2C671BB208C600363FE6 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = C55D2C661BB208C600363FE6 /* about.html */; };
 		C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4A1B5A7A58009C5EFF /* Accounts.framework */; };
 		C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4B1B5A7A58009C5EFF /* Social.framework */; };
 		C5721B4F1B5A7A58009C5EFF /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4C1B5A7A58009C5EFF /* Twitter.framework */; };
@@ -540,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -580,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -601,7 +601,7 @@
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.$(PRODUCT_NAME:rfc1034identifier)${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -624,7 +624,7 @@
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.$(PRODUCT_NAME:rfc1034identifier)${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -703,7 +703,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -726,7 +726,7 @@
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D SCREENSHOTS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.$(PRODUCT_NAME:rfc1034identifier)${BUNDLE_ID_SUFFIX}";
