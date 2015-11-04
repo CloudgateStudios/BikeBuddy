@@ -9,6 +9,5 @@
 #ifndef Bike_Buddy_Bridging_Header_h
 #define Bike_Buddy_Bridging_Header_h
 
-#import <SVProgressHUD/SVProgressHUD-Framework.h>
 
 #endif

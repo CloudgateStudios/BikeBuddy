@@ -7,7 +7,7 @@ platform :ios do
     update_fastlane
 
     # This is the minimum version number required.
-    fastlane_version "1.29.1"
+    fastlane_version "1.37.0"
 
     # Make sure the repo is in a clean state
     ensure_git_status_clean
@@ -70,7 +70,7 @@ platform :ios do
   error do |lane, exception|
     # Reset the repo back to it's original state
     reset_git_repo
-    
+
     notification(subtitle: "Fastlane Failure :(", message: "Error in driving #{lane} lane")
   end
 end
