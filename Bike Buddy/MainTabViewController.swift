@@ -7,10 +7,23 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MainTabViewController: UITabBarController {
 
     //MARK: - View Lifecycle
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +44,7 @@ class MainTabViewController: UITabBarController {
             }
         } else {
             if(UIApplication.isConnectedToNetwork()) {
-                StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
-                    responseObject, error in
-                    
-                    Stations.sharedInstance.list = responseObject
-                }
+                refreshStationsData()
             } else {
                 let alert = UIAlertController(title: NSLocalizedString("GeneralNoNetworkConnectionMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoNetworkConnectionMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
                 let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
@@ -57,6 +66,18 @@ class MainTabViewController: UITabBarController {
         
         if let settingsTab = self.tabBar.items?[2] {
             settingsTab.title = NSLocalizedString("SettingsTabBarItemLabel", comment: "")
+        }
+    }
+    
+    //MARK: - Stations List
+    
+    func refreshStationsData() {
+        SVProgressHUD.showWithStatus(NSLocalizedString("MapLoadingPopupMessage", comment: ""))
+        
+        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+            responseObject, error in
+            
+            Stations.sharedInstance.list = responseObject
         }
     }
 }

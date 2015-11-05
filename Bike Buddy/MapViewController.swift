@@ -25,14 +25,10 @@ class MapViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshMapAnnotations", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
     }
     
@@ -42,8 +38,6 @@ class MapViewController: UIViewController {
         setupStrings()
         
         self.mapView.delegate = self
-        
-        showLoadingPopover()
     }
     
     func setupStrings() {
@@ -55,9 +49,6 @@ class MapViewController: UIViewController {
     }
     
     func refreshMapAnnotations() {
-        if !SVProgressHUD.isVisible() {
-            showLoadingPopover()
-        }
         self.loadAnnotationsOnMapView()
     }
     
@@ -68,17 +59,7 @@ class MapViewController: UIViewController {
             
             self.tappedStation = nil
         }
-    }
-    
-    //MARK: - Stations List
-    
-    func refreshStationsData() {
-        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
-            responseObject, error in
-            
-            Stations.sharedInstance.list = responseObject
-        }
-    }
+    }    
 }
 
 //MARK: - Map View
