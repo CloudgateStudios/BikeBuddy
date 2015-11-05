@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBarItem: UINavigationItem!
+    @IBOutlet weak var currentPositionButton: UIBarButtonItem!
     
     //MARK: - View Lifecycle
     
@@ -54,7 +55,13 @@ class MapViewController: UIViewController {
             
             self.tappedStation = nil
         }
-    }    
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func currentPositionButtonTapped(sender: UIBarButtonItem) {
+        self.zoomMapToCurrentLocation()
+    }
 }
 
 //MARK: - Map View
@@ -91,5 +98,14 @@ extension MapViewController: MKMapViewDelegate {
 
         mapView?.addAnnotations(Stations.sharedInstance.list)
         mapView?.showAnnotations(Stations.sharedInstance.list, animated: true)
+    }
+    
+    private func zoomMapToCurrentLocation() {
+        var region = MKCoordinateRegion()
+        region.center = mapView.userLocation.coordinate
+        region.span.latitudeDelta = 0.05
+        region.span.longitudeDelta = 0.05
+        
+        mapView?.setRegion(region, animated: true)
     }
 }
