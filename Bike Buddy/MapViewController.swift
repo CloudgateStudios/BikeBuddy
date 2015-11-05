@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import SVProgressHUD
 
 class MapViewController: UIViewController {
     //MARK: - Class Variables
@@ -42,10 +41,6 @@ class MapViewController: UIViewController {
     
     func setupStrings() {
         navBarItem.title = NSLocalizedString("MapNavBarTitle", comment: "")
-    }
-    
-    func showLoadingPopover() {
-        SVProgressHUD.showWithStatus(NSLocalizedString("MapLoadingPopupMessage", comment: ""))
     }
     
     func refreshMapAnnotations() {
@@ -88,7 +83,7 @@ extension MapViewController: MKMapViewDelegate {
     Take the current Stations.list and load the needed annotations on the map
     */
     private func loadAnnotationsOnMapView() {
-        SVProgressHUD.dismiss()
+        ProgressHUDService.sharedInstance.dismissHUD()
         
         if let pins = mapView?.annotations {
             mapView.removeAnnotations(pins)

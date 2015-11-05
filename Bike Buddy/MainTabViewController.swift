@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 
 class MainTabViewController: UITabBarController {
 
@@ -72,7 +71,7 @@ class MainTabViewController: UITabBarController {
     //MARK: - Stations List
     
     func refreshStationsData() {
-        SVProgressHUD.showWithStatus(NSLocalizedString("MapLoadingPopupMessage", comment: ""))
+        ProgressHUDService.sharedInstance.showHUD()
         
         StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
             responseObject, error in
