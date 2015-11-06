@@ -68,9 +68,6 @@ platform :ios do
   end
 
   error do |lane, exception|
-    # Reset the repo back to it's original state
-    reset_git_repo
-
     notification(subtitle: "Fastlane Failure :(", message: "Error in driving #{lane} lane")
   end
 end
