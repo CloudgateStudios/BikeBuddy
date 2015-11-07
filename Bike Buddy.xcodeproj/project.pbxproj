@@ -48,7 +48,11 @@
 		D146DC811B156D3000F7456E /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC801B156D3000F7456E /* Stations.swift */; };
 		D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC841B1E98A200F7456E /* StationTableViewCell.swift */; };
 		D146DC871B1EA55D00F7456E /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */; };
+		D1594BBB1BEAEA95004805BC /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = D1594BBA1BEAEA95004805BC /* about.html */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
+		D188711B1BED9CB200E294EE /* bootstrap-theme.min.css in Resources */ = {isa = PBXBuildFile; fileRef = D18871181BED9CB200E294EE /* bootstrap-theme.min.css */; };
+		D188711C1BED9CB200E294EE /* bootstrap.min.css in Resources */ = {isa = PBXBuildFile; fileRef = D18871191BED9CB200E294EE /* bootstrap.min.css */; };
+		D188711D1BED9CB200E294EE /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D188711A1BED9CB200E294EE /* bootstrap.min.js */; };
 		D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */; };
 		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */; };
@@ -111,7 +115,11 @@
 		D146DC801B156D3000F7456E /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 		D146DC841B1E98A200F7456E /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
+		D1594BBA1BEAEA95004805BC /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
+		D18871181BED9CB200E294EE /* bootstrap-theme.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "bootstrap-theme.min.css"; sourceTree = "<group>"; };
+		D18871191BED9CB200E294EE /* bootstrap.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.min.css; sourceTree = "<group>"; };
+		D188711A1BED9CB200E294EE /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
 		D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BixiAPIResponse.swift; sourceTree = "<group>"; };
@@ -184,6 +192,9 @@
 		C516EFE81B0CE6CB00CF4468 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D18871181BED9CB200E294EE /* bootstrap-theme.min.css */,
+				D18871191BED9CB200E294EE /* bootstrap.min.css */,
+				D188711A1BED9CB200E294EE /* bootstrap.min.js */,
 				C59090471B0F1E8E0043FFFD /* Divvy_API_Response.json */,
 				C516EFF31B0CE6CB00CF4468 /* Images.xcassets */,
 				C516EFE91B0CE6CB00CF4468 /* Info.plist */,
@@ -250,6 +261,7 @@
 				C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */,
 				C516EFF51B0CE6CB00CF4468 /* LaunchScreen.xib */,
 				D146DC841B1E98A200F7456E /* StationTableViewCell.swift */,
+				D1594BBA1BEAEA95004805BC /* about.html */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -391,12 +403,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D188711C1BED9CB200E294EE /* bootstrap.min.css in Resources */,
+				D188711D1BED9CB200E294EE /* bootstrap.min.js in Resources */,
+				D1594BBB1BEAEA95004805BC /* about.html in Resources */,
 				C59090481B0F1E8E0043FFFD /* Divvy_API_Response.json in Resources */,
 				C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */,
 				C516EFF21B0CE6CB00CF4468 /* Main.storyboard in Resources */,
 				C513A7131B5E8547003BA84F /* Localizable.strings in Resources */,
 				C516EFF71B0CE6CB00CF4468 /* LaunchScreen.xib in Resources */,
 				C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */,
+				D188711B1BED9CB200E294EE /* bootstrap-theme.min.css in Resources */,
 				C5C2158E1B0F78C900FEB01C /* Cities.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

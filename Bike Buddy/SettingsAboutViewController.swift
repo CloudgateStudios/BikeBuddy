@@ -21,9 +21,19 @@ class SettingsAboutViewController: UIViewController {
         super.viewDidLoad()
         
         setupStrings()
+        
+        loadAboutWebPage()
     }
     
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("SettingsAboutNavBarTitle", comment: "")
+    }
+    
+    private func loadAboutWebPage() {
+        if let path = NSBundle.mainBundle().pathForResource("about", ofType: "html") {
+            if let html = try? String.init(contentsOfFile: path, encoding: NSUTF8StringEncoding) {
+                self.webView.loadHTMLString(html, baseURL: NSBundle.mainBundle().bundleURL)
+            }
+        }
     }
 }
