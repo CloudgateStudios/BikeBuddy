@@ -17,7 +17,7 @@ class BixiAPIResponse: Mappable {
     }
     
     func mapping(map: Map) {
-        executionTime <- map["exectionTime"]
+        executionTime <- map["executionTime"]
         stationBeanList <- map["stationBeanList"]
     }
 }
