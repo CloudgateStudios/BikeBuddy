@@ -45,7 +45,7 @@ This action does the following:
 
 - Build the app in 'Release' configuration
 
-- Check all mobile provisioning
+- Update all certs and mobile provisioning
 
 - Upload to TestFlight (User needs to pull release trigger)
 
