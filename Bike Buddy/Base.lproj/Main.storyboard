@@ -229,7 +229,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="StationDetailDirectionsToStation" textLabel="B4K-mN-7Q1" style="IBUITableViewCellStyleDefault" id="Y9W-Id-Cic">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="StationDetailShareStation" textLabel="B4K-mN-7Q1" style="IBUITableViewCellStyleDefault" id="Y9W-Id-Cic">
                                         <rect key="frame" x="0.0" y="569" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y9W-Id-Cic" id="AST-LH-aB3">
@@ -257,9 +257,11 @@
                     <navigationItem key="navigationItem" title="Station Detail" id="g7d-z2-sPs"/>
                     <connections>
                         <outlet property="bikesAvailableLabel" destination="uB5-Wb-CbA" id="EXW-0t-h3j"/>
+                        <outlet property="directionsToStationLabel" destination="fLw-gf-FfR" id="zOb-PT-D4D"/>
                         <outlet property="docksAvailableLabel" destination="04P-n8-2DV" id="Zh1-o8-EYE"/>
                         <outlet property="mapView" destination="VPg-R9-FnH" id="din-oy-HRj"/>
                         <outlet property="navBarItem" destination="g7d-z2-sPs" id="blO-qQ-Rzr"/>
+                        <outlet property="shareStationLabel" destination="B4K-mN-7Q1" id="5fs-LR-lAv"/>
                         <outlet property="stationDistanceLabel" destination="cgL-xT-PtC" id="Osl-hc-pbp"/>
                         <outlet property="stationNameLabel" destination="YIT-48-R5G" id="dss-cV-EhV"/>
                     </connections>
@@ -427,7 +429,7 @@
                             </tableViewSection>
                             <tableViewSection id="hi9-WQ-mGU">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="tellYourFriends" textLabel="lcP-Sg-46K" style="IBUITableViewCellStyleDefault" id="nmL-IF-Tey">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TellYourFriends" textLabel="lcP-Sg-46K" style="IBUITableViewCellStyleDefault" id="nmL-IF-Tey">
                                         <rect key="frame" x="0.0" y="353" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nmL-IF-Tey" id="aTZ-td-Y7a">
@@ -444,7 +446,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="rateBikeBuddy" textLabel="W7E-1S-IZd" style="IBUITableViewCellStyleDefault" id="LsD-P4-be6">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RateBikeBuddy" textLabel="W7E-1S-IZd" style="IBUITableViewCellStyleDefault" id="LsD-P4-be6">
                                         <rect key="frame" x="0.0" y="397" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LsD-P4-be6" id="4Nk-3Q-EXK">

@@ -83,9 +83,9 @@ class SettingsTableViewController: UITableViewController {
         
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
-            case "tellYourFriends":
+            case SETTINGS_TELL_YOUR_FRIENDS_REUSE_IDENTIFIER:
                 showTellYourFriendsActionSheet(indexPath, sender: selectedCell)
-            case "rateBikeBuddy":
+            case SETTINGS_RATE_APP_REUSE_IDENTIFIER:
                 goToAppStorePage()
             default: break
             }

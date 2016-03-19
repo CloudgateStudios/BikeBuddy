@@ -36,7 +36,10 @@ public let STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER = "StationListCell"
 public let SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER = "SettingsCityCells"
 public let FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER = "FTUCityServiceCell"
 public let SETTINGS_NUMBER_OF_CLOSEST_STATIONS_CELL_REUSE_IDENTIFIER = "SettingsNumberOfClosestStationsCell"
+public let SETTINGS_TELL_YOUR_FRIENDS_REUSE_IDENTIFIER = "TellYourFriends"
+public let SETTINGS_RATE_APP_REUSE_IDENTIFIER = "RateBikeBuddy"
 public let STATION_DETAIL_DIRECTIONS_TO_STATION_REUSE_IDENTIFIER = "StationDetailDirectionsToStation"
+public let STATION_DETAIL_SHARE_STATION_REUSE_IDENTIFIER = "StationDetailShareStation"
 
 // MARK: - Map View Reuse Identifiers
 public let STATION_DETAIL_MAP_RESUE_IDENTIFIER = "StationDetailMapPinID"
