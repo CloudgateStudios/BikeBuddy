@@ -14,6 +14,7 @@ class ThemeService {
     private static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
     private static let tabBarTintColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
     private static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
+    private static let textOnlyButtonTextColor = UIColor.colorFromInteger(0, green: 122, blue: 255, alpha: 1.0)
     
     //MARK: - Class Functions
     
@@ -38,6 +39,17 @@ class ThemeService {
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         button.backgroundColor = buttonBackgroundColor
         button.layer.cornerRadius = 4.0
+    }
+    
+    /**
+        Theme a text only button. Will not create a border around the button
+     
+        Best place to use this is viewDidLoad in each ViewController that needs to theme a button.
+     
+        - parameter textLabel: The UILabel that should be themed. It will be themed in place, not returned.
+    */
+    class func themeTextOnlyButton(textLabel: UILabel) {
+        textLabel.textColor = textOnlyButtonTextColor
     }
     
     //MARK: - Private Functions

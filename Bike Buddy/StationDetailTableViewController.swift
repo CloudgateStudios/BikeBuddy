@@ -29,14 +29,15 @@ class StationDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setupStrings()
+        setupTheme()
         
         mapView.addAnnotation(stationObject)
         mapView.showAnnotations([stationObject], animated: false)
     }
     
     private func setupTheme() {
-        /*ThemeService.themeButton(shareStationButton)
-        ThemeService.themeButton(directionToStationsButton)*/
+        ThemeService.themeTextOnlyButton(directionsToStationLabel)
+        ThemeService.themeTextOnlyButton(shareStationLabel)
     }
     
     private func setupStrings() {
