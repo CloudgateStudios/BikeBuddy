@@ -17,7 +17,7 @@ Should be ran by all developers before starting any development
 ```
 fastlane ios carthageUpdate
 ```
-
+Update all dependencies managed by Carthage
 ### ios test
 ```
 fastlane ios test
