@@ -28,6 +28,15 @@ extension UIApplication {
     class func appBuild() -> String {
         return NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
     }
+    
+    /** 
+        Gets the name of the application from the Info.plist file
+     
+        - returns: String representing the application name
+    */
+    class func appName() -> String {
+        return NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as (String)) as! String
+    }
 
     /**
         Convience method to pretty up the version number for display purposes.

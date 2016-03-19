@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsAboutTableViewController: UITableViewController {
 
     //MARK: - View Outlets
     
     @IBOutlet weak var navBarItem: UINavigationItem!
+    @IBOutlet weak var appNameAndVersionBottomLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -24,65 +26,51 @@ class SettingsAboutTableViewController: UITableViewController {
     
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("SettingsAboutNavBarTitle", comment: "")
+        appNameAndVersionBottomLabel.text = UIApplication.appName() + " " + UIApplication.versionBuild()
     }
     
     
-    // MARK: - Table view data source
-
+    // MARK: - Table View
     
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
+        
+        if let cellReuseID = selectedCell.reuseIdentifier {
+            switch cellReuseID {
+            case ABOUT_OPEN_SOURCE_ALMOFIRE_REUSE_IDENTIFIER:
+                openWebView(OPEN_SOURCE_ALAMOFIRE_URL)
+            case ABOUT_OPEN_SOURCE_OBJECTMAPPER_REUSE_IDENTIFIER:
+                openWebView(OPEN_SOURCE_OBJECT_MAPPER_URL)
+            case ABOUT_OPEN_SOURCE_AFOM_REUSE_IDENTIFIER:
+                openWebView(OPEN_SOURCE_AFOM_URL)
+            case ABOUT_OPEN_SOURCE_SVPROGRESSHUD_REUSE_IDENTIFIER:
+                openWebView(OPEN_SOURCE_SVPROGRESSHUD_URL)
+            case ABOUT_LEGAL_PRIVACY_POLICY_REUSE_IDENTIFIER:
+                showPrivacyPolicy()
+            default: break
+            }
+        }
+        
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    private func showPrivacyPolicy() {
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    private func openWebView(url: String) {
+        if let url = NSURL(string: url) {
+            let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+            self.presentViewController(svc, animated: true) { () -> Void in
+                // Need to do this hack becuase the Safari View Controller is buggy as hell with the swipe back gesture
+                for view in svc.view.subviews {
+                    if let recognisers = view.gestureRecognizers {
+                        for gestureRecogniser in recognisers where gestureRecogniser is UIScreenEdgePanGestureRecognizer {
+                            gestureRecogniser.enabled = false
+                        }  
+                    }  
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

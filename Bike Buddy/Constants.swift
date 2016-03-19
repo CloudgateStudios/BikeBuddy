@@ -40,6 +40,11 @@ public let SETTINGS_TELL_YOUR_FRIENDS_REUSE_IDENTIFIER = "TellYourFriends"
 public let SETTINGS_RATE_APP_REUSE_IDENTIFIER = "RateBikeBuddy"
 public let STATION_DETAIL_DIRECTIONS_TO_STATION_REUSE_IDENTIFIER = "StationDetailDirectionsToStation"
 public let STATION_DETAIL_SHARE_STATION_REUSE_IDENTIFIER = "StationDetailShareStation"
+public let ABOUT_OPEN_SOURCE_ALMOFIRE_REUSE_IDENTIFIER = "AboutOpenSourceAlamofire"
+public let ABOUT_OPEN_SOURCE_OBJECTMAPPER_REUSE_IDENTIFIER = "AboutOpenSourceObjectMapper"
+public let ABOUT_OPEN_SOURCE_AFOM_REUSE_IDENTIFIER = "AboutOpenSourceAFOM"
+public let ABOUT_OPEN_SOURCE_SVPROGRESSHUD_REUSE_IDENTIFIER = "AboutOpenSourceSVProgressHUD"
+public let ABOUT_LEGAL_PRIVACY_POLICY_REUSE_IDENTIFIER = "AboutLegalPrivacyPolicy"
 
 // MARK: - Map View Reuse Identifiers
 public let STATION_DETAIL_MAP_RESUE_IDENTIFIER = "StationDetailMapPinID"
@@ -64,3 +69,9 @@ public let NOT_FAVORITE_NAV_BAR_ICON_NAME = "notFavoriteNavBarIcon"
 
 // MARK: - Sharing and Rating
 public let APP_STORE_URL = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=998776734&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
+
+// MARK: - Open Source Package URL's
+public let OPEN_SOURCE_ALAMOFIRE_URL = "https://github.com/Alamofire/Alamofire"
+public let OPEN_SOURCE_OBJECT_MAPPER_URL = "https://github.com/Hearst-DD/ObjectMapper"
+public let OPEN_SOURCE_AFOM_URL = "https://github.com/tristanhimmelman/AlamofireObjectMapper"
+public let OPEN_SOURCE_SVPROGRESSHUD_URL = "https://github.com/SVProgressHUD/SVProgressHUD"

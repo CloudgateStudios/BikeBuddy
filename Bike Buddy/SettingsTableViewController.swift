@@ -13,14 +13,12 @@ import MessageUI
 class SettingsTableViewController: UITableViewController {
     //MARK: - View Outlets
     
-    @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var numberOfClosestStationsLabel: UILabel!
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var serviceCityLabel: UILabel!
     @IBOutlet weak var serviceNumberOfClosestStationsLabel: UILabel!
     @IBOutlet weak var generalAboutLabel: UILabel!
-    @IBOutlet weak var generalVersionLabel: UILabel!
     @IBOutlet weak var generalTellYourFriendsLabel: UILabel!
     @IBOutlet weak var generalRateTheAppLabel: UILabel!
     
@@ -54,13 +52,11 @@ class SettingsTableViewController: UITableViewController {
         serviceCityLabel.text = NSLocalizedString("SettingsServiceCity", comment: "")
         serviceNumberOfClosestStationsLabel.text = NSLocalizedString("SettingsServiceNumberOfStations", comment: "")
         generalAboutLabel.text = NSLocalizedString("SettingsGeneralAbout", comment: "")
-        generalVersionLabel.text = NSLocalizedString("SettingsGeneralVersion", comment: "")
         generalTellYourFriendsLabel.text = NSLocalizedString("SettingsGeneralTellYourFriends", comment: "")
         generalRateTheAppLabel.text = NSLocalizedString("SettingsGeneralRateApp", comment: "")
     }
     
     func updateViewableStrings() {
-        versionLabel?.text = UIApplication.versionBuild()
         cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
         numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY)
     }
