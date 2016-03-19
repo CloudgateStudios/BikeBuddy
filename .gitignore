@@ -1,5 +1,4 @@
 # Xcode
-#
 build/
 *.pbxuser
 !default.pbxuser
@@ -17,21 +16,18 @@ DerivedData
 *.ipa
 *.xcuserstate
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-# Pods/
 
 # Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
 Carthage/
+
+# Fastlane
 fastlane/report.xml
+fastlane/screenshots
+fastlane/test_output
+
+# Fastlane Extras (Things it does)
 *.mobileprovision
 Bike Buddy.app.dSYM.zip
-fastlane/screenshots
+*.cer
+*.certSigningRequest
+*.p12
