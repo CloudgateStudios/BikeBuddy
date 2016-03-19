@@ -7,7 +7,7 @@ platform :ios do
     update_fastlane
 
     # This is the minimum version number required.
-    fastlane_version "1.37.0"
+    fastlane_version "1.66.0"
 
     # Make sure the repo is in a clean state
     ensure_git_status_clean
@@ -16,7 +16,12 @@ platform :ios do
   desc "Setup the workspace for development"
   desc "Should be ran by all developers before starting any development"
   lane :setup do
-    carthage(platform: "iOS")
+    carthage(command: "bootstrap", platform: "iOS")
+  end
+
+  desc "Update all dependencies managed by Carthage"
+  lane :carthageUpdate do
+    carthage(command: "update", platform: "iOS")
   end
 
   desc "Run all the unit tests and generate a nice report"

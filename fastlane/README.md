@@ -13,6 +13,11 @@ fastlane ios setup
 Setup the workspace for development
 
 Should be ran by all developers before starting any development
+### ios carthageUpdate
+```
+fastlane ios carthageUpdate
+```
+
 ### ios test
 ```
 fastlane ios test
