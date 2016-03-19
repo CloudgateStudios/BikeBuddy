@@ -43,7 +43,7 @@ class MainTabViewController: UITabBarController {
             }
         } else {
             if(UIApplication.isConnectedToNetwork()) {
-                refreshStationsData(false)
+                refreshStationsData()
             } else {
                 let alert = UIAlertController(title: NSLocalizedString("GeneralNoNetworkConnectionMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoNetworkConnectionMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
                 let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
@@ -70,8 +70,8 @@ class MainTabViewController: UITabBarController {
     
     //MARK: - Stations List
     
-    func refreshStationsData(force: Bool) {
-        if(Stations.sharedInstance.list.count == 0 || force) {
+    func refreshStationsData() {
+        if(Stations.sharedInstance.list.count == 0) {
             ProgressHUDService.sharedInstance.showHUD()
         
             StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
