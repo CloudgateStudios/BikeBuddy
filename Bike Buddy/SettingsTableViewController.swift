@@ -153,6 +153,15 @@ class SettingsTableViewController: UITableViewController {
             self.presentViewController(twitterDialog, animated: true, completion: nil)
         })
         
+        let otherAppsAction = UIAlertAction(title: "Other Apps", style: .Default, handler : {
+            (alert: UIAlertAction) -> Void in
+            var sharingItems = [AnyObject]()
+            sharingItems.append(sharingMessage)
+            
+            let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
+            self.presentViewController(activityViewController, animated: true, completion: nil)
+        })
+        
         let cancelAction = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: .Cancel, handler: {
             (alert: UIAlertAction) -> Void in
                 self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -170,6 +179,8 @@ class SettingsTableViewController: UITableViewController {
         if(SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter)) {
             tellYourFriendsActionSheet.addAction(twitterAction)
         }
+        
+        tellYourFriendsActionSheet.addAction(otherAppsAction)
         
         if(tellYourFriendsActionSheet.actions.count != 0) {
             
