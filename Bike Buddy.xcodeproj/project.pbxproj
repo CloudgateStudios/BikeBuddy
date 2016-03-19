@@ -53,6 +53,7 @@
 		D188711B1BED9CB200E294EE /* bootstrap-theme.min.css in Resources */ = {isa = PBXBuildFile; fileRef = D18871181BED9CB200E294EE /* bootstrap-theme.min.css */; };
 		D188711C1BED9CB200E294EE /* bootstrap.min.css in Resources */ = {isa = PBXBuildFile; fileRef = D18871191BED9CB200E294EE /* bootstrap.min.css */; };
 		D188711D1BED9CB200E294EE /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D188711A1BED9CB200E294EE /* bootstrap.min.js */; };
+		D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */; };
 		D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */; };
 		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */; };
@@ -120,6 +121,7 @@
 		D18871181BED9CB200E294EE /* bootstrap-theme.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "bootstrap-theme.min.css"; sourceTree = "<group>"; };
 		D18871191BED9CB200E294EE /* bootstrap.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.min.css; sourceTree = "<group>"; };
 		D188711A1BED9CB200E294EE /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
+		D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailTableViewController.swift; sourceTree = "<group>"; };
 		D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BixiAPIResponse.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				C516F0101B0CE80F00CF4468 /* MapViewController.swift */,
 				C516F00E1B0CE7EB00CF4468 /* StationsListTableViewController.swift */,
 				D146DC861B1EA55D00F7456E /* StationDetailViewController.swift */,
+				D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */,
 				C516F00C1B0CE79100CF4468 /* SettingsTableViewController.swift */,
 				D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */,
 				D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */,
@@ -454,6 +457,7 @@
 			files = (
 				C5C215951B0F7D5100FEB01C /* SettingsService.swift in Sources */,
 				C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */,
+				D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */,
 				D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */,
 				C516F00D1B0CE79100CF4468 /* SettingsTableViewController.swift in Sources */,
 				D146DC871B1EA55D00F7456E /* StationDetailViewController.swift in Sources */,

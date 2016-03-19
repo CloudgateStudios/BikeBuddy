@@ -36,6 +36,7 @@ public let STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER = "StationListCell"
 public let SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER = "SettingsCityCells"
 public let FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER = "FTUCityServiceCell"
 public let SETTINGS_NUMBER_OF_CLOSEST_STATIONS_CELL_REUSE_IDENTIFIER = "SettingsNumberOfClosestStationsCell"
+public let STATION_DETAIL_DIRECTIONS_TO_STATION_REUSE_IDENTIFIER = "StationDetailDirectionsToStation"
 
 // MARK: - Map View Reuse Identifiers
 public let STATION_DETAIL_MAP_RESUE_IDENTIFIER = "StationDetailMapPinID"

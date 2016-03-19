@@ -38,7 +38,7 @@ platform :ios do
   desc ""
   desc "- Increment the build number"
   desc "- Build the app in 'Release' configuration"
-  desc "- Check all mobile provisioning"
+  desc "- Update all certs and mobile provisioning"
   desc "- Upload to TestFlight (User needs to pull release trigger)"
   desc "- Commit the build number change, tag and push to git"
   lane :testflight do

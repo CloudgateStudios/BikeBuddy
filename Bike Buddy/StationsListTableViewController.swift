@@ -62,7 +62,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER) {
-            let vc = (segue.destinationViewController as! StationDetailViewController)
+            let vc = (segue.destinationViewController as! StationDetailTableViewController)
             vc.stationObject = self.tappedStation
             
             self.tappedStation = nil
