@@ -42,15 +42,15 @@ platform :ios do
   desc "- Upload to TestFlight (User needs to pull release trigger)"
   desc "- Commit the build number change, tag and push to git"
   lane :testflight do
-    cert
-    sigh(force: true)
-
     # Build
     increment_build_number
     gym(configuration: "Release")
 
-    # Push
-    sigh
+    # Get the right certs and profiles
+    cert
+    sigh(force: true)
+
+    # Push to TestFlight
     testflight(skip_submission: true)
 
     # Commit Build Number Change
