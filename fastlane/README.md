@@ -13,6 +13,13 @@ fastlane ios setup
 Setup the workspace for development
 
 Should be ran by all developers before starting any development
+### ios test
+```
+fastlane ios test
+```
+Run all the unit tests and generate a nice report
+
+Report will open in default web browser after completing tests
 ### ios screenshots
 ```
 fastlane ios screenshots
