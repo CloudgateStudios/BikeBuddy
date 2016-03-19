@@ -14,7 +14,6 @@ class ThemeService {
     private static let navigationBarBackgroundColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
     private static let tabBarTintColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
     private static let buttonBackgroundColor = UIColor.colorFromInteger(60, green: 163, blue: 220, alpha: 1.0)
-    private static let fontName = "AppleSDGothicNeo-Regular"
     
     //MARK: - Class Functions
     
@@ -26,7 +25,6 @@ class ThemeService {
     class func applyTheme() {
         themeNavigationBar()
         themeTabBar()
-        themeLabel()
     }
     
     /**
@@ -52,15 +50,9 @@ class ThemeService {
         
         navigationAppearance.barTintColor = navigationBarBackgroundColor
         navigationAppearance.tintColor = UIColor.whiteColor()
-        navigationAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: fontName, size: 19)!]
         navigationAppearance.barStyle = UIBarStyle.Black
         navigationAppearance.translucent = false
-        
-        let barButtonItemApperance = UIBarButtonItem.appearance()
-        
-        barButtonItemApperance.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: fontName, size: 19)!], forState: UIControlState.Normal)
+
     }
 
     /**
@@ -71,18 +63,5 @@ class ThemeService {
 
         tabBarAppearance.translucent = false
         tabBarAppearance.tintColor = tabBarTintColor
-        
-        let tabBarItemAppearance = UITabBarItem.appearance()
-        
-        tabBarItemAppearance.setTitleTextAttributes([NSFontAttributeName: UIFont(name: fontName, size: 10)!], forState: UIControlState.Normal)
-    }
-    
-    /**
-        Theme the labels for the whole app. This effects almost everything including labels inside of Map View annotations.
-    */
-    private static func themeLabel() {
-        let labelApperance = UILabel.appearance()
-        
-        labelApperance.substituteFontName = fontName
     }
 }
