@@ -53,6 +53,16 @@
                ReferencedContainer = "container:Bike Buddy.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D1B6DD191C9EC3E3008543A3"
+               BuildableName = "Bike BuddyUITests.xctest"
+               BlueprintName = "Bike BuddyUITests"
+               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

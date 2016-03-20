@@ -31,27 +31,29 @@ class MainTabViewController: UITabBarController {
     }
     
     override func viewDidAppear(animated: Bool) {
-#if SCREENSHOTS
-        Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
-#else
-        if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
-            let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
-            if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
-                firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
-                
-                presentViewController(firstVC, animated: true, completion: nil)
-            }
-        } else {
-            if(UIApplication.isConnectedToNetwork()) {
-                refreshStationsData()
+        if(UIApplication.isUITest()) {
+            setupForUITests()
+        }
+        else {
+            
+            if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
+                let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
+                if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
+                    firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
+                    
+                    presentViewController(firstVC, animated: true, completion: nil)
+                }
             } else {
-                let alert = UIAlertController(title: NSLocalizedString("GeneralNoNetworkConnectionMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoNetworkConnectionMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-                let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-                alert.addAction(alertAction)
-                presentViewController(alert, animated: true) { () -> Void in }
+                if(UIApplication.isConnectedToNetwork()) {
+                    refreshStationsData()
+                } else {
+                    let alert = UIAlertController(title: NSLocalizedString("GeneralNoNetworkConnectionMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoNetworkConnectionMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+                    let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+                    alert.addAction(alertAction)
+                    presentViewController(alert, animated: true) { () -> Void in }
+                }
             }
         }
-#endif
     }
     
     private func setupStrings() {
@@ -80,5 +82,15 @@ class MainTabViewController: UITabBarController {
                 Stations.sharedInstance.list = responseObject
             }
         }
+    }
+    
+    //MARK: - UI Tests
+    
+    private func setupForUITests() {
+        Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
+        
+        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY, value: "Chicago")
+        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_NAME_SETTINGS_KEY, value: "Divvy")
+        SettingsService.sharedInstance.saveSetting(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY, value: 5)
     }
 }

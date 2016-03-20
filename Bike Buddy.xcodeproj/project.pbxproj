@@ -49,6 +49,8 @@
 		D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC841B1E98A200F7456E /* StationTableViewCell.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
 		D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */; };
+		D1B6DD1D1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */; };
+		D1B6DD261C9EC436008543A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */; };
 		D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */; };
 		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */; };
@@ -58,6 +60,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		C516EFFD1B0CE6CB00CF4468 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C516EFE41B0CE6CB00CF4468;
+			remoteInfo = "Bike Buddy";
+		};
+		D1B6DD1F1C9EC3E3008543A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
 			proxyType = 1;
@@ -112,6 +121,10 @@
 		D146DC841B1E98A200F7456E /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
 		D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailTableViewController.swift; sourceTree = "<group>"; };
+		D1B6DD1A1C9EC3E3008543A3 /* Bike BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bike BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddySnapshotTests.swift; sourceTree = "<group>"; };
+		D1B6DD1E1C9EC3E3008543A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BixiAPIResponse.swift; sourceTree = "<group>"; };
@@ -144,6 +157,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1B6DD171C9EC3E3008543A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -152,6 +172,7 @@
 			children = (
 				C516EFE71B0CE6CB00CF4468 /* Bike Buddy */,
 				C516EFFF1B0CE6CB00CF4468 /* Bike BuddyTests */,
+				D1B6DD1B1C9EC3E3008543A3 /* Bike BuddyUITests */,
 				C516EFE61B0CE6CB00CF4468 /* Products */,
 				E9678157F4E75F6588D67B18 /* Frameworks */,
 			);
@@ -162,6 +183,7 @@
 			children = (
 				C516EFE51B0CE6CB00CF4468 /* Bike Buddy.app */,
 				C516EFFC1B0CE6CB00CF4468 /* Bike BuddyTests.xctest */,
+				D1B6DD1A1C9EC3E3008543A3 /* Bike BuddyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +313,16 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		D1B6DD1B1C9EC3E3008543A3 /* Bike BuddyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */,
+				D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */,
+				D1B6DD1E1C9EC3E3008543A3 /* Info.plist */,
+			);
+			path = "Bike BuddyUITests";
+			sourceTree = "<group>";
+		};
 		E9678157F4E75F6588D67B18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +378,24 @@
 			productReference = C516EFFC1B0CE6CB00CF4468 /* Bike BuddyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D1B6DD191C9EC3E3008543A3 /* Bike BuddyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1B6DD241C9EC3E3008543A3 /* Build configuration list for PBXNativeTarget "Bike BuddyUITests" */;
+			buildPhases = (
+				D1B6DD161C9EC3E3008543A3 /* Sources */,
+				D1B6DD171C9EC3E3008543A3 /* Frameworks */,
+				D1B6DD181C9EC3E3008543A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1B6DD201C9EC3E3008543A3 /* PBXTargetDependency */,
+			);
+			name = "Bike BuddyUITests";
+			productName = "Bike BuddyUITests";
+			productReference = D1B6DD1A1C9EC3E3008543A3 /* Bike BuddyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -353,7 +403,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Cloudgate Studios";
 				TargetAttributes = {
@@ -363,6 +413,10 @@
 					};
 					C516EFFB1B0CE6CB00CF4468 = {
 						CreatedOnToolsVersion = 6.3;
+						TestTargetID = C516EFE41B0CE6CB00CF4468;
+					};
+					D1B6DD191C9EC3E3008543A3 = {
+						CreatedOnToolsVersion = 7.2.1;
 						TestTargetID = C516EFE41B0CE6CB00CF4468;
 					};
 				};
@@ -382,6 +436,7 @@
 			targets = (
 				C516EFE41B0CE6CB00CF4468 /* Bike Buddy */,
 				C516EFFB1B0CE6CB00CF4468 /* Bike BuddyTests */,
+				D1B6DD191C9EC3E3008543A3 /* Bike BuddyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +461,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1151E611B655F2500584707 /* Divvy_API_Response.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1B6DD181C9EC3E3008543A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +537,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1B6DD161C9EC3E3008543A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1B6DD1D1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift in Sources */,
+				D1B6DD261C9EC436008543A3 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -482,6 +553,11 @@
 			isa = PBXTargetDependency;
 			target = C516EFE41B0CE6CB00CF4468 /* Bike Buddy */;
 			targetProxy = C516EFFD1B0CE6CB00CF4468 /* PBXContainerItemProxy */;
+		};
+		D1B6DD201C9EC3E3008543A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C516EFE41B0CE6CB00CF4468 /* Bike Buddy */;
+			targetProxy = D1B6DD1F1C9EC3E3008543A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -761,6 +837,46 @@
 			};
 			name = Screenshots;
 		};
+		D1B6DD211C9EC3E3008543A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Bike BuddyUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-BuddyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Bike Buddy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		D1B6DD221C9EC3E3008543A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Bike BuddyUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-BuddyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Bike Buddy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+		D1B6DD231C9EC3E3008543A3 /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Bike BuddyUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-BuddyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Bike Buddy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Screenshots;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -793,6 +909,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D1B6DD241C9EC3E3008543A3 /* Build configuration list for PBXNativeTarget "Bike BuddyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1B6DD211C9EC3E3008543A3 /* Debug */,
+				D1B6DD221C9EC3E3008543A3 /* Release */,
+				D1B6DD231C9EC3E3008543A3 /* Screenshots */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

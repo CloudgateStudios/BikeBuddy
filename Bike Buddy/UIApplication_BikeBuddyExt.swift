@@ -72,4 +72,9 @@ extension UIApplication {
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         return (isReachable && !needsConnection)
     }
+    
+    class func isUITest() -> Bool {
+        let result = NSProcessInfo.processInfo().environment.keys.contains("UITest")
+        return result
+    }
 }
