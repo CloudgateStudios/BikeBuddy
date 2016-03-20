@@ -45,17 +45,11 @@ class SettingsAboutTableViewController: UITableViewController {
                 openWebView(OPEN_SOURCE_AFOM_URL)
             case ABOUT_OPEN_SOURCE_SVPROGRESSHUD_REUSE_IDENTIFIER:
                 openWebView(OPEN_SOURCE_SVPROGRESSHUD_URL)
-            case ABOUT_LEGAL_PRIVACY_POLICY_REUSE_IDENTIFIER:
-                showPrivacyPolicy()
             default: break
             }
         }
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    private func showPrivacyPolicy() {
-        
     }
     
     private func openWebView(url: String) {
