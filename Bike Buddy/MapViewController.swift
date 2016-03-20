@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var currentPositionButton: UIBarButtonItem!
+    @IBOutlet weak var updatedAtLabel: UILabel!
     
     //MARK: - View Lifecycle
     
@@ -108,6 +109,10 @@ extension MapViewController: MKMapViewDelegate {
 
         mapView?.addAnnotations(Stations.sharedInstance.list)
         mapView?.showAnnotations(Stations.sharedInstance.list, animated: true)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        updatedAtLabel.text = NSLocalizedString("MapUpdatedAtLabel", comment: "") + " " + dateFormatter.stringFromDate(Stations.sharedInstance.lastUpdated)
     }
     
     private func zoomMapToCurrentLocation() {

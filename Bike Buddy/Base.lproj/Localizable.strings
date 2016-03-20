@@ -92,6 +92,9 @@
 /* Message box message for when the user hits the Current Location button and they are outside of the map view */
 "MapUserOutsideViewPopupMessage" = "Your current location is outside of the current Bike Area. Are you sure you want to go to your location?";
 
+/* Label prefix for what time the data was last updated at. Should be followed by a time */
+"MapUpdatedAtLabel" = "Updated at";
+
 // MARK: - Station Detail
 
 /* Title in the nav bar for the Station Detail view */

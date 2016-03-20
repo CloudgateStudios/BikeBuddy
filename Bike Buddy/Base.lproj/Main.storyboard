@@ -285,14 +285,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8u-L6-G2C">
-                                <rect key="frame" x="4" y="0.0" width="592" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated at 7:00pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EqA-Kw-XcK">
+                                <rect key="frame" x="12" y="69" width="568" height="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="F8u-L6-G2C" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="topMargin" id="C0a-Og-4S0"/>
-                            <constraint firstItem="F8u-L6-G2C" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="jCE-eJ-4qc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="F8u-L6-G2C" secondAttribute="trailing" constant="-16" id="qrm-ms-vIQ"/>
+                            <constraint firstItem="EqA-Kw-XcK" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-8" id="M3E-Dr-8vx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EqA-Kw-XcK" secondAttribute="trailing" id="i6d-vJ-XY6"/>
+                            <constraint firstItem="F8u-L6-G2C" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="jCE-eJ-4qc"/>
+                            <constraint firstItem="EqA-Kw-XcK" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="5" id="jcc-Zq-Rp4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F8u-L6-G2C" secondAttribute="trailing" constant="-20" id="qrm-ms-vIQ"/>
                             <constraint firstItem="F8u-L6-G2C" firstAttribute="bottom" secondItem="QS5-Rx-YEW" secondAttribute="bottomMargin" id="zVC-gI-MAD"/>
                         </constraints>
                     </view>
@@ -307,6 +316,7 @@
                         <outlet property="currentPositionButton" destination="wv8-ya-3Mq" id="OrJ-17-JcZ"/>
                         <outlet property="mapView" destination="F8u-L6-G2C" id="B7i-pK-oxV"/>
                         <outlet property="navBarItem" destination="7I6-3x-W88" id="cy9-ux-bPf"/>
+                        <outlet property="updatedAtLabel" destination="EqA-Kw-XcK" id="CIO-sl-fl2"/>
                         <segue destination="etS-y8-Dg7" kind="show" identifier="showStationDetailFromMap" id="PWd-AI-Kco"/>
                     </connections>
                 </viewController>
@@ -877,6 +887,6 @@
         <image name="stationsNavBarIcon" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xPA-Nd-9Db"/>
+        <segue reference="PWd-AI-Kco"/>
     </inferredMetricsTieBreakers>
 </document>

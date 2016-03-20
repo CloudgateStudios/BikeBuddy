@@ -25,8 +25,12 @@ class Stations {
     var list = [Station]() {
         didSet {
             NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: self)
+            
+            self.lastUpdated = NSDate()
         }
     }
+    
+    private(set) var lastUpdated = NSDate()
     
     private init() {
     }
