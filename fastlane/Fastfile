@@ -35,7 +35,7 @@ platform :ios do
   desc ""
   desc "- Invoke the Snapfile to create all the screenshots"
   lane :screenshots do
-    snapshot
+    snapshot(erase_simulator: true)
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
