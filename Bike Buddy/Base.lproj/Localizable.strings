@@ -69,6 +69,12 @@
 /* Table section header in the Stations List for the Closest Stations */
 "StationsListClosestStationsSectionHeader" = "Closest Stations";
 
+/* Label that follows the number of bikes that are available at the station */
+"StationsListBikesAvailableLabel" = "Bikes Available";
+
+/* Label that follows the number of docks that are available at the station */
+"StationsListDocksAvailableLabel" = "Docks Open";
+
 // MARK: - Map View
 
 /* Name of the tab bar item for the Map view */
@@ -92,10 +98,10 @@
 "StationDetailShareButton" = "Share Station";
 
 /* Label that follows the number of bikes that are available at the station */
-"StationDetailBikesAvailable" = "Bikes";
+"StationDetailBikesAvailable" = "Bikes Available";
 
 /* Label that follows the number of docks that are available at the station */
-"StationDetailDocksAvailable" = "Docks";
+"StationDetailDocksAvailable" = "Docks Open";
 
 // MARK: - Settings
 

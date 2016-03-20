@@ -84,8 +84,10 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! StationTableViewCell
         
         cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
-        cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser
-        cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle)
+        cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
+        cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListBikesAvailableLabel", comment: "")
+        cell.numberOfDocksLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableDocks, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListDocksAvailableLabel", comment: "")
+
 
         return cell
     }

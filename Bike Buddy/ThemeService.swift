@@ -64,7 +64,6 @@ class ThemeService {
         navigationAppearance.tintColor = UIColor.whiteColor()
         navigationAppearance.barStyle = UIBarStyle.Black
         navigationAppearance.translucent = false
-
     }
 
     /**

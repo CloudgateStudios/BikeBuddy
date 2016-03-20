@@ -27,38 +27,39 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bikeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="RBv-8F-zqF">
-                                            <rect key="frame" x="8" y="65" width="50" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="IZe-Sd-7vS"/>
-                                                <constraint firstAttribute="width" constant="50" id="jJ7-gc-oOh"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAN-CC-UH0">
-                                            <rect key="frame" x="71" y="79" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmw-On-Ybt">
+                                            <rect key="frame" x="8" y="37" width="584" height="12"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESv-x9-6dJ">
+                                            <rect key="frame" x="8" y="86" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAN-CC-UH0">
+                                            <rect key="frame" x="8" y="57" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmw-On-Ybt">
-                                            <rect key="frame" x="8" y="37" width="584" height="20"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="RBv-8F-zqF" secondAttribute="bottom" constant="-5.5" id="9JH-P0-QwN"/>
+                                        <constraint firstItem="ESv-x9-6dJ" firstAttribute="leading" secondItem="vtP-YG-3V3" secondAttribute="leadingMargin" id="CLq-yc-Dgh"/>
+                                        <constraint firstItem="cAN-CC-UH0" firstAttribute="leading" secondItem="vtP-YG-3V3" secondAttribute="leadingMargin" id="Crl-lH-M2f"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ESv-x9-6dJ" secondAttribute="trailing" id="GCM-97-Sln"/>
                                         <constraint firstItem="54Q-6B-aAZ" firstAttribute="leading" secondItem="vtP-YG-3V3" secondAttribute="leadingMargin" id="Gt5-Za-FOB"/>
-                                        <constraint firstItem="RBv-8F-zqF" firstAttribute="top" secondItem="xmw-On-Ybt" secondAttribute="bottom" constant="8" id="HAA-t6-yIb"/>
                                         <constraint firstItem="54Q-6B-aAZ" firstAttribute="top" secondItem="vtP-YG-3V3" secondAttribute="topMargin" id="Ikg-T3-aOr"/>
                                         <constraint firstItem="xmw-On-Ybt" firstAttribute="top" secondItem="54Q-6B-aAZ" secondAttribute="bottom" constant="8" id="NPs-5g-Y9d"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="cAN-CC-UH0" secondAttribute="trailing" id="OtN-2q-mtx"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="xmw-On-Ybt" secondAttribute="trailing" id="TlV-QW-KPx"/>
-                                        <constraint firstItem="RBv-8F-zqF" firstAttribute="leading" secondItem="xmw-On-Ybt" secondAttribute="leading" id="fbQ-dh-9JF"/>
+                                        <constraint firstItem="cAN-CC-UH0" firstAttribute="top" secondItem="xmw-On-Ybt" secondAttribute="bottom" constant="8" id="Wz9-h5-Te9"/>
                                         <constraint firstItem="xmw-On-Ybt" firstAttribute="leading" secondItem="vtP-YG-3V3" secondAttribute="leadingMargin" id="i4A-Jo-uPh"/>
+                                        <constraint firstItem="ESv-x9-6dJ" firstAttribute="top" secondItem="cAN-CC-UH0" secondAttribute="bottom" constant="8" id="jHB-dw-ChU"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="54Q-6B-aAZ" secondAttribute="trailing" id="mzx-9F-edr"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="54Q-6B-aAZ" secondAttribute="bottom" id="paA-7J-i6b"/>
-                                        <constraint firstItem="RBv-8F-zqF" firstAttribute="top" secondItem="xmw-On-Ybt" secondAttribute="bottom" constant="8" symbolic="YES" id="vUE-EJ-C16"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -69,6 +70,7 @@
                                 <connections>
                                     <outlet property="distanceLabel" destination="xmw-On-Ybt" id="xL0-5Y-UoP"/>
                                     <outlet property="numberOfBikesLabel" destination="cAN-CC-UH0" id="QT1-wZ-ybK"/>
+                                    <outlet property="numberOfDocksLabel" destination="ESv-x9-6dJ" id="S2e-le-wTk"/>
                                     <outlet property="stationNameLabel" destination="54Q-6B-aAZ" id="z9a-gO-hho"/>
                                 </connections>
                             </tableViewCell>
@@ -827,7 +829,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bikeIcon" width="168" height="104"/>
         <image name="ftuWelcome" width="300" height="300"/>
         <image name="mapTabBarIcon" width="32" height="32"/>
         <image name="settingsTabBarIcon" width="32" height="32"/>
@@ -835,6 +836,6 @@
         <image name="stationsNavBarIcon" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PWd-AI-Kco"/>
+        <segue reference="xPA-Nd-9Db"/>
     </inferredMetricsTieBreakers>
 </document>
