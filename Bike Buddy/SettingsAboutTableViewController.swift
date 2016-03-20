@@ -61,16 +61,14 @@ class SettingsAboutTableViewController: UITableViewController {
     private func openWebView(url: String) {
         if let url = NSURL(string: url) {
             let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
-            self.presentViewController(svc, animated: true) { () -> Void in
-                // Need to do this hack becuase the Safari View Controller is buggy as hell with the swipe back gesture
-                for view in svc.view.subviews {
-                    if let recognisers = view.gestureRecognizers {
-                        for gestureRecogniser in recognisers where gestureRecogniser is UIScreenEdgePanGestureRecognizer {
-                            gestureRecogniser.enabled = false
-                        }  
-                    }  
-                }
-            }
+            svc.delegate = self
+            self.presentViewController(svc, animated: true) {}
         }
+    }
+}
+
+extension SettingsAboutTableViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
