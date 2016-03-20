@@ -60,7 +60,17 @@ class MapViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func currentPositionButtonTapped(sender: UIBarButtonItem) {
-        self.zoomMapToCurrentLocation()
+        if(!mapView.userLocationVisible) {
+            let alert = UIAlertController(title: NSLocalizedString("MapUserOutsideViewPopupTitle", comment: ""), message: NSLocalizedString("MapUserOutsideViewPopupMessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            let alertActionOK = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
+            let alertActionCancel = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            alert.addAction(alertActionOK)
+            alert.addAction(alertActionCancel)
+            presentViewController(alert, animated: true) { () -> Void in }
+        }
+        else {
+            self.zoomMapToCurrentLocation()
+        }
     }
 }
 

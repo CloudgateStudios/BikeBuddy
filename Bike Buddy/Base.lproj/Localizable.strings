@@ -86,6 +86,12 @@
 /* Loading message popup when locations are loading over the network */
 "MapLoadingPopupMessage" = "Loading Stations....";
 
+/* Message box title for when the user hits the Current Location button and they are outside of the map view */
+"MapUserOutsideViewPopupTitle" = "Outside of Bike Area";
+
+/* Message box message for when the user hits the Current Location button and they are outside of the map view */
+"MapUserOutsideViewPopupMessage" = "Your current location is outside of the current Bike Area. Are you sure you want to go to your location?";
+
 // MARK: - Station Detail
 
 /* Title in the nav bar for the Station Detail view */
