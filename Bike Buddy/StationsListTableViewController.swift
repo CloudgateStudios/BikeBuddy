@@ -34,8 +34,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateClosestStations", name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateClosestStations", name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
     }
     
     deinit {

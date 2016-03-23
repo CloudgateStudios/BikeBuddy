@@ -15,8 +15,8 @@ class MainTabViewController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshStationsData", name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
     }
     
     deinit {
