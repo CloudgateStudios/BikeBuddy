@@ -57,6 +57,9 @@
 		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */; };
 		D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
+		D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
+		D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
+		D1E5511A1CA344CF002561BB /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E551191CA344CF002561BB /* AnalyticsService.swift */; };
 		D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +136,10 @@
 		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BixiAPIResponse.swift; sourceTree = "<group>"; };
 		D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		D1E551131CA33C4A002561BB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		D1E551141CA33C4A002561BB /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Answers.framework; sourceTree = "<group>"; };
+		D1E551171CA33D5B002561BB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D1E551191CA344CF002561BB /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -142,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */,
+				D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */,
 				D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */,
 				C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */,
 				C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */,
@@ -150,6 +158,7 @@
 				D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */,
 				D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */,
 				C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */,
+				D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +298,7 @@
 				C5C215941B0F7D5100FEB01C /* SettingsService.swift */,
 				C5886ACA1B22944500FF6D0E /* ThemeService.swift */,
 				C54242671BEB9B6D00E826C4 /* ProgressHUDService.swift */,
+				D1E551191CA344CF002561BB /* AnalyticsService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -332,6 +342,9 @@
 		E9678157F4E75F6588D67B18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1E551171CA33D5B002561BB /* Crashlytics.framework */,
+				D1E551131CA33C4A002561BB /* Fabric.framework */,
+				D1E551141CA33C4A002561BB /* Answers.framework */,
 				D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */,
 				D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */,
 				D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */,
@@ -356,6 +369,7 @@
 				C516EFE21B0CE6CB00CF4468 /* Frameworks */,
 				C516EFE31B0CE6CB00CF4468 /* Resources */,
 				C5E873341B10A5CD00217C93 /* ShellScript */,
+				D1E551121CA33C29002561BB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -498,6 +512,19 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
+		D1E551121CA33C29002561BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run ${FABRIC_API_KEY} ${FABRIC_API_SECRET}";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -531,6 +558,7 @@
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
 				C5C2158C1B0F785B00FEB01C /* City.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,
+				D1E5511A1CA344CF002561BB /* AnalyticsService.swift in Sources */,
 				D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,9 +718,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 19;
 				ENABLE_NS_ASSERTIONS = YES;
+				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
+				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
@@ -713,9 +744,12 @@
 				CURRENT_PROJECT_VERSION = 19;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_TESTABILITY = YES;
+				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
+				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = "Bike Buddy/Info.plist";
@@ -764,87 +798,6 @@
 			};
 			name = Release;
 		};
-		C548155C1BB32845009332EC /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_ID_SUFFIX = "";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Screenshots;
-		};
-		C548155D1BB32845009332EC /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 19;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				INFOPLIST_FILE = "Bike Buddy/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-D SCREENSHOTS";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.$(PRODUCT_NAME:rfc1034identifier)${BUNDLE_ID_SUFFIX}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bike Buddy/BikeBuddy-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Screenshots;
-		};
-		C548155E1BB32845009332EC /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = "Bike BuddyTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "CloudgateStudios.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike Buddy.app/Bike Buddy";
-			};
-			name = Screenshots;
-		};
 		D1B6DD211C9EC3E3008543A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -872,19 +825,6 @@
 			};
 			name = Release;
 		};
-		D1B6DD231C9EC3E3008543A3 /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Bike BuddyUITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-BuddyUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Bike Buddy";
-				USES_XCTRUNNER = YES;
-			};
-			name = Screenshots;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -893,7 +833,6 @@
 			buildConfigurations = (
 				C516F0041B0CE6CB00CF4468 /* Debug */,
 				C516F0051B0CE6CB00CF4468 /* Release */,
-				C548155C1BB32845009332EC /* Screenshots */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -903,7 +842,6 @@
 			buildConfigurations = (
 				C516F0071B0CE6CB00CF4468 /* Debug */,
 				C516F0081B0CE6CB00CF4468 /* Release */,
-				C548155D1BB32845009332EC /* Screenshots */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -913,7 +851,6 @@
 			buildConfigurations = (
 				C516F00A1B0CE6CB00CF4468 /* Debug */,
 				C516F00B1B0CE6CB00CF4468 /* Release */,
-				C548155E1BB32845009332EC /* Screenshots */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -923,7 +860,6 @@
 			buildConfigurations = (
 				D1B6DD211C9EC3E3008543A3 /* Debug */,
 				D1B6DD221C9EC3E3008543A3 /* Release */,
-				D1B6DD231C9EC3E3008543A3 /* Screenshots */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -22,6 +22,8 @@ class SettingsSelectCityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AnalyticsService.sharedInstance.pegUserAction("Tapped Select City in Settings")
+        
         setupStrings()
 
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
