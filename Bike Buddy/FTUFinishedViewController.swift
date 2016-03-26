@@ -35,7 +35,7 @@ class FTUFinishedViewController: UIViewController {
     //MARK: - User Interaction
     
     @IBAction func getStartedButtonClicked(sender: UIButton) {
-        SettingsService.sharedInstance.saveSetting(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY, value: true)
+        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.FirstTimeUseCompleted, value: true)
         
         NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: self)
         

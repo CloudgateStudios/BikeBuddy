@@ -43,15 +43,13 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     //MARK: - User Interaction
     
     @IBAction func giveLocationAccessButtonClicked(sender: UIButton) {
-        if(CLLocationManager.authorizationStatus() == .NotDetermined) {
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
-        }
-        else if(CLLocationManager.authorizationStatus() == .Restricted || CLLocationManager.authorizationStatus() == .Denied) {
+        } else if CLLocationManager.authorizationStatus() == .Restricted || CLLocationManager.authorizationStatus() == .Denied {
             showNoLocationAccessMessage()
-        }
-        else {
+        } else {
             goToNextView()
         }
     }
@@ -59,10 +57,9 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     //MARK: - Location Manager
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if(status == CLAuthorizationStatus.AuthorizedWhenInUse) {
+        if status == CLAuthorizationStatus.AuthorizedWhenInUse  {
             goToNextView()
-        }
-        else {
+        } else {
             showNoLocationAccessMessage()
         }
     }

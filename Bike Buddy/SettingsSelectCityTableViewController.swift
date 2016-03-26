@@ -69,9 +69,14 @@ class SettingsSelectCityTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let oldCity = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
+        let analyticAttr = ["Old City": oldCity, "New City": citiesArray[indexPath.row].name]
+        AnalyticsService.sharedInstance.pegUserAction("Changed to new City", customAttributes: analyticAttr)
+        
         SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].name)
         SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_NAME_SETTINGS_KEY, value: citiesArray[indexPath.row].serviceName)
-        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_API_URL_SETTINGS_KEY, value: citiesArray[indexPath.row].apiUrl)
+        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl)
         
         NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: self)
         

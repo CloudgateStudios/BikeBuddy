@@ -29,7 +29,6 @@ class SettingsAboutTableViewController: UITableViewController {
         appNameAndVersionBottomLabel.text = UIApplication.appName() + " " + UIApplication.versionBuild()
     }
     
-    
     // MARK: - Table View
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

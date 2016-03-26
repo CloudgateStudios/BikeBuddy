@@ -13,9 +13,8 @@ extension UILabel {
     /**
         A shortcut on UILabel to set the font.
     */
-    var substituteFontName : String {
+    var substituteFontName: String {
         get { return self.font.fontName }
         set { self.font = UIFont(name: newValue, size: self.font.pointSize) }
     }
-    
 }

@@ -17,9 +17,9 @@ class ProgressHUDService {
     /**
      The shared instanace that should be used to access all members of the service.
      */
-    class var sharedInstance : ProgressHUDService {
+    class var sharedInstance: ProgressHUDService {
         struct Static {
-            static let instance : ProgressHUDService = ProgressHUDService()
+            static let instance: ProgressHUDService = ProgressHUDService()
         }
         return Static.instance
     }
@@ -27,7 +27,7 @@ class ProgressHUDService {
     /**
      **Should not be used. Call StationsDataService.sharedInstance instead.**
      */
-    private init(){
+    private init() {
         SVProgressHUD.setDefaultMaskType(self.maskType)
     }
     

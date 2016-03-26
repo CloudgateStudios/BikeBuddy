@@ -36,7 +36,7 @@ class MainTabViewController: UITabBarController {
         }
         else {
             
-            if(!SettingsService.sharedInstance.getSettingAsBool(FIRST_TIME_USE_COMPLETED_SETTINGS_KEY)) {
+            if(!SettingsService.sharedInstance.getSettingAsBool(Constants.SettingsKey.FirstTimeUseCompleted)) {
                 let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
                 if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
                     firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
@@ -77,7 +77,7 @@ class MainTabViewController: UITabBarController {
     func refreshStationsData() {
         ProgressHUDService.sharedInstance.showHUD()
         
-        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_API_URL_SETTINGS_KEY)) {
+        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceAPIURL)) {
             responseObject, error in
             
             Stations.sharedInstance.list = responseObject

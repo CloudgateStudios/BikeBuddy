@@ -8,9 +8,15 @@
 
 import Foundation
 
-// MARK: - Settings Keys
-public let FIRST_TIME_USE_COMPLETED_SETTINGS_KEY = "IsFirstTimeUseCompleted"
-public let BIKE_SERVICE_API_URL_SETTINGS_KEY = "BikeServiceApiUrl"
+struct Constants {
+    // MARK: - Settings Keys
+    struct SettingsKey {
+        static let FirstTimeUseCompleted = "IsFirstTimeUseCompleted"
+        static let BikeServiceAPIURL = "BikeServiceApiUrl"
+    }
+}
+
+
 public let BIKE_SERVICE_CITY_NAME_SETTINGS_KEY = "BikeServiceCityName"
 public let BIKE_SERVICE_NAME_SETTINGS_KEY = "BikeServiceName"
 public let NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY = "NumberOfClosestStations"

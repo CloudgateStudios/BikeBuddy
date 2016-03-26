@@ -37,6 +37,7 @@
 		C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */; };
 		C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
 		D10242FA1B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */; };
+		D10C2F731CA6C6870098D5AD /* AnalyticsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C2F721CA6C6870098D5AD /* AnalyticsServiceProtocol.swift */; };
 		D1151E611B655F2500584707 /* Divvy_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = D1151E601B655F2500584707 /* Divvy_API_Response.json */; };
 		D1151E631B655F7100584707 /* StationsDataServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1151E621B655F7100584707 /* StationsDataServiceTests.swift */; };
 		D1151E661B6560C000584707 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
@@ -116,6 +117,7 @@
 		C5E873301B109D5000217C93 /* UIApplication_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		C5E873321B10A5BA00217C93 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNumberOfClosestStationsTableViewController.swift; sourceTree = "<group>"; };
+		D10C2F721CA6C6870098D5AD /* AnalyticsServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsServiceProtocol.swift; sourceTree = "<group>"; };
 		D1151E601B655F2500584707 /* Divvy_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Divvy_API_Response.json; sourceTree = "<group>"; };
 		D1151E621B655F7100584707 /* StationsDataServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataServiceTests.swift; sourceTree = "<group>"; };
 		D1151E6C1B65632D00584707 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		C516F01E1B0DC1C400CF4468 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D10C2F711CA6C6700098D5AD /* Protocols */,
 				C516F01F1B0DC1DE00CF4468 /* StationsDataService.swift */,
 				C5C215941B0F7D5100FEB01C /* SettingsService.swift */,
 				C5886ACA1B22944500FF6D0E /* ThemeService.swift */,
@@ -311,6 +314,14 @@
 				D131EA461B2919D500F08241 /* UILabel_BikeBuddyExt.swift */,
 			);
 			name = "Class Extensions";
+			sourceTree = "<group>";
+		};
+		D10C2F711CA6C6700098D5AD /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D10C2F721CA6C6870098D5AD /* AnalyticsServiceProtocol.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		D1151E6A1B65630900584707 /* Services */ = {
@@ -370,6 +381,7 @@
 				C516EFE31B0CE6CB00CF4468 /* Resources */,
 				C5E873341B10A5CD00217C93 /* ShellScript */,
 				D1E551121CA33C29002561BB /* ShellScript */,
+				D10C2F741CA6C9CA0098D5AD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -512,6 +524,19 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
+		D10C2F741CA6C9CA0098D5AD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n#swiftlint\necho \"tes\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		D1E551121CA33C29002561BB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -534,6 +559,7 @@
 			files = (
 				D146DE6F1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift in Sources */,
 				D1341E231C9DE190008F9343 /* SettingsAboutTableViewController.swift in Sources */,
+				D10C2F731CA6C6870098D5AD /* AnalyticsServiceProtocol.swift in Sources */,
 				C5C215951B0F7D5100FEB01C /* SettingsService.swift in Sources */,
 				C5E873311B109D5000217C93 /* UIApplication_BikeBuddyExt.swift in Sources */,
 				D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */,

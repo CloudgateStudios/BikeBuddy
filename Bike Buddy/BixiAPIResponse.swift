@@ -13,7 +13,7 @@ class BixiAPIResponse: Mappable {
     var executionTime: String?
     var stationBeanList: [Station]?
     
-    required init?(_ map: Map){
+    required init?(_ map: Map) {
     }
     
     func mapping(map: Map) {
