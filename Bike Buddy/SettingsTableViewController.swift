@@ -79,7 +79,7 @@ class SettingsTableViewController: UITableViewController {
         
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
-            case SETTINGS_TELL_YOUR_FRIENDS_REUSE_IDENTIFIER:
+            case Constants.TableViewCellResuseIdentifier.SettingsTellYourFriends:
                 showTellYourFriendsActionSheet(indexPath, sender: selectedCell)
             case SETTINGS_RATE_APP_REUSE_IDENTIFIER:
                 goToAppStorePage()
@@ -163,22 +163,22 @@ class SettingsTableViewController: UITableViewController {
                 self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         })
         
-        if(MFMailComposeViewController.canSendMail()) {
+        if MFMailComposeViewController.canSendMail() {
             tellYourFriendsActionSheet.addAction(emailAction)
         }
-        if(MFMessageComposeViewController.canSendText()) {
+        if MFMessageComposeViewController.canSendText() {
             tellYourFriendsActionSheet.addAction(smsAction)
         }
-        if(SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook)) {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
             tellYourFriendsActionSheet.addAction(facebookAction)
         }
-        if(SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter)) {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             tellYourFriendsActionSheet.addAction(twitterAction)
         }
         
         tellYourFriendsActionSheet.addAction(otherAppsAction)
         
-        if(tellYourFriendsActionSheet.actions.count != 0) {
+        if tellYourFriendsActionSheet.actions.count != 0 {
             
             tellYourFriendsActionSheet.addAction(cancelAction)
     
@@ -189,9 +189,8 @@ class SettingsTableViewController: UITableViewController {
             }
         
             self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
-        }
-        else {
-            let noActionsAlert = UIAlertController(title: NSLocalizedString("SettingsShareNoServicesMessageBoxTitle",comment: ""), message: NSLocalizedString("SettingsShareNoServicesMessageBoxContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+        } else {
+            let noActionsAlert = UIAlertController(title: NSLocalizedString("SettingsShareNoServicesMessageBoxTitle", comment: ""), message: NSLocalizedString("SettingsShareNoServicesMessageBoxContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
             noActionsAlert.addAction(alertAction)
             presentViewController(noActionsAlert, animated: true) {}

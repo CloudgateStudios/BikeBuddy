@@ -72,7 +72,7 @@ class StationDetailTableViewController: UITableViewController {
     //MARK: - Map View
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if (annotation is MKUserLocation) {
+        if annotation is MKUserLocation {
             return nil
         }
         

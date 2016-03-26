@@ -50,7 +50,7 @@ class MapViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == Constants.SegueNames.ShowStationDetailFromMap) {
+        if segue.identifier == Constants.SegueNames.ShowStationDetailFromMap {
             let vc = (segue.destinationViewController as! StationDetailTableViewController)
             vc.stationObject = self.tappedStation
             
@@ -61,15 +61,14 @@ class MapViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func currentPositionButtonTapped(sender: UIBarButtonItem) {
-        if(!mapView.userLocationVisible) {
+        if !mapView.userLocationVisible {
             let alert = UIAlertController(title: NSLocalizedString("MapUserOutsideViewPopupTitle", comment: ""), message: NSLocalizedString("MapUserOutsideViewPopupMessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             let alertActionOK = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
             let alertActionCancel = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
             alert.addAction(alertActionOK)
             alert.addAction(alertActionCancel)
             presentViewController(alert, animated: true) { () -> Void in }
-        }
-        else {
+        } else {
             self.zoomMapToCurrentLocation()
         }
     }
@@ -79,7 +78,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if (annotation is MKUserLocation) {
+        if annotation is MKUserLocation {
             return nil
         }
         

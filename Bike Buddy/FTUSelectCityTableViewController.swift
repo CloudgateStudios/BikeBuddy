@@ -62,7 +62,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.FirstTimeUseCity, forIndexPath: indexPath)
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName

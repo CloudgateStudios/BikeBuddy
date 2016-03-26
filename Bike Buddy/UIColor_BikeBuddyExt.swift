@@ -20,7 +20,7 @@ extension UIColor {
     
         - returns: The new UIColor
     */
-    class func colorFromInteger (red:Int, green:Int, blue:Int, alpha:Float) -> UIColor {
+    class func colorFromInteger (red: Int, green: Int, blue: Int, alpha: Float) -> UIColor {
         let floatRed = CGFloat(red) / 255.0
         let floatGreen = CGFloat(green) / 255.0
         let floatBlue = CGFloat(blue) / 255.0

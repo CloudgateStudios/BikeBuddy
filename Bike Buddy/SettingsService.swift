@@ -14,9 +14,9 @@ class SettingsService {
     /**
         The shared instanace that should be used to access all members of the service.
     */
-    class var sharedInstance : SettingsService {
+    class var sharedInstance: SettingsService {
         struct Static {
-            static let instance : SettingsService = SettingsService()
+            static let instance: SettingsService = SettingsService()
         }
         return Static.instance
     }
@@ -33,7 +33,7 @@ class SettingsService {
         All default values should be set here. Most values can be added at runtime but any values that are needed during the first execution should be set here.
     */
     private func setupDefaults() {
-        if(self.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) == 0) {
+        if self.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) == 0 {
             self.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations)
         }
     }
@@ -93,8 +93,7 @@ class SettingsService {
     func getSettingAsString(key: String) -> String {
         if let result = defaults.stringForKey(key) {
             return result
-        }
-        else {
+        } else {
             return ""
         }
     }

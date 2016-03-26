@@ -34,15 +34,17 @@ struct Constants {
         static let ShowStationDetailFromMap = "ShowStationDetailFromMap"
         static let ShowStationDetailFromStationList = "ShowStationDetailFromStationsList"
     }
+    
+    // MARK: - Table View Cell Resuse Identifiers
+    struct TableViewCellResuseIdentifier {
+        static let StationsList = "StationListCell"
+        static let SettingsCitySelect = "SettingsCitySelectCell"
+        static let FirstTimeUseCity = "FTUCityServiceCell"
+        static let SettingsNumberOfClosestStations = "SettingsNumberOfClosestStationsCell"
+        static let SettingsTellYourFriends = "TellYourFriends"
+    }
 }
 
-
-// MARK: - Table View Cell Resuse Identifiers
-public let STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER = "StationListCell"
-public let SETTINGS_CITY_SELECT_TABLE_CELL_REUSE_IDENTIFIER = "SettingsCityCells"
-public let FTU_CITY_SERVICE_CELL_REUSE_IDENTIFIER = "FTUCityServiceCell"
-public let SETTINGS_NUMBER_OF_CLOSEST_STATIONS_CELL_REUSE_IDENTIFIER = "SettingsNumberOfClosestStationsCell"
-public let SETTINGS_TELL_YOUR_FRIENDS_REUSE_IDENTIFIER = "TellYourFriends"
 public let SETTINGS_RATE_APP_REUSE_IDENTIFIER = "RateBikeBuddy"
 public let STATION_DETAIL_DIRECTIONS_TO_STATION_REUSE_IDENTIFIER = "StationDetailDirectionsToStation"
 public let STATION_DETAIL_SHARE_STATION_REUSE_IDENTIFIER = "StationDetailShareStation"

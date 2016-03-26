@@ -61,7 +61,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == Constants.SegueNames.ShowStationDetailFromStationList) {
+        if segue.identifier == Constants.SegueNames.ShowStationDetailFromStationList {
             let vc = (segue.destinationViewController as! StationDetailTableViewController)
             vc.stationObject = self.tappedStation
             
@@ -81,7 +81,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(STATIONS_LIST_TABLE_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! StationTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as! StationTableViewCell
         
         cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
         cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")

@@ -31,12 +31,11 @@ class MainTabViewController: UITabBarController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if(UIApplication.isUITest()) {
+        if UIApplication.isUITest() {
             setupForUITests()
-        }
-        else {
+        } else {
             
-            if(!SettingsService.sharedInstance.getSettingAsBool(Constants.SettingsKey.FirstTimeUseCompleted)) {
+            if !SettingsService.sharedInstance.getSettingAsBool(Constants.SettingsKey.FirstTimeUseCompleted) {
                 let storyboard: UIStoryboard = UIStoryboard(name: Constants.ViewNames.FirstTimeUseStoryboard, bundle: nil)
                 if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
                     firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
@@ -44,8 +43,8 @@ class MainTabViewController: UITabBarController {
                     presentViewController(firstVC, animated: true, completion: nil)
                 }
             } else {
-                if(UIApplication.isConnectedToNetwork()) {
-                    if(Stations.sharedInstance.list.count == 0) {
+                if UIApplication.isConnectedToNetwork() {
+                    if Stations.sharedInstance.list.count == 0 {
                         refreshStationsData()
                     }
                 } else {

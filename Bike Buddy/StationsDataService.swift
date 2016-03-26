@@ -16,9 +16,9 @@ class StationsDataService {
     /**
         The shared instanace that should be used to access all members of the service.
     */
-    class var sharedInstance : StationsDataService {
+    class var sharedInstance: StationsDataService {
         struct Static {
-            static let instance : StationsDataService = StationsDataService()
+            static let instance: StationsDataService = StationsDataService()
         }
         return Static.instance
     }
@@ -26,7 +26,7 @@ class StationsDataService {
     /**
         **Should not be used. Call StationsDataService.sharedInstance instead.**
     */
-    private init(){
+    private init() {
     }
     
     /**
@@ -54,10 +54,10 @@ class StationsDataService {
         - returns: An array of Station objects
     */
     func loadStationDataFromFile(fileName: String) -> [Station] {
-        var fileNameParts:[String] = fileName.componentsSeparatedByString(".")
+        var fileNameParts: [String] = fileName.componentsSeparatedByString(".")
         var returnData = [Station]()
         
-        if(fileNameParts.count == 2) {
+        if fileNameParts.count == 2 {
             let path = NSBundle.mainBundle().pathForResource(fileNameParts[0] as String, ofType: fileNameParts[1] as String)
             let possibleContent = try? String(contentsOfFile: path!, encoding:NSUTF8StringEncoding)
             

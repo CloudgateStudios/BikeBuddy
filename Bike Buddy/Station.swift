@@ -60,7 +60,7 @@ class Station: NSObject, MKAnnotation, Mappable {
         get {
             var returnString = NSLocalizedString("StationModelShareStationName", comment: "") + "\n" + stationName
             
-            if(streetAddress != "") {
+            if streetAddress != "" {
                 returnString += "\n\n" + NSLocalizedString("StationModelShareAddress", comment: "") + "\n" + streetAddress
             }
             
@@ -68,22 +68,22 @@ class Station: NSObject, MKAnnotation, Mappable {
         }
     }
     
-    @objc var coordinate : CLLocationCoordinate2D {
+    @objc var coordinate: CLLocationCoordinate2D {
         get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
     }
     
-    var title : String? {
+    var title: String? {
         get { return self.stationName }
     }
     
-    var subtitle : String? {
+    var subtitle: String? {
         get { return NSLocalizedString("StationModelAnnotationBikes", comment: "") + ": \(availableBikes) " +  NSLocalizedString("StationModelAnnotationOpenDocks", comment: "") + ": \(availableDocks)" }
     }
     
     override init() {
     }
     
-    required convenience init?(_ map: Map){
+    required convenience init?(_ map: Map) {
         self.init()
     }
     

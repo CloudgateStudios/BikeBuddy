@@ -12,7 +12,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     
     //MARK: - Class Variables
     
-    var options = [1,2,3,4,5]
+    var options = [1, 2, 3, 4, 5]
     
     //MARK: - View Outlets
     
@@ -41,11 +41,11 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SETTINGS_NUMBER_OF_CLOSEST_STATIONS_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.SettingsNumberOfClosestStations, forIndexPath: indexPath)
 
         cell.textLabel?.text = String(options[indexPath.row])
         
-        if(options[indexPath.row] == SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations)) {
+        if options[indexPath.row] == SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
 
