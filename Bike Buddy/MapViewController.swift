@@ -50,7 +50,7 @@ class MapViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER) {
+        if(segue.identifier == Constants.SegueNames.ShowStationDetailFromMap) {
             let vc = (segue.destinationViewController as! StationDetailTableViewController)
             vc.stationObject = self.tappedStation
             
@@ -94,7 +94,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         self.tappedStation = view.annotation as! Station
         
-        self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_MAP_SEGUE_IDENTIFIER, sender: self)
+        self.performSegueWithIdentifier(Constants.SegueNames.ShowStationDetailFromMap, sender: self)
     }
     
     /**

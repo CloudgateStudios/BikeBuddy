@@ -33,8 +33,8 @@ class SettingsService {
         All default values should be set here. Most values can be added at runtime but any values that are needed during the first execution should be set here.
     */
     private func setupDefaults() {
-        if(self.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY) == 0) {
-            self.saveSetting(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY, value: NUMBER_OF_CLOSEST_STATIONS_SETTINGS_DEFAULT_VALUE)
+        if(self.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) == 0) {
+            self.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations)
         }
     }
     

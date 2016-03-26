@@ -61,7 +61,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER) {
+        if(segue.identifier == Constants.SegueNames.ShowStationDetailFromStationList) {
             let vc = (segue.destinationViewController as! StationDetailTableViewController)
             vc.stationObject = self.tappedStation
             
@@ -102,7 +102,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tappedStation = self.closestStations[indexPath.row]
         
-        self.performSegueWithIdentifier(SHOW_STATION_DETAIL_FROM_STATION_LIST_SEGUE_IDENTIFIER, sender: self)
+        self.performSegueWithIdentifier(Constants.SegueNames.ShowStationDetailFromStationList, sender: self)
     }
     
     private func disableEmptyCellsInTableView() {
@@ -122,6 +122,6 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     // MARK: - Stations Loading
     
     func updateClosestStations() {
-        self.closestStations = Stations.getClosestStations(self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY))
+        self.closestStations = Stations.getClosestStations(self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations))
     }
 }

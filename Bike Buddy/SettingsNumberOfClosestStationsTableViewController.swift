@@ -45,7 +45,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
 
         cell.textLabel?.text = String(options[indexPath.row])
         
-        if(options[indexPath.row] == SettingsService.sharedInstance.getSettingAsInt(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY)) {
+        if(options[indexPath.row] == SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations)) {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
 
@@ -53,7 +53,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        SettingsService.sharedInstance.saveSetting(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY, value: options[indexPath.row])
+        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: options[indexPath.row])
         
         NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: self)
         

@@ -57,8 +57,8 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func updateViewableStrings() {
-        cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY)
-        numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY)
+        cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceCityName)
+        numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.NumberOfClosestStations)
     }
     
     //MARK: - Table View

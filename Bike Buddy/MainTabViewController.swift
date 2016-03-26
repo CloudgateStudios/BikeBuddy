@@ -37,7 +37,7 @@ class MainTabViewController: UITabBarController {
         else {
             
             if(!SettingsService.sharedInstance.getSettingAsBool(Constants.SettingsKey.FirstTimeUseCompleted)) {
-                let storyboard: UIStoryboard = UIStoryboard(name: STORYBOARD_FIRST_TIME_USE_FILE_NAME, bundle: nil)
+                let storyboard: UIStoryboard = UIStoryboard(name: Constants.ViewNames.FirstTimeUseStoryboard, bundle: nil)
                 if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
                     firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
                     
@@ -89,9 +89,9 @@ class MainTabViewController: UITabBarController {
     private func setupForUITests() {
         Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
         
-        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_CITY_NAME_SETTINGS_KEY, value: "Chicago")
-        SettingsService.sharedInstance.saveSetting(BIKE_SERVICE_NAME_SETTINGS_KEY, value: "Divvy")
-        SettingsService.sharedInstance.saveSetting(NUMBER_OF_CLOSEST_STATIONS_SETTINGS_KEY, value: 5)
+        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: "Chicago")
+        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: "Divvy")
+        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: 5)
         
         NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: self)
     }
