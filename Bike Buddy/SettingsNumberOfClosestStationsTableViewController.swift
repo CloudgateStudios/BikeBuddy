@@ -55,7 +55,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: options[indexPath.row])
         
-        NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: self)
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: self)
         
         self.navigationController?.popToRootViewControllerAnimated(true)
     }

@@ -28,15 +28,15 @@ class SettingsTableViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
     }
     
     override func viewDidLoad() {
@@ -81,7 +81,7 @@ class SettingsTableViewController: UITableViewController {
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.SettingsTellYourFriends:
                 showTellYourFriendsActionSheet(indexPath, sender: selectedCell)
-            case SETTINGS_RATE_APP_REUSE_IDENTIFIER:
+            case Constants.TableViewCellResuseIdentifier.SettingsRateApp:
                 goToAppStorePage()
             default: break
             }
@@ -93,7 +93,7 @@ class SettingsTableViewController: UITableViewController {
     //MARK: - Table View Actions
     
     private func goToAppStorePage() {
-        let url = NSURL(string: APP_STORE_URL)
+        let url = NSURL(string: Constants.ExtneralURL.AppStoreDeepLink)
         UIApplication.sharedApplication().openURL(url!)
     }
     

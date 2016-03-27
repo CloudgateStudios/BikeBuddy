@@ -24,7 +24,7 @@ class Stations {
     
     var list = [Station]() {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: self)
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.StationsListUpdated, object: self)
             
             self.lastUpdated = NSDate()
         }
@@ -47,8 +47,9 @@ class Stations {
         if listCopy.count > 0 {
             listCopy.sortInPlace({ $0.distanceFromUser < $1.distanceFromUser })
             
-            for station in listCopy {
-                stationsToReturn.append(station)
+            let upperLimit = SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) - 1
+            for index in 0...upperLimit {
+                stationsToReturn.append(listCopy[index])
             }
         }
         

@@ -57,13 +57,21 @@ class SettingsService {
         //Need to determine type of object
         switch value {
         case is Int:
-            defaults.setInteger(value as! Int, forKey: key as String)
+            if let intValue = value as? Int {
+                defaults.setInteger(intValue, forKey: key as String)
+            }
         case is Float:
-            defaults.setFloat(value as! Float, forKey: key as String)
+            if let floatValue = value as? Float {
+                defaults.setFloat(floatValue, forKey: key as String)
+            }
         case is Double:
-            defaults.setDouble(value as! Double, forKey: key as String)
+            if let doubleValue = value as? Double {
+                defaults.setDouble(doubleValue, forKey: key as String)
+            }
         case is Bool:
-            defaults.setBool(value as! Bool, forKey: key as String)
+            if let boolValue = value as? Bool {
+                defaults.setBool(boolValue, forKey: key as String)
+            }
         default:
             defaults.setObject(value, forKey: key as String)
             

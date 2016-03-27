@@ -15,13 +15,13 @@ class MainTabViewController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_FIRST_TIME_USE_COMPLETED, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NEW_CITY_SELECTED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
     }
     
     override func viewDidLoad() {
@@ -92,6 +92,6 @@ class MainTabViewController: UITabBarController {
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: "Divvy")
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: 5)
         
-        NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: self)
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: self)
     }
 }

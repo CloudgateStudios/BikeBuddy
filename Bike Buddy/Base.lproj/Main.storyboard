@@ -609,9 +609,9 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Open Source Used" id="VcU-DV-akv">
+                            <tableViewSection headerTitle="3rd Party Software Used" id="VcU-DV-akv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutOpenSourceAlamofire" textLabel="eeZ-Hi-NCl" style="IBUITableViewCellStyleDefault" id="54d-C5-aYK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutThirdPartyAlamofire" textLabel="eeZ-Hi-NCl" style="IBUITableViewCellStyleDefault" id="54d-C5-aYK">
                                         <rect key="frame" x="0.0" y="469" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="54d-C5-aYK" id="lhz-qg-FdJ">
@@ -628,7 +628,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutOpenSourceObjectMapper" textLabel="oia-Pk-CQ1" style="IBUITableViewCellStyleDefault" id="6oM-PO-I36">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutThirdPartyObjectMapper" textLabel="oia-Pk-CQ1" style="IBUITableViewCellStyleDefault" id="6oM-PO-I36">
                                         <rect key="frame" x="0.0" y="513" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6oM-PO-I36" id="eAT-QL-m2P">
@@ -645,7 +645,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutOpenSourceAFOM" textLabel="7H3-Bj-e88" style="IBUITableViewCellStyleDefault" id="ppe-xd-xMY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutThirdPartyAFOM" textLabel="7H3-Bj-e88" style="IBUITableViewCellStyleDefault" id="ppe-xd-xMY">
                                         <rect key="frame" x="0.0" y="557" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ppe-xd-xMY" id="rq6-fQ-JO6">
@@ -662,7 +662,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutOpenSourceSVProgressHUD" textLabel="Gip-Ue-gUx" style="IBUITableViewCellStyleDefault" id="MfS-Ut-f7M">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AboutThirdPartySVProgressHUD" textLabel="Gip-Ue-gUx" style="IBUITableViewCellStyleDefault" id="MfS-Ut-f7M">
                                         <rect key="frame" x="0.0" y="601" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MfS-Ut-f7M" id="5cC-cR-yxB">

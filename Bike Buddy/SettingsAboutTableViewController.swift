@@ -36,14 +36,14 @@ class SettingsAboutTableViewController: UITableViewController {
         
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
-            case ABOUT_OPEN_SOURCE_ALMOFIRE_REUSE_IDENTIFIER:
-                openWebView(OPEN_SOURCE_ALAMOFIRE_URL)
-            case ABOUT_OPEN_SOURCE_OBJECTMAPPER_REUSE_IDENTIFIER:
-                openWebView(OPEN_SOURCE_OBJECT_MAPPER_URL)
-            case ABOUT_OPEN_SOURCE_AFOM_REUSE_IDENTIFIER:
-                openWebView(OPEN_SOURCE_AFOM_URL)
-            case ABOUT_OPEN_SOURCE_SVPROGRESSHUD_REUSE_IDENTIFIER:
-                openWebView(OPEN_SOURCE_SVPROGRESSHUD_URL)
+            case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAlmaofire:
+                openWebView(Constants.ExtneralURL.Alamofire)
+            case Constants.TableViewCellResuseIdentifier.AboutThirdPartyObjectMapper:
+                openWebView(Constants.ExtneralURL.ObjectMapper)
+            case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAFOM:
+                openWebView(Constants.ExtneralURL.AFOM)
+            case Constants.TableViewCellResuseIdentifier.AboutThirdPartySVProgressHUD:
+                openWebView(Constants.ExtneralURL.SVProgressHUD)
             default: break
             }
         }

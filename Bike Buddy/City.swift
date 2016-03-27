@@ -15,4 +15,8 @@ class City {
     
     init() {
     }
+    
+    func isValid() -> Bool {
+        return name != "" && serviceName != "" && apiUrl != ""
+    }
 }

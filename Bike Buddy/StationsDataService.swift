@@ -34,6 +34,8 @@ class StationsDataService {
         
         - parameter apiUrl: The URL to the API to call. The API should return data in the format found in Supporting Files/Divvy_API_Response.json
         - parameter completionHandler: The closure to call when the response is received. Takes 2 parameters, responseObject as an Array of Station objects and an error as NSError
+     
+        - returns: No return. Just putting in a return placeholder so SwiftLint doesn't error out.  See https://github.com/realm/SwiftLint/issues/267 for more.
     */
     func getAllStationData(apiUrl: String, completionHandler: (responseObject: [Station], error: NSError?) -> ()) {
         var returnStations = [Station]()

@@ -28,16 +28,24 @@ class FTUSelectCityTableViewController: UITableViewController {
         
         setupStrings()
     
-        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(CITIES_PLIST_FILE_NAME, withExtension: "plist") {
+        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(Constants.CitiesPlist.FileName, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
                     let newCity = City()
                     
-                    newCity.name = city.valueForKey(CITIES_PLIST_NAME_FIELD_KEY) as! String
-                    newCity.serviceName = city.valueForKey(CITIES_PLIST_SERVICE_NAME_FIELD_KEY) as! String
-                    newCity.apiUrl = city.valueForKey(CITIES_PLIST_API_URL_FIELD_KEY) as! String
+                    if let name = city.valueForKey(Constants.CitiesPlist.NameField) as? String {
+                        newCity.name = name
+                    }
+                    if let serviceName = city.valueForKey(Constants.CitiesPlist.ServiceNameField) as? String {
+                        newCity.serviceName = serviceName
+                    }
+                    if let apiUrl = city.valueForKey(Constants.CitiesPlist.APIURLField) as? String {
+                        newCity.apiUrl = apiUrl
+                    }
                     
-                    citiesArray.append(newCity)
+                    if newCity.isValid() {
+                        citiesArray.append(newCity)
+                    }
                 }
             }
         }

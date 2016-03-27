@@ -34,13 +34,13 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_STATIONS_LIST_UPDATED, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_CENTER_NUMBER_OF_CLOSEST_STATIONS_UPDATED, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
     }
 
     override func viewDidLoad() {
@@ -62,9 +62,9 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromStationList {
-            let vc = (segue.destinationViewController as! StationDetailTableViewController)
-            vc.stationObject = self.tappedStation
-            
+            if let vc = (segue.destinationViewController as? StationDetailTableViewController) {
+                vc.stationObject = self.tappedStation
+            }
             self.tappedStation = nil
         }
 
@@ -81,15 +81,19 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as! StationTableViewCell
         
-        cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
-        cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
-        cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListBikesAvailableLabel", comment: "")
-        cell.numberOfDocksLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableDocks, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListDocksAvailableLabel", comment: "")
-
-
-        return cell
+        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as? StationTableViewCell {
+        
+            cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
+            cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
+            cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListBikesAvailableLabel", comment: "")
+            cell.numberOfDocksLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableDocks, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListDocksAvailableLabel", comment: "")
+            
+            return cell
+        } else {
+            let newCell = UITableViewCell()
+            return newCell
+        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -115,8 +119,9 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         locationManager.stopUpdatingLocation()
         
         let locationArray = locations as NSArray
-        let locationObj = locationArray.lastObject as! CLLocation
-        self.usersCurrentLocation = locationObj.coordinate
+        if let locationObj = locationArray.lastObject as? CLLocation {
+            self.usersCurrentLocation = locationObj.coordinate
+        }
     }
     
     // MARK: - Stations Loading

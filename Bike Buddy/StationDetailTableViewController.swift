@@ -58,9 +58,9 @@ class StationDetailTableViewController: UITableViewController {
         
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
-            case STATION_DETAIL_DIRECTIONS_TO_STATION_REUSE_IDENTIFIER:
+            case Constants.TableViewCellResuseIdentifier.StationDetailDirectionsToStation:
                 userClickedOnDirectionsToStationButton()
-            case STATION_DETAIL_SHARE_STATION_REUSE_IDENTIFIER:
+            case Constants.TableViewCellResuseIdentifier.StationDetailShareStation:
                 userClickedShareStation()
             default: break
             }
@@ -76,7 +76,7 @@ class StationDetailTableViewController: UITableViewController {
             return nil
         }
         
-        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: STATION_DETAIL_MAP_RESUE_IDENTIFIER)
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.StationDetail)
         annotationView.animatesDrop = false
         
         return annotationView

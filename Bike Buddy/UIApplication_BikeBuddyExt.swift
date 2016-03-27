@@ -17,7 +17,11 @@ extension UIApplication {
         - returns: String representing the application version
     */
     class func appVersion() -> String {
-        return NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        if let versionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String {
+            return versionString
+        } else {
+            return ""
+        }
     }
     
     /**
@@ -26,7 +30,11 @@ extension UIApplication {
         - returns: String representing the application build version
     */
     class func appBuild() -> String {
-        return NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+        if let buildString = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String {
+            return buildString
+        } else {
+            return ""
+        }
     }
     
     /** 
@@ -35,7 +43,11 @@ extension UIApplication {
         - returns: String representing the application name
     */
     class func appName() -> String {
-        return NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as (String)) as! String
+        if let appName = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as (String)) as? String {
+            return appName
+        } else {
+            return ""
+        }
     }
 
     /**
