@@ -382,6 +382,7 @@
 				C5E873341B10A5CD00217C93 /* ShellScript */,
 				D1E551121CA33C29002561BB /* ShellScript */,
 				D10C2F741CA6C9CA0098D5AD /* ShellScript */,
+				D1B2EFEE1CA81FC100A5B218 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -536,6 +537,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D1B2EFEE1CA81FC100A5B218 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/StringsChecker.py;
 		};
 		D1E551121CA33C29002561BB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

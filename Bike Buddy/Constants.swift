@@ -75,7 +75,7 @@ struct Constants {
 
     // MARK: - External URL's
     struct ExtneralURL {
-        static let AppStoreDeepLink = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=998776734&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
+        static let AppStoreDeepLink = "https://itunes.apple.com/us/app/apple-store/id998776734?mt=8"
         static let Alamofire = "https://github.com/Alamofire/Alamofire"
         static let ObjectMapper = "https://github.com/Hearst-DD/ObjectMapper"
         static let AFOM = "https://github.com/tristanhimmelman/AlamofireObjectMapper"

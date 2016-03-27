@@ -98,7 +98,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath, sender: UIView) {
-        let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "")
+        let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "") + " " + Constants.ExtneralURL.AppStoreDeepLink
 
         var sharingItems = [AnyObject]()
         sharingItems.append(sharingMessage)

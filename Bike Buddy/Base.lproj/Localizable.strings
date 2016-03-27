@@ -135,9 +135,6 @@
 /* Setting label for getting to the about screen */
 "SettingsGeneralAbout" = "About";
 
-/* Setting label for the version of the app */
-"SettingsGeneralVersion" = "Version";
-
 /* Setting label for sending a link to the app to your friends */
 "SettingsGeneralTellYourFriends" = "Tell Your Friends About Bike Buddy";
 
@@ -161,32 +158,8 @@
 
 // MARK: - Settings - Sharing App
 
-/* Title in the Action Sheet when the user wants to tell their friends about the app */
-"SettingsShareActionSheetTitle" = "Tell your friends about Bike Buddy";
-
-/* Share option for Email */
-"SettingsShareEmail" = "Email";
-
-/* Share option for Text Message */
-"SettingsShareTextMessage" = "Text Message";
-
-/* Share option for Twitter */
-"SettingsShareTwitter" = "Twitter";
-
-/* Share option for Facebook */
-"SettingsShareFacebook" = "Facebook";
-
-/* Share message title. Mostly used for the subject line of the email. */
-"SettingsShareMessageTitle" = "Check out Bike Buddy";
-
 /* Share message content. Should be used for all sharing options as content. */
-"SettingsShareMessageContent" = "Check out Bike Buddy on iOS. LINK GOES HERE";
-
-/* Message box title for when the user doesn't have any sharing options hooked up */
-"SettingsShareNoServicesMessageBoxTitle" = "No sharing actions";
-
-/* Message box content for when the user doesn't have any sharing options hooked up */
-"SettingsShareNoServicesMessageBoxContent" = "You don't seem to have Email, SMS, Facebook, or Twitter setup on this device. Go to Settings to setup one of these accounts and then you can share.";
+"SettingsShareMessageContent" = "Check out Bike Buddy on iOS.";
 
 // MARK: - Station Model
 
