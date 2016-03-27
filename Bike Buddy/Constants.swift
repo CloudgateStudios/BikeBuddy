@@ -17,24 +17,24 @@ struct Constants {
         static let BikeServiceName = "BikeServiceName"
         static let NumberOfClosestStations = "NumberOfClosestStations"
     }
-    
+
     // MARK: - Settings Defaults
     struct SettingsDefault {
         static let NumberOfClosestStations = 5
     }
-    
+
     // MARK: - Storyboard/View Names
     struct ViewNames {
         static let FirstTimeUseStoryboard = "FirstTimeUse"
     }
-    
+
     // MARK: - Segue Names
     struct SegueNames {
         static let GoToFirstTimeUseFinished = "GoToFTUFinished"
         static let ShowStationDetailFromMap = "ShowStationDetailFromMap"
         static let ShowStationDetailFromStationList = "ShowStationDetailFromStationsList"
     }
-    
+
     // MARK: - Table View Cell Resuse Identifiers
     struct TableViewCellResuseIdentifier {
         static let StationsList = "StationListCell"
@@ -50,13 +50,13 @@ struct Constants {
         static let AboutThirdPartyAFOM = "AboutThirdPartyAFOM"
         static let AboutThirdPartySVProgressHUD = "AboutThirdPartySVProgressHUD"
     }
-    
+
     // MARK: - Map View Resuse Identifiers
     struct MapViewReuseIdentifier {
         static let StationDetail = "StationDetailMapPin"
         static let FullMap = "FullMapPin"
     }
-    
+
     // MARK: - NSNotificationCenter Event Names
     struct NotificationCenterEvent {
         static let FirstTimeUseCompleted = "FirstTimeUseCompleted"
@@ -64,7 +64,7 @@ struct Constants {
         static let StationsListUpdated = "StationsListUpdated"
         static let NumberOfClosestStationsUpdated = "NumberOfClosestStationsUpdated"
     }
-    
+
     // MARK: - Cities Plist
     struct CitiesPlist {
         static let FileName = "Cities"
@@ -72,7 +72,7 @@ struct Constants {
         static let ServiceNameField = "serviceName"
         static let APIURLField = "apiUrl"
     }
-    
+
     // MARK: - External URL's
     struct ExtneralURL {
         static let AppStoreDeepLink = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=998776734&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"

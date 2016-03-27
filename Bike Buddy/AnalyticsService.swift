@@ -10,7 +10,7 @@ import Foundation
 import Crashlytics
 
 class AnalyticsService: AnalyticsServiceProtocol {
-    
+
     /**
      The shared instanace that should be used to access all members of the service.
      */

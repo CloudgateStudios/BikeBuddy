@@ -10,7 +10,7 @@ import Foundation
 
 class SettingsService {
     var defaults: NSUserDefaults
-    
+
     /**
         The shared instanace that should be used to access all members of the service.
     */
@@ -20,7 +20,7 @@ class SettingsService {
         }
         return Static.instance
     }
-    
+
     /**
         **Should not be used. Call StationsDataService.sharedInstance instead.**
     */
@@ -28,7 +28,7 @@ class SettingsService {
         defaults = NSUserDefaults.standardUserDefaults()
         setupDefaults()
     }
-    
+
     /**
         All default values should be set here. Most values can be added at runtime but any values that are needed during the first execution should be set here.
     */
@@ -37,7 +37,7 @@ class SettingsService {
             self.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations)
         }
     }
-    
+
     /**
         Will completely wipe out all settings. There's no going back after calling this.
     */
@@ -46,10 +46,10 @@ class SettingsService {
         defaults.removePersistentDomainForName(appDomain as String)
         defaults.synchronize()
     }
-    
+
     /**
         Quickly save a setting in the settings store.
-    
+
         - parameter key: The key that should be used to save the setting.
         - parameter value: The value that should be stored. This can be any object and saveSetting will determine the best way to save it
     */
@@ -74,28 +74,28 @@ class SettingsService {
             }
         default:
             defaults.setObject(value, forKey: key as String)
-            
+
         }
-        
+
         defaults.synchronize()
     }
-    
+
     /**
         Get a setting that was saved as a Bool value. Will return false if the there is no value for the key that is supplied
-    
+
         - parameter key: The key of the value to be retrieved
-    
+
         - returns: The value per the key given as a Bool
     */
     func getSettingAsBool(key: String) -> Bool {
         return defaults.boolForKey(key)
     }
-    
+
     /**
         Get a setting that was saved as a String value. Will return an empty string if the there is no value for the key that is supplied
-    
+
         - parameter key: The key of the value to be retrieved
-    
+
         - returns: The value per the key given as a String
     */
     func getSettingAsString(key: String) -> String {
@@ -105,12 +105,12 @@ class SettingsService {
             return ""
         }
     }
-    
+
     /**
         Get a setting that was saved as an Int value. Will return 0 if the there is no value for the key that is supplied
-    
+
         - parameter key: The key of the value to be retrieved
-    
+
         - returns: The value per the key given as a Int
     */
     func getSettingAsInt(key: String) -> Int {

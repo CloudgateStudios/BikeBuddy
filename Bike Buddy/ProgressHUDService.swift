@@ -10,10 +10,10 @@ import Foundation
 import SVProgressHUD
 
 class ProgressHUDService {
-    
+
     private let maskType = SVProgressHUDMaskType.Gradient
     private let statusMessage = NSLocalizedString("MapLoadingPopupMessage", comment: "")
-    
+
     /**
      The shared instanace that should be used to access all members of the service.
      */
@@ -23,20 +23,20 @@ class ProgressHUDService {
         }
         return Static.instance
     }
-    
+
     /**
      **Should not be used. Call StationsDataService.sharedInstance instead.**
      */
     private init() {
         SVProgressHUD.setDefaultMaskType(self.maskType)
     }
-    
+
     func showHUD() {
         if !SVProgressHUD.isVisible() {
             SVProgressHUD.showWithStatus(self.statusMessage)
         }
     }
-    
+
     func dismissHUD() {
         SVProgressHUD.dismiss()
     }

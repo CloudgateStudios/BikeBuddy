@@ -11,37 +11,37 @@ import CoreLocation
 
 class FTULocationAccessViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: - Class Variables
-    
+
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
 
     //MARK: - View Outlets
-    
+
     @IBOutlet weak var giveLocationAccessButton: UIButton!
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var mainMessageLabel: UILabel!
-    
+
     //MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupTheme()
         setupStrings()
     }
-    
+
     private func setupTheme() {
         ThemeService.themeButton(giveLocationAccessButton)
     }
-    
+
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("LocationAccessNavBarTitle", comment: "")
         mainMessageLabel.text = NSLocalizedString("LocationAccessMessageContent", comment: "")
         giveLocationAccessButton.setTitle(NSLocalizedString("LocationAccessButton", comment: ""), forState: .Normal)
     }
-    
+
     //MARK: - User Interaction
-    
+
     @IBAction func giveLocationAccessButtonClicked(sender: UIButton) {
         if CLLocationManager.authorizationStatus() == .NotDetermined {
             locationManager.delegate = self
@@ -55,7 +55,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     }
 
     //MARK: - Location Manager
-    
+
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.AuthorizedWhenInUse {
             goToNextView()
@@ -63,13 +63,13 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
             showNoLocationAccessMessage()
         }
     }
-    
+
     //MARK: - View Specific Functions
-    
+
     private func goToNextView() {
         self.performSegueWithIdentifier(Constants.SegueNames.GoToFirstTimeUseFinished, sender: self)
     }
-    
+
     private func showNoLocationAccessMessage() {
         let alert = UIAlertController(title: NSLocalizedString("LocationAccessNotGrantedMessageTitle", comment: ""), message: NSLocalizedString("LocationAccessNotGrantedMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
         let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }

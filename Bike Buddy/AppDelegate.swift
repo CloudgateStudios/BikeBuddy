@@ -18,11 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         SettingsService.sharedInstance
         AnalyticsService.sharedInstance
-        
+
         ThemeService.applyTheme()
-        
+
         Fabric.with([Answers.self, Crashlytics.self])
-        
+
         return true
     }
 

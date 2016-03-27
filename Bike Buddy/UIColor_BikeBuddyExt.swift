@@ -9,15 +9,15 @@
 import UIKit
 
 extension UIColor {
-    
+
     /**
         Helper function for creating a custom color. Instead of having to do the math of int/255.0 every time this function can take care of it for you.
-    
+
         - parameter red: The value of red as an Int
         - parameter green: The value of green as an Int
         - parameter blue: The value of blue as an Int
         - parameter alpha: The alpha value of the color
-    
+
         - returns: The new UIColor
     */
     class func colorFromInteger (red: Int, green: Int, blue: Int, alpha: Float) -> UIColor {

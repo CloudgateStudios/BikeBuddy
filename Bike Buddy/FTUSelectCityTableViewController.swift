@@ -11,13 +11,13 @@ import Foundation
 
 class FTUSelectCityTableViewController: UITableViewController {
     //MARK: - Class Variables
-    
+
     var citiesArray = [City]()
-    
+
     //MARK: - View Outlets
-    
+
     @IBOutlet weak var navBarItem: UINavigationItem!
-    
+
     //MARK: - View Lifecycle
     required init!(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,14 +25,14 @@ class FTUSelectCityTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupStrings()
-    
+
         if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(Constants.CitiesPlist.FileName, withExtension: "plist") {
             if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
                     let newCity = City()
-                    
+
                     if let name = city.valueForKey(Constants.CitiesPlist.NameField) as? String {
                         newCity.name = name
                     }
@@ -42,19 +42,19 @@ class FTUSelectCityTableViewController: UITableViewController {
                     if let apiUrl = city.valueForKey(Constants.CitiesPlist.APIURLField) as? String {
                         newCity.apiUrl = apiUrl
                     }
-                    
+
                     if newCity.isValid() {
                         citiesArray.append(newCity)
                     }
                 }
             }
         }
-        
+
         citiesArray.sortInPlace { (item1, item2) -> Bool in
             item1.name < item2.name
         }
     }
-    
+
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("SelectCityNavBarTitle", comment: "")
     }
@@ -68,7 +68,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return citiesArray.count
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.FirstTimeUseCity, forIndexPath: indexPath)
 
@@ -82,7 +82,7 @@ class FTUSelectCityTableViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let indexPath = self.tableView.indexPathForSelectedRow!
-        
+
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name)
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName)
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl)

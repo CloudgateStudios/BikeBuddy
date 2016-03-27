@@ -9,7 +9,7 @@
 import UIKit
 
 extension UILabel {
-    
+
     /**
         A shortcut on UILabel to set the font.
     */

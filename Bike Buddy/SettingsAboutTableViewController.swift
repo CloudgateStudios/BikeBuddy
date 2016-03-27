@@ -12,28 +12,28 @@ import SafariServices
 class SettingsAboutTableViewController: UITableViewController {
 
     //MARK: - View Outlets
-    
+
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var appNameAndVersionBottomLabel: UILabel!
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupStrings()
     }
-    
+
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("SettingsAboutNavBarTitle", comment: "")
         appNameAndVersionBottomLabel.text = UIApplication.appName() + " " + UIApplication.versionBuild()
     }
-    
+
     // MARK: - Table View
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
-        
+
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAlmaofire:
@@ -47,10 +47,10 @@ class SettingsAboutTableViewController: UITableViewController {
             default: break
             }
         }
-        
+
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
+
     private func openWebView(url: String) {
         if let url = NSURL(string: url) {
             let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)

@@ -11,56 +11,56 @@ import MapKit
 
 class MapViewController: UIViewController {
     //MARK: - Class Variables
-    
+
     private var tappedStation: Station!
-    
+
     //MARK: - View Outlets
-    
+
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var currentPositionButton: UIBarButtonItem!
     @IBOutlet weak var updatedAtLabel: UILabel!
-    
+
     //MARK: - View Lifecycle
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapViewController.refreshMapAnnotations), name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
     }
-    
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupStrings()
-        
+
         self.mapView.delegate = self
     }
-    
+
     func setupStrings() {
         navBarItem.title = NSLocalizedString("MapNavBarTitle", comment: "")
     }
-    
+
     func refreshMapAnnotations() {
         self.loadAnnotationsOnMapView()
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromMap {
             if let vc = segue.destinationViewController as? StationDetailTableViewController {
                 vc.stationObject = self.tappedStation
-            
+
                 self.tappedStation = nil
             }
         }
     }
-    
+
     //MARK: - Actions
-    
+
     @IBAction func currentPositionButtonTapped(sender: UIBarButtonItem) {
         if !mapView.userLocationVisible {
             let alert = UIAlertController(title: NSLocalizedString("MapUserOutsideViewPopupTitle", comment: ""), message: NSLocalizedString("MapUserOutsideViewPopupMessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
@@ -82,47 +82,47 @@ extension MapViewController: MKMapViewDelegate {
         if annotation is MKUserLocation {
             return nil
         }
-        
+
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.FullMap)
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
         annotationView.rightCalloutAccessoryView =  UIButton(type: UIButtonType.DetailDisclosure) as UIView
-        
+
         return annotationView
     }
-    
+
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let station = view.annotation as? Station {
             self.tappedStation = station
-        
+
             self.performSegueWithIdentifier(Constants.SegueNames.ShowStationDetailFromMap, sender: self)
         }
     }
-    
+
     /**
     Take the current Stations.list and load the needed annotations on the map
     */
     private func loadAnnotationsOnMapView() {
         ProgressHUDService.sharedInstance.dismissHUD()
-        
+
         if let pins = mapView?.annotations {
             mapView.removeAnnotations(pins)
         }
 
         mapView?.addAnnotations(Stations.sharedInstance.list)
         mapView?.showAnnotations(Stations.sharedInstance.list, animated: true)
-        
+
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "h:mm a"
         updatedAtLabel.text = NSLocalizedString("MapUpdatedAtLabel", comment: "") + " " + dateFormatter.stringFromDate(Stations.sharedInstance.lastUpdated)
     }
-    
+
     private func zoomMapToCurrentLocation() {
         var region = MKCoordinateRegion()
         region.center = mapView.userLocation.coordinate
         region.span.latitudeDelta = 0.05
         region.span.longitudeDelta = 0.05
-        
+
         mapView?.setRegion(region, animated: true)
     }
 }

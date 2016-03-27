@@ -12,10 +12,10 @@ class City {
     var name: String = ""
     var serviceName: String = ""
     var apiUrl: String = ""
-    
+
     init() {
     }
-    
+
     func isValid() -> Bool {
         return name != "" && serviceName != "" && apiUrl != ""
     }

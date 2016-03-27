@@ -12,7 +12,7 @@ import MessageUI
 
 class SettingsTableViewController: UITableViewController {
     //MARK: - View Outlets
-    
+
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var numberOfClosestStationsLabel: UILabel!
     @IBOutlet weak var navBarItem: UINavigationItem!
@@ -21,33 +21,33 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var generalAboutLabel: UILabel!
     @IBOutlet weak var generalTellYourFriendsLabel: UILabel!
     @IBOutlet weak var generalRateTheAppLabel: UILabel!
-    
+
     //MARK: - View Lifecycle
-    
-    
+
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
     }
-    
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupStrings()
     }
-    
+
     private func setupStrings() {
         updateViewableStrings()
-        
+
         navBarItem.title = NSLocalizedString("SettingsNavBarTitle", comment: "")
         serviceCityLabel.text = NSLocalizedString("SettingsServiceCity", comment: "")
         serviceNumberOfClosestStationsLabel.text = NSLocalizedString("SettingsServiceNumberOfStations", comment: "")
@@ -55,14 +55,14 @@ class SettingsTableViewController: UITableViewController {
         generalTellYourFriendsLabel.text = NSLocalizedString("SettingsGeneralTellYourFriends", comment: "")
         generalRateTheAppLabel.text = NSLocalizedString("SettingsGeneralRateApp", comment: "")
     }
-    
+
     func updateViewableStrings() {
         cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceCityName)
         numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.NumberOfClosestStations)
     }
-    
+
     //MARK: - Table View
-    
+
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -73,10 +73,10 @@ class SettingsTableViewController: UITableViewController {
             return ""
         }
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
-        
+
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.SettingsTellYourFriends:
@@ -86,130 +86,31 @@ class SettingsTableViewController: UITableViewController {
             default: break
             }
         }
-        
+
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
+
     //MARK: - Table View Actions
-    
+
     private func goToAppStorePage() {
         let url = NSURL(string: Constants.ExtneralURL.AppStoreDeepLink)
         UIApplication.sharedApplication().openURL(url!)
     }
-    
+
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath, sender: UIView) {
         let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "")
-        
-        let tellYourFriendsActionSheet = UIAlertController(title: nil, message: NSLocalizedString("SettingsShareActionSheetTitle", comment: ""), preferredStyle: .ActionSheet)
-        
-        let emailAction = UIAlertAction(title: NSLocalizedString("SettingsShareEmail", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction) -> Void in
-            let mailViewController = MFMailComposeViewController()
-            mailViewController.mailComposeDelegate = self
-            mailViewController.setSubject(NSLocalizedString("SettingsShareMessageTitle", comment: ""))
-            mailViewController.setMessageBody(sharingMessage, isHTML: true)
-            
-            self.presentViewController(mailViewController, animated: true, completion: nil)
-        })
-        
-        let smsAction = UIAlertAction(title: NSLocalizedString("SettingsShareTextMessage", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction) -> Void in
-            let smsViewController = MFMessageComposeViewController()
-            smsViewController.body = sharingMessage
-            smsViewController.messageComposeDelegate = self
-            
-            self.presentViewController(smsViewController, animated: true, completion: nil)
-        })
-        
-        let facebookAction = UIAlertAction(title: NSLocalizedString("SettingsShareFacebook", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction) -> Void in
-            let facebookDialog = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            
-            facebookDialog.completionHandler = {
-                result -> Void in
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            }
-            facebookDialog.setInitialText(sharingMessage)
-            
-            self.presentViewController(facebookDialog, animated: true, completion: nil)
-        })
-        
-        let twitterAction = UIAlertAction(title: NSLocalizedString("SettingsShareTwitter", comment: ""), style: .Default, handler: {
-            (alert: UIAlertAction) -> Void in
-            let twitterDialog = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            
-            twitterDialog.completionHandler = {
-                result -> Void in
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            }
-            twitterDialog.setInitialText(sharingMessage)
-            
-            self.presentViewController(twitterDialog, animated: true, completion: nil)
-        })
-        
-        let otherAppsAction = UIAlertAction(title: "Other Apps", style: .Default, handler : {
-            (alert: UIAlertAction) -> Void in
-            var sharingItems = [AnyObject]()
-            sharingItems.append(sharingMessage)
-            
-            let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
-            self.presentViewController(activityViewController, animated: true, completion: nil)
-        })
-        
-        let cancelAction = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: .Cancel, handler: {
-            (alert: UIAlertAction) -> Void in
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        })
-        
-        if MFMailComposeViewController.canSendMail() {
-            tellYourFriendsActionSheet.addAction(emailAction)
-        }
-        if MFMessageComposeViewController.canSendText() {
-            tellYourFriendsActionSheet.addAction(smsAction)
-        }
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
-            tellYourFriendsActionSheet.addAction(facebookAction)
-        }
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
-            tellYourFriendsActionSheet.addAction(twitterAction)
-        }
-        
-        tellYourFriendsActionSheet.addAction(otherAppsAction)
-        
-        if tellYourFriendsActionSheet.actions.count != 0 {
-            
-            tellYourFriendsActionSheet.addAction(cancelAction)
-    
-            // Only for iPad
-            if let popoverController = tellYourFriendsActionSheet.popoverPresentationController {
-                popoverController.sourceView = sender
-                popoverController.sourceRect = sender.bounds
-            }
-        
-            self.presentViewController(tellYourFriendsActionSheet, animated: true, completion: nil)
-        } else {
-            let noActionsAlert = UIAlertController(title: NSLocalizedString("SettingsShareNoServicesMessageBoxTitle", comment: ""), message: NSLocalizedString("SettingsShareNoServicesMessageBoxContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-            let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-            noActionsAlert.addAction(alertAction)
-            presentViewController(noActionsAlert, animated: true) {}
-        }
-    }
-}
 
-// MARK: - Mail Compose View Delegate
+        var sharingItems = [AnyObject]()
+        sharingItems.append(sharingMessage)
 
-extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-}
+        let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
 
-// MARK: - Message Compose View Delegate
+        // Only for iPad
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
 
-extension SettingsTableViewController: MFMessageComposeViewControllerDelegate {
-    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.presentViewController(activityViewController, animated: true, completion: nil)
     }
 }

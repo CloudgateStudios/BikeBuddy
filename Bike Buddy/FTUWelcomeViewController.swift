@@ -10,24 +10,24 @@ import UIKit
 
 class FTUWelcomeViewController: UIViewController {
     // MARK: - View Outlets
-    
+
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var welcomeMessageLabel: UILabel!
-    
+
     // MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupTheme()
         setupStrings()
     }
-    
+
     private func setupTheme() {
         ThemeService.themeButton(getStartedButton)
     }
-    
+
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("GeneralAppName", comment: "")
         welcomeMessageLabel.text = NSLocalizedString("WelcomeMessageContent", comment: "")

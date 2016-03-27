@@ -35,58 +35,58 @@ class Station: NSObject, MKAnnotation, Mappable {
     var testStation: Bool = false
     var lastCommunicationTime: String = ""
     var landMark: String = ""
-    
+
     internal private(set) var distanceFromUser: Double = 0.0
-    
+
     var approximateDistanceAwayFromUser: String {
         get {
             let formatter = MKDistanceFormatter()
             formatter.units = .Default
             formatter.unitStyle = .Full
-            
+
             let prettyString = "~ " + formatter.stringFromDistance(self.distanceFromUser)
-            
+
             return prettyString
         }
     }
-    
+
     var streetAddress: String {
         get {
             return addressLineOne + " " + addressLineTwo
         }
     }
-    
+
     var shareStringDescription: String {
         get {
             var returnString = NSLocalizedString("StationModelShareStationName", comment: "") + "\n" + stationName
-            
+
             if streetAddress != "" {
                 returnString += "\n\n" + NSLocalizedString("StationModelShareAddress", comment: "") + "\n" + streetAddress
             }
-            
+
             return returnString
         }
     }
-    
+
     @objc var coordinate: CLLocationCoordinate2D {
         get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
     }
-    
+
     var title: String? {
         get { return self.stationName }
     }
-    
+
     var subtitle: String? {
         get { return NSLocalizedString("StationModelAnnotationBikes", comment: "") + ": \(availableBikes) " +  NSLocalizedString("StationModelAnnotationOpenDocks", comment: "") + ": \(availableDocks)" }
     }
-    
+
     override init() {
     }
-    
+
     required convenience init?(_ map: Map) {
         self.init()
     }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         stationName <- map["stationName"]
@@ -96,13 +96,13 @@ class Station: NSObject, MKAnnotation, Mappable {
         availableDocks <- map["availableDocks"]
         addressLineOne <- map["stAddress1"]
         addressLineTwo <- map["stAddress2"]
-        
+
     }
-    
+
     func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {
         let usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
         let stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
-        
+
         self.distanceFromUser = usersLocation.distanceFromLocation(stationLocation)
     }
 }

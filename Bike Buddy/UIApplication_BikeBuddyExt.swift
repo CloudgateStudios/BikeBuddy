@@ -10,10 +10,10 @@ import UIKit
 import SystemConfiguration
 
 extension UIApplication {
-    
+
     /**
         Gets the version of the application from the Info.plist file
-    
+
         - returns: String representing the application version
     */
     class func appVersion() -> String {
@@ -23,10 +23,10 @@ extension UIApplication {
             return ""
         }
     }
-    
+
     /**
         Gets the build version of the application from the Info.plist file
-    
+
         - returns: String representing the application build version
     */
     class func appBuild() -> String {
@@ -36,10 +36,10 @@ extension UIApplication {
             return ""
         }
     }
-    
-    /** 
+
+    /**
         Gets the name of the application from the Info.plist file
-     
+
         - returns: String representing the application name
     */
     class func appName() -> String {
@@ -52,23 +52,23 @@ extension UIApplication {
 
     /**
         Convience method to pretty up the version number for display purposes.
-    
+
         - If the version number and build number are the same only one number will be returned
         - If the version number and build number are different the returned string will follow the format of "version (build)"
-    
+
         - returns: The version number in a user displayable string
     */
     class func versionBuild() -> String {
         let version = appVersion(), build = appBuild()
-        
+
         return version == build ? "\(version)" : "\(version) (\(build))"
     }
-    
+
     /**
-        Quickly check to see if the device has connectivity. 
-    
+        Quickly check to see if the device has connectivity.
+
         - returns: Bool True if there is connectivity, False if there is no connectivity
-    */    
+    */
     class func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
@@ -84,7 +84,7 @@ extension UIApplication {
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         return (isReachable && !needsConnection)
     }
-    
+
     class func isUITest() -> Bool {
         let result = NSProcessInfo.processInfo().environment.keys.contains("UITest")
         return result

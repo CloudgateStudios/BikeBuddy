@@ -12,7 +12,7 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160.0
     }
@@ -34,12 +34,12 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
         return 1
     }
 
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PrivacyPolicyCell", forIndexPath: indexPath)
 
         // Configure the cell...
-        
+
         if let filepath = NSBundle.mainBundle().pathForResource("PrivacyPolicy", ofType: "txt") {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
