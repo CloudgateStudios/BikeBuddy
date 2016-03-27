@@ -12,6 +12,8 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AnalyticsService.sharedInstance.pegUserAction("Tapped on Settings - Privacy Policy")
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160.0

@@ -20,6 +20,8 @@ class SettingsAboutTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AnalyticsService.sharedInstance.pegUserAction("Tapped on Settings - About")
 
         setupStrings()
     }
@@ -35,6 +37,9 @@ class SettingsAboutTableViewController: UITableViewController {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
 
         if let cellReuseID = selectedCell.reuseIdentifier {
+            let analyticAttr = ["Third Party Software Clicked On": cellReuseID]
+            AnalyticsService.sharedInstance.pegUserAction("Tapped on Third Party Sofware Item", customAttributes: analyticAttr)
+            
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAlmaofire:
                 openWebView(Constants.ExtneralURL.Alamofire)
@@ -52,6 +57,8 @@ class SettingsAboutTableViewController: UITableViewController {
     }
 
     private func openWebView(url: String) {
+        
+        
         if let url = NSURL(string: url) {
             let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
             svc.delegate = self

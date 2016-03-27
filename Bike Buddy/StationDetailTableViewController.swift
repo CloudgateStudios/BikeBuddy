@@ -85,6 +85,8 @@ class StationDetailTableViewController: UITableViewController {
     //MARK: - User Actions
 
     private func userClickedOnDirectionsToStationButton() {
+        AnalyticsService.sharedInstance.pegUserAction("Get Directions to Station")
+        
         let placemark: MKPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(stationObject.latitude, stationObject.longitude), addressDictionary: nil)
         let mapItem: MKMapItem = MKMapItem(placemark: placemark)
 
@@ -97,6 +99,8 @@ class StationDetailTableViewController: UITableViewController {
     }
 
     private func userClickedShareStation() {
+        AnalyticsService.sharedInstance.pegUserAction("Share Station")
+        
         var sharingItems = [AnyObject]()
         sharingItems.append(stationObject.shareStringDescription)
 

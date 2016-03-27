@@ -90,8 +90,5 @@ class MainTabViewController: UITabBarController {
 
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: "Chicago")
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: "Divvy")
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: 5)
-
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: self)
     }
 }

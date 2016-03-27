@@ -104,6 +104,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        AnalyticsService.sharedInstance.pegUserAction("Go To Station Detail from Stations List")
+        
         self.tappedStation = self.closestStations[indexPath.row]
 
         self.performSegueWithIdentifier(Constants.SegueNames.ShowStationDetailFromStationList, sender: self)

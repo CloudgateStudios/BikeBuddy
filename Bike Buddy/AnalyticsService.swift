@@ -30,7 +30,4 @@ class AnalyticsService: AnalyticsServiceProtocol {
     func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": ""]) {
         Answers.logCustomEventWithName(eventName, customAttributes: customAttributes)
     }
-
-    func pegKeyMetric() {
-    }
 }

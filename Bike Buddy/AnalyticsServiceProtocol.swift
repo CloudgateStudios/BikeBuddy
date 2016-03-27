@@ -10,5 +10,4 @@ import Foundation
 
 protocol AnalyticsServiceProtocol {
     func pegUserAction(eventName: String, customAttributes: [String: AnyObject])
-    func pegKeyMetric()
 }

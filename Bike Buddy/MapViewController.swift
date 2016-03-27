@@ -52,6 +52,8 @@ class MapViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromMap {
             if let vc = segue.destinationViewController as? StationDetailTableViewController {
+                AnalyticsService.sharedInstance.pegUserAction("Go To Station Detail from Map View")
+                
                 vc.stationObject = self.tappedStation
 
                 self.tappedStation = nil
@@ -62,7 +64,11 @@ class MapViewController: UIViewController {
     //MARK: - Actions
 
     @IBAction func currentPositionButtonTapped(sender: UIBarButtonItem) {
+        AnalyticsService.sharedInstance.pegUserAction("Current Position on Map Button Tapped")
+        
         if !mapView.userLocationVisible {
+            AnalyticsService.sharedInstance.pegUserAction("Current Position on Map Button Tapped when Outside Map View")
+            
             let alert = UIAlertController(title: NSLocalizedString("MapUserOutsideViewPopupTitle", comment: ""), message: NSLocalizedString("MapUserOutsideViewPopupMessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             let alertActionOK = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
             let alertActionCancel = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)

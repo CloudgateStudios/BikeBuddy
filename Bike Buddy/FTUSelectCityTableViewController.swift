@@ -86,5 +86,7 @@ class FTUSelectCityTableViewController: UITableViewController {
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name)
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName)
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl)
+        
+        AnalyticsService.sharedInstance.pegUserAction("First Time Use City Selected", customAttributes: ["First Time Use City": citiesArray[indexPath.row].name])
     }
 }
