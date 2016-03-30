@@ -49,6 +49,8 @@ class SettingsAboutTableViewController: UITableViewController {
                 openWebView(Constants.ExtneralURL.AFOM)
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartySVProgressHUD:
                 openWebView(Constants.ExtneralURL.SVProgressHUD)
+            case Constants.TableViewCellResuseIdentifier.AboutThridPartyFabric:
+                openWebView(Constants.ExtneralURL.Fabric)
             default: break
             }
         }

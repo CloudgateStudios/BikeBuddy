@@ -49,6 +49,7 @@ struct Constants {
         static let AboutThirdPartyObjectMapper = "AboutThirdPartyObjectMapper"
         static let AboutThirdPartyAFOM = "AboutThirdPartyAFOM"
         static let AboutThirdPartySVProgressHUD = "AboutThirdPartySVProgressHUD"
+        static let AboutThridPartyFabric = "AboutThirdPartyFabric"
     }
 
     // MARK: - Map View Resuse Identifiers
@@ -80,6 +81,7 @@ struct Constants {
         static let ObjectMapper = "https://github.com/Hearst-DD/ObjectMapper"
         static let AFOM = "https://github.com/tristanhimmelman/AlamofireObjectMapper"
         static let SVProgressHUD = "https://github.com/SVProgressHUD/SVProgressHUD"
+        static let Fabric = "https://get.fabric.io"
     }
     
     // MARK: - Analytic Events
