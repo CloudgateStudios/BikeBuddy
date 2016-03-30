@@ -56,7 +56,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let oldValue = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.NumberOfClosestStations)
-        let analyticAttr = [Constants.AnalyticEventDetails.OldNumber: oldValue, Constants.AnalyticEventDetails.NewNumber: options[indexPath.row].description]
+        let analyticAttr = [Constants.AnalyticEventDetail.OldNumber: oldValue, Constants.AnalyticEventDetail.NewNumber: options[indexPath.row].description]
         AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.SelectNewNumberOfClosestStations, customAttributes: analyticAttr)
         
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: options[indexPath.row])

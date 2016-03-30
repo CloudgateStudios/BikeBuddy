@@ -33,12 +33,10 @@ class ProgressHUDService {
 
     /**
         Used to show the full screen popup. Will completely block the UI for the user.
-     
-        - parameter message: The string that should be used in the popup. If no value is given a default value of MapLoadingPopupMessage will be used.
     */
-    func showHUD(message: String = self.statusMessage) {
+    func showHUD() {
         if !SVProgressHUD.isVisible() {
-            SVProgressHUD.showWithStatus(message)
+            SVProgressHUD.showWithStatus(self.statusMessage)
         }
     }
 
