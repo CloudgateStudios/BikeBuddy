@@ -82,7 +82,7 @@ class MainTabViewController: UITabBarController {
             Stations.sharedInstance.list = responseObject
         }
     }
-
+    
     //MARK: - UI Tests
 
     private func setupForUITests() {

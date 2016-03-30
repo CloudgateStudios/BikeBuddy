@@ -35,7 +35,7 @@ class FTUFinishedViewController: UIViewController {
     //MARK: - User Interaction
 
     @IBAction func getStartedButtonClicked(sender: UIButton) {
-        AnalyticsService.sharedInstance.pegUserAction("First Time Use Completed")
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.FTUCompleted)
         
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.FirstTimeUseCompleted, value: true)
 

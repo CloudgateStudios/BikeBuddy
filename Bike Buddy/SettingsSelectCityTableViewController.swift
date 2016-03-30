@@ -22,7 +22,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        AnalyticsService.sharedInstance.pegUserAction("Tapped Select City in Settings")
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenSettingsSelectCity)
 
         setupStrings()
 
@@ -80,8 +80,8 @@ class SettingsSelectCityTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         let oldCity = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceCityName)
-        let analyticAttr = ["Old City": oldCity, "New City": citiesArray[indexPath.row].name]
-        AnalyticsService.sharedInstance.pegUserAction("Changed to new City", customAttributes: analyticAttr)
+        let analyticAttr = [Constants.AnalyticEventDetail.OldCity: oldCity, Constants.AnalyticEventDetail.NewCity: citiesArray[indexPath.row].name]
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.SelectNewCity, customAttributes: analyticAttr)
 
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name)
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName)

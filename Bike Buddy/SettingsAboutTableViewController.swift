@@ -21,7 +21,7 @@ class SettingsAboutTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnalyticsService.sharedInstance.pegUserAction("Tapped on Settings - About")
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenSettingsAbout)
 
         setupStrings()
     }
@@ -37,8 +37,8 @@ class SettingsAboutTableViewController: UITableViewController {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
 
         if let cellReuseID = selectedCell.reuseIdentifier {
-            let analyticAttr = ["Third Party Software Clicked On": cellReuseID]
-            AnalyticsService.sharedInstance.pegUserAction("Tapped on Third Party Sofware Item", customAttributes: analyticAttr)
+            let analyticAttr = [Constants.AnalyticEventDetail.ThirdPartySoftwareName: cellReuseID]
+            AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenThirdPartySoftware, customAttributes: analyticAttr)
             
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAlmaofire:

@@ -23,7 +23,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnalyticsService.sharedInstance.pegUserAction("Tapped Number of Closest Stations in Settings")
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenSettingsNumberOfClosestStations)
 
         setupStrings()
     }
@@ -56,8 +56,8 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let oldValue = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.NumberOfClosestStations)
-        let analyticAttr = ["Old Number of Closest Stations": oldValue, "New Number of Closest Stations": options[indexPath.row].description]
-        AnalyticsService.sharedInstance.pegUserAction("Changed Number of Closest Stations", customAttributes: analyticAttr)
+        let analyticAttr = [Constants.AnalyticEventDetails.OldNumber: oldValue, Constants.AnalyticEventDetails.NewNumber: options[indexPath.row].description]
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.SelectNewNumberOfClosestStations, customAttributes: analyticAttr)
         
         SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: options[indexPath.row])
 

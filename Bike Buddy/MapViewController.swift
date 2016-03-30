@@ -52,7 +52,8 @@ class MapViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromMap {
             if let vc = segue.destinationViewController as? StationDetailTableViewController {
-                AnalyticsService.sharedInstance.pegUserAction("Go To Station Detail from Map View")
+                
+                AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.LoadStationDetail, customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View"])
                 
                 vc.stationObject = self.tappedStation
 

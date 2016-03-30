@@ -58,11 +58,11 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.AuthorizedWhenInUse {
-            AnalyticsService.sharedInstance.pegUserAction("Location Access Granted")
+            AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.LocationAccessGranted)
             
             goToNextView()
         } else {
-            AnalyticsService.sharedInstance.pegUserAction("Location Access Denied")
+            AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.LocationAccessDenied)
             
             showNoLocationAccessMessage()
         }
@@ -78,15 +78,10 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
         let alert = UIAlertController(title: NSLocalizedString("LocationAccessNotGrantedMessageTitle", comment: ""), message: NSLocalizedString("LocationAccessNotGrantedMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
         
         let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-            
-                
                 self.goToNextView()
-                
         }
-
         
         alert.addAction(alertAction)
         presentViewController(alert, animated: true) { () -> Void in }
     }
-
 }

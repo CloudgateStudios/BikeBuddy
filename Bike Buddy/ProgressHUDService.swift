@@ -15,7 +15,7 @@ class ProgressHUDService {
     private let statusMessage = NSLocalizedString("MapLoadingPopupMessage", comment: "")
 
     /**
-     The shared instanace that should be used to access all members of the service.
+        The shared instanace that should be used to access all members of the service.
      */
     class var sharedInstance: ProgressHUDService {
         struct Static {
@@ -25,18 +25,26 @@ class ProgressHUDService {
     }
 
     /**
-     **Should not be used. Call StationsDataService.sharedInstance instead.**
+        Should not be used. Call ProgressHUDService.sharedInstance instead.**
      */
     private init() {
         SVProgressHUD.setDefaultMaskType(self.maskType)
     }
 
-    func showHUD() {
+    /**
+        Used to show the full screen popup. Will completely block the UI for the user.
+     
+        - parameter message: The string that should be used in the popup. If no value is given a default value of MapLoadingPopupMessage will be used.
+    */
+    func showHUD(message: String = self.statusMessage) {
         if !SVProgressHUD.isVisible() {
-            SVProgressHUD.showWithStatus(self.statusMessage)
+            SVProgressHUD.showWithStatus(message)
         }
     }
 
+    /**
+        Dismiss the full screen popup from the screen. This must be called in order to return control back to the user.
+    */
     func dismissHUD() {
         SVProgressHUD.dismiss()
     }

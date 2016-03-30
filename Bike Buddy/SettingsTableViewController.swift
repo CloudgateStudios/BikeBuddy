@@ -93,14 +93,14 @@ class SettingsTableViewController: UITableViewController {
     //MARK: - Table View Actions
 
     private func goToAppStorePage() {
-        AnalyticsService.sharedInstance.pegUserAction("Go To App in AppStore")
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.GoToAppStoreLink)
         
         let url = NSURL(string: Constants.ExtneralURL.AppStoreDeepLink)
         UIApplication.sharedApplication().openURL(url!)
     }
 
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath, sender: UIView) {
-        AnalyticsService.sharedInstance.pegUserAction("Share App with Friends")
+        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.ShareAppWithFriends)
         
         let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "") + " " + Constants.ExtneralURL.AppStoreDeepLink
 

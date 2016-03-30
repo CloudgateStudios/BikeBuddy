@@ -1,9 +1,17 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus porta lacinia. Donec finibus accumsan venenatis. Vestibulum vel ipsum ac mauris gravida tempor. Fusce vel posuere erat, at lobortis ipsum. Aenean molestie nisl non dignissim tempor. Pellentesque vehicula risus ligula, eget cursus libero porttitor in. Phasellus condimentum purus magna, a tristique tortor volutpat vel. Sed luctus eu ante quis pulvinar. Donec ac dignissim leo, ut blandit turpis. Etiam dictum gravida erat non pretium. Suspendisse ornare ante sit amet ex euismod rhoncus.
+This policy applies to all information collected by Bike Buddy
 
-Phasellus vehicula, arcu quis interdum cursus, ex lectus cursus felis, id pellentesque erat odio tristique libero. Cras vel orci sed ante placerat varius. Vivamus porta, magna nec lobortis tincidunt, turpis ante pharetra elit, id sagittis lorem sapien sit amet quam. Vivamus fermentum gravida risus. Pellentesque dolor nisl, dignissim nec pulvinar at, lobortis sagittis odio. Maecenas vehicula, erat eu maximus tempor, ligula justo faucibus odio, in facilisis dui augue eu dui. Sed interdum tristique tellus, nec fringilla erat dapibus a. Aenean non sem elementum, suscipit mauris ut, euismod lorem. Vestibulum laoreet ante sit amet augue convallis placerat.
+Information we collect
 
-Fusce rhoncus ligula sit amet felis gravida sollicitudin. Maecenas nec urna molestie, tincidunt massa nec, tempor ipsum. Nunc faucibus ligula convallis faucibus interdum. Ut consequat sodales lacinia. Pellentesque non rutrum ipsum, nec luctus felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam tempus nisl, eu aliquet velit gravida a. Aliquam nunc orci, finibus in nisi non, suscipit cursus magna. Donec condimentum consectetur lectus, a hendrerit magna ultricies sed.
+Information usage
 
-Nam varius turpis at ligula convallis, quis facilisis ipsum accumsan. Vivamus vel nibh molestie leo viverra consectetur a id mauris. Integer diam sem, fermentum sed aliquam vel, egestas sit amet massa. Aliquam semper, mi luctus commodo interdum, tellus sem auctor felis, et mattis felis leo id justo. In risus felis, volutpat id auctor interdum, rhoncus at elit. Phasellus condimentum ac mi eget convallis. Etiam sagittis, dui ac maximus faucibus, ligula elit auctor quam, at elementum lacus mi vel libero. Aliquam rhoncus erat finibus dui gravida, eget varius nisl eleifend. Nunc interdum justo et libero imperdiet faucibus. Donec ut lorem vel diam ullamcorper luctus sit amet at nisl. Nullam vitae pulvinar eros. Nam sodales magna eget ipsum sagittis cursus. Sed eget laoreet nibh, non hendrerit dui. Quisque consequat, ipsum in mollis eleifend, felis velit fermentum turpis, at pulvinar mauris odio ac mauris. Etiam id sapien orci. Proin in tempor lectus.
+We use the information we collect to operate and improve our apps.
 
-Aliquam mattis, lectus tincidunt ornare consectetur, diam tellus ullamcorper tortor, mollis mattis lectus arcu ac risus. Donec ex augue, venenatis viverra dolor egestas, consectetur imperdiet nisi. Maecenas rutrum nisl a urna rutrum dapibus eu iaculis risus. Integer sollicitudin nisl imperdiet, rutrum tellus ac, posuere purus. Vivamus hendrerit interdum ornare. Fusce nisl eros, malesuada eu sagittis quis, mollis ac lorem. Aliquam id congue augue, sit amet sodales augue. Aenean tempor purus id tempor interdum. Nam eget erat et sapien ullamcorper mollis eu non ligula. In consequat, dolor quis lobortis mattis, libero libero tincidunt velit, vel scelerisque dolor massa et velit. Etiam euismod est sit amet tincidunt iaculis. Integer ac nisl commodo justo lobortis laoreet sit amet eu ipsum. Vivamus placerat ex vel nibh egestas, sit amet placerat neque pharetra. Mauris in velit non eros dictum vestibulum ut in purus.
+We do not share your personal information with outside parties except to the extent necessary to accomplish functionaly, with the exception of Fabric, which is embedded in Bike Buddy to provide crash reporting and basic analytics to help us improve the app.
+
+Your Consent
+
+By using our site or apps, you consent to our privacy policy
+
+Contacting Us
+
+if you have questions regarding this privacy, you may email privacy@cloudgatestudios.com
