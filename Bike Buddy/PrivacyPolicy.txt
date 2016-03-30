@@ -2,6 +2,8 @@ This policy applies to all information collected by Bike Buddy
 
 Information we collect
 
+No personal information is collected. User actions are captured as client analytics through the Fabic Answers famework and application crashes are collected through Fabric Crashlytics for later analysis. All data passing through Fabric has been made anonmyous through the Fabric framework.
+
 Information usage
 
 We use the information we collect to operate and improve our apps.
