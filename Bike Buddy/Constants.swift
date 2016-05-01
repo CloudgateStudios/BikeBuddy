@@ -22,6 +22,11 @@ struct Constants {
     struct SettingsDefault {
         static let NumberOfClosestStations = 5
     }
+    
+    // MARK: - Timer Settings
+    struct Timers {
+        static let RefreshStationsDataDifferenceInSeconds = 300.0
+    }
 
     // MARK: - Storyboard/View Names
     struct ViewNames {
@@ -64,6 +69,7 @@ struct Constants {
         static let NewCitySelected = "NewCitySelected"
         static let StationsListUpdated = "StationsListUpdated"
         static let NumberOfClosestStationsUpdated = "NumberOfClosestStationsUpdated"
+        static let StationsDataIsStale = "StationDataIsStale"
     }
 
     // MARK: - Cities Plist
@@ -102,6 +108,7 @@ struct Constants {
         static let OpenSettingsAbout = "Open About in Settings"
         static let OpenThirdPartySoftware = "Open Third Party Software"
         static let OpenAboutPrivacyPolicy = "Open Privacy Policy in About"
+        static let StationDataIsStale = "Station Data is Stale"
     }
     
     // MARK: - Analytic Event Details

@@ -11,6 +11,9 @@ platform :ios do
 
     # Make sure the repo is in a clean state
     ensure_git_status_clean
+    
+    # Make sure were using the right version of Xcode
+    ensure_xcode_version(version: "7.3")
   end
 
   desc "Setup the workspace for development"

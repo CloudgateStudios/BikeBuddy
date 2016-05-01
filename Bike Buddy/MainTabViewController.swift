@@ -17,11 +17,13 @@ class MainTabViewController: UITabBarController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.StationsDataIsStale, object: nil)
     }
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.StationsDataIsStale, object: nil)
     }
 
     override func viewDidLoad() {

@@ -379,10 +379,10 @@
 				C516EFE11B0CE6CB00CF4468 /* Sources */,
 				C516EFE21B0CE6CB00CF4468 /* Frameworks */,
 				C516EFE31B0CE6CB00CF4468 /* Resources */,
-				C5E873341B10A5CD00217C93 /* ShellScript */,
-				D1E551121CA33C29002561BB /* ShellScript */,
-				D10C2F741CA6C9CA0098D5AD /* ShellScript */,
-				D1B2EFEE1CA81FC100A5B218 /* ShellScript */,
+				C5E873341B10A5CD00217C93 /* Carthage Copy Frameworks */,
+				D1E551121CA33C29002561BB /* Copy in Fabric */,
+				D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */,
+				D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */,
 			);
 			buildRules = (
 			);
@@ -508,7 +508,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C5E873341B10A5CD00217C93 /* ShellScript */ = {
+		C5E873341B10A5CD00217C93 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -519,45 +519,49 @@
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 			);
+			name = "Carthage Copy Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
-		D10C2F741CA6C9CA0098D5AD /* ShellScript */ = {
+		D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run SwiftLint";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		D1B2EFEE1CA81FC100A5B218 /* ShellScript */ = {
+		D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Check for Unused Strings";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = Scripts/StringsChecker.py;
 		};
-		D1E551121CA33C29002561BB /* ShellScript */ = {
+		D1E551121CA33C29002561BB /* Copy in Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Copy in Fabric";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

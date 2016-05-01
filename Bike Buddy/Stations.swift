@@ -55,4 +55,14 @@ class Stations {
 
         return stationsToReturn
     }
+    
+    class func shouldBeUpdated() -> Bool {
+        let elapsedTime = NSDate().timeIntervalSinceDate(Stations.sharedInstance.lastUpdated)
+        
+        if elapsedTime > Constants.Timers.RefreshStationsDataDifferenceInSeconds {
+            return true
+        } else {
+            return false
+        }
+    }
 }
