@@ -24,9 +24,9 @@ class Stations {
 
     var list = [Station]() {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.StationsListUpdated, object: self)
-
             self.lastUpdated = NSDate()
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.StationsListUpdated, object: self)
         }
     }
 
