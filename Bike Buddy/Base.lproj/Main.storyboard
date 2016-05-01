@@ -358,6 +358,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" label="SettingsCity">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <segue destination="2ga-wz-k7f" kind="show" id="S1C-p9-X7h"/>
                                         </connections>

@@ -39,8 +39,14 @@ class BikeBuddySnapshotTests: XCTestCase {
         snapshot("02StationsList")
 
         tabBarsQuery.buttons["Settings"].tap()
-        snapshot("03Settings")
+        app.tables.cells["SettingsCity"].tap()
+        snapshot("03SettingsCityList")
+
+        
+        
+        
 
     }
-
+    
+    
 }
