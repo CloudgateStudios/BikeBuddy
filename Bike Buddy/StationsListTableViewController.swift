@@ -36,6 +36,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.getUserLocation), name: Constants.NotificationCenterEvent.AppCameBackToForeground, object: nil)
     }
 
     deinit {
@@ -50,6 +51,10 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
         disableEmptyCellsInTableView()
 
+        getUserLocation()
+    }
+    
+    @objc private func getUserLocation() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()

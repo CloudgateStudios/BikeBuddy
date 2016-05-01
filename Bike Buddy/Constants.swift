@@ -70,6 +70,7 @@ struct Constants {
         static let StationsListUpdated = "StationsListUpdated"
         static let NumberOfClosestStationsUpdated = "NumberOfClosestStationsUpdated"
         static let StationsDataIsStale = "StationDataIsStale"
+        static let AppCameBackToForeground = "AppCameBackToForeground"
     }
 
     // MARK: - Cities Plist
