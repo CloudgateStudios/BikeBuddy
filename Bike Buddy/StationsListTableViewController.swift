@@ -87,12 +87,12 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as? StationTableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("New" + Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as? NewStationTableViewCell {
 
             cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
             cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
-            cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListBikesAvailableLabel", comment: "")
-            cell.numberOfDocksLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableDocks, numberStyle: .NoStyle) + " " + NSLocalizedString("StationsListDocksAvailableLabel", comment: "")
+            cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle)
+            cell.numberOfDocksLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableDocks, numberStyle: .NoStyle)
 
             return cell
         } else {

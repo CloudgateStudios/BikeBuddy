@@ -13,6 +13,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.072539053349999993" blue="0.4676384515" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationListCell" rowHeight="118" id="vQQ-be-0nZ" customClass="StationTableViewCell" customModule="Bike_Buddy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="118"/>
@@ -72,6 +74,91 @@
                                     <outlet property="numberOfBikesLabel" destination="cAN-CC-UH0" id="QT1-wZ-ybK"/>
                                     <outlet property="numberOfDocksLabel" destination="ESv-x9-6dJ" id="S2e-le-wTk"/>
                                     <outlet property="stationNameLabel" destination="54Q-6B-aAZ" id="z9a-gO-hho"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewStationListCell" rowHeight="118" id="Z2R-1A-mJS" customClass="NewStationTableViewCell" customModule="Bike_Buddy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="204" width="600" height="118"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z2R-1A-mJS" id="wFC-X9-hd0">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQ7-Gw-8zv">
+                                            <rect key="frame" x="8" y="8" width="440" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr9-bd-Thd">
+                                            <rect key="frame" x="8" y="88" width="440" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTX-xL-28B">
+                                            <rect key="frame" x="520" y="8" width="72" height="101"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bikes Available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNM-Jy-dy5">
+                                                    <rect key="frame" x="8" y="65" width="56" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adE-o2-fj0">
+                                                    <rect key="frame" x="15" y="8" width="42" height="49"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="72" id="5uW-xw-UDk"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKJ-PB-uyP">
+                                            <rect key="frame" x="448" y="8" width="72" height="101"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Open Docks" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coy-vn-xzw">
+                                                    <rect key="frame" x="8" y="65" width="56" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0u-bc-7DI">
+                                                    <rect key="frame" x="15" y="8" width="42" height="49"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="72" id="bon-eJ-Hvj"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zTX-xL-28B" firstAttribute="trailing" secondItem="wFC-X9-hd0" secondAttribute="trailingMargin" id="4Nt-lZ-Vyh"/>
+                                        <constraint firstItem="zTX-xL-28B" firstAttribute="top" secondItem="wFC-X9-hd0" secondAttribute="topMargin" id="9Km-6j-L0H"/>
+                                        <constraint firstItem="JQ7-Gw-8zv" firstAttribute="leading" secondItem="wFC-X9-hd0" secondAttribute="leadingMargin" id="AIE-ZZ-bRg"/>
+                                        <constraint firstItem="Hr9-bd-Thd" firstAttribute="leading" secondItem="wFC-X9-hd0" secondAttribute="leadingMargin" id="B0U-rt-G0L"/>
+                                        <constraint firstItem="VKJ-PB-uyP" firstAttribute="leading" secondItem="Hr9-bd-Thd" secondAttribute="trailing" id="Iyz-fO-0JX"/>
+                                        <constraint firstItem="Hr9-bd-Thd" firstAttribute="bottom" secondItem="wFC-X9-hd0" secondAttribute="bottomMargin" id="OhN-e5-it2"/>
+                                        <constraint firstItem="VKJ-PB-uyP" firstAttribute="top" secondItem="wFC-X9-hd0" secondAttribute="topMargin" id="TOk-aV-uT4"/>
+                                        <constraint firstItem="VKJ-PB-uyP" firstAttribute="leading" secondItem="JQ7-Gw-8zv" secondAttribute="trailing" id="g1w-1i-DyD"/>
+                                        <constraint firstItem="zTX-xL-28B" firstAttribute="bottom" secondItem="wFC-X9-hd0" secondAttribute="bottomMargin" id="npc-dy-px5"/>
+                                        <constraint firstItem="JQ7-Gw-8zv" firstAttribute="top" secondItem="wFC-X9-hd0" secondAttribute="topMargin" id="vTh-HC-u8u"/>
+                                        <constraint firstItem="zTX-xL-28B" firstAttribute="leading" secondItem="VKJ-PB-uyP" secondAttribute="trailing" id="yhU-s3-kou"/>
+                                        <constraint firstItem="VKJ-PB-uyP" firstAttribute="bottom" secondItem="wFC-X9-hd0" secondAttribute="bottomMargin" id="zDH-0f-cYb"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="distanceLabel" destination="Hr9-bd-Thd" id="fwq-bs-5fK"/>
+                                    <outlet property="numberOfBikesLabel" destination="adE-o2-fj0" id="vda-oW-OsI"/>
+                                    <outlet property="numberOfDocksLabel" destination="V0u-bc-7DI" id="6Fc-Kq-xhH"/>
+                                    <outlet property="stationNameLabel" destination="JQ7-Gw-8zv" id="gCA-mA-2Wn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
