@@ -155,9 +155,11 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="bikesAvailableDescriptionLabel" destination="jNM-Jy-dy5" id="18B-1g-Vmf"/>
                                     <outlet property="distanceLabel" destination="Hr9-bd-Thd" id="fwq-bs-5fK"/>
                                     <outlet property="numberOfBikesLabel" destination="adE-o2-fj0" id="vda-oW-OsI"/>
                                     <outlet property="numberOfDocksLabel" destination="V0u-bc-7DI" id="6Fc-Kq-xhH"/>
+                                    <outlet property="openDocksDescriptionLabel" destination="coy-vn-xzw" id="DqR-Ed-wRl"/>
                                     <outlet property="stationNameLabel" destination="JQ7-Gw-8zv" id="gCA-mA-2Wn"/>
                                 </connections>
                             </tableViewCell>

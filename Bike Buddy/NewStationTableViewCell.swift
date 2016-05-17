@@ -10,21 +10,21 @@ import UIKit
 
 class NewStationTableViewCell: UITableViewCell {
     
-    /*@IBOutlet weak var stationNameLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var numberOfBikesLabel: UILabel!
-    @IBOutlet weak var numberOfDocksLabel: UILabel!*/
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var numberOfDocksLabel: UILabel!
     @IBOutlet weak var numberOfBikesLabel: UILabel!
+    @IBOutlet weak var openDocksDescriptionLabel: UILabel!
+    @IBOutlet weak var bikesAvailableDescriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.contentView.layer.cornerRadius = 10
         self.contentView.layer.masksToBounds = true
-        //self.contentView.layer.maskToBounds = true
+        
+        self.bikesAvailableDescriptionLabel.text = NSLocalizedString("StationsListBikesAvailableLabel", comment: "")
+        self.openDocksDescriptionLabel.text = NSLocalizedString("StationsListDocksAvailableLabel", comment: "")
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

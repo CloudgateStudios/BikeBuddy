@@ -129,6 +129,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         let locationArray = locations as NSArray
         if let locationObj = locationArray.lastObject as? CLLocation {
             self.usersCurrentLocation = locationObj.coordinate
+            
+            updateClosestStations()
         }
     }
 
