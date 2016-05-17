@@ -48,7 +48,6 @@
 		D131EA471B2919D500F08241 /* UILabel_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D131EA461B2919D500F08241 /* UILabel_BikeBuddyExt.swift */; };
 		D1341E231C9DE190008F9343 /* SettingsAboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */; };
 		D146DC811B156D3000F7456E /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC801B156D3000F7456E /* Stations.swift */; };
-		D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DC841B1E98A200F7456E /* StationTableViewCell.swift */; };
 		D146DE6D1C9F40CD00083A9C /* PrivacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */; };
 		D146DE6F1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
@@ -127,7 +126,6 @@
 		D131EA461B2919D500F08241 /* UILabel_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutTableViewController.swift; sourceTree = "<group>"; };
 		D146DC801B156D3000F7456E /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
-		D146DC841B1E98A200F7456E /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PrivacyPolicy.txt; sourceTree = "<group>"; };
 		D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutPrivacyPolicyTableViewController.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
@@ -290,7 +288,6 @@
 				C516EFF01B0CE6CB00CF4468 /* Main.storyboard */,
 				C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */,
 				C516EFF51B0CE6CB00CF4468 /* LaunchScreen.xib */,
-				D146DC841B1E98A200F7456E /* StationTableViewCell.swift */,
 				D111F4621CD99453003F3609 /* NewStationTableViewCell.swift */,
 			);
 			name = Views;
@@ -599,7 +596,6 @@
 				C516F00F1B0CE7EB00CF4468 /* StationsListTableViewController.swift in Sources */,
 				D111F4631CD99453003F3609 /* NewStationTableViewCell.swift in Sources */,
 				D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */,
-				D146DC851B1E98A200F7456E /* StationTableViewCell.swift in Sources */,
 				C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */,
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
 				D146DC811B156D3000F7456E /* Stations.swift in Sources */,
