@@ -10,6 +10,5 @@ import UIKit
 
 class StationListSectionHeaderCell: UITableViewCell {
 
-
     @IBOutlet weak var headerLabel: UILabel!
 }

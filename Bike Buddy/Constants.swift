@@ -43,6 +43,7 @@ struct Constants {
     // MARK: - Table View Cell Resuse Identifiers
     struct TableViewCellResuseIdentifier {
         static let StationsList = "StationListCell"
+        static let StationListHeader = "StationListSectionHeaderCell"
         static let SettingsCitySelect = "SettingsCitySelectCell"
         static let FirstTimeUseCity = "FTUCityServiceCell"
         static let SettingsNumberOfClosestStations = "SettingsNumberOfClosestStationsCell"
@@ -55,6 +56,7 @@ struct Constants {
         static let AboutThirdPartyAFOM = "AboutThirdPartyAFOM"
         static let AboutThirdPartySVProgressHUD = "AboutThirdPartySVProgressHUD"
         static let AboutThridPartyFabric = "AboutThirdPartyFabric"
+        static let AboutPrivacyPolicy = "PrivacyPolicyCell"
     }
 
     // MARK: - Map View Resuse Identifiers
@@ -79,6 +81,11 @@ struct Constants {
         static let NameField = "name"
         static let ServiceNameField = "serviceName"
         static let APIURLField = "apiUrl"
+    }
+    
+    struct PrivacyPolicyFile {
+        static let FileName = "PrivacyPolicy"
+        static let FileExtension = "txt"
     }
 
     // MARK: - External URL's

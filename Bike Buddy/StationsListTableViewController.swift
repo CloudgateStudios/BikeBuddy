@@ -87,7 +87,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        if let cell = tableView.dequeueReusableCellWithIdentifier("New" + Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as? NewStationTableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as? StationTableViewCell {
 
             cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
             cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
@@ -102,7 +102,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("StationListSectionHeaderCell") as? StationListSectionHeaderCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationListHeader) as? StationListSectionHeaderCell {
             cell.headerLabel.text = NSLocalizedString("StationsListClosestStationsSectionHeader", comment: "")
             
             return cell.contentView

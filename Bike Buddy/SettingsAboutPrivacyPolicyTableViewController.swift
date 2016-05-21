@@ -38,11 +38,11 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PrivacyPolicyCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.AboutPrivacyPolicy, forIndexPath: indexPath)
 
         // Configure the cell...
 
-        if let filepath = NSBundle.mainBundle().pathForResource("PrivacyPolicy", ofType: "txt") {
+        if let filepath = NSBundle.mainBundle().pathForResource(Constants.PrivacyPolicyFile.FileName, ofType: Constants.PrivacyPolicyFile.FileExtension) {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
                 cell.textLabel!.text =  contents

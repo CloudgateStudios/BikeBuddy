@@ -38,7 +38,7 @@
 		C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
 		D10242FA1B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */; };
 		D10C2F731CA6C6870098D5AD /* AnalyticsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C2F721CA6C6870098D5AD /* AnalyticsServiceProtocol.swift */; };
-		D111F4631CD99453003F3609 /* NewStationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D111F4621CD99453003F3609 /* NewStationTableViewCell.swift */; };
+		D111F4631CD99453003F3609 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D111F4621CD99453003F3609 /* StationTableViewCell.swift */; };
 		D1151E611B655F2500584707 /* Divvy_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = D1151E601B655F2500584707 /* Divvy_API_Response.json */; };
 		D1151E631B655F7100584707 /* StationsDataServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1151E621B655F7100584707 /* StationsDataServiceTests.swift */; };
 		D1151E661B6560C000584707 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
@@ -119,7 +119,7 @@
 		C5E873321B10A5BA00217C93 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNumberOfClosestStationsTableViewController.swift; sourceTree = "<group>"; };
 		D10C2F721CA6C6870098D5AD /* AnalyticsServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsServiceProtocol.swift; sourceTree = "<group>"; };
-		D111F4621CD99453003F3609 /* NewStationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStationTableViewCell.swift; sourceTree = "<group>"; };
+		D111F4621CD99453003F3609 /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D1151E601B655F2500584707 /* Divvy_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Divvy_API_Response.json; sourceTree = "<group>"; };
 		D1151E621B655F7100584707 /* StationsDataServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataServiceTests.swift; sourceTree = "<group>"; };
 		D1151E6C1B65632D00584707 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
@@ -290,7 +290,7 @@
 				C516EFF01B0CE6CB00CF4468 /* Main.storyboard */,
 				C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */,
 				C516EFF51B0CE6CB00CF4468 /* LaunchScreen.xib */,
-				D111F4621CD99453003F3609 /* NewStationTableViewCell.swift */,
+				D111F4621CD99453003F3609 /* StationTableViewCell.swift */,
 				D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */,
 			);
 			name = Views;
@@ -597,7 +597,7 @@
 				C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */,
 				C5886ACD1B22A07100FF6D0E /* UIColor_BikeBuddyExt.swift in Sources */,
 				C516F00F1B0CE7EB00CF4468 /* StationsListTableViewController.swift in Sources */,
-				D111F4631CD99453003F3609 /* NewStationTableViewCell.swift in Sources */,
+				D111F4631CD99453003F3609 /* StationTableViewCell.swift in Sources */,
 				D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */,
 				C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */,
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
