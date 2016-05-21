@@ -31,6 +31,7 @@ class StationDetailTableViewController: UITableViewController {
         setupStrings()
         setupTheme()
 
+        mapView.delegate = self
         mapView.addAnnotation(stationObject)
         mapView.showAnnotations([stationObject], animated: false)
     }
@@ -69,19 +70,7 @@ class StationDetailTableViewController: UITableViewController {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
-    //MARK: - Map View
-
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        }
-
-        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.StationDetail)
-        annotationView.animatesDrop = false
-
-        return annotationView
-    }
-
+    
     //MARK: - User Actions
 
     private func userClickedOnDirectionsToStationButton() {
@@ -106,5 +95,26 @@ class StationDetailTableViewController: UITableViewController {
 
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
         self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+}
+
+extension StationDetailTableViewController: MKMapViewDelegate {
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        var annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.MapViewReuseIdentifier.StationDetail)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.StationDetail)
+            annotationView!.canShowCallout = false
+            
+            annotationView!.image = UIImage(named: "mapPin")
+        }
+        
+        return annotationView
+        
     }
 }
