@@ -100,11 +100,16 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
             return newCell
         }
     }
-
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-            case 0: return NSLocalizedString("StationsListClosestStationsSectionHeader", comment: "")
-            default: return ""
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("StationListSectionHeaderCell") as? StationListSectionHeaderCell {
+            cell.headerLabel.text = NSLocalizedString("StationsListClosestStationsSectionHeader", comment: "")
+            
+            return cell.contentView
+        } else {
+            let newCell = UITableViewCell()
+            
+            return newCell
         }
     }
 

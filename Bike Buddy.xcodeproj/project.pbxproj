@@ -58,6 +58,7 @@
 		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1BDB2181BE5490400C38DEB /* BixiAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */; };
 		D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
+		D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */; };
 		D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
 		D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
 		D1E5511A1CA344CF002561BB /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E551191CA344CF002561BB /* AnalyticsService.swift */; };
@@ -138,6 +139,7 @@
 		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2171BE5490400C38DEB /* BixiAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BixiAPIResponse.swift; sourceTree = "<group>"; };
 		D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListSectionHeaderCell.swift; sourceTree = "<group>"; };
 		D1E551131CA33C4A002561BB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D1E551141CA33C4A002561BB /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Answers.framework; sourceTree = "<group>"; };
 		D1E551171CA33D5B002561BB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */,
 				C516EFF51B0CE6CB00CF4468 /* LaunchScreen.xib */,
 				D111F4621CD99453003F3609 /* NewStationTableViewCell.swift */,
+				D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
 				D146DC811B156D3000F7456E /* Stations.swift in Sources */,
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
+				D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */,
 				C5C2158C1B0F785B00FEB01C /* City.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,
 				D1E5511A1CA344CF002561BB /* AnalyticsService.swift in Sources */,

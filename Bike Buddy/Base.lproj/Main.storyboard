@@ -103,6 +103,31 @@
                                     <outlet property="stationNameLabel" destination="JQ7-Gw-8zv" id="gCA-mA-2Wn"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationListSectionHeaderCell" rowHeight="43" id="P47-Jj-M0n" customClass="StationListSectionHeaderCell" customModule="Bike_Buddy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="204" width="600" height="43"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P47-Jj-M0n" id="u6p-nV-tLw">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-0g-OUI">
+                                            <rect key="frame" x="279" y="10" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="vIc-0g-OUI" firstAttribute="centerX" secondItem="u6p-nV-tLw" secondAttribute="centerX" id="W6L-Mb-GUi"/>
+                                        <constraint firstItem="vIc-0g-OUI" firstAttribute="centerY" secondItem="u6p-nV-tLw" secondAttribute="centerY" id="sxD-tL-rRn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="headerLabel" destination="vIc-0g-OUI" id="VcD-TX-uNY"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="hSw-bG-Kyq" id="urD-Hb-Qx0"/>

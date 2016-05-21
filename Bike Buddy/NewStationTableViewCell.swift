@@ -20,9 +20,6 @@ class NewStationTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.contentView.layer.cornerRadius = 10
-        self.contentView.layer.masksToBounds = true
-        
         self.bikesAvailableDescriptionLabel.text = NSLocalizedString("StationsListBikesAvailableLabel", comment: "")
         self.openDocksDescriptionLabel.text = NSLocalizedString("StationsListDocksAvailableLabel", comment: "")
     }
