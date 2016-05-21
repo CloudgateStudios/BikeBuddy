@@ -89,12 +89,17 @@ extension MapViewController: MKMapViewDelegate {
         if annotation is MKUserLocation {
             return nil
         }
-
-        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.FullMap)
-        annotationView.animatesDrop = false
-        annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView =  UIButton(type: UIButtonType.DetailDisclosure) as UIView
-
+        
+        var annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.MapViewReuseIdentifier.FullMap)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.FullMap)
+            annotationView!.canShowCallout = true
+            annotationView!.rightCalloutAccessoryView =  UIButton(type: UIButtonType.DetailDisclosure) as UIView
+            
+            annotationView!.image = UIImage(named: "mapPin")
+        }
+        
         return annotationView
     }
 
