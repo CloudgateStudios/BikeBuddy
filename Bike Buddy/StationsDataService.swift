@@ -42,7 +42,9 @@ class StationsDataService {
 
         Alamofire.request(.GET, apiUrl, parameters: nil)
             .responseObject { (response: BixiAPIResponse?, error: ErrorType?) in
-                returnStations = (response?.stationBeanList)!
+                if let testResponseResult = response?.stationBeanList {
+                    returnStations = testResponseResult
+                }
 
                 completionHandler(responseObject: returnStations, error: error as? NSError)
         }
