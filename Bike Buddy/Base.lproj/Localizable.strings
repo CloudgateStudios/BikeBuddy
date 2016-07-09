@@ -26,6 +26,12 @@
 /* String that goes on the back of the distance from user string e.g. ~3.0 mi 'away' */
 "GeneralAwayLabel" = "away";
 
+/* Title of the message box that pops up when there was an error getting the bike stations */
+"GeneralNoStationsMessageTitle" = "No Stations Found";
+
+/* Content of the message box that pops up when there was an error getting the bike stations */
+"GeneralNoStationsMessageContent" = "We are having troubles finding bike stations in your city. Please try again later.";
+
 // MARK: - First Time Use
 
 /* Message on the first time use main screen */

@@ -81,7 +81,14 @@ class MainTabViewController: UITabBarController {
         StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceAPIURL)) {
             responseObject, error in
 
-            Stations.sharedInstance.list = responseObject
+            if responseObject.count == 0 {
+                let alert = UIAlertController(title: NSLocalizedString("GeneralNoStationsMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoStationsMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+                let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+                alert.addAction(alertAction)
+                self.presentViewController(alert, animated: true) { () -> Void in }
+            } else {
+                Stations.sharedInstance.list = responseObject
+            }
         }
     }
     
