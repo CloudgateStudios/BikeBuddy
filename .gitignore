@@ -22,7 +22,6 @@ Carthage/
 
 # Fastlane
 fastlane/report.xml
-fastlane/screenshots
 fastlane/test_output
 
 # Fastlane Extras (Things it does)

@@ -1,11 +1,11 @@
 ###################### App Metadata ######################
-# 
+#
 # title(
 #   "en-US" => "Your App Name"
 # )
-# 
+#
 # changelog(
-#   "en-US" => "iPhone 6 (Plus) Support" 
+#   "en-US" => "iPhone 6 (Plus) Support"
 # )
 # More options: https://github.com/KrauseFx/deliver/blob/master/Deliverfile.md
 
@@ -19,7 +19,7 @@
 # you can set the path to your ipa file using:
 # ipa "./app.ipa"
 
-# to provide an ipa file for TestFlight distribution, use beta_ipa 
+# to provide an ipa file for TestFlight distribution, use beta_ipa
 # beta_ipa "./app.ipa"
 
 # The version of your app - remove this if you provide an ipa file
@@ -34,5 +34,5 @@
 # Feel free to remove the following lines if you use fastlane
 
 app_identifier "com.cloudgatestudios.Bike-Buddy" # The bundle identifier of your app
-apple_id "998776734" # This is NOT your Apple login ID, but the App ID of your app
-email "tarra3@gmail.com" # the login email address
+##apple_id "998776734" # This is NOT your Apple login ID, but the App ID of your app
+username "tarra3@gmail.com" # the login email address

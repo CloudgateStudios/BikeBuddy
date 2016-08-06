@@ -1,0 +1,9 @@
+Quickly find bike sharing stations in cities across North America. With support for 6 cities you only need one application instead of one per city.
+
+Bike Share Buddy supports the following services(cities):
+- Bike Chattanooga (Chattanooga, TN)
+- Divvy (Chicago, IL)
+- CoGo (Columbus, OH)
+- Citi Bike (New York City, NY)
+- Bay Area Bike Share (San Francisco, CA)
+- Bike Share Toronto (Toronto, Ontario Canada)
