@@ -7,7 +7,7 @@ platform :ios do
     update_fastlane
 
     # This is the minimum version number required.
-    fastlane_version "1.66.0"
+    fastlane_version "1.99.0"
 
     # Make sure the repo is in a clean state
     ensure_git_status_clean
@@ -26,7 +26,7 @@ platform :ios do
 
   desc "Run all the unit tests and generate a nice report"
   desc "Report will open in default web browser after completing tests"
-  lane :test do
+  lane :testApp do
     scan
   end
 
@@ -34,7 +34,7 @@ platform :ios do
   desc "This action does the following:"
   desc ""
   desc "- Invoke the Snapfile to create all the screenshots"
-  lane :screenshots do
+  lane :createScreenshots do
     snapshot(erase_simulator: true)
   end
 
@@ -46,7 +46,7 @@ platform :ios do
   desc "- Update all certs and mobile provisioning"
   desc "- Upload to TestFlight (User needs to pull release trigger)"
   desc "- Commit the build number change, tag and push to git"
-  lane :testflight do
+  lane :submitToTestFlight do
     # Build
     increment_build_number
     gym(configuration: "Release")
