@@ -9,7 +9,7 @@
 import Foundation
 
 class SettingsService {
-    var defaults: NSUserDefaults
+    var defaults: UserDefaults
 
     /**
         The shared instanace that should be used to access all members of the service.
@@ -25,7 +25,7 @@ class SettingsService {
         **Should not be used. Call StationsDataService.sharedInstance instead.**
     */
     private init() {
-        defaults = NSUserDefaults.standardUserDefaults()
+        defaults = UserDefaults.standard
         setupDefaults()
     }
 
@@ -33,8 +33,8 @@ class SettingsService {
         All default values should be set here. Most values can be added at runtime but any values that are needed during the first execution should be set here.
     */
     private func setupDefaults() {
-        if self.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) == 0 {
-            self.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations)
+        if self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) == 0 {
+            self.saveSetting(key: Constants.SettingsKey.NumberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations as AnyObject)
         }
     }
 
@@ -42,8 +42,8 @@ class SettingsService {
         Will completely wipe out all settings. There's no going back after calling this.
     */
     func clearAllSettings() {
-        let appDomain: String = NSBundle.mainBundle().bundleIdentifier!
-        defaults.removePersistentDomainForName(appDomain as String)
+        let appDomain: String = Bundle.main.bundleIdentifier!
+        defaults.removePersistentDomain(forName: appDomain as String)
         defaults.synchronize()
     }
 
@@ -58,22 +58,22 @@ class SettingsService {
         switch value {
         case is Int:
             if let intValue = value as? Int {
-                defaults.setInteger(intValue, forKey: key as String)
+                defaults.set(intValue, forKey: key as String)
             }
         case is Float:
             if let floatValue = value as? Float {
-                defaults.setFloat(floatValue, forKey: key as String)
+                defaults.set(floatValue, forKey: key as String)
             }
         case is Double:
             if let doubleValue = value as? Double {
-                defaults.setDouble(doubleValue, forKey: key as String)
+                defaults.set(doubleValue, forKey: key as String)
             }
         case is Bool:
             if let boolValue = value as? Bool {
-                defaults.setBool(boolValue, forKey: key as String)
+                defaults.set(boolValue, forKey: key as String)
             }
         default:
-            defaults.setObject(value, forKey: key as String)
+            defaults.set(value, forKey: key as String)
 
         }
 
@@ -88,7 +88,7 @@ class SettingsService {
         - returns: The value per the key given as a Bool
     */
     func getSettingAsBool(key: String) -> Bool {
-        return defaults.boolForKey(key)
+        return defaults.bool(forKey: key)
     }
 
     /**
@@ -99,7 +99,7 @@ class SettingsService {
         - returns: The value per the key given as a String
     */
     func getSettingAsString(key: String) -> String {
-        if let result = defaults.stringForKey(key) {
+        if let result = defaults.string(forKey: key) {
             return result
         } else {
             return ""
@@ -114,7 +114,7 @@ class SettingsService {
         - returns: The value per the key given as a Int
     */
     func getSettingAsInt(key: String) -> Int {
-        return defaults.integerForKey(key)
+        return defaults.integer(forKey: key)
     }
 
 }

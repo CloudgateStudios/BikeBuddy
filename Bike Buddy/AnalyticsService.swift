@@ -33,7 +33,7 @@ class AnalyticsService: AnalyticsServiceProtocol {
         - parameter eventName: The name of the event that should be tracked. Must be provided.
         - parameter customAttributes: A dictonary of extra data that can be added to analytic events. This is optional.
     */
-    func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": ""]) {
-        Answers.logCustomEventWithName(eventName, customAttributes: customAttributes)
+    func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": "" as AnyObject]) {
+        Answers.logCustomEvent(withName: eventName, customAttributes: customAttributes)
     }
 }

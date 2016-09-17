@@ -11,7 +11,7 @@ import SVProgressHUD
 
 class ProgressHUDService {
 
-    private let maskType = SVProgressHUDMaskType.Gradient
+    private let maskType = SVProgressHUDMaskType.gradient
     private let statusMessage = NSLocalizedString("MapLoadingPopupMessage", comment: "")
 
     /**
@@ -36,7 +36,7 @@ class ProgressHUDService {
     */
     func showHUD() {
         if !SVProgressHUD.isVisible() {
-            SVProgressHUD.showWithStatus(self.statusMessage)
+            SVProgressHUD.show(withStatus: self.statusMessage)
         }
     }
 

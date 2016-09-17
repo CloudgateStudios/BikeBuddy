@@ -37,16 +37,16 @@ class StationsDataService {
 
         - returns: No return. Just putting in a return placeholder so SwiftLint doesn't error out.  See https://github.com/realm/SwiftLint/issues/267 for more.
     */
-    func getAllStationData(apiUrl: String, completionHandler: (responseObject: [Station], error: NSError?) -> ()) {
+    func getAllStationData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Station], _ error: NSError?) -> ()) {
         var returnStations = [Station]()
 
-        Alamofire.request(.GET, apiUrl, parameters: nil)
-            .responseObject { (response: BixiAPIResponse?, error: ErrorType?) in
-                if let testResponseResult = response?.stationBeanList {
+        Alamofire.request(apiUrl, method: .get, parameters: nil)
+            .responseObject { (response: DataResponse<BixiAPIResponse>) in
+                if let testResponseResult = response.result.value?.stationBeanList {
                     returnStations = testResponseResult
                 }
 
-                completionHandler(responseObject: returnStations, error: error as? NSError)
+                completionHandler(returnStations, NSError())
         }
     }
 
@@ -58,15 +58,15 @@ class StationsDataService {
         - returns: An array of Station objects
     */
     func loadStationDataFromFile(fileName: String) -> [Station] {
-        var fileNameParts: [String] = fileName.componentsSeparatedByString(".")
+        var fileNameParts: [String] = fileName.components(separatedBy: ".")
         var returnData = [Station]()
 
         if fileNameParts.count == 2 {
-            let path = NSBundle.mainBundle().pathForResource(fileNameParts[0] as String, ofType: fileNameParts[1] as String)
-            let possibleContent = try? String(contentsOfFile: path!, encoding:NSUTF8StringEncoding)
+            let path = Bundle.main.path(forResource: fileNameParts[0] as String, ofType: fileNameParts[1] as String)
+            let possibleContent = try? String(contentsOfFile: path!, encoding:String.Encoding.utf8)
 
-            if let data = possibleContent!.dataUsingEncoding(NSUTF8StringEncoding) {
-                let responseObject = Mapper<BixiAPIResponse>().map(String(data: data, encoding: NSUTF8StringEncoding))
+            if let data = possibleContent!.data(using: String.Encoding.utf8) {
+                let responseObject = Mapper<BixiAPIResponse>().map(JSONObject: data)
                 returnData = (responseObject?.stationBeanList)!
             }
 
