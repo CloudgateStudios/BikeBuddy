@@ -7,7 +7,7 @@ platform :ios do
     update_fastlane
 
     # This is the minimum version number required.
-    fastlane_version "1.99.0"
+    fastlane_version "1.103.0"
 
     # Make sure the repo is in a clean state
     ensure_git_status_clean

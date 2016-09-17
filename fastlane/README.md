@@ -18,16 +18,16 @@ Should be ran by all developers before starting any development
 fastlane ios carthageUpdate
 ```
 Update all dependencies managed by Carthage
-### ios test
+### ios testApp
 ```
-fastlane ios test
+fastlane ios testApp
 ```
 Run all the unit tests and generate a nice report
 
 Report will open in default web browser after completing tests
-### ios screenshots
+### ios createScreenshots
 ```
-fastlane ios screenshots
+fastlane ios createScreenshots
 ```
 Build and create Screenshots
 
@@ -36,9 +36,9 @@ This action does the following:
 
 
 - Invoke the Snapfile to create all the screenshots
-### ios testflight
+### ios submitToTestFlight
 ```
-fastlane ios testflight
+fastlane ios submitToTestFlight
 ```
 Submit a new Beta Build to Apple TestFlight
 
@@ -58,6 +58,6 @@ This action does the following:
 
 ----
 
-This README.md is auto-generated and will be re-generated every time to run [fastlane](https://fastlane.tools).
+This README.md is auto-generated and will be re-generated every time [fastlane](https://fastlane.tools) is run.
 More information about fastlane can be found on [https://fastlane.tools](https://fastlane.tools).
 The documentation of fastlane can be found on [GitHub](https://github.com/fastlane/fastlane/tree/master/fastlane).
