@@ -25,12 +25,12 @@ class FTUWelcomeViewController: UIViewController {
     }
 
     private func setupTheme() {
-        ThemeService.themeButton(getStartedButton)
+        ThemeService.themeButton(button: getStartedButton)
     }
 
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("GeneralAppName", comment: "")
         welcomeMessageLabel.text = NSLocalizedString("WelcomeMessageContent", comment: "")
-        getStartedButton.setTitle(NSLocalizedString("WelcomeGetStartedButton", comment: ""), forState: .Normal)
+        getStartedButton.setTitle(NSLocalizedString("WelcomeGetStartedButton", comment: ""), for: .normal)
     }
 }

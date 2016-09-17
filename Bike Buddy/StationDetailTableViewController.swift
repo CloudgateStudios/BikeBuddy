@@ -37,15 +37,15 @@ class StationDetailTableViewController: UITableViewController {
     }
 
     private func setupTheme() {
-        ThemeService.themeTextOnlyButton(directionsToStationLabel)
-        ThemeService.themeTextOnlyButton(shareStationLabel)
+        ThemeService.themeTextOnlyButton(textLabel: directionsToStationLabel)
+        ThemeService.themeTextOnlyButton(textLabel: shareStationLabel)
     }
 
     private func setupStrings() {
         stationNameLabel.text = stationObject.stationName
         stationDistanceLabel.text = stationObject.approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
-        bikesAvailableLabel.text = NSNumberFormatter.localizedStringFromNumber(stationObject.availableBikes, numberStyle: .NoStyle) + " " + NSLocalizedString("StationDetailBikesAvailable", comment: "")
-        docksAvailableLabel.text = NSNumberFormatter.localizedStringFromNumber(stationObject.availableDocks, numberStyle: .NoStyle) + " " + NSLocalizedString("StationDetailDocksAvailable", comment: "")
+        bikesAvailableLabel.text = NumberFormatter.localizedString(from: stationObject.availableBikes as NSNumber, number: .none) + " " + NSLocalizedString("StationDetailBikesAvailable", comment: "")
+        docksAvailableLabel.text = NumberFormatter.localizedString(from: stationObject.availableDocks as NSNumber, number: .none) + " " + NSLocalizedString("StationDetailDocksAvailable", comment: "")
 
         navBarItem.title = NSLocalizedString("StationDetailNavBarTitle", comment: "")
         directionsToStationLabel.text = NSLocalizedString("StationDetailDirectionsButton", comment: "")
@@ -54,8 +54,8 @@ class StationDetailTableViewController: UITableViewController {
 
     // MARK: - Table View
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath as IndexPath)!
 
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
@@ -67,14 +67,14 @@ class StationDetailTableViewController: UITableViewController {
             }
         }
 
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
     
     //MARK: - User Actions
 
     private func userClickedOnDirectionsToStationButton() {
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.GetDirectionsToStation)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GetDirectionsToStation)
         
         let placemark: MKPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(stationObject.latitude, stationObject.longitude), addressDictionary: nil)
         let mapItem: MKMapItem = MKMapItem(placemark: placemark)
@@ -84,28 +84,28 @@ class StationDetailTableViewController: UITableViewController {
         var optionsDictonary = [String: String]()
         optionsDictonary[MKLaunchOptionsDirectionsModeKey] = MKLaunchOptionsDirectionsModeWalking
 
-        mapItem.openInMapsWithLaunchOptions(optionsDictonary)
+        mapItem.openInMaps(launchOptions: optionsDictonary)
     }
 
     private func userClickedShareStation() {
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.ShareStation)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.ShareStation)
         
         var sharingItems = [AnyObject]()
-        sharingItems.append(stationObject.shareStringDescription)
+        sharingItems.append(stationObject.shareStringDescription as AnyObject)
 
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 
 extension StationDetailTableViewController: MKMapViewDelegate {
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    @nonobjc func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }
         
-        var annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.MapViewReuseIdentifier.StationDetail)
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: Constants.MapViewReuseIdentifier.StationDetail)
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.StationDetail)

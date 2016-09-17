@@ -28,18 +28,19 @@ class FTUSelectCityTableViewController: UITableViewController {
 
         setupStrings()
 
-        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(Constants.CitiesPlist.FileName, withExtension: "plist") {
-            if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
+        if let urlToCitiesPlist = Bundle.main.url(forResource: Constants.CitiesPlist.FileName, withExtension: "plist") {
+            if let citiesArrayFromFile = NSArray(contentsOf: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
                     let newCity = City()
 
-                    if let name = city.valueForKey(Constants.CitiesPlist.NameField) as? String {
+                    //if let name = city.valueForKey(Constants.CitiesPlist.NameField) as? String {
+                    if let name = (city as AnyObject).value(forKey: Constants.CitiesPlist.NameField) as? String {
                         newCity.name = name
                     }
-                    if let serviceName = city.valueForKey(Constants.CitiesPlist.ServiceNameField) as? String {
+                    if let serviceName = (city as AnyObject).value(forKey: Constants.CitiesPlist.ServiceNameField) as? String {
                         newCity.serviceName = serviceName
                     }
-                    if let apiUrl = city.valueForKey(Constants.CitiesPlist.APIURLField) as? String {
+                    if let apiUrl = (city as AnyObject).value(forKey: Constants.CitiesPlist.APIURLField) as? String {
                         newCity.apiUrl = apiUrl
                     }
 
@@ -50,7 +51,7 @@ class FTUSelectCityTableViewController: UITableViewController {
             }
         }
 
-        citiesArray.sortInPlace { (item1, item2) -> Bool in
+        citiesArray.sort { (item1, item2) -> Bool in
             item1.name < item2.name
         }
     }
@@ -61,16 +62,16 @@ class FTUSelectCityTableViewController: UITableViewController {
 
     // MARK: - Table View
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return citiesArray.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.FirstTimeUseCity, forIndexPath: indexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.FirstTimeUseCity, for: indexPath as IndexPath)
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
@@ -80,13 +81,13 @@ class FTUSelectCityTableViewController: UITableViewController {
 
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let indexPath = self.tableView.indexPathForSelectedRow!
 
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name)
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName)
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl as AnyObject)
         
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.FTUCitySelected, customAttributes: [Constants.AnalyticEventDetail.CitySelected: citiesArray[indexPath.row].name])
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.FTUCitySelected, customAttributes: [Constants.AnalyticEventDetail.CitySelected: citiesArray[indexPath.row].name as AnyObject])
     }
 }

@@ -38,11 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.AppCameBackToForeground, object: self)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.AppCameBackToForeground), object: self)
         
         if Stations.shouldBeUpdated() {
-            AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.StationDataIsStale)
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.StationsDataIsStale, object: self)
+            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.StationDataIsStale)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsDataIsStale), object: self)
         }
     }
 

@@ -34,14 +34,14 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StationsListTableViewController.getUserLocation), name: Constants.NotificationCenterEvent.AppCameBackToForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: NSNotification.Name(Constants.NotificationCenterEvent.StationsListUpdated), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(StationsListTableViewController.updateClosestStations), name: NSNotification.Name(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(StationsListTableViewController.getUserLocation), name: NSNotification.Name(Constants.NotificationCenterEvent.AppCameBackToForeground), object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.StationsListUpdated), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated), object: nil)
     }
 
     override func viewDidLoad() {
@@ -65,9 +65,9 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         navBarItem.title = NSLocalizedString("StationsListNavBarTitle", comment: "")
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromStationList {
-            if let vc = (segue.destinationViewController as? StationDetailTableViewController) {
+            if let vc = (segue.destination as? StationDetailTableViewController) {
                 vc.stationObject = self.tappedStation
             }
             self.tappedStation = nil
@@ -77,22 +77,21 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
     // MARK: - Table View
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.closestStations.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationsList, forIndexPath: indexPath) as? StationTableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.StationsList, for: indexPath as IndexPath) as? StationTableViewCell {
 
             cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
             cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
-            cell.numberOfBikesLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableBikes, numberStyle: .NoStyle)
-            cell.numberOfDocksLabel.text = NSNumberFormatter.localizedStringFromNumber(self.closestStations[indexPath.row].availableDocks, numberStyle: .NoStyle)
+            cell.numberOfBikesLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableBikes as NSNumber, number: .none)
+            cell.numberOfDocksLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableDocks as NSNumber, number: .none)
 
             return cell
         } else {
@@ -101,8 +100,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         }
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.StationListHeader) as? StationListSectionHeaderCell {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.StationListHeader) as? StationListSectionHeaderCell {
             cell.headerLabel.text = NSLocalizedString("StationsListClosestStationsSectionHeader", comment: "")
             
             return cell.contentView
@@ -113,12 +112,12 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.LoadStationDetail, customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Stations List"])
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LoadStationDetail, customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Stations List" as AnyObject])
         
         self.tappedStation = self.closestStations[indexPath.row]
 
-        self.performSegueWithIdentifier(Constants.SegueNames.ShowStationDetailFromStationList, sender: self)
+        self.performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromStationList, sender: self)
     }
 
     private func disableEmptyCellsInTableView() {
@@ -127,7 +126,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
     // MARK: - Location Manager
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    @nonobjc func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Not sure about this change yet. It will make the view more up to date but I am concerned about battery life.
         //locationManager.stopUpdatingLocation()
 
@@ -142,6 +141,6 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     // MARK: - Stations Loading
 
     func updateClosestStations() {
-        self.closestStations = Stations.getClosestStations(self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations))
+        self.closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
     }
 }

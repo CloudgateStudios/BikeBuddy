@@ -15,15 +15,15 @@ class MainTabViewController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: Constants.NotificationCenterEvent.StationsDataIsStale, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NSNotification.Name(Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NSNotification.Name(Constants.NotificationCenterEvent.StationsDataIsStale), object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.StationsDataIsStale, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.StationsDataIsStale), object: nil)
     }
 
     override func viewDidLoad() {
@@ -32,17 +32,17 @@ class MainTabViewController: UITabBarController {
         setupStrings()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if UIApplication.isUITest() {
             setupForUITests()
         } else {
 
-            if !SettingsService.sharedInstance.getSettingAsBool(Constants.SettingsKey.FirstTimeUseCompleted) {
+            if !SettingsService.sharedInstance.getSettingAsBool(key: Constants.SettingsKey.FirstTimeUseCompleted) {
                 let storyboard: UIStoryboard = UIStoryboard(name: Constants.ViewNames.FirstTimeUseStoryboard, bundle: nil)
                 if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
-                    firstVC.modalPresentationStyle = UIModalPresentationStyle.FormSheet
+                    firstVC.modalPresentationStyle = UIModalPresentationStyle.formSheet
 
-                    presentViewController(firstVC, animated: true, completion: nil)
+                    present(firstVC, animated: true, completion: nil)
                 }
             } else {
                 if UIApplication.isConnectedToNetwork() {
@@ -50,10 +50,10 @@ class MainTabViewController: UITabBarController {
                         refreshStationsData()
                     }
                 } else {
-                    let alert = UIAlertController(title: NSLocalizedString("GeneralNoNetworkConnectionMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoNetworkConnectionMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-                    let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+                    let alert = UIAlertController(title: NSLocalizedString("GeneralNoNetworkConnectionMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoNetworkConnectionMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in }
                     alert.addAction(alertAction)
-                    presentViewController(alert, animated: true) { () -> Void in }
+                    present(alert, animated: true) { () -> Void in }
                 }
             }
         }
@@ -78,14 +78,14 @@ class MainTabViewController: UITabBarController {
     func refreshStationsData() {
         ProgressHUDService.sharedInstance.showHUD()
 
-        StationsDataService.sharedInstance.getAllStationData(SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceAPIURL)) {
+        StationsDataService.sharedInstance.getAllStationData(apiUrl: SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)) {
             responseObject, error in
 
             if responseObject.count == 0 {
-                let alert = UIAlertController(title: NSLocalizedString("GeneralNoStationsMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoStationsMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-                let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+                let alert = UIAlertController(title: NSLocalizedString("GeneralNoStationsMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoStationsMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in }
                 alert.addAction(alertAction)
-                self.presentViewController(alert, animated: true) { () -> Void in }
+                self.present(alert, animated: true) { () -> Void in }
             } else {
                 Stations.sharedInstance.list = responseObject
             }
@@ -95,9 +95,9 @@ class MainTabViewController: UITabBarController {
     //MARK: - UI Tests
 
     private func setupForUITests() {
-        Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile("Divvy_API_Response.json")
+        Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile(fileName: "Divvy_API_Response.json")
 
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: "Chicago")
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: "Divvy")
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: "Chicago" as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: "Divvy" as AnyObject)
     }
 }

@@ -28,15 +28,15 @@ class SettingsTableViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: NSNotification.Name(Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateViewableStrings), name: NSNotification.Name(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated), object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NewCitySelected, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated), object: nil)
     }
 
     override func viewDidLoad() {
@@ -57,13 +57,13 @@ class SettingsTableViewController: UITableViewController {
     }
 
     func updateViewableStrings() {
-        cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceCityName)
-        numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.NumberOfClosestStations)
+        cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceCityName)
+        numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.NumberOfClosestStations)
     }
 
     //MARK: - Table View
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return NSLocalizedString("SettingsServiceGroup", comment: "")
@@ -74,38 +74,38 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath as IndexPath)!
 
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.SettingsTellYourFriends:
-                showTellYourFriendsActionSheet(indexPath, sender: selectedCell)
+                showTellYourFriendsActionSheet(indexPath: indexPath, sender: selectedCell)
             case Constants.TableViewCellResuseIdentifier.SettingsRateApp:
                 goToAppStorePage()
             default: break
             }
         }
 
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
     //MARK: - Table View Actions
 
     private func goToAppStorePage() {
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.GoToAppStoreLink)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GoToAppStoreLink)
         
         let url = NSURL(string: Constants.ExtneralURL.AppStoreDeepLink)
-        UIApplication.sharedApplication().openURL(url!)
+        UIApplication.shared.openURL(url! as URL)
     }
 
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath, sender: UIView) {
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.ShareAppWithFriends)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.ShareAppWithFriends)
         
         let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "") + " " + Constants.ExtneralURL.AppStoreDeepLink
 
         var sharingItems = [AnyObject]()
-        sharingItems.append(sharingMessage)
+        sharingItems.append(sharingMessage as AnyObject)
 
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
 
@@ -115,6 +115,6 @@ class SettingsTableViewController: UITableViewController {
             popoverController.sourceRect = sender.bounds
         }
 
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }

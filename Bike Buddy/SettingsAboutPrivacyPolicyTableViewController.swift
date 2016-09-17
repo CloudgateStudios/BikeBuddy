@@ -13,7 +13,7 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenAboutPrivacyPolicy)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenAboutPrivacyPolicy)
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160.0
@@ -26,23 +26,23 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.AboutPrivacyPolicy, forIndexPath: indexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.AboutPrivacyPolicy, for: indexPath as IndexPath)
 
         // Configure the cell...
 
-        if let filepath = NSBundle.mainBundle().pathForResource(Constants.PrivacyPolicyFile.FileName, ofType: Constants.PrivacyPolicyFile.FileExtension) {
+        if let filepath = Bundle.main.path(forResource: Constants.PrivacyPolicyFile.FileName, ofType: Constants.PrivacyPolicyFile.FileExtension) {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
                 cell.textLabel!.text =  contents

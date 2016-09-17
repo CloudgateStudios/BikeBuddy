@@ -12,7 +12,7 @@ import MapKit
 class MapViewController: UIViewController {
     //MARK: - Class Variables
 
-    private var tappedStation: Station!
+    var tappedStation: Station!
 
     //MARK: - View Outlets
 
@@ -26,11 +26,11 @@ class MapViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapViewController.refreshMapAnnotations), name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.refreshMapAnnotations), name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsListUpdated), object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.NotificationCenterEvent.StationsListUpdated, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsListUpdated), object: nil)
     }
 
     override func viewDidLoad() {
@@ -49,11 +49,11 @@ class MapViewController: UIViewController {
         self.loadAnnotationsOnMapView()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromMap {
-            if let vc = segue.destinationViewController as? StationDetailTableViewController {
+            if let vc = segue.destination as? StationDetailTableViewController {
                 
-                AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.LoadStationDetail, customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View"])
+                AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LoadStationDetail, customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject])
                 
                 vc.stationObject = self.tappedStation
 
@@ -65,19 +65,19 @@ class MapViewController: UIViewController {
     //MARK: - Actions
 
     @IBAction func currentPositionButtonTapped(sender: UIBarButtonItem) {
-        AnalyticsService.sharedInstance.pegUserAction("Current Position on Map Button Tapped")
+        AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped")
         
-        if !mapView.userLocationVisible {
-            AnalyticsService.sharedInstance.pegUserAction("Current Position on Map Button Tapped when Outside Map View")
+        if !mapView.isUserLocationVisible {
+            AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped when Outside Map View")
             
-            let alert = UIAlertController(title: NSLocalizedString("MapUserOutsideViewPopupTitle", comment: ""), message: NSLocalizedString("MapUserOutsideViewPopupMessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-            let alertActionOK = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
-            let alertActionCancel = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            let alert = UIAlertController(title: NSLocalizedString("MapUserOutsideViewPopupTitle", comment: ""), message: NSLocalizedString("MapUserOutsideViewPopupMessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            let alertActionOK = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
+            let alertActionCancel = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(alertActionOK)
             alert.addAction(alertActionCancel)
-            presentViewController(alert, animated: true) { () -> Void in }
+            present(alert, animated: true) { () -> Void in }
         } else {
-            self.zoomMapToCurrentLocation()
+            zoomMapToCurrentLocation()
         }
     }
 }
@@ -85,17 +85,17 @@ class MapViewController: UIViewController {
 //MARK: - Map View
 
 extension MapViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    @nonobjc func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }
         
-        var annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.MapViewReuseIdentifier.FullMap)
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: Constants.MapViewReuseIdentifier.FullMap)
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.FullMap)
             annotationView!.canShowCallout = true
-            annotationView!.rightCalloutAccessoryView =  UIButton(type: UIButtonType.DetailDisclosure) as UIView
+            annotationView!.rightCalloutAccessoryView =  UIButton(type: UIButtonType.detailDisclosure) as UIView
             
             annotationView!.image = UIImage(named: "mapPin")
         }
@@ -103,18 +103,18 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
 
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    @nonobjc func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let station = view.annotation as? Station {
             self.tappedStation = station
 
-            self.performSegueWithIdentifier(Constants.SegueNames.ShowStationDetailFromMap, sender: self)
+            self.performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: self)
         }
     }
 
     /**
     Take the current Stations.list and load the needed annotations on the map
     */
-    private func loadAnnotationsOnMapView() {
+    func loadAnnotationsOnMapView() {
         ProgressHUDService.sharedInstance.dismissHUD()
 
         if let pins = mapView?.annotations {
@@ -124,12 +124,12 @@ extension MapViewController: MKMapViewDelegate {
         mapView?.addAnnotations(Stations.sharedInstance.list)
         mapView?.showAnnotations(Stations.sharedInstance.list, animated: true)
 
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
-        updatedAtLabel.text = NSLocalizedString("MapUpdatedAtLabel", comment: "") + " " + dateFormatter.stringFromDate(Stations.sharedInstance.lastUpdated)
+        updatedAtLabel.text = NSLocalizedString("MapUpdatedAtLabel", comment: "") + " " + dateFormatter.string(from: Stations.sharedInstance.lastUpdated as Date)
     }
 
-    private func zoomMapToCurrentLocation() {
+    func zoomMapToCurrentLocation() {
         var region = MKCoordinateRegion()
         region.center = mapView.userLocation.coordinate
         region.span.latitudeDelta = 0.05

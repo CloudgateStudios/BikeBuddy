@@ -21,7 +21,7 @@ class SettingsAboutTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenSettingsAbout)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsAbout)
 
         setupStrings()
     }
@@ -33,44 +33,44 @@ class SettingsAboutTableViewController: UITableViewController {
 
     // MARK: - Table View
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath as IndexPath)!
 
         if let cellReuseID = selectedCell.reuseIdentifier {
             let analyticAttr = [Constants.AnalyticEventDetail.ThirdPartySoftwareName: cellReuseID]
-            AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenThirdPartySoftware, customAttributes: analyticAttr)
+            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenThirdPartySoftware, customAttributes: analyticAttr as [String : AnyObject])
             
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAlmaofire:
-                openWebView(Constants.ExtneralURL.Alamofire)
+                openWebView(url: Constants.ExtneralURL.Alamofire)
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyObjectMapper:
-                openWebView(Constants.ExtneralURL.ObjectMapper)
+                openWebView(url: Constants.ExtneralURL.ObjectMapper)
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAFOM:
-                openWebView(Constants.ExtneralURL.AFOM)
+                openWebView(url: Constants.ExtneralURL.AFOM)
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartySVProgressHUD:
-                openWebView(Constants.ExtneralURL.SVProgressHUD)
+                openWebView(url: Constants.ExtneralURL.SVProgressHUD)
             case Constants.TableViewCellResuseIdentifier.AboutThridPartyFabric:
-                openWebView(Constants.ExtneralURL.Fabric)
+                openWebView(url: Constants.ExtneralURL.Fabric)
             default: break
             }
         }
 
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
     private func openWebView(url: String) {
         
         
         if let url = NSURL(string: url) {
-            let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+            let svc = SFSafariViewController(url: url as URL, entersReaderIfAvailable: true)
             svc.delegate = self
-            self.presentViewController(svc, animated: true) {}
+            self.present(svc, animated: true) {}
         }
     }
 }
 
 extension SettingsAboutTableViewController: SFSafariViewControllerDelegate {
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    @nonobjc func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -22,22 +22,22 @@ class SettingsSelectCityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenSettingsSelectCity)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsSelectCity)
 
         setupStrings()
 
-        if let urlToCitiesPlist = NSBundle.mainBundle().URLForResource(Constants.CitiesPlist.FileName, withExtension: "plist") {
-            if let citiesArrayFromFile = NSArray(contentsOfURL: urlToCitiesPlist) {
+        if let urlToCitiesPlist = Bundle.main.url(forResource: Constants.CitiesPlist.FileName, withExtension: "plist") {
+            if let citiesArrayFromFile = NSArray(contentsOf: urlToCitiesPlist) {
                 for city in citiesArrayFromFile {
                     let newCity = City()
 
-                    if let name = city.valueForKey(Constants.CitiesPlist.NameField) as? String {
+                    if let name = (city as AnyObject).value(forKey: Constants.CitiesPlist.NameField) as? String  {
                         newCity.name = name
                     }
-                    if let serviceName = city.valueForKey(Constants.CitiesPlist.ServiceNameField) as? String {
+                    if let serviceName = (city as AnyObject).value(forKey:Constants.CitiesPlist.ServiceNameField) as? String {
                         newCity.serviceName = serviceName
                     }
-                    if let apiUrl = city.valueForKey(Constants.CitiesPlist.APIURLField) as? String {
+                    if let apiUrl = (city as AnyObject).value(forKey:Constants.CitiesPlist.APIURLField) as? String {
                         newCity.apiUrl = apiUrl
                     }
 
@@ -49,7 +49,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
         }
 
 
-        citiesArray.sortInPlace { (item1, item2) -> Bool in
+        citiesArray.sort { (item1, item2) -> Bool in
             item1.name < item2.name
         }
     }
@@ -60,16 +60,16 @@ class SettingsSelectCityTableViewController: UITableViewController {
 
     // MARK: - Table View
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return citiesArray.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.SettingsCitySelect, forIndexPath: indexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.SettingsCitySelect, for: indexPath as IndexPath)
 
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
@@ -77,18 +77,18 @@ class SettingsSelectCityTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        let oldCity = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.BikeServiceCityName)
+        let oldCity = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceCityName)
         let analyticAttr = [Constants.AnalyticEventDetail.OldCity: oldCity, Constants.AnalyticEventDetail.NewCity: citiesArray[indexPath.row].name]
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.SelectNewCity, customAttributes: analyticAttr)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.SelectNewCity, customAttributes: analyticAttr as [String : AnyObject])
 
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name)
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName)
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl as AnyObject)
 
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.NewCitySelected, object: self)
+        NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: self)
 
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
 }

@@ -31,23 +31,23 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     }
 
     private func setupTheme() {
-        ThemeService.themeButton(giveLocationAccessButton)
+        ThemeService.themeButton(button: giveLocationAccessButton)
     }
 
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("LocationAccessNavBarTitle", comment: "")
         mainMessageLabel.text = NSLocalizedString("LocationAccessMessageContent", comment: "")
-        giveLocationAccessButton.setTitle(NSLocalizedString("LocationAccessButton", comment: ""), forState: .Normal)
+        giveLocationAccessButton.setTitle(NSLocalizedString("LocationAccessButton", comment: ""), for: .normal)
     }
 
     //MARK: - User Interaction
 
     @IBAction func giveLocationAccessButtonClicked(sender: UIButton) {
-        if CLLocationManager.authorizationStatus() == .NotDetermined {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
-        } else if CLLocationManager.authorizationStatus() == .Restricted || CLLocationManager.authorizationStatus() == .Denied {
+        } else if CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .denied {
             showNoLocationAccessMessage()
         } else {
             goToNextView()
@@ -56,13 +56,13 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
 
     //MARK: - Location Manager
 
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
-            AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.LocationAccessGranted)
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.authorizedWhenInUse {
+            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessGranted)
             
             goToNextView()
         } else {
-            AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.LocationAccessDenied)
+            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessDenied)
             
             showNoLocationAccessMessage()
         }
@@ -71,17 +71,17 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     //MARK: - View Specific Functions
 
     private func goToNextView() {
-        self.performSegueWithIdentifier(Constants.SegueNames.GoToFirstTimeUseFinished, sender: self)
+        self.performSegue(withIdentifier: Constants.SegueNames.GoToFirstTimeUseFinished, sender: self)
     }
 
     private func showNoLocationAccessMessage() {
-        let alert = UIAlertController(title: NSLocalizedString("LocationAccessNotGrantedMessageTitle", comment: ""), message: NSLocalizedString("LocationAccessNotGrantedMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: NSLocalizedString("LocationAccessNotGrantedMessageTitle", comment: ""), message: NSLocalizedString("LocationAccessNotGrantedMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         
-        let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+        let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
                 self.goToNextView()
         }
         
         alert.addAction(alertAction)
-        presentViewController(alert, animated: true) { () -> Void in }
+        present(alert, animated: true) { () -> Void in }
     }
 }

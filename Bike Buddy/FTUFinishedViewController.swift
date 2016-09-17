@@ -24,23 +24,23 @@ class FTUFinishedViewController: UIViewController {
     }
 
     private func setupTheme() {
-        ThemeService.themeButton(getStartedButton)
+        ThemeService.themeButton(button: getStartedButton)
     }
 
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("FTUFinishedNavBarTitle", comment: "")
-        getStartedButton.setTitle(NSLocalizedString("FTUFinishedButton", comment: ""), forState: .Normal)
+        getStartedButton.setTitle(NSLocalizedString("FTUFinishedButton", comment: ""), for: .normal)
     }
 
     //MARK: - User Interaction
 
     @IBAction func getStartedButtonClicked(sender: UIButton) {
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.FTUCompleted)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.FTUCompleted)
         
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.FirstTimeUseCompleted, value: true)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.FirstTimeUseCompleted, value: true as AnyObject)
 
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.FirstTimeUseCompleted, object: self)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: self)
 
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

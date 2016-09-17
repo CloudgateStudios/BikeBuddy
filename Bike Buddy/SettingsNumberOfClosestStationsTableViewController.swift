@@ -23,7 +23,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.OpenSettingsNumberOfClosestStations)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsNumberOfClosestStations)
 
         setupStrings()
     }
@@ -34,35 +34,35 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
 
     // MARK: - Table View
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCellResuseIdentifier.SettingsNumberOfClosestStations, forIndexPath: indexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.SettingsNumberOfClosestStations, for: indexPath as IndexPath)
 
         cell.textLabel?.text = String(options[indexPath.row])
 
-        if options[indexPath.row] == SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if options[indexPath.row] == SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) {
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
         }
 
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let oldValue = SettingsService.sharedInstance.getSettingAsString(Constants.SettingsKey.NumberOfClosestStations)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let oldValue = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.NumberOfClosestStations)
         let analyticAttr = [Constants.AnalyticEventDetail.OldNumber: oldValue, Constants.AnalyticEventDetail.NewNumber: options[indexPath.row].description]
-        AnalyticsService.sharedInstance.pegUserAction(Constants.AnalyticEvent.SelectNewNumberOfClosestStations, customAttributes: analyticAttr)
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.SelectNewNumberOfClosestStations, customAttributes: analyticAttr as [String : AnyObject])
         
-        SettingsService.sharedInstance.saveSetting(Constants.SettingsKey.NumberOfClosestStations, value: options[indexPath.row])
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.NumberOfClosestStations, value: options[indexPath.row] as AnyObject)
 
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated, object: self)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated), object: self)
 
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
