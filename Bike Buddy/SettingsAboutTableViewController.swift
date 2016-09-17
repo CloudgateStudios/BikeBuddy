@@ -33,9 +33,9 @@ class SettingsAboutTableViewController: UITableViewController {
 
     // MARK: - Table View
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath as IndexPath)!
-
+        
         if let cellReuseID = selectedCell.reuseIdentifier {
             let analyticAttr = [Constants.AnalyticEventDetail.ThirdPartySoftwareName: cellReuseID]
             AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenThirdPartySoftware, customAttributes: analyticAttr as [String : AnyObject])
@@ -54,13 +54,11 @@ class SettingsAboutTableViewController: UITableViewController {
             default: break
             }
         }
-
+        
         self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
-
+    
     private func openWebView(url: String) {
-        
-        
         if let url = NSURL(string: url) {
             let svc = SFSafariViewController(url: url as URL, entersReaderIfAvailable: true)
             svc.delegate = self
@@ -69,8 +67,8 @@ class SettingsAboutTableViewController: UITableViewController {
     }
 }
 
-extension SettingsAboutTableViewController: SFSafariViewControllerDelegate {
-    @nonobjc func safariViewControllerDidFinish(controller: SFSafariViewController) {
+extension SettingsAboutTableViewController: SFSafariViewControllerDelegate {    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -48,15 +48,15 @@ class MapViewController: UIViewController {
     func refreshMapAnnotations() {
         self.loadAnnotationsOnMapView()
     }
-
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromMap {
             if let vc = segue.destination as? StationDetailTableViewController {
                 
                 AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LoadStationDetail, customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject])
                 
                 vc.stationObject = self.tappedStation
-
+                
                 self.tappedStation = nil
             }
         }
@@ -64,7 +64,7 @@ class MapViewController: UIViewController {
 
     //MARK: - Actions
 
-    @IBAction func currentPositionButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func currentPositionButtonTapped(_ sender: UIBarButtonItem) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped")
         
         if !mapView.isUserLocationVisible {
@@ -85,7 +85,8 @@ class MapViewController: UIViewController {
 //MARK: - Map View
 
 extension MapViewController: MKMapViewDelegate {
-    @nonobjc func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }
@@ -102,11 +103,11 @@ extension MapViewController: MKMapViewDelegate {
         
         return annotationView
     }
-
-    @nonobjc func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let station = view.annotation as? Station {
             self.tappedStation = station
-
+            
             self.performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: self)
         }
     }

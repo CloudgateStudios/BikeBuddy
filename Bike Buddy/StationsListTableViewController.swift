@@ -54,7 +54,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         getUserLocation()
     }
     
-    @objc private func getUserLocation() {
+    func getUserLocation() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()
@@ -126,11 +126,11 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
 
     // MARK: - Location Manager
-
-    @nonobjc func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Not sure about this change yet. It will make the view more up to date but I am concerned about battery life.
         //locationManager.stopUpdatingLocation()
-
+        
         let locationArray = locations as NSArray
         if let locationObj = locationArray.lastObject as? CLLocation {
             self.usersCurrentLocation = locationObj.coordinate

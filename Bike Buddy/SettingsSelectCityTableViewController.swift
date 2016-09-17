@@ -59,8 +59,8 @@ class SettingsSelectCityTableViewController: UITableViewController {
     }
 
     // MARK: - Table View
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
@@ -68,27 +68,27 @@ class SettingsSelectCityTableViewController: UITableViewController {
         return citiesArray.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.SettingsCitySelect, for: indexPath as IndexPath)
-
+        
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
-
+        
         return cell
+
     }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let oldCity = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceCityName)
         let analyticAttr = [Constants.AnalyticEventDetail.OldCity: oldCity, Constants.AnalyticEventDetail.NewCity: citiesArray[indexPath.row].name]
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.SelectNewCity, customAttributes: analyticAttr as [String : AnyObject])
-
+        
         SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name as AnyObject)
         SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName as AnyObject)
         SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl as AnyObject)
-
+        
         NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: self)
-
+        
         _ = navigationController?.popViewController(animated: true)
     }
 }

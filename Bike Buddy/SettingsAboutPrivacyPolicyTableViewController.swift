@@ -25,23 +25,20 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 1
     }
-
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.AboutPrivacyPolicy, for: indexPath as IndexPath)
-
+        
         // Configure the cell...
-
+        
         if let filepath = Bundle.main.path(forResource: Constants.PrivacyPolicyFile.FileName, ofType: Constants.PrivacyPolicyFile.FileExtension) {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
@@ -52,7 +49,7 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
         } else {
             // example.txt not found!
         }
-
+        
         return cell
     }
 }

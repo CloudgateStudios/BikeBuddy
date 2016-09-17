@@ -62,8 +62,8 @@ class SettingsTableViewController: UITableViewController {
     }
 
     //MARK: - Table View
-
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return NSLocalizedString("SettingsServiceGroup", comment: "")
@@ -73,21 +73,22 @@ class SettingsTableViewController: UITableViewController {
             return ""
         }
     }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath as IndexPath)!
-
+        
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.SettingsTellYourFriends:
-                showTellYourFriendsActionSheet(indexPath: indexPath, sender: selectedCell)
+                showTellYourFriendsActionSheet(indexPath: indexPath as NSIndexPath, sender: selectedCell)
             case Constants.TableViewCellResuseIdentifier.SettingsRateApp:
                 goToAppStorePage()
             default: break
             }
         }
-
+        
         self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+
     }
 
     //MARK: - Table View Actions
