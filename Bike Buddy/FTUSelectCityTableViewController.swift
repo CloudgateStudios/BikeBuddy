@@ -50,10 +50,8 @@ class FTUSelectCityTableViewController: UITableViewController {
                 }
             }
         }
-
-        citiesArray.sort { (item1, item2) -> Bool in
-            item1.name < item2.name
-        }
+        
+        citiesArray.sort { $0.name < $1.name }
     }
 
     private func setupStrings() {
@@ -70,12 +68,12 @@ class FTUSelectCityTableViewController: UITableViewController {
         return citiesArray.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.FirstTimeUseCity, for: indexPath as IndexPath)
-
+        
         cell.textLabel?.text = citiesArray[indexPath.row].name
         cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
-
+        
         return cell
     }
 

@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="x0g-jN-aat">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x0g-jN-aat">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Welcome-->
@@ -15,11 +16,11 @@
                         <viewControllerLayoutGuide type="bottom" id="7Ac-86-SVu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nl3-5f-GMK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
-                                <rect key="frame" x="175" y="175" width="250" height="250"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
+                                <frame key="frameInset" minX="175" minY="175" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="0R5-eP-Ywe"/>
                                     <constraint firstAttribute="width" constant="250" id="gJr-Pu-vqb"/>
@@ -32,19 +33,19 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
-                                <rect key="frame" x="16" y="72" width="568" height="41"/>
+                                <frame key="frameInset" minX="16" minY="72" width="568" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <rect key="frame" x="250" y="554" width="100" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
+                                <frame key="frameInset" minX="250" minY="554" width="100" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Get Started">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -56,7 +57,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.95959595959595956" green="0.95959595959595956" blue="0.95959595959595956" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95959595959595956" green="0.95959595959595956" blue="0.95959595959595956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="iLX-qq-O20" firstAttribute="leading" secondItem="nl3-5f-GMK" secondAttribute="leadingMargin" id="323-ud-lg1"/>
                             <constraint firstItem="iLX-qq-O20" firstAttribute="trailing" secondItem="nl3-5f-GMK" secondAttribute="trailingMargin" id="7xp-bH-y6Q"/>
@@ -97,29 +98,29 @@
             <objects>
                 <tableViewController id="box-K7-zqB" customClass="FTUSelectCityTableViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lEB-ss-feD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FTUCityServiceCell" textLabel="8od-72-BAa" detailTextLabel="fIq-xz-rr7" style="IBUITableViewCellStyleValue1" id="ZXG-QS-Efn">
-                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZXG-QS-Efn" id="Jgp-Dv-S5R">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8od-72-BAa">
-                                            <rect key="frame" x="15" y="12" width="32" height="20"/>
+                                            <frame key="frameInset" minX="15" minY="12" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fIq-xz-rr7">
-                                            <rect key="frame" x="543" y="12" width="42" height="20"/>
+                                            <frame key="frameInset" minX="318" minY="12" width="42" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -152,28 +153,28 @@
                         <viewControllerLayoutGuide type="bottom" id="rCr-if-gpY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="z20-Vy-X9z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-NP-MTb">
-                                <rect key="frame" x="16" y="72" width="568" height="41"/>
+                                <frame key="frameInset" minX="16" minY="72" width="568" height="41"/>
                                 <string key="text">In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
+                                <frame key="frameInset" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
-                                <rect key="frame" x="216" y="554" width="169" height="38"/>
+                                <frame key="frameInset" minX="216" minY="554" width="169" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Dzt-2B-yLg"/>
                                     <constraint firstAttribute="height" constant="49" id="mZy-NQ-bX3"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Give Location Access">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -186,7 +187,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="6z7-8Y-cCL" secondAttribute="centerY" id="DBq-5u-Tfu"/>
                             <constraint firstAttribute="centerX" secondItem="Fzn-Qe-wpc" secondAttribute="centerX" id="Dbe-bK-frR"/>
@@ -228,18 +229,18 @@
                         <viewControllerLayoutGuide type="bottom" id="nsG-gs-43w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9YZ-8D-rFZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
-                                <rect key="frame" x="253" y="281" width="95" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
+                                <frame key="frameInset" minX="253" minY="281" width="95" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4Bu-r0-zH1"/>
                                     <constraint firstAttribute="width" constant="200" id="qtU-gg-anE"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Let's Start!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -252,7 +253,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="O5u-mS-eKX" firstAttribute="leading" secondItem="9YZ-8D-rFZ" secondAttribute="leadingMargin" constant="184" id="Gu3-HF-eUV"/>
                             <constraint firstAttribute="centerY" secondItem="O5u-mS-eKX" secondAttribute="centerY" id="Nfc-oT-Uah"/>
@@ -296,7 +297,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ftuLocationAccess" width="600" height="600"/>
+        <image name="ftuLocationAccess" width="300" height="300"/>
         <image name="ftuWelcome" width="300" height="300"/>
     </resources>
 </document>
