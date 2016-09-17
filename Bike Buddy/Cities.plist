@@ -24,7 +24,7 @@
 		<key>serviceName</key>
 		<string>CoGo</string>
 		<key>apiUrl</key>
-		<string>https://www.cogobikeshare.com/stations/json/</string>
+		<string>http://feeds.cogobikeshare.com/stations/stations.json</string>
 	</dict>
 	<dict>
 		<key>name</key>
