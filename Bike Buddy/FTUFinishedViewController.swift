@@ -33,14 +33,13 @@ class FTUFinishedViewController: UIViewController {
     }
 
     //MARK: - User Interaction
-
-    @IBAction func getStartedButtonClicked(sender: UIButton) {
+    @IBAction func getStartedButtonClicked(_ sender: UIButton) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.FTUCompleted)
         
         SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.FirstTimeUseCompleted, value: true as AnyObject)
-
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: self)
-
+        
         self.dismiss(animated: true, completion: nil)
     }
 }

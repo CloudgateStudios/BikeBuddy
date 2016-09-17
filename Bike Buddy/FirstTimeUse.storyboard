@@ -19,8 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
-                                <frame key="frameInset" minX="175" minY="175" width="250" height="250"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="0R5-eP-Ywe"/>
                                     <constraint firstAttribute="width" constant="250" id="gJr-Pu-vqb"/>
@@ -32,14 +31,12 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
-                                <frame key="frameInset" minX="16" minY="72" width="568" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <frame key="frameInset" minX="250" minY="554" width="100" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
                                 </constraints>
@@ -156,18 +153,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-NP-MTb">
-                                <frame key="frameInset" minX="16" minY="72" width="568" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-NP-MTb">
                                 <string key="text">In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
-                                <frame key="frameInset" width="600" height="600"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
-                                <frame key="frameInset" minX="216" minY="554" width="169" height="38"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Dzt-2B-yLg"/>
                                     <constraint firstAttribute="height" constant="49" id="mZy-NQ-bX3"/>
@@ -183,7 +176,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="giveLocationAccessButtonClicked:" destination="UAK-ec-VcK" eventType="touchUpInside" id="OnN-IK-i0I"/>
+                                    <action selector="userTappedGiveLocationAccessButton:" destination="UAK-ec-VcK" eventType="touchUpInside" id="6H5-vC-vwu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -232,8 +225,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
-                                <frame key="frameInset" minX="253" minY="281" width="95" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4Bu-r0-zH1"/>
                                     <constraint firstAttribute="width" constant="200" id="qtU-gg-anE"/>
@@ -249,7 +241,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="getStartedButtonClicked:" destination="vJd-cQ-7bo" eventType="touchUpInside" id="XQu-X7-WJd"/>
+                                    <action selector="getStartedButtonClicked:" destination="vJd-cQ-7bo" eventType="touchUpInside" id="Txj-An-q3c"/>
                                 </connections>
                             </button>
                         </subviews>

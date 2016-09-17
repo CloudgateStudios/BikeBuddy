@@ -42,7 +42,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
 
     //MARK: - User Interaction
 
-    @IBAction func giveLocationAccessButtonClicked(sender: UIButton) {
+    @IBAction func userTappedGiveLocationAccessButton(_ sender: UIButton) {
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -53,10 +53,10 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
             goToNextView()
         }
     }
-
+    
     //MARK: - Location Manager
-
-    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedWhenInUse {
             AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessGranted)
             
