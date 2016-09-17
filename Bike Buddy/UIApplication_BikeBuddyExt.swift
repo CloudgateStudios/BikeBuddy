@@ -17,7 +17,7 @@ extension UIApplication {
         - returns: String representing the application version
     */
     class func appVersion() -> String {
-        if let versionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String {
+        if let versionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             return versionString
         } else {
             return ""
@@ -30,7 +30,7 @@ extension UIApplication {
         - returns: String representing the application build version
     */
     class func appBuild() -> String {
-        if let buildString = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String {
+        if let buildString = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String {
             return buildString
         } else {
             return ""
@@ -43,7 +43,7 @@ extension UIApplication {
         - returns: String representing the application name
     */
     class func appName() -> String {
-        if let appName = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as (String)) as? String {
+        if let appName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as (String)) as? String {
             return appName
         } else {
             return ""
@@ -71,22 +71,30 @@ extension UIApplication {
     */
     class func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
         zeroAddress.sin_family = sa_family_t(AF_INET)
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
-        }
-        var flags = SCNetworkReachabilityFlags()
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+        
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
             return false
         }
-        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        
         return (isReachable && !needsConnection)
     }
 
     class func isUITest() -> Bool {
-        let result = NSProcessInfo.processInfo().environment.keys.contains("UITest")
+        let result = ProcessInfo.processInfo.environment.keys.contains("UITest")
         return result
     }
 }
