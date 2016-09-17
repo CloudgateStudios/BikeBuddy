@@ -9,24 +9,12 @@
 import Foundation
 
 class Stations {
-    class var sharedInstance: Stations {
-        struct Static {
-            static var instance: Stations?
-            static var token: dispatch_once_t = 0
-        }
-
-        dispatch_once(&Static.token) {
-            Static.instance = Stations()
-        }
-
-        return Static.instance!
-    }
+    static let sharedInstance = Stations()
 
     var list = [Station]() {
         didSet {
             self.lastUpdated = NSDate()
-            
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationCenterEvent.StationsListUpdated, object: self)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsListUpdated), object: self)
         }
     }
 
@@ -39,15 +27,15 @@ class Stations {
         var stationsToReturn = [Station]()
 
         for station in self.sharedInstance.list {
-            station.setDistanceFromUser(latitude, usersLongitude: longitude)
+            station.setDistanceFromUser(usersLatitude: latitude, usersLongitude: longitude)
         }
 
         var listCopy = self.sharedInstance.list
 
         if listCopy.count > 0 {
-            listCopy.sortInPlace({ $0.distanceFromUser < $1.distanceFromUser })
+            listCopy.sort(by: { $0.distanceFromUser < $1.distanceFromUser })
 
-            let upperLimit = SettingsService.sharedInstance.getSettingAsInt(Constants.SettingsKey.NumberOfClosestStations) - 1
+            let upperLimit = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) - 1
             for index in 0...upperLimit {
                 stationsToReturn.append(listCopy[index])
             }
@@ -57,7 +45,7 @@ class Stations {
     }
     
     class func shouldBeUpdated() -> Bool {
-        let elapsedTime = NSDate().timeIntervalSinceDate(Stations.sharedInstance.lastUpdated)
+        let elapsedTime = NSDate().timeIntervalSince(Stations.sharedInstance.lastUpdated as Date)
         
         if elapsedTime > Constants.Timers.RefreshStationsDataDifferenceInSeconds {
             return true

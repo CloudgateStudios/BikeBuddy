@@ -41,10 +41,10 @@ class Station: NSObject, MKAnnotation, Mappable {
     var approximateDistanceAwayFromUser: String {
         get {
             let formatter = MKDistanceFormatter()
-            formatter.units = .Default
-            formatter.unitStyle = .Full
+            formatter.units = .default
+            formatter.unitStyle = .full
 
-            let prettyString = "~ " + formatter.stringFromDistance(self.distanceFromUser)
+            let prettyString = "~ " + formatter.string(fromDistance: self.distanceFromUser)
 
             return prettyString
         }
@@ -83,7 +83,7 @@ class Station: NSObject, MKAnnotation, Mappable {
     override init() {
     }
 
-    required convenience init?(_ map: Map) {
+    required convenience init?(map: Map) {
         self.init()
     }
 
@@ -103,6 +103,6 @@ class Station: NSObject, MKAnnotation, Mappable {
         let usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
         let stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
 
-        self.distanceFromUser = usersLocation.distanceFromLocation(stationLocation)
+        self.distanceFromUser = usersLocation.distance(from: stationLocation)
     }
 }
