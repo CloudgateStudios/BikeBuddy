@@ -31,7 +31,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
                 for city in citiesArrayFromFile {
                     let newCity = City()
 
-                    if let name = (city as AnyObject).value(forKey: Constants.CitiesPlist.NameField) as? String  {
+                    if let name = (city as AnyObject).value(forKey: Constants.CitiesPlist.NameField) as? String {
                         newCity.name = name
                     }
                     if let serviceName = (city as AnyObject).value(forKey:Constants.CitiesPlist.ServiceNameField) as? String {
@@ -89,6 +89,6 @@ class SettingsSelectCityTableViewController: UITableViewController {
 
         NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: self)
 
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
 }

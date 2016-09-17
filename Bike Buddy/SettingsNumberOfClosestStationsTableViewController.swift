@@ -63,6 +63,6 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
 
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.NumberOfClosestStationsUpdated), object: self)
 
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

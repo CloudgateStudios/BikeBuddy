@@ -64,43 +64,43 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     private func setupStrings() {
         navBarItem.title = NSLocalizedString("StationsListNavBarTitle", comment: "")
     }
-
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.SegueNames.ShowStationDetailFromStationList {
             if let vc = (segue.destination as? StationDetailTableViewController) {
                 vc.stationObject = self.tappedStation
             }
             self.tappedStation = nil
         }
-
     }
 
     // MARK: - Table View
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.closestStations.count
     }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.StationsList, for: indexPath as IndexPath) as? StationTableViewCell {
-
+            
             cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
             cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
             cell.numberOfBikesLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableBikes as NSNumber, number: .none)
             cell.numberOfDocksLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableDocks as NSNumber, number: .none)
-
+            
             return cell
         } else {
             let newCell = UITableViewCell()
             return newCell
         }
+
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.StationListHeader) as? StationListSectionHeaderCell {
             cell.headerLabel.text = NSLocalizedString("StationsListClosestStationsSectionHeader", comment: "")
             
@@ -110,13 +110,14 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
             
             return newCell
         }
-    }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LoadStationDetail, customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Stations List" as AnyObject])
         
         self.tappedStation = self.closestStations[indexPath.row]
-
+        
         self.performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromStationList, sender: self)
     }
 

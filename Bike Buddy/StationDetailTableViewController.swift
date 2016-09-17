@@ -53,10 +53,10 @@ class StationDetailTableViewController: UITableViewController {
     }
 
     // MARK: - Table View
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath as IndexPath)!
-
+        
         if let cellReuseID = selectedCell.reuseIdentifier {
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.StationDetailDirectionsToStation:
@@ -66,7 +66,7 @@ class StationDetailTableViewController: UITableViewController {
             default: break
             }
         }
-
+        
         self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
