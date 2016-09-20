@@ -46,7 +46,7 @@ class StationsDataService {
                     returnStations = testResponseResult
                 }
 
-                completionHandler(returnStations, NSError())
+                completionHandler(returnStations, NSError(domain: Constants.NSErrorInfo.DomainString, code: Constants.NSErrorInfo.NetworkErrorCode))
         }
     }
 

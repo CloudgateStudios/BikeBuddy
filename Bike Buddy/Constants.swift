@@ -129,4 +129,9 @@ struct Constants {
         static let NewNumber = "New Number"
         static let ThirdPartySoftwareName = "Software Name"
     }
+    
+    struct NSErrorInfo {
+        static let DomainString = "BSBErrorDomain"
+        static let NetworkErrorCode = 60
+    }
 }
