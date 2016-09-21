@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BikeBuddyKit
 
 class FTUFinishedViewController: UIViewController {
     //MARK: _ View Outlets

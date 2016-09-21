@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import BikeBuddyKit
 
 class SettingsService {
     var defaults: UserDefaults

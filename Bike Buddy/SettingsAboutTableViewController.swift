@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import BikeBuddyKit
 
 class SettingsAboutTableViewController: UITableViewController {
 

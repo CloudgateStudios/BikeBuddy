@@ -2,8 +2,8 @@
 //  Constants.swift
 //  Bike Buddy
 //
-//  Created by Tom Arra on 5/22/15.
-//  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
+//  Created by Tom Arra on 9/20/16.
+//  Copyright © 2016 Cloudgate Studios. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ struct Constants {
         static let BikeServiceName = "BikeServiceName"
         static let NumberOfClosestStations = "NumberOfClosestStations"
     }
-
+    
     // MARK: - Settings Defaults
     struct SettingsDefault {
         static let NumberOfClosestStations = 5
@@ -27,19 +27,19 @@ struct Constants {
     struct Timers {
         static let RefreshStationsDataDifferenceInSeconds = 300.0
     }
-
+    
     // MARK: - Storyboard/View Names
     struct ViewNames {
         static let FirstTimeUseStoryboard = "FirstTimeUse"
     }
-
+    
     // MARK: - Segue Names
     struct SegueNames {
         static let GoToFirstTimeUseFinished = "GoToFTUFinished"
         static let ShowStationDetailFromMap = "ShowStationDetailFromMap"
         static let ShowStationDetailFromStationList = "ShowStationDetailFromStationsList"
     }
-
+    
     // MARK: - Table View Cell Resuse Identifiers
     struct TableViewCellResuseIdentifier {
         static let StationsList = "StationListCell"
@@ -58,13 +58,13 @@ struct Constants {
         static let AboutThridPartyFabric = "AboutThirdPartyFabric"
         static let AboutPrivacyPolicy = "PrivacyPolicyCell"
     }
-
+    
     // MARK: - Map View Resuse Identifiers
     struct MapViewReuseIdentifier {
         static let StationDetail = "StationDetailMapPin"
         static let FullMap = "FullMapPin"
     }
-
+    
     // MARK: - NSNotificationCenter Event Names
     struct NotificationCenterEvent {
         static let FirstTimeUseCompleted = "FirstTimeUseCompleted"
@@ -74,7 +74,7 @@ struct Constants {
         static let StationsDataIsStale = "StationDataIsStale"
         static let AppCameBackToForeground = "AppCameBackToForeground"
     }
-
+    
     // MARK: - Cities Plist
     struct CitiesPlist {
         static let FileName = "Cities"
@@ -87,7 +87,7 @@ struct Constants {
         static let FileName = "PrivacyPolicy"
         static let FileExtension = "txt"
     }
-
+    
     // MARK: - External URL's
     struct ExtneralURL {
         static let AppStoreDeepLink = "https://itunes.apple.com/us/app/apple-store/id998776734?mt=8"

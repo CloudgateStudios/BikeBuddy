@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import BikeBuddyKit
 
 class StationDetailTableViewController: UITableViewController {
     //MARK: - Class Variables

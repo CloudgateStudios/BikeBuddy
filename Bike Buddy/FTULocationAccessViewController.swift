@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import BikeBuddyKit
 
 class FTULocationAccessViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: - Class Variables

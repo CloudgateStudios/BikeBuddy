@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import BikeBuddyKit
 
 class MapViewController: UIViewController {
     //MARK: - Class Variables
