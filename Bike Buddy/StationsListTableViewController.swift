@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import BikeBuddyKit
 
 class StationsListTableViewController: UITableViewController, CLLocationManagerDelegate {
     // MARK: - View Outlets

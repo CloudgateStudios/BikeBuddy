@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import MessageUI
+import BikeBuddyKit
 
 class SettingsTableViewController: UITableViewController {
     //MARK: - View Outlets

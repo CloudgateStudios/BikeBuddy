@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import BikeBuddyKit
 
 class FTUSelectCityTableViewController: UITableViewController {
     //MARK: - Class Variables

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BikeBuddyKit
 
 class SettingsNumberOfClosestStationsTableViewController: UITableViewController {
 
