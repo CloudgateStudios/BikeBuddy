@@ -36,14 +36,12 @@
 		D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE31D988F7D00BBB480 /* SetingsService.swift */; };
 		D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE51D98901A00BBB480 /* StationsDataService.swift */; };
 		D11DDDE91D98906700BBB480 /* StationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE81D98906700BBB480 /* StationTests.swift */; };
-		D11DDDEB1D9890C300BBB480 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDEA1D9890C300BBB480 /* AnalyticsService.swift */; };
-		D11DDDEE1D9890DB00BBB480 /* AnalyticsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDED1D9890DB00BBB480 /* AnalyticsServiceProtocol.swift */; };
-		D11DDDF01D98917200BBB480 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
 		D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */; };
 		D1341E231C9DE190008F9343 /* SettingsAboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */; };
 		D146DE6D1C9F40CD00083A9C /* PrivacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */; };
 		D146DE6F1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
+		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D18F4B181D9225FC00972AF2 /* BikeBuddyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */; };
 		D18F4B1A1D9225FC00972AF2 /* BikeBuddyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -118,13 +116,12 @@
 		D11DDDE31D988F7D00BBB480 /* SetingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingsService.swift; sourceTree = "<group>"; };
 		D11DDDE51D98901A00BBB480 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		D11DDDE81D98906700BBB480 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
-		D11DDDEA1D9890C300BBB480 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
-		D11DDDED1D9890DB00BBB480 /* AnalyticsServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsServiceProtocol.swift; sourceTree = "<group>"; };
 		D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSelectCityTableViewController.swift; sourceTree = "<group>"; };
 		D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutTableViewController.swift; sourceTree = "<group>"; };
 		D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PrivacyPolicy.txt; sourceTree = "<group>"; };
 		D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutPrivacyPolicyTableViewController.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
+		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BikeBuddyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeBuddyKit.h; sourceTree = "<group>"; };
 		D18F4B0D1D9225FC00972AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,7 +173,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D11DDDF01D98917200BBB480 /* Crashlytics.framework in Frameworks */,
 				D18F4B311D92291600972AF2 /* SystemConfiguration.framework in Frameworks */,
 				D18F4B2E1D9228B300972AF2 /* SVProgressHUD.framework in Frameworks */,
 			);
@@ -226,6 +222,7 @@
 		C516EFE71B0CE6CB00CF4468 /* Bike Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				D188CCEB1DA1E8680053BB78 /* Services */,
 				C516F0131B0CEFF100CF4468 /* ViewControllers */,
 				C516F0151B0CF01000CF4468 /* Views */,
 				C516EFEA1B0CE6CB00CF4468 /* AppDelegate.swift */,
@@ -299,12 +296,12 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		D11DDDEC1D9890CC00BBB480 /* Protocols */ = {
+		D188CCEB1DA1E8680053BB78 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D11DDDED1D9890DB00BBB480 /* AnalyticsServiceProtocol.swift */,
+				D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */,
 			);
-			name = Protocols;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		D18F4B0B1D9225FC00972AF2 /* BikeBuddyKit */ = {
@@ -343,12 +340,10 @@
 		D18F4B2B1D92283D00972AF2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D11DDDEC1D9890CC00BBB480 /* Protocols */,
 				D18F4B2C1D92285400972AF2 /* ProgressHUDService.swift */,
 				D18F4B321D922A9500972AF2 /* ThemeService.swift */,
 				D11DDDE31D988F7D00BBB480 /* SetingsService.swift */,
 				D11DDDE51D98901A00BBB480 /* StationsDataService.swift */,
-				D11DDDEA1D9890C300BBB480 /* AnalyticsService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -425,7 +420,6 @@
 				D18F4B061D9225FC00972AF2 /* Frameworks */,
 				D18F4B071D9225FC00972AF2 /* Headers */,
 				D18F4B081D9225FC00972AF2 /* Resources */,
-				D11DDDEF1D98913500BBB480 /* Copy in Fabric */,
 				D18F4B301D9228C900972AF2 /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
@@ -598,20 +592,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		D11DDDEF1D98913500BBB480 /* Copy in Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy in Fabric";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run ${FABRIC_API_KEY} ${FABRIC_API_SECRET}";
-		};
 		D18F4B301D9228C900972AF2 /* Copy Carthage Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -667,6 +647,7 @@
 				D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */,
 				D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */,
 				C516F00D1B0CE79100CF4468 /* SettingsTableViewController.swift in Sources */,
+				D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */,
 				D10242FA1B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift in Sources */,
 				C516EFEB1B0CE6CB00CF4468 /* AppDelegate.swift in Sources */,
 				C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */,
@@ -686,7 +667,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D18F4B261D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift in Sources */,
-				D11DDDEB1D9890C300BBB480 /* AnalyticsService.swift in Sources */,
 				D18F4B2D1D92285400972AF2 /* ProgressHUDService.swift in Sources */,
 				D11DDDE01D988EFE00BBB480 /* City.swift in Sources */,
 				D11DDDDE1D988E0300BBB480 /* Station.swift in Sources */,
@@ -697,7 +677,6 @@
 				D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */,
 				D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */,
 				D18F4B331D922A9500972AF2 /* ThemeService.swift in Sources */,
-				D11DDDEE1D9890DB00BBB480 /* AnalyticsServiceProtocol.swift in Sources */,
 				D11DDDDC1D988DE700BBB480 /* BixiAPIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

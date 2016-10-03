@@ -76,4 +76,3 @@ public class ThemeService {
         tabBarAppearance.tintColor = tabBarTintColor
     }
 }
-

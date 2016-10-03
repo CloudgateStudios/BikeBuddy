@@ -68,4 +68,3 @@ class StationTests: XCTestCase {
      XCTAssertEqual(newStation.coordinate.latitude, expectedCoordinate.latitude, "Coordinate latitude should be \(expectedCoordinate.latitude)")
      }
 }
-

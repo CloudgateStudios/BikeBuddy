@@ -20,4 +20,3 @@ public class City {
         return name != "" && serviceName != "" && apiUrl != ""
     }
 }
-

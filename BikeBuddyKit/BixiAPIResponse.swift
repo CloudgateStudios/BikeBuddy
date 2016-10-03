@@ -21,4 +21,3 @@ public class BixiAPIResponse: Mappable {
         stationBeanList <- map["stationBeanList"]
     }
 }
-

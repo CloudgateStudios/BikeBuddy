@@ -9,12 +9,12 @@
 import Foundation
 import Crashlytics
 
-public class AnalyticsService: AnalyticsServiceProtocol {
+class AnalyticsService {
     
     /**
      The shared instanace that should be used to access all members of the service.
      */
-    public class var sharedInstance: AnalyticsService {
+    class var sharedInstance: AnalyticsService {
         struct Static {
             static let instance: AnalyticsService = AnalyticsService()
         }
@@ -33,7 +33,7 @@ public class AnalyticsService: AnalyticsServiceProtocol {
      - parameter eventName: The name of the event that should be tracked. Must be provided.
      - parameter customAttributes: A dictonary of extra data that can be added to analytic events. This is optional.
      */
-    public func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": "" as AnyObject]) {
+    func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": "" as AnyObject]) {
         Answers.logCustomEvent(withName: eventName, customAttributes: customAttributes)
     }
 }
