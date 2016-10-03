@@ -61,7 +61,6 @@
 		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
 		D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */; };
-		D1DD8BC01DA1F96200DED913 /* BikeBuddyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
 		D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
 		D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
@@ -90,20 +89,6 @@
 			remoteInfo = BikeBuddyKit;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D1DD8BC31DA1F96300DED913 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D1DD8BC01DA1F96200DED913 /* BikeBuddyKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C513A7141B5E8547003BA84F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -424,7 +409,6 @@
 				D1E551121CA33C29002561BB /* Copy in Fabric */,
 				D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */,
 				D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */,
-				D1DD8BC31DA1F96300DED913 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
