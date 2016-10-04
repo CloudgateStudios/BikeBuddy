@@ -46,7 +46,6 @@
 		D18F4B181D9225FC00972AF2 /* BikeBuddyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */; };
 		D18F4B1A1D9225FC00972AF2 /* BikeBuddyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D18F4B221D92261700972AF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B211D92261700972AF2 /* Constants.swift */; };
-		D18F4B231D92264000972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D18F4B261D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B251D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift */; };
 		D18F4B281D92268C00972AF2 /* UIColor_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B271D92268C00972AF2 /* UIColor_BikeBuddyExt.swift */; };
 		D18F4B2A1D9226A100972AF2 /* UILabel_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B291D9226A100972AF2 /* UILabel_BikeBuddyExt.swift */; };
@@ -61,6 +60,8 @@
 		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
 		D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */; };
+		D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
+		D1DD8BC51DA327C400DED913 /* BikeBuddyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
 		D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
 		D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
@@ -89,6 +90,20 @@
 			remoteInfo = BikeBuddyKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D1DD8BC61DA327C400DED913 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D1DD8BC51DA327C400DED913 /* BikeBuddyKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C513A7141B5E8547003BA84F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -161,7 +176,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D18F4B231D92264000972AF2 /* BikeBuddyKit.framework in Frameworks */,
 				D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */,
 				D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */,
 				D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */,
@@ -171,6 +185,7 @@
 				C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */,
 				D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */,
 				D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */,
+				D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */,
 				C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */,
 				D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */,
 			);
@@ -409,6 +424,7 @@
 				D1E551121CA33C29002561BB /* Copy in Fabric */,
 				D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */,
 				D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */,
+				D1DD8BC61DA327C400DED913 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
