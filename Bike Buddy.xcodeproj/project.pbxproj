@@ -410,6 +410,7 @@
 				C516EFE11B0CE6CB00CF4468 /* Sources */,
 				C516EFE21B0CE6CB00CF4468 /* Frameworks */,
 				C516EFE31B0CE6CB00CF4468 /* Resources */,
+				D1E509D51DAC917F007D918A /* Copy in Carthage Frameworks */,
 				D1E551121CA33C29002561BB /* Copy in Fabric */,
 				D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */,
 				D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */,
@@ -433,7 +434,6 @@
 				D18F4B061D9225FC00972AF2 /* Frameworks */,
 				D18F4B071D9225FC00972AF2 /* Headers */,
 				D18F4B081D9225FC00972AF2 /* Resources */,
-				D18F4B301D9228C900972AF2 /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -587,24 +587,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		D18F4B301D9228C900972AF2 /* Copy Carthage Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
-			);
-			name = "Copy Carthage Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -618,6 +600,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = Scripts/StringsChecker.py;
+		};
+		D1E509D51DAC917F007D918A /* Copy in Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
+			);
+			name = "Copy in Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		D1E551121CA33C29002561BB /* Copy in Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
