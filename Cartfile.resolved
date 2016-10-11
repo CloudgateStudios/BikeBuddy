@@ -1,4 +1,4 @@
-github "Alamofire/Alamofire" "4.0.0"
-github "Hearst-DD/ObjectMapper" "2.0.0"
+github "Alamofire/Alamofire" "4.0.1"
+github "Hearst-DD/ObjectMapper" "2.1.0"
 github "TransitApp/SVProgressHUD" "2.0.3"
 github "tristanhimmelman/AlamofireObjectMapper" "4.0.0"

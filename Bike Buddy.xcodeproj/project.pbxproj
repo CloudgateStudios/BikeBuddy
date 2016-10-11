@@ -16,9 +16,6 @@
 		C516F00F1B0CE7EB00CF4468 /* StationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516F00E1B0CE7EB00CF4468 /* StationsListTableViewController.swift */; };
 		C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516F0101B0CE80F00CF4468 /* MapViewController.swift */; };
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
-		C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4A1B5A7A58009C5EFF /* Accounts.framework */; };
-		C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4B1B5A7A58009C5EFF /* Social.framework */; };
-		C5721B4F1B5A7A58009C5EFF /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5721B4C1B5A7A58009C5EFF /* Twitter.framework */; };
 		C59090481B0F1E8E0043FFFD /* Divvy_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = C59090471B0F1E8E0043FFFD /* Divvy_API_Response.json */; };
 		C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */; };
 		C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */; };
@@ -26,7 +23,6 @@
 		C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */; };
 		C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */; };
 		C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */; };
-		C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
 		D10242FA1B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */; };
 		D111F4631CD99453003F3609 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D111F4621CD99453003F3609 /* StationTableViewCell.swift */; };
 		D11DDDDC1D988DE700BBB480 /* BixiAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDDB1D988DE700BBB480 /* BixiAPIResponse.swift */; };
@@ -56,15 +52,14 @@
 		D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */; };
 		D1B6DD1D1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */; };
 		D1B6DD261C9EC436008543A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */; };
-		D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */; };
-		D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
-		D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
 		D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */; };
 		D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D1DD8BC51DA327C400DED913 /* BikeBuddyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D1E509D21DAC8F36007D918A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E873321B10A5BA00217C93 /* Alamofire.framework */; };
+		D1E509D31DAC8F36007D918A /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */; };
+		D1E509D41DAC8F36007D918A /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */; };
 		D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
 		D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
-		D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,17 +171,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1F7B7FC1BACE2B600D6732C /* SystemConfiguration.framework in Frameworks */,
 				D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */,
-				D1BDB2131BE548BA00C38DEB /* AlamofireObjectMapper.framework in Frameworks */,
-				C5721B4D1B5A7A58009C5EFF /* Accounts.framework in Frameworks */,
-				C5721B4E1B5A7A58009C5EFF /* Social.framework in Frameworks */,
-				C5721B4F1B5A7A58009C5EFF /* Twitter.framework in Frameworks */,
 				C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */,
-				D1BDB21A1BE573C000C38DEB /* SVProgressHUD.framework in Frameworks */,
-				D1BDB2141BE548BA00C38DEB /* ObjectMapper.framework in Frameworks */,
 				D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */,
-				C5E873331B10A5BA00217C93 /* Alamofire.framework in Frameworks */,
 				D1E551181CA33D5B002561BB /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +182,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1E509D21DAC8F36007D918A /* Alamofire.framework in Frameworks */,
+				D1E509D31DAC8F36007D918A /* AlamofireObjectMapper.framework in Frameworks */,
+				D1E509D41DAC8F36007D918A /* ObjectMapper.framework in Frameworks */,
 				D18F4B311D92291600972AF2 /* SystemConfiguration.framework in Frameworks */,
 				D18F4B2E1D9228B300972AF2 /* SVProgressHUD.framework in Frameworks */,
 			);
@@ -420,7 +410,6 @@
 				C516EFE11B0CE6CB00CF4468 /* Sources */,
 				C516EFE21B0CE6CB00CF4468 /* Frameworks */,
 				C516EFE31B0CE6CB00CF4468 /* Resources */,
-				C5E873341B10A5CD00217C93 /* Carthage Copy Frameworks */,
 				D1E551121CA33C29002561BB /* Copy in Fabric */,
 				D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */,
 				D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */,
@@ -584,24 +573,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C5E873341B10A5CD00217C93 /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
-			);
-			name = "Carthage Copy Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -623,6 +594,9 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 			);
 			name = "Copy Carthage Frameworks";
 			outputPaths = (
