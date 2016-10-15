@@ -9,7 +9,7 @@
 import Foundation
 
 public class SettingsService {
-    public var defaults: UserDefaults
+    private var defaults: UserDefaults
     
     /**
      The shared instanace that should be used to access all members of the service.
@@ -25,8 +25,39 @@ public class SettingsService {
      **Should not be used. Call StationsDataService.sharedInstance instead.**
      */
     private init() {
-        defaults = UserDefaults.standard
+        defaults = UserDefaults(suiteName: Constants.SettingsGeneral.ShareGroupName)!
+        
+        checkForMigrationToShareGroup()
+        checkForSettingsVersionMigration()
         setupDefaults()
+    }
+    
+    /**
+    * Used to see if there is a need to migrate a V1.0/1.1 user over to the Share Group.
+    * Hopefully could be removed after 1.2 deploys.
+    */
+    private func checkForMigrationToShareGroup() {
+        //If the user has anything they will always have a Number of Closest Stations item. 
+        //Becuase we start with the Share Group if it is zero it is either a clean install or a migration is needed
+        //Open up the basic defaults as a dictonary, loop through it and save it to the new Share Group
+        if self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) == 0 {
+            let allItems = UserDefaults.standard.dictionaryRepresentation()
+            print(allItems)
+            
+            for item in allItems {
+                self.saveSetting(key: item.key, value: item.value as AnyObject)
+            }
+        }
+    }
+    
+    /**
+    * Used to move data from version to version.
+    */
+    private func checkForSettingsVersionMigration() {
+        //First migration was just getting to the Share Group and setting it to version 1. No data changes need yet.
+        if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 0 {
+            self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 1 as AnyObject)
+        }
     }
     
     /**

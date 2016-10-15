@@ -9,8 +9,13 @@
 import Foundation
 
 public struct Constants {
+    public struct SettingsGeneral {
+        public static let ShareGroupName = "group.com.cloudgatestudios.Bike-Buddy"
+    }
+    
     // MARK: - Settings Keys
     public struct SettingsKey {
+        public static let SettingsVersionNumber = "SettingsVersionNumber"
         public static let FirstTimeUseCompleted = "IsFirstTimeUseCompleted"
         public static let BikeServiceAPIURL = "BikeServiceApiUrl"
         public static let BikeServiceCityName = "BikeServiceCityName"
@@ -20,6 +25,7 @@ public struct Constants {
     
     // MARK: - Settings Defaults
     public struct SettingsDefault {
+        public static let SettingsVersionNumber = 1
         public static let NumberOfClosestStations = 5
     }
     
