@@ -38,7 +38,7 @@ platform :ios do
     snapshot(erase_simulator: true)
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "Submit a new build to the App Store"
   desc "This action does the following:"
   desc ""
   desc "- Increment the build number"
@@ -46,7 +46,7 @@ platform :ios do
   desc "- Update all certs and mobile provisioning"
   desc "- Upload to TestFlight (User needs to pull release trigger)"
   desc "- Commit the build number change, tag and push to git"
-  lane :submitToTestFlight do
+  lane :sendBuildToAppStore do
     # Build
     increment_build_number
     gym(scheme: "Bike Buddy", configuration: "Release")
