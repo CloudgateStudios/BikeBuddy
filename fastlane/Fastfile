@@ -38,6 +38,12 @@ platform :ios do
     snapshot(erase_simulator: true)
   end
 
+  desc "Update the version number of all items in the project"
+  desc "Needs to be invoked with version:numberHere"
+  lane :updateVersionNumber do |options|
+    increment_version_number(version_number: options[:version])
+  end
+
   desc "Submit a new build to the App Store"
   desc "This action does the following:"
   desc ""

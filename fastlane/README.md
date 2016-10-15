@@ -36,11 +36,16 @@ This action does the following:
 
 
 - Invoke the Snapfile to create all the screenshots
-### ios submitToTestFlight
+### ios updateVersionNumber
 ```
-fastlane ios submitToTestFlight
+fastlane ios updateVersionNumber
 ```
-Submit a new Beta Build to Apple TestFlight
+
+### ios sendBuildToAppStore
+```
+fastlane ios sendBuildToAppStore
+```
+Submit a new build to the App Store
 
 This action does the following:
 
