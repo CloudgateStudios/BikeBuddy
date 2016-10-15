@@ -40,7 +40,9 @@ This action does the following:
 ```
 fastlane ios updateVersionNumber
 ```
+Update the version number of all items in the project
 
+Needs to be invoked with version:numberHere
 ### ios sendBuildToAppStore
 ```
 fastlane ios sendBuildToAppStore
