@@ -55,7 +55,7 @@ platform :ios do
   lane :sendBuildToAppStore do
     # Build
     increment_build_number
-    gym(scheme: "Bike Buddy", configuration: "Release")
+    gym(scheme: "Bike Buddy", configuration: "Release", use_legacy_build_api: true)
 
     # Get the right certs and profiles
     cert
