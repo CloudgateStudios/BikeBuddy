@@ -32,7 +32,29 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Find the closest stations to your location</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Used to find the closest bike stations to your location</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Used to find the closest bike stations to your location</string>
+    <key>Fabric</key>
+    <dict>
+        <key>APIKey</key>
+        <string>e54c6d8a4c3e3842dea83c9c93ced04d15c623c7</string>
+        <key>Kits</key>
+        <array>
+            <dict>
+                <key>KitInfo</key>
+                <dict/>
+                <key>KitName</key>
+                <string>Answers</string>
+            </dict>
+            <dict>
+                <key>KitInfo</key>
+                <dict/>
+                <key>KitName</key>
+                <string>Crashlytics</string>
+            </dict>
+        </array>
+    </dict>
 </dict>
 </plist>

@@ -44,6 +44,9 @@
 		D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D149580B1DB317AE0038A615 /* CoreLocation.framework */; };
 		D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */; };
 		D149580F1DB3BAEA0038A615 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
+		D14958111DB3BD120038A615 /* Answers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551141CA33C4A002561BB /* Answers.framework */; };
+		D14958121DB3BD120038A615 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
+		D14958131DB3BD120038A615 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
@@ -215,6 +218,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D14958111DB3BD120038A615 /* Answers.framework in Frameworks */,
+				D14958121DB3BD120038A615 /* Crashlytics.framework in Frameworks */,
+				D14958131DB3BD120038A615 /* Fabric.framework in Frameworks */,
 				D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */,
 				D149580A1DB30EAC0038A615 /* BikeBuddyKit.framework in Frameworks */,
 				D14957FA1DB30CFC0038A615 /* NotificationCenter.framework in Frameworks */,
@@ -493,6 +499,7 @@
 				D14957F41DB30CFB0038A615 /* Sources */,
 				D14957F51DB30CFB0038A615 /* Frameworks */,
 				D14957F61DB30CFB0038A615 /* Resources */,
+				D14958101DB3BC9F0038A615 /* Copy in Fabric */,
 			);
 			buildRules = (
 			);
@@ -687,6 +694,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D14958101DB3BC9F0038A615 /* Copy in Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy in Fabric";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run ${FABRIC_API_KEY} ${FABRIC_API_SECRET}";
 		};
 		D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1025,6 +1046,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = KXYM4B4J29;
+				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
+				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BikeBuddyWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1045,6 +1072,12 @@
 				CODE_SIGN_ENTITLEMENTS = BikeBuddyWidget/BikeBuddyWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = KXYM4B4J29;
+				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
+				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BikeBuddyWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
