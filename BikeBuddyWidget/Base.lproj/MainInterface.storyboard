@@ -34,6 +34,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2iO-UF-Izy">
+                                <frame key="frameInset" minX="150" minY="50" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YO5-53-D5P" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="FRr-T9-JuU"/>
@@ -54,6 +58,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="220"/>
                     <connections>
+                        <outlet property="activitySpinner" destination="2iO-UF-Izy" id="EIL-vk-Cid"/>
                         <outlet property="bikesLabel" destination="o3z-al-r7I" id="oYs-e4-LL9"/>
                         <outlet property="distanceLabel" destination="XQD-47-sHa" id="s01-D3-6Xj"/>
                         <outlet property="stationNameLabel" destination="YO5-53-D5P" id="Ckw-ER-JFP"/>

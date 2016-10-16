@@ -15,15 +15,19 @@ import Fabric
 
 class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManagerDelegate {
     
+    //MARK: - Class Variables
+    
     var locationManager = CLLocationManager()
-    var usersCurrentLocation = CLLocationCoordinate2D() {
-        didSet {
-            //self.updateClosestStations()
-        }
-    }
+    var usersCurrentLocation = CLLocationCoordinate2D()
+    
+    //MARK: - View Outlets
+    
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var bikesLabel: UILabel!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    
+    //MARK: - View Lifecycle
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -33,18 +37,16 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
+
         _ = SettingsService.sharedInstance
         
         self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
         
+        startLoading()
         getUserLocation()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    //MARK: - Widget Methods
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == NCWidgetDisplayMode.compact {
@@ -55,7 +57,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     }
     
     func widgetPerformUpdate(completionHandler: @escaping ((NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
         let apiUrl = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)
         
         // If we have a URL then go get data
@@ -64,7 +65,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                 responseObject, error in
                 
                 if responseObject.count == 0 {
-                    completionHandler(NCUpdateResult.failed)
+                    //completionHandler(NCUpdateResult.failed)
+                    self.endLoading(completionHandler: completionHandler, result: .failed)
                 } else {
                     Stations.sharedInstance.list = responseObject
                     
@@ -72,8 +74,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                         var closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
                         
                         self.stationNameLabel.text = closestStations[0].stationName
-                        self.distanceLabel.text = closestStations[0].approximateDistanceAwayFromUser
+                        self.distanceLabel.text = closestStations[0].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
                         self.bikesLabel.text = NumberFormatter.localizedString(from: closestStations[0].availableBikes as NSNumber, number: .none)
+                        
+                        self.activitySpinner.stopAnimating()
+                        self.activitySpinner.isHidden = true
+                        
                         completionHandler(NCUpdateResult.newData)
                     } else {
                         completionHandler(NCUpdateResult.failed)
@@ -96,26 +102,31 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         
     }
     
+    private func startLoading() {
+        self.activitySpinner.startAnimating()
+        self.activitySpinner.isHidden = false
+    }
+    
+    private func endLoading(completionHandler: @escaping ((NCUpdateResult) -> Void), result: NCUpdateResult) {
+        self.activitySpinner.stopAnimating()
+        self.activitySpinner.isHidden = true
+        
+        completionHandler(result)
+    }
+    
+    //MARK: - Location Manager
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locationArray = locations as NSArray
+        if let locationObj = locationArray.lastObject as? CLLocation {
+            self.usersCurrentLocation = locationObj.coordinate
+        }
+    }
+    
     func getUserLocation() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
-    
-    
-    // MARK: - Location Manager
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Not sure about this change yet. It will make the view more up to date but I am concerned about battery life.
-        //locationManager.stopUpdatingLocation()
-        
-        let locationArray = locations as NSArray
-        if let locationObj = locationArray.lastObject as? CLLocation {
-            self.usersCurrentLocation = locationObj.coordinate
-            
-            //updateClosestStations()
-        }
-    }
-
 }
