@@ -44,15 +44,15 @@ platform :ios do
     increment_version_number(version_number: options[:version])
   end
 
-  desc "Submit a new build to the App Store"
+  desc "Create a new archive so its ready for App Store Submission"
   desc "This action does the following:"
   desc ""
   desc "- Increment the build number"
   desc "- Build the app in 'Release' configuration"
   desc "- Update all certs and mobile provisioning"
-  desc "- Upload to TestFlight (User needs to pull release trigger)"
+  #desc "- Upload to TestFlight (User needs to pull release trigger)"
   desc "- Commit the build number change, tag and push to git"
-  lane :sendBuildToAppStore do
+  lane :bumpAndArchive do
     # Build
     increment_build_number
     gym(scheme: "Bike Buddy", configuration: "Release", use_legacy_build_api: true)
@@ -62,7 +62,7 @@ platform :ios do
     sigh(force: true)
 
     # Push to TestFlight
-    testflight(skip_submission: true)
+    #testflight(skip_submission: true)
 
     # Commit Build Number Change
     version = get_version_number(xcodeproj: "Bike Buddy.xcodeproj")
