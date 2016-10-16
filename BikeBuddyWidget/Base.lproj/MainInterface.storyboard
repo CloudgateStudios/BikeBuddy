@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="BikeBuddyWidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Station Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO5-53-D5P">
+                                <frame key="frameInset" minX="16" minY="20" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQD-47-sHa">
+                                <frame key="frameInset" minX="16" minY="49" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bikes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3z-al-r7I">
+                                <frame key="frameInset" minX="16" minY="78" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YO5-53-D5P" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="FRr-T9-JuU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="o3z-al-r7I" secondAttribute="trailing" id="ISD-re-rMT"/>
+                            <constraint firstItem="o3z-al-r7I" firstAttribute="top" secondItem="XQD-47-sHa" secondAttribute="bottom" constant="8" id="MN6-GO-HFn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YO5-53-D5P" secondAttribute="trailing" id="d0w-R5-WJn"/>
+                            <constraint firstItem="XQD-47-sHa" firstAttribute="top" secondItem="YO5-53-D5P" secondAttribute="bottom" constant="8" id="esf-a9-c0D"/>
+                            <constraint firstItem="YO5-53-D5P" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="20" id="mTv-VD-D5c"/>
+                            <constraint firstItem="XQD-47-sHa" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="p83-Zf-qrY"/>
+                            <constraint firstItem="o3z-al-r7I" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="uSg-A2-LDR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XQD-47-sHa" secondAttribute="trailing" id="vzE-Bd-LNu"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="147"/>
+                    <connections>
+                        <outlet property="bikesLabel" destination="o3z-al-r7I" id="oYs-e4-LL9"/>
+                        <outlet property="distanceLabel" destination="XQD-47-sHa" id="s01-D3-6Xj"/>
+                        <outlet property="stationNameLabel" destination="YO5-53-D5P" id="Ckw-ER-JFP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

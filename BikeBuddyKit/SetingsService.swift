@@ -27,9 +27,16 @@ public class SettingsService {
     private init() {
         defaults = UserDefaults(suiteName: Constants.SettingsGeneral.ShareGroupName)!
         
+        print(defaults.dictionaryRepresentation().keys)
+        print("TEST: " + self.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL))
+        
         checkForMigrationToShareGroup()
         checkForSettingsVersionMigration()
         setupDefaults()
+        
+        
+        
+        
     }
     
     /**
@@ -42,7 +49,6 @@ public class SettingsService {
         //Open up the basic defaults as a dictonary, loop through it and save it to the new Share Group
         if self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) == 0 {
             let allItems = UserDefaults.standard.dictionaryRepresentation()
-            print(allItems)
             
             for item in allItems {
                 self.saveSetting(key: item.key, value: item.value as AnyObject)
