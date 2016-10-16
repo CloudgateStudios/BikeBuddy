@@ -34,7 +34,7 @@ public class ProgressHUDService {
     /**
      Used to show the full screen popup. Will completely block the UI for the user.
      */
-    public func showHUD() {
+    func showHUD() {
         if !SVProgressHUD.isVisible() {
             SVProgressHUD.show(withStatus: self.statusMessage)
         }
@@ -43,7 +43,7 @@ public class ProgressHUDService {
     /**
      Dismiss the full screen popup from the screen. This must be called in order to return control back to the user.
      */
-    public func dismissHUD() {
+    func dismissHUD() {
         SVProgressHUD.dismiss()
     }
 }

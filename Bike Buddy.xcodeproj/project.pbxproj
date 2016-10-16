@@ -42,6 +42,8 @@
 		D14958041DB30CFC0038A615 /* BikeBuddyWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D14957F81DB30CFB0038A615 /* BikeBuddyWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D149580A1DB30EAC0038A615 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D149580B1DB317AE0038A615 /* CoreLocation.framework */; };
+		D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */; };
+		D149580F1DB3BAEA0038A615 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
@@ -51,8 +53,6 @@
 		D18F4B261D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B251D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift */; };
 		D18F4B281D92268C00972AF2 /* UIColor_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B271D92268C00972AF2 /* UIColor_BikeBuddyExt.swift */; };
 		D18F4B2A1D9226A100972AF2 /* UILabel_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B291D9226A100972AF2 /* UILabel_BikeBuddyExt.swift */; };
-		D18F4B2D1D92285400972AF2 /* ProgressHUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B2C1D92285400972AF2 /* ProgressHUDService.swift */; };
-		D18F4B2E1D9228B300972AF2 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
 		D18F4B311D92291600972AF2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
 		D18F4B331D922A9500972AF2 /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B321D922A9500972AF2 /* ThemeService.swift */; };
 		D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */; };
@@ -169,6 +169,7 @@
 		D14958011DB30CFC0038A615 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D14958091DB30E850038A615 /* BikeBuddyWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeBuddyWidget.entitlements; sourceTree = "<group>"; };
 		D149580B1DB317AE0038A615 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDService.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
 		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BikeBuddyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,7 +182,6 @@
 		D18F4B251D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		D18F4B271D92268C00972AF2 /* UIColor_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		D18F4B291D9226A100972AF2 /* UILabel_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel_BikeBuddyExt.swift; sourceTree = "<group>"; };
-		D18F4B2C1D92285400972AF2 /* ProgressHUDService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDService.swift; sourceTree = "<group>"; };
 		D18F4B321D922A9500972AF2 /* ThemeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
 		D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailTableViewController.swift; sourceTree = "<group>"; };
 		D1B6DD1A1C9EC3E3008543A3 /* Bike BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bike BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D149580F1DB3BAEA0038A615 /* SVProgressHUD.framework in Frameworks */,
 				D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */,
 				C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */,
 				D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */,
@@ -228,7 +229,6 @@
 				D1E509D31DAC8F36007D918A /* AlamofireObjectMapper.framework in Frameworks */,
 				D1E509D41DAC8F36007D918A /* ObjectMapper.framework in Frameworks */,
 				D18F4B311D92291600972AF2 /* SystemConfiguration.framework in Frameworks */,
-				D18F4B2E1D9228B300972AF2 /* SVProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */,
+				D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -408,7 +409,6 @@
 		D18F4B2B1D92283D00972AF2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D18F4B2C1D92285400972AF2 /* ProgressHUDService.swift */,
 				D18F4B321D922A9500972AF2 /* ThemeService.swift */,
 				D11DDDE31D988F7D00BBB480 /* SetingsService.swift */,
 				D11DDDE51D98901A00BBB480 /* StationsDataService.swift */,
@@ -757,6 +757,7 @@
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
 				C5C2158A1B0F782400FEB01C /* FTUSelectCityTableViewController.swift in Sources */,
 				D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */,
+				D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,7 +775,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D18F4B261D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift in Sources */,
-				D18F4B2D1D92285400972AF2 /* ProgressHUDService.swift in Sources */,
 				D11DDDE01D988EFE00BBB480 /* City.swift in Sources */,
 				D11DDDDE1D988E0300BBB480 /* Station.swift in Sources */,
 				D18F4B221D92261700972AF2 /* Constants.swift in Sources */,
