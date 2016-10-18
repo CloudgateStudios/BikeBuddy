@@ -69,7 +69,7 @@ platform :ios do
     build = get_build_number(xcodeproj: "Bike Buddy.xcodeproj")
 
     commit_version_bump(xcodeproj: "Bike Buddy.xcodeproj", message: "Version Bump to #{version}-#{build}")
-    add_git_tag tag: "#{version}-#{build}"
+    add_git_tag tag: "release/#{version}/#{build}"
     push_to_git_remote
   end
 

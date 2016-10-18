@@ -43,11 +43,11 @@ fastlane ios updateVersionNumber
 Update the version number of all items in the project
 
 Needs to be invoked with version:numberHere
-### ios sendBuildToAppStore
+### ios bumpAndArchive
 ```
-fastlane ios sendBuildToAppStore
+fastlane ios bumpAndArchive
 ```
-Submit a new build to the App Store
+Create a new archive so its ready for App Store Submission
 
 This action does the following:
 
@@ -58,8 +58,6 @@ This action does the following:
 - Build the app in 'Release' configuration
 
 - Update all certs and mobile provisioning
-
-- Upload to TestFlight (User needs to pull release trigger)
 
 - Commit the build number change, tag and push to git
 
