@@ -26,6 +26,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var bikesLabel: UILabel!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     //MARK: - View Lifecycle
     
@@ -65,8 +67,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                 responseObject, error in
                 
                 if responseObject.count == 0 {
-                    //completionHandler(NCUpdateResult.failed)
-                    self.endLoading(completionHandler: completionHandler, result: .failed)
+                    self.endLoading(completionHandler: completionHandler, result: .failed, errorString: "Couldn't get Station Data")
                 } else {
                     Stations.sharedInstance.list = responseObject
                     
@@ -75,14 +76,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                         
                         self.stationNameLabel.text = closestStations[0].stationName
                         self.distanceLabel.text = closestStations[0].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
-                        self.bikesLabel.text = NumberFormatter.localizedString(from: closestStations[0].availableBikes as NSNumber, number: .none)
-                        
-                        self.activitySpinner.stopAnimating()
-                        self.activitySpinner.isHidden = true
-                        
-                        completionHandler(NCUpdateResult.newData)
+                        self.bikesLabel.text = NumberFormatter.localizedString(from: closestStations[0].availableBikes as NSNumber, number: .none) + " " + NSLocalizedString("BikesAvailableLabel", comment: "")
+
+                        self.endLoading(completionHandler: completionHandler, result: .newData)
                     } else {
-                        completionHandler(NCUpdateResult.failed)
+                        self.endLoading(completionHandler: completionHandler, result: .failed, errorString: "Please open the application and allow location access.")
                     }
                     
                     
@@ -90,6 +88,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
             }
         } else {
             //At this point seems like we dont have a URL which means user did not do first time use
+            self.endLoading(completionHandler: completionHandler, result: .failed, errorString: "Please complete app setup before using")
         }
         
         
@@ -105,11 +104,28 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     private func startLoading() {
         self.activitySpinner.startAnimating()
         self.activitySpinner.isHidden = false
+        self.loadingLabel.isHidden = false
+        
+        self.stationNameLabel.isHidden = true
+        self.distanceLabel.isHidden = true
+        self.bikesLabel.isHidden = true
     }
     
-    private func endLoading(completionHandler: @escaping ((NCUpdateResult) -> Void), result: NCUpdateResult) {
+    private func endLoading(completionHandler: @escaping ((NCUpdateResult) -> Void), result: NCUpdateResult, errorString: String = "") {
         self.activitySpinner.stopAnimating()
         self.activitySpinner.isHidden = true
+        self.loadingLabel.isHidden = true
+        
+        switch result {
+        case .newData:
+            self.stationNameLabel.isHidden = false
+            self.distanceLabel.isHidden = false
+            self.bikesLabel.isHidden = false
+        case .failed, .noData:
+            self.errorLabel.text = errorString
+            self.errorLabel.isHidden = false
+        }
+        
         
         completionHandler(result)
     }
