@@ -28,7 +28,7 @@ class SettingsAboutTableViewController: UITableViewController {
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("SettingsAboutNavBarTitle", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "SettingsAboutNavBarTitle")
         appNameAndVersionBottomLabel.text = UIApplication.appName() + " " + UIApplication.versionBuild()
     }
 

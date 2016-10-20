@@ -30,7 +30,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("SettingsSelectNumOfClosestStationsNavBarTitle", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "SettingsSelectNumOfClosestStationsNavBarTitle")
     }
 
     // MARK: - Table View

@@ -43,7 +43,7 @@ class MapViewController: UIViewController {
     }
 
     func setupStrings() {
-        navBarItem.title = NSLocalizedString("MapNavBarTitle", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "MapNavBarTitle")
     }
 
     func refreshMapAnnotations() {
@@ -71,9 +71,9 @@ class MapViewController: UIViewController {
         if !mapView.isUserLocationVisible {
             AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped when Outside Map View")
             
-            let alert = UIAlertController(title: NSLocalizedString("MapUserOutsideViewPopupTitle", comment: ""), message: NSLocalizedString("MapUserOutsideViewPopupMessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-            let alertActionOK = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
-            let alertActionCancel = UIAlertAction(title: NSLocalizedString("GeneralButtonCancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            let alert = UIAlertController(title: StringsService.getStringFor(key: "MapUserOutsideViewPopupTitle"), message: StringsService.getStringFor(key: "MapUserOutsideViewPopupMessage"), preferredStyle: UIAlertControllerStyle.alert)
+            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
+            let alertActionCancel = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonCancel"), style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(alertActionOK)
             alert.addAction(alertActionCancel)
             present(alert, animated: true) { () -> Void in }
@@ -128,7 +128,7 @@ extension MapViewController: MKMapViewDelegate {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
-        updatedAtLabel.text = NSLocalizedString("MapUpdatedAtLabel", comment: "") + " " + dateFormatter.string(from: Stations.sharedInstance.lastUpdated as Date)
+        updatedAtLabel.text = StringsService.getStringFor(key: "MapUpdatedAtLabel") + " " + dateFormatter.string(from: Stations.sharedInstance.lastUpdated as Date)
     }
 
     func zoomMapToCurrentLocation() {

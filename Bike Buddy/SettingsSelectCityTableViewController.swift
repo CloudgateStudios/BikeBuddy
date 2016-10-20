@@ -56,7 +56,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("SettingsSelectCityNavBarTitle", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "SettingsSelectCityNavBarTitle")
     }
 
     // MARK: - Table View

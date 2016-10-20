@@ -29,8 +29,8 @@ class FTUFinishedViewController: UIViewController {
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("FTUFinishedNavBarTitle", comment: "")
-        getStartedButton.setTitle(NSLocalizedString("FTUFinishedButton", comment: ""), for: .normal)
+        navBarItem.title = StringsService.getStringFor(key: "FTUFinishedNavBarTitle")
+        getStartedButton.setTitle(StringsService.getStringFor(key: "FTUFinishedButton"), for: .normal)
     }
 
     //MARK: - User Interaction

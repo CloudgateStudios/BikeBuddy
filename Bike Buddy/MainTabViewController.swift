@@ -51,8 +51,8 @@ class MainTabViewController: UITabBarController {
                         refreshStationsData()
                     }
                 } else {
-                    let alert = UIAlertController(title: NSLocalizedString("GeneralNoNetworkConnectionMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoNetworkConnectionMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-                    let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in }
+                    let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageContent"), preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in }
                     alert.addAction(alertAction)
                     present(alert, animated: true) { () -> Void in }
                 }
@@ -62,15 +62,15 @@ class MainTabViewController: UITabBarController {
 
     private func setupStrings() {
         if let stationsTab = self.tabBar.items?[0] {
-            stationsTab.title = NSLocalizedString("StationsListTabBarItemLabel", comment: "")
+            stationsTab.title = StringsService.getStringFor(key: "StationsListTabBarItemLabel")
         }
 
         if let mapTab = self.tabBar.items?[1] {
-            mapTab.title = NSLocalizedString("MapTabBarItemLabel", comment: "")
+            mapTab.title = StringsService.getStringFor(key: "MapTabBarItemLabel")
         }
 
         if let settingsTab = self.tabBar.items?[2] {
-            settingsTab.title = NSLocalizedString("SettingsTabBarItemLabel", comment: "")
+            settingsTab.title = StringsService.getStringFor(key: "SettingsTabBarItemLabel")
         }
     }
 
@@ -83,8 +83,8 @@ class MainTabViewController: UITabBarController {
             responseObject, error in
 
             if responseObject.count == 0 {
-                let alert = UIAlertController(title: NSLocalizedString("GeneralNoStationsMessageTitle", comment: ""), message: NSLocalizedString("GeneralNoStationsMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-                let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in }
+                let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoStationsMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoStationsMessageContent"), preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in }
                 alert.addAction(alertAction)
                 self.present(alert, animated: true) { () -> Void in }
             } else {

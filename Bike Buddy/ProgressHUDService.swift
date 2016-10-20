@@ -8,11 +8,12 @@
 
 import Foundation
 import SVProgressHUD
+import BikeBuddyKit
 
 public class ProgressHUDService {
     
     private let maskType = SVProgressHUDMaskType.gradient
-    private let statusMessage = NSLocalizedString("MapLoadingPopupMessage", comment: "")
+    private let statusMessage = StringsService.getStringFor(key: "MapLoadingPopupMessage")
     
     /**
      The shared instanace that should be used to access all members of the service.

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BikeBuddyKit
 
 class StationTableViewCell: UITableViewCell {
     
@@ -20,8 +21,8 @@ class StationTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.bikesAvailableDescriptionLabel.text = NSLocalizedString("StationsListBikesAvailableLabel", comment: "")
-        self.openDocksDescriptionLabel.text = NSLocalizedString("StationsListDocksAvailableLabel", comment: "")
+        self.bikesAvailableDescriptionLabel.text = StringsService.getStringFor(key: "StationsListBikesAvailableLabel")
+        self.openDocksDescriptionLabel.text = StringsService.getStringFor(key: "StationsListDocksAvailableLabel")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

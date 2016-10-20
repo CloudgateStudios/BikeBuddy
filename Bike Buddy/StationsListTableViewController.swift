@@ -63,7 +63,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("StationsListNavBarTitle", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "StationsListNavBarTitle")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,7 +89,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.StationsList, for: indexPath as IndexPath) as? StationTableViewCell {
             
             cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
-            cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
+            cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel")
             cell.numberOfBikesLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableBikes as NSNumber, number: .none)
             cell.numberOfDocksLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableDocks as NSNumber, number: .none)
             
@@ -103,7 +103,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.StationListHeader) as? StationListSectionHeaderCell {
-            cell.headerLabel.text = NSLocalizedString("StationsListClosestStationsSectionHeader", comment: "")
+            cell.headerLabel.text = StringsService.getStringFor(key: "StationsListClosestStationsSectionHeader")
             
             return cell.contentView
         } else {

@@ -56,7 +56,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("SelectCityNavBarTitle", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "SelectCityNavBarTitle")
     }
 
     // MARK: - Table View

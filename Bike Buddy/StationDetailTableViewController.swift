@@ -44,13 +44,13 @@ class StationDetailTableViewController: UITableViewController {
 
     private func setupStrings() {
         stationNameLabel.text = stationObject.stationName
-        stationDistanceLabel.text = stationObject.approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
-        bikesAvailableLabel.text = NumberFormatter.localizedString(from: stationObject.availableBikes as NSNumber, number: .none) + " " + NSLocalizedString("StationDetailBikesAvailable", comment: "")
-        docksAvailableLabel.text = NumberFormatter.localizedString(from: stationObject.availableDocks as NSNumber, number: .none) + " " + NSLocalizedString("StationDetailDocksAvailable", comment: "")
+        stationDistanceLabel.text = stationObject.approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel")
+        bikesAvailableLabel.text = NumberFormatter.localizedString(from: stationObject.availableBikes as NSNumber, number: .none) + " " + StringsService.getStringFor(key: "StationDetailBikesAvailable")
+        docksAvailableLabel.text = NumberFormatter.localizedString(from: stationObject.availableDocks as NSNumber, number: .none) + " " + StringsService.getStringFor(key: "StationDetailDocksAvailable")
 
-        navBarItem.title = NSLocalizedString("StationDetailNavBarTitle", comment: "")
-        directionsToStationLabel.text = NSLocalizedString("StationDetailDirectionsButton", comment: "")
-        shareStationLabel.text = NSLocalizedString("StationDetailShareButton", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "StationDetailNavBarTitle")
+        directionsToStationLabel.text = StringsService.getStringFor(key: "StationDetailDirectionsButton")
+        shareStationLabel.text = StringsService.getStringFor(key: "StationDetailShareButton")
     }
 
     // MARK: - Table View

@@ -27,16 +27,9 @@ public class SettingsService {
     private init() {
         defaults = UserDefaults(suiteName: Constants.SettingsGeneral.ShareGroupName)!
         
-        print(defaults.dictionaryRepresentation().keys)
-        print("TEST: " + self.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL))
-        
         checkForMigrationToShareGroup()
         checkForSettingsVersionMigration()
         setupDefaults()
-        
-        
-        
-        
     }
     
     /**

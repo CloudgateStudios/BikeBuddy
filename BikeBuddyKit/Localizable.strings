@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  Bike Buddy
-
-  Created by Tom Arra on 7/21/15.
-  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
-*/
+/*
+ Localizable.strings
+ Bike Buddy
+ 
+ Created by Tom Arra on 7/21/15.
+ Copyright (c) 2015 Cloudgate Studios. All rights reserved.
+ */
 
 // MARK: - General Strings
 
@@ -180,3 +180,8 @@
 
 /* Used in the Map Annotation string for the number of open docks that are available */
 "StationModelAnnotationOpenDocks" = "Open Docks";
+
+// MARK: - Today Widget
+
+/* Label that follows the number of bikes that are available at the station */
+"TodayWidgetBikesAvailableLabel" = "Bikes Available";

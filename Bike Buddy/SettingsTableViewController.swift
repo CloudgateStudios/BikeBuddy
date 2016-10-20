@@ -49,12 +49,12 @@ class SettingsTableViewController: UITableViewController {
     private func setupStrings() {
         updateViewableStrings()
 
-        navBarItem.title = NSLocalizedString("SettingsNavBarTitle", comment: "")
-        serviceCityLabel.text = NSLocalizedString("SettingsServiceCity", comment: "")
-        serviceNumberOfClosestStationsLabel.text = NSLocalizedString("SettingsServiceNumberOfStations", comment: "")
-        generalAboutLabel.text = NSLocalizedString("SettingsGeneralAbout", comment: "")
-        generalTellYourFriendsLabel.text = NSLocalizedString("SettingsGeneralTellYourFriends", comment: "")
-        generalRateTheAppLabel.text = NSLocalizedString("SettingsGeneralRateApp", comment: "")
+        navBarItem.title = StringsService.getStringFor(key: "SettingsNavBarTitle")
+        serviceCityLabel.text = StringsService.getStringFor(key: "SettingsServiceCity")
+        serviceNumberOfClosestStationsLabel.text = StringsService.getStringFor(key: "SettingsServiceNumberOfStations")
+        generalAboutLabel.text = StringsService.getStringFor(key: "SettingsGeneralAbout")
+        generalTellYourFriendsLabel.text = StringsService.getStringFor(key: "SettingsGeneralTellYourFriends")
+        generalRateTheAppLabel.text = StringsService.getStringFor(key: "SettingsGeneralRateApp")
     }
 
     func updateViewableStrings() {
@@ -67,9 +67,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return NSLocalizedString("SettingsServiceGroup", comment: "")
+            return StringsService.getStringFor(key: "SettingsServiceGroup")
         case 1:
-            return NSLocalizedString("SettingsGeneralGroup", comment: "")
+            return StringsService.getStringFor(key: "SettingsGeneralGroup")
         default:
             return ""
         }
@@ -104,7 +104,7 @@ class SettingsTableViewController: UITableViewController {
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath, sender: UIView) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.ShareAppWithFriends)
         
-        let sharingMessage = NSLocalizedString("SettingsShareMessageContent", comment: "") + " " + Constants.ExtneralURL.AppStoreDeepLink
+        let sharingMessage = StringsService.getStringFor(key: "SettingsShareMessageContent") + " " + Constants.ExtneralURL.AppStoreDeepLink
 
         var sharingItems = [AnyObject]()
         sharingItems.append(sharingMessage as AnyObject)

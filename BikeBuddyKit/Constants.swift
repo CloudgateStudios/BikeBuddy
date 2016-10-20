@@ -9,6 +9,7 @@
 import Foundation
 
 public struct Constants {
+    // MARK: - Settings General
     public struct SettingsGeneral {
         public static let ShareGroupName = "group.com.cloudgatestudios.Bike-Buddy"
     }
@@ -141,5 +142,9 @@ public struct Constants {
     public struct NSErrorInfo {
         public static let DomainString = "BSBErrorDomain"
         public static let NetworkErrorCode = 60
+    }
+    
+    public struct BikeBuddyKit {
+        public static let BundleIdentifier = "com.cloudgatestudios.BikeBuddyKit"
     }
 }

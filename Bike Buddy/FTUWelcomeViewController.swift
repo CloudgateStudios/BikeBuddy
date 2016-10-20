@@ -30,8 +30,8 @@ class FTUWelcomeViewController: UIViewController {
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("GeneralAppName", comment: "")
-        welcomeMessageLabel.text = NSLocalizedString("WelcomeMessageContent", comment: "")
-        getStartedButton.setTitle(NSLocalizedString("WelcomeGetStartedButton", comment: ""), for: .normal)
+        navBarItem.title = StringsService.getStringFor(key: "GeneralAppName")
+        welcomeMessageLabel.text = StringsService.getStringFor(key: "WelcomeMessageContent")
+        getStartedButton.setTitle(StringsService.getStringFor(key: "WelcomeGetStartedButton"), for: .normal)
     }
 }

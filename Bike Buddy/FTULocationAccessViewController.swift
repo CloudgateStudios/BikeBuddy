@@ -36,9 +36,9 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     }
 
     private func setupStrings() {
-        navBarItem.title = NSLocalizedString("LocationAccessNavBarTitle", comment: "")
-        mainMessageLabel.text = NSLocalizedString("LocationAccessMessageContent", comment: "")
-        giveLocationAccessButton.setTitle(NSLocalizedString("LocationAccessButton", comment: ""), for: .normal)
+        navBarItem.title = StringsService.getStringFor(key: "LocationAccessNavBarTitle")
+        mainMessageLabel.text = StringsService.getStringFor(key: "LocationAccessMessageContent")
+        giveLocationAccessButton.setTitle(StringsService.getStringFor(key: "LocationAccessButton"), for: .normal)
     }
 
     //MARK: - User Interaction
@@ -76,9 +76,9 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     }
 
     private func showNoLocationAccessMessage() {
-        let alert = UIAlertController(title: NSLocalizedString("LocationAccessNotGrantedMessageTitle", comment: ""), message: NSLocalizedString("LocationAccessNotGrantedMessageContent", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: StringsService.getStringFor(key: "LocationAccessNotGrantedMessageTitle"), message: StringsService.getStringFor(key: "LocationAccessNotGrantedMessageContent"), preferredStyle: UIAlertControllerStyle.alert)
         
-        let alertAction = UIAlertAction(title: NSLocalizedString("GeneralButtonOK", comment: ""), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
+        let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
                 self.goToNextView()
         }
         

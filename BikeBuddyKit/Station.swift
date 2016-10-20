@@ -58,10 +58,10 @@ public class Station: NSObject, MKAnnotation, Mappable {
     
     public var shareStringDescription: String {
         get {
-            var returnString = NSLocalizedString("StationModelShareStationName", comment: "") + "\n" + stationName
+            var returnString = StringsService.getStringFor(key: "StationModelShareStationName") + "\n" + stationName
             
             if streetAddress != "" {
-                returnString += "\n\n" + NSLocalizedString("StationModelShareAddress", comment: "") + "\n" + streetAddress
+                returnString += "\n\n" + StringsService.getStringFor(key: "StationModelShareAddress") + "\n" + streetAddress
             }
             
             return returnString
@@ -77,7 +77,7 @@ public class Station: NSObject, MKAnnotation, Mappable {
     }
     
     public var subtitle: String? {
-        get { return NSLocalizedString("StationModelAnnotationBikes", comment: "") + ": \(availableBikes) " +  NSLocalizedString("StationModelAnnotationOpenDocks", comment: "") + ": \(availableDocks)" }
+        get { return StringsService.getStringFor(key: "StationModelAnnotationBikes") + ": \(availableBikes) " +  StringsService.getStringFor(key: "StationModelAnnotationOpenDocks") + ": \(availableDocks)" }
     }
     
     override init() {

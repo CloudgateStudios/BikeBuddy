@@ -54,7 +54,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         if activeDisplayMode == NCWidgetDisplayMode.compact {
             self.preferredContentSize = maxSize
         } else {
-            self.preferredContentSize = CGSize(width: 0, height: 200)
+            self.preferredContentSize = CGSize(width: 0, height: 220)
         }
     }
     
@@ -75,8 +75,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                         var closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
                         
                         self.stationNameLabel.text = closestStations[0].stationName
-                        self.distanceLabel.text = closestStations[0].approximateDistanceAwayFromUser + " " + NSLocalizedString("GeneralAwayLabel", comment: "")
-                        self.bikesLabel.text = NumberFormatter.localizedString(from: closestStations[0].availableBikes as NSNumber, number: .none) + " " + NSLocalizedString("BikesAvailableLabel", comment: "")
+                        self.distanceLabel.text = closestStations[0].approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel")
+                        self.bikesLabel.text = NumberFormatter.localizedString(from: closestStations[0].availableBikes as NSNumber, number: .none) + " " + StringsService.getStringFor(key: "TodayWidgetBikesAvailableLabel")
 
                         self.endLoading(completionHandler: completionHandler, result: .newData)
                     } else {
