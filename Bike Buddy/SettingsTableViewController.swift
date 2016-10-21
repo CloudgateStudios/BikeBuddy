@@ -98,7 +98,7 @@ class SettingsTableViewController: UITableViewController {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GoToAppStoreLink)
         
         let url = NSURL(string: Constants.ExtneralURL.AppStoreDeepLink)
-        UIApplication.shared.openURL(url! as URL)
+        UIApplication.shared.open(url! as URL, completionHandler: nil)
     }
 
     private func showTellYourFriendsActionSheet(indexPath: NSIndexPath, sender: UIView) {
