@@ -67,7 +67,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                 responseObject, error in
                 
                 if responseObject.count == 0 {
-                    self.endLoading(completionHandler: completionHandler, result: .failed, errorString: "Couldn't get Station Data")
+                    self.endLoading(completionHandler: completionHandler, result: .failed, errorString: StringsService.getStringFor(key: "TodayWidgetNoStationDataMessage"))
                 } else {
                     Stations.sharedInstance.list = responseObject
                     
@@ -80,25 +80,14 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
 
                         self.endLoading(completionHandler: completionHandler, result: .newData)
                     } else {
-                        self.endLoading(completionHandler: completionHandler, result: .failed, errorString: "Please open the application and allow location access.")
+                        self.endLoading(completionHandler: completionHandler, result: .failed, errorString: StringsService.getStringFor(key: "TodayWidgetAllowLocationAccessMessage"))
                     }
-                    
-                    
                 }
             }
         } else {
             //At this point seems like we dont have a URL which means user did not do first time use
-            self.endLoading(completionHandler: completionHandler, result: .failed, errorString: "Please complete app setup before using")
+            self.endLoading(completionHandler: completionHandler, result: .failed, errorString: StringsService.getStringFor(key: "TodayWidgetPleaseSetupAppMessage"))
         }
-        
-        
-
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        
-        
     }
     
     private func startLoading() {
@@ -125,7 +114,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
             self.errorLabel.text = errorString
             self.errorLabel.isHidden = false
         }
-        
         
         completionHandler(result)
     }

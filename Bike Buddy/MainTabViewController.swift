@@ -83,9 +83,12 @@ class MainTabViewController: UITabBarController {
             responseObject, error in
 
             if responseObject.count == 0 {
+                ProgressHUDService.sharedInstance.dismissHUD()
+                
                 let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoStationsMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoStationsMessageContent"), preferredStyle: UIAlertControllerStyle.alert)
                 let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in }
                 alert.addAction(alertAction)
+                
                 self.present(alert, animated: true) { () -> Void in }
             } else {
                 Stations.sharedInstance.list = responseObject

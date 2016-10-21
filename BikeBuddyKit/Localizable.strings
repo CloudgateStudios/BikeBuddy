@@ -184,4 +184,13 @@
 // MARK: - Today Widget
 
 /* Label that follows the number of bikes that are available at the station */
-"TodayWidgetBikesAvailableLabel" = "Bikes Available";
+"TodayWidgetBikesAvailableLabel" = "bikes available";
+
+/* Message shown in the widget when the data could not be loaded */
+"TodayWidgetNoStationDataMessage" = "Couldn't get Station Data";
+
+/* Message shown in the widget when the user has not given location access to the app yet. */
+"TodayWidgetAllowLocationAccessMessage" = "Please open the application and allow location access.";
+
+/* Message shown in the widget when the user has not completed first time use in the app yet. */
+"TodayWidgetPleaseSetupAppMessage" = "Please complete app setup before using";
