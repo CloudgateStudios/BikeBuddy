@@ -42,7 +42,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
 
         _ = SettingsService.sharedInstance
         
-        self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
+        //self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
         
         startLoading()
         getUserLocation()
@@ -50,13 +50,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     
     //MARK: - Widget Methods
     
-    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+    /*func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == NCWidgetDisplayMode.compact {
             self.preferredContentSize = maxSize
         } else {
             self.preferredContentSize = CGSize(width: 0, height: 220)
         }
-    }
+    }*/
     
     func widgetPerformUpdate(completionHandler: @escaping ((NCUpdateResult) -> Void)) {
         let apiUrl = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)
