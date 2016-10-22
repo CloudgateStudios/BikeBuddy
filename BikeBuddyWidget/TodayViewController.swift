@@ -34,7 +34,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         
-        Fabric.with([Answers.self, Crashlytics.self])
+        Fabric.with([Crashlytics.self])
     }
         
     override func viewDidLoad() {
