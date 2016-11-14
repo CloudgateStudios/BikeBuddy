@@ -16,7 +16,7 @@ class BikeBuddySnapshotTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         let app = XCUIApplication()
         app.launchEnvironment = ["UITest": "1"]
-        setupSnapshot(app)
+        setupSnapshot(app: app)
         app.launch()
     }
 
@@ -33,20 +33,13 @@ class BikeBuddySnapshotTests: XCTestCase {
 
         // Need to wait about 10 seconds for the map to fully load
         sleep(10)
-        snapshot("01BasicMap")
+        snapshot(name: "01BasicMap")
 
         tabBarsQuery.buttons["Stations List"].tap()
-        snapshot("02StationsList")
+        snapshot(name: "02StationsList")
 
         tabBarsQuery.buttons["Settings"].tap()
         app.tables.cells["SettingsCity"].tap()
-        snapshot("03SettingsCityList")
-
-        
-        
-        
-
+        snapshot(name: "03SettingsCityList")
     }
-    
-    
 }

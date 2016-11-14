@@ -49,7 +49,6 @@ class SettingsSelectCityTableViewController: UITableViewController {
             }
         }
 
-
         citiesArray.sort { (item1, item2) -> Bool in
             item1.name < item2.name
         }

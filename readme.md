@@ -8,10 +8,9 @@ A simple iOS app to get the nearest bike sharing stations to you. Works off of t
 ## Setup
 1. Install Homebrew
 1. Install Ruby and gems
-    * Best way so far for El Capitan is [here](http://railsapps.github.io/installrubyonrails-mac.html). Just don't do the Rails part
-1. Install stuff from Homebrew
-    * [xctool](https://github.com/facebook/xctool) ][Carthage](https://github.com/Carthage/Carthage) [SwiftLint](https://github.com/realm/SwiftLint)
-    * `brew update && brew install xctool && brew install carthage`
+    * `brew install ruby`
+1. Install Carthage
+    * [Carthage](https://github.com/Carthage/Carthage)
 1. Install SwiftLint
     * The version on Homebrew tends to be behind so get it from their [GitHub Releases Page](https://github.com/realm/SwiftLint/releases) instead. At this time 0.11.1 is the latest.
 1. Install stuff from gems
@@ -19,7 +18,7 @@ A simple iOS app to get the nearest bike sharing stations to you. Works off of t
     * `sudo gem install fastlane`
 1. Get the workspace ready
     * `fastlane ios setup`
-1. Open up the project file in Xcode 7.3
+1. Open up the project file in Xcode 8.0+
 
 ## Third Party Use
 * [Alamofire](https://github.com/Alamofire/Alamofire)

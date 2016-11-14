@@ -10,7 +10,7 @@ import UIKit
 import BikeBuddyKit
 
 class FTUFinishedViewController: UIViewController {
-    //MARK: _ View Outlets
+    //MARK: - View Outlets
 
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var navBarItem: UINavigationItem!

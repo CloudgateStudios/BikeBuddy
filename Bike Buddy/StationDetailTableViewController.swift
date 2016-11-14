@@ -71,7 +71,6 @@ class StationDetailTableViewController: UITableViewController {
         self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
-    
     //MARK: - User Actions
 
     private func userClickedOnDirectionsToStationButton() {
