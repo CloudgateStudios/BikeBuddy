@@ -1,1 +1,2 @@
+- Added a Today Widget to show the closest station to your current position.
 - Bug Fixes
