@@ -101,6 +101,12 @@
 /* Label prefix for what time the data was last updated at. Should be followed by a time */
 "MapUpdatedAtLabel" = "Updated at";
 
+/* Message box title for when the user's location is not known and they tapped on the go to current position button in the Map View. */
+"MapNoLocationFoundAlertTitle" = "Location Not Found";
+
+/* Message box message for when the user's location is not known and they tapped on the go to current position button in the Map View. */
+"MapNoLocationFoundAlertMessage" = "Please check that you enabled location access. This can be done from the iOS Settings application.";
+
 // MARK: - Station Detail
 
 /* Title in the nav bar for the Station Detail view */
