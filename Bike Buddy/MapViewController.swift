@@ -68,7 +68,7 @@ class MapViewController: UIViewController {
     @IBAction func currentPositionButtonTapped(_ sender: UIBarButtonItem) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped")
         
-        if !isCurrentUserLocationReal() {
+        if !mapView.userLocation.coordinate.isCurrentUserLocationReal() {
             let alert = UIAlertController(title: StringsService.getStringFor(key: "MapNoLocationFoundAlertTitle"), message: StringsService.getStringFor(key: "MapNoLocationFoundAlertMessage"), preferredStyle: UIAlertControllerStyle.alert)
             let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default)
             alert.addAction(alertActionOK)
@@ -145,16 +145,5 @@ extension MapViewController: MKMapViewDelegate {
         region.span.longitudeDelta = 0.05
 
         mapView?.setRegion(region, animated: true)
-    }
-    
-    /**
-     Check to see if the current location on the map is actually a user location. If the user did not grant access to location then the coordinate that comes back is going to be 0.0 which will put them out in the middle of the ocean. Last time I checked that's not useful at all.
-    */
-    func isCurrentUserLocationReal() -> Bool {
-        if mapView.userLocation.coordinate.latitude == 0.0 {
-            return false
-        } else {
-            return true
-        }
     }
 }
