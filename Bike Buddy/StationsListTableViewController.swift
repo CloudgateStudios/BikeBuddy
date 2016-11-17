@@ -92,10 +92,15 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.StationsList, for: indexPath as IndexPath) as? StationTableViewCell {
             
+            cell.distanceLabel.text = ""
+            
             cell.stationNameLabel.text = self.closestStations[indexPath.row].stationName
-            cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel")
             cell.numberOfBikesLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableBikes as NSNumber, number: .none)
             cell.numberOfDocksLabel.text = NumberFormatter.localizedString(from: self.closestStations[indexPath.row].availableDocks as NSNumber, number: .none)
+            
+            if usersCurrentLocation.isCurrentUserLocationReal() {
+                cell.distanceLabel.text = self.closestStations[indexPath.row].approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel")
+            }
             
             return cell
         } else {

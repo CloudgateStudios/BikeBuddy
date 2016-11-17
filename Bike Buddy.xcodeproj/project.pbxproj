@@ -47,6 +47,7 @@
 		D14958121DB3BD120038A615 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
 		D14958131DB3BD120038A615 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
 		D14C281B1DDD4174008D4DB4 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D14C281A1DDD4174008D4DB4 /* DZNEmptyDataSet.framework */; };
+		D14C281F1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14C281E1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift */; };
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
 		D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* StringsService.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
@@ -175,6 +176,7 @@
 		D149580B1DB317AE0038A615 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDService.swift; sourceTree = "<group>"; };
 		D14C281A1DDD4174008D4DB4 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
+		D14C281E1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2D_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D14D9C501DB839EC008D0656 /* StringsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsService.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				D18F4B251D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift */,
 				D18F4B271D92268C00972AF2 /* UIColor_BikeBuddyExt.swift */,
 				D18F4B291D9226A100972AF2 /* UILabel_BikeBuddyExt.swift */,
+				D14C281E1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift */,
 			);
 			name = "Class Extensions";
 			sourceTree = "<group>";
@@ -815,6 +818,7 @@
 				D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */,
 				D18F4B331D922A9500972AF2 /* ThemeService.swift in Sources */,
 				D11DDDDC1D988DE700BBB480 /* BixiAPIResponse.swift in Sources */,
+				D14C281F1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
