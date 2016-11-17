@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreLocation
+import DZNEmptyDataSet
 import BikeBuddyKit
 
-class StationsListTableViewController: UITableViewController, CLLocationManagerDelegate {
+class StationsListTableViewController: UITableViewController, CLLocationManagerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     // MARK: - View Outlets
 
     @IBOutlet weak var navBarItem: UINavigationItem!
@@ -53,6 +54,9 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         disableEmptyCellsInTableView()
 
         getUserLocation()
+        
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
     }
     
     func getUserLocation() {
@@ -78,7 +82,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.closestStations.count > 0 ? 1 : 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -144,5 +148,33 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
     func updateClosestStations() {
         self.closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
+    }
+    
+    // MARK: - Empty Data Set Delegates
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = StringsService.getStringFor(key: "StationsListNoDataTitle")
+        let attribs = [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
+            NSForegroundColorAttributeName: UIColor.darkGray
+        ]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = StringsService.getStringFor(key: "StationsListNoDataMessage")
+        
+        let para = NSMutableParagraphStyle()
+        para.lineBreakMode = NSLineBreakMode.byWordWrapping
+        para.alignment = NSTextAlignment.center
+        
+        let attribs = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 14),
+            NSForegroundColorAttributeName: UIColor.lightGray,
+            NSParagraphStyleAttributeName: para
+        ]
+        
+        return NSAttributedString(string: text, attributes: attribs)
     }
 }

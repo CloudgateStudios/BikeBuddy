@@ -69,7 +69,7 @@ class MapViewController: UIViewController {
         AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped")
         
         if !isCurrentUserLocationReal() {
-            let alert = UIAlertController(title: StringsService.getStringFor(key: "NoLocationFoundAlertTitle"), message: StringsService.getStringFor(key: "MapNoLocationFoundAlertMessage"), preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: StringsService.getStringFor(key: "MapNoLocationFoundAlertTitle"), message: StringsService.getStringFor(key: "MapNoLocationFoundAlertMessage"), preferredStyle: UIAlertControllerStyle.alert)
             let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default)
             alert.addAction(alertActionOK)
             present(alert, animated: true) { () -> Void in }

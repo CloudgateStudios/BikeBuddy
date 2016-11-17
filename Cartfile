@@ -1,3 +1,4 @@
 github "Alamofire/Alamofire" ~> 4.0
 github "tristanhimmelman/AlamofireObjectMapper" ~> 4.0
 github "TransitApp/SVProgressHUD" ~> 2.0.3
+github "dzenbot/DZNEmptyDataSet"

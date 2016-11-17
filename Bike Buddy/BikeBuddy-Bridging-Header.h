@@ -10,5 +10,6 @@
 #define Bike_Buddy_Bridging_Header_h
 
 @import SVProgressHUD;
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 #endif

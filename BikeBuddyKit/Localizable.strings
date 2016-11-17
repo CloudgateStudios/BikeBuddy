@@ -81,6 +81,12 @@
 /* Label that follows the number of docks that are available at the station */
 "StationsListDocksAvailableLabel" = "Docks Open";
 
+/* Message title shown to the user when the station data could not be loaded */
+"StationsListNoDataTitle" = "No Station Data";
+
+/* Message content shown to the user when the station data could not be loaded */
+"StationsListNoDataMessage" = "The station data could not be loaded. Please check your Internet connection and try again.";
+
 // MARK: - Map View
 
 /* Name of the tab bar item for the Map view */
