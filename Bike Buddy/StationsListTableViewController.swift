@@ -148,6 +148,12 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
             updateClosestStations()
         }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            getUserLocation()
+        }
+    }
 
     // MARK: - Stations Loading
 

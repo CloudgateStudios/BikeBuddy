@@ -62,12 +62,14 @@ public class StationsDataService {
         var returnData = [Station]()
         
         if fileNameParts.count == 2 {
+            //SOMETHING HERE SEEMS WRONG NOW THAT THIS IS IN A FRAMEWORK
             let path = Bundle.main.path(forResource: fileNameParts[0] as String, ofType: fileNameParts[1] as String)
             let possibleContent = try? String(contentsOfFile: path!, encoding:String.Encoding.utf8)
             
             if let data = possibleContent!.data(using: String.Encoding.utf8) {
-                let responseObject = Mapper<BixiAPIResponse>().map(JSONObject: data)
-                returnData = (responseObject?.stationBeanList)!
+                if let responseObject = Mapper<BixiAPIResponse>().map(JSONObject: data) {
+                    returnData = (responseObject.stationBeanList)!
+                }
             }
             
         }
