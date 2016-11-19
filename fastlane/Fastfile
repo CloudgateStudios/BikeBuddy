@@ -55,14 +55,14 @@ platform :ios do
   lane :bumpAndArchive do
     # Build
     increment_build_number
-    gym(scheme: "Bike Buddy", configuration: "Release", use_legacy_build_api: true)
+    gym(scheme: "Bike Buddy", configuration: "Release")
 
     # Get the right certs and profiles
-    cert
-    sigh(force: true)
+    # cert
+    # sigh(force: true)
 
     # Push to TestFlight
-    #testflight(skip_submission: true)
+    # testflight(skip_submission: true)
 
     # Commit Build Number Change
     version = get_version_number(xcodeproj: "Bike Buddy.xcodeproj")
