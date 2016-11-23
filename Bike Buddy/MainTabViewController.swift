@@ -79,7 +79,8 @@ class MainTabViewController: UITabBarController {
     func refreshStationsData() {
         ProgressHUDService.sharedInstance.showHUD()
 
-        StationsDataService.sharedInstance.getAllStationData(apiUrl: SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)) {
+        //StationsDataService.sharedInstance.getAllStationData(apiUrl: SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)) {
+        StationsDataService.sharedInstance.getAllStationData(apiUrl: "https://api.citybik.es/v2/networks/bubi") {
             responseObject, error in
 
             if responseObject.count == 0 {
@@ -99,9 +100,9 @@ class MainTabViewController: UITabBarController {
     //MARK: - UI Tests
 
     private func setupForUITests() {
-        Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile(fileName: "Divvy_API_Response.json")
+        /*Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile(fileName: "Divvy_API_Response.json")
 
         SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: "Chicago" as AnyObject)
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: "Divvy" as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: "Divvy" as AnyObject)*/
     }
 }

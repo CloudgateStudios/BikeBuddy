@@ -41,8 +41,8 @@ public class StationsDataService {
         var returnStations = [Station]()
         
         Alamofire.request(apiUrl, method: .get, parameters: nil)
-            .responseObject { (response: DataResponse<BixiAPIResponse>) in
-                if let testResponseResult = response.result.value?.stationBeanList {
+            .responseObject { (response: DataResponse<CityBikesNetworkDetailResponse>) in
+                if let testResponseResult = response.result.value?.network?.stations {
                     returnStations = testResponseResult
                 }
                 

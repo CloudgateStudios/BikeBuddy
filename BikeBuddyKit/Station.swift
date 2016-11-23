@@ -26,8 +26,6 @@ public class Station: NSObject, MKAnnotation, Mappable {
     public var statusValue: String = ""
     public var statusKey: Int = -1
     public var availableBikes: Int = -1
-    public var addressLineOne: String = ""
-    public var addressLineTwo: String = ""
     public var city: String = ""
     public var postalCode: String = ""
     public var location: String = ""
@@ -35,6 +33,8 @@ public class Station: NSObject, MKAnnotation, Mappable {
     public var testStation: Bool = false
     public var lastCommunicationTime: String = ""
     public var landMark: String = ""
+    public var timestamp: String = ""
+    public var extraInfo: StationExtra = StationExtra()
     
     public private(set) var distanceFromUser: Double = 0.0
     
@@ -52,7 +52,8 @@ public class Station: NSObject, MKAnnotation, Mappable {
     
     public var streetAddress: String {
         get {
-            return addressLineOne + " " + addressLineTwo
+            //return addressLineOne + " " + addressLineTwo
+            return extraInfo.address!
         }
     }
     
@@ -89,14 +90,13 @@ public class Station: NSObject, MKAnnotation, Mappable {
     
     public func mapping(map: Map) {
         id <- map["id"]
-        stationName <- map["stationName"]
+        availableBikes <- map["free_bikes"]
+        availableDocks <- map["empty_slots"]
+        stationName <- map["name"]
         latitude <- map["latitude"]
         longitude <- map["longitude"]
-        availableBikes <- map["availableBikes"]
-        availableDocks <- map["availableDocks"]
-        addressLineOne <- map["stAddress1"]
-        addressLineTwo <- map["stAddress2"]
-        
+        timestamp <- map["timestamp"]
+        extraInfo <- map["extra"]
     }
     
     public func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {
