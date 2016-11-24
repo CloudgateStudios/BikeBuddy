@@ -33,7 +33,7 @@ class FTUSelectCityTableViewController: UITableViewController {
 
         setupStrings()
         
-        ProgressHUDService.sharedInstance.showHUD()
+        ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
         
         NetworksDataService.sharedInstance.getAllStationData(apiUrl: "https://api.citybik.es/v2/networks") {
             responseObject, error in
@@ -67,6 +67,10 @@ class FTUSelectCityTableViewController: UITableViewController {
         cell.detailTextLabel?.text = networks[indexPath.row].location?.city
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: Constants.SegueNames.GoToFirstTimeUseFinished, sender: self)
     }
 
     // MARK: - Navigation

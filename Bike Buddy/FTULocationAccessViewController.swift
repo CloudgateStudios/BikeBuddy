@@ -72,7 +72,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     //MARK: - View Specific Functions
 
     private func goToNextView() {
-        self.performSegue(withIdentifier: Constants.SegueNames.GoToFirstTimeUseFinished, sender: self)
+        self.performSegue(withIdentifier: Constants.SegueNames.GoToFirstTimeUseNetworkSelect, sender: self)
     }
 
     private func showNoLocationAccessMessage() {

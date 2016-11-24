@@ -332,8 +332,8 @@
 			isa = PBXGroup;
 			children = (
 				D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */,
-				C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */,
 				C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */,
+				C5C215891B0F782400FEB01C /* FTUSelectCityTableViewController.swift */,
 				C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */,
 				C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */,
 				C516F0101B0CE80F00CF4468 /* MapViewController.swift */,

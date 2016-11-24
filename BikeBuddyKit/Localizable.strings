@@ -43,6 +43,8 @@
 /* Title in the nav bar when selecting city */
 "SelectCityNavBarTitle" = "Select City/Service";
 
+"SelectNetworkLoadingPopupMessage" = "Loading Available Networks";
+
 /* Title in the nav bar when asking for location access */
 "LocationAccessNavBarTitle" = "Location Access";
 

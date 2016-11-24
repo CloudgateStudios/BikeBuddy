@@ -12,7 +12,11 @@ import BikeBuddyKit
 class SettingsSelectCityTableViewController: UITableViewController {
     //MARK: - Class Variables
 
-    var citiesArray = [City]()
+    var networks = [Network]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     //MARK: - View Outlets
 
@@ -27,30 +31,15 @@ class SettingsSelectCityTableViewController: UITableViewController {
 
         setupStrings()
 
-        if let urlToCitiesPlist = Bundle.main.url(forResource: Constants.CitiesPlist.FileName, withExtension: "plist") {
-            if let citiesArrayFromFile = NSArray(contentsOf: urlToCitiesPlist) {
-                for city in citiesArrayFromFile {
-                    let newCity = City()
-
-                    if let name = (city as AnyObject).value(forKey: Constants.CitiesPlist.NameField) as? String {
-                        newCity.name = name
-                    }
-                    if let serviceName = (city as AnyObject).value(forKey:Constants.CitiesPlist.ServiceNameField) as? String {
-                        newCity.serviceName = serviceName
-                    }
-                    if let apiUrl = (city as AnyObject).value(forKey:Constants.CitiesPlist.APIURLField) as? String {
-                        newCity.apiUrl = apiUrl
-                    }
-
-                    if newCity.isValid() {
-                        citiesArray.append(newCity)
-                    }
-                }
-            }
-        }
-
-        citiesArray.sort { (item1, item2) -> Bool in
-            item1.name < item2.name
+        ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
+        
+        NetworksDataService.sharedInstance.getAllStationData(apiUrl: "https://api.citybik.es/v2/networks") {
+            responseObject, error in
+            
+            let temp = responseObject
+            self.networks = temp.sorted { $0.name! < $1.name! }
+            
+            ProgressHUDService.sharedInstance.dismissHUD()
         }
     }
 
@@ -65,14 +54,14 @@ class SettingsSelectCityTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return citiesArray.count
+        return networks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.SettingsCitySelect, for: indexPath as IndexPath)
         
-        cell.textLabel?.text = citiesArray[indexPath.row].name
-        cell.detailTextLabel?.text = citiesArray[indexPath.row].serviceName
+        cell.textLabel?.text = networks[indexPath.row].name
+        cell.detailTextLabel?.text = networks[indexPath.row].location?.city
         
         return cell
 
@@ -80,12 +69,14 @@ class SettingsSelectCityTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let oldCity = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceCityName)
-        let analyticAttr = [Constants.AnalyticEventDetail.OldCity: oldCity, Constants.AnalyticEventDetail.NewCity: citiesArray[indexPath.row].name]
+        let analyticAttr = [Constants.AnalyticEventDetail.OldCity: oldCity, Constants.AnalyticEventDetail.NewCity: networks[indexPath.row].name]
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.SelectNewCity, customAttributes: analyticAttr as [String : AnyObject])
         
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: citiesArray[indexPath.row].name as AnyObject)
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: citiesArray[indexPath.row].serviceName as AnyObject)
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceAPIURL, value: citiesArray[indexPath.row].apiUrl as AnyObject)
+        let builtAPIURL = "https://api.citybik.es" + networks[indexPath.row].href!
+        
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: networks[indexPath.row].location?.city as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: networks[indexPath.row].name as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceAPIURL, value: builtAPIURL as AnyObject)
         
         NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: self)
         

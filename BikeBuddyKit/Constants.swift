@@ -42,6 +42,7 @@ public struct Constants {
     
     // MARK: - Segue Names
     public struct SegueNames {
+        public static let GoToFirstTimeUseNetworkSelect = "GoToFTUNetworkSelect"
         public static let GoToFirstTimeUseFinished = "GoToFTUFinished"
         public static let ShowStationDetailFromMap = "ShowStationDetailFromMap"
         public static let ShowStationDetailFromStationList = "ShowStationDetailFromStationsList"

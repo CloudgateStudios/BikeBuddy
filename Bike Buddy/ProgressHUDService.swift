@@ -13,7 +13,7 @@ import BikeBuddyKit
 public class ProgressHUDService {
     
     private let maskType = SVProgressHUDMaskType.gradient
-    private let statusMessage = StringsService.getStringFor(key: "MapLoadingPopupMessage")
+    //private let statusMessage = StringsService.getStringFor(key: "MapLoadingPopupMessage")
     
     /**
      The shared instanace that should be used to access all members of the service.
@@ -35,9 +35,9 @@ public class ProgressHUDService {
     /**
      Used to show the full screen popup. Will completely block the UI for the user.
      */
-    func showHUD() {
+    func showHUD(statusMessage: String) {
         if !SVProgressHUD.isVisible() {
-            SVProgressHUD.show(withStatus: self.statusMessage)
+            SVProgressHUD.show(withStatus: statusMessage)
         }
     }
     
