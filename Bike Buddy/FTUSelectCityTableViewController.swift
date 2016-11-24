@@ -35,7 +35,7 @@ class FTUSelectCityTableViewController: UITableViewController {
         
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
         
-        NetworksDataService.sharedInstance.getAllStationData(apiUrl: "https://api.citybik.es/v2/networks") {
+        NetworksDataService.sharedInstance.getAllStationData(apiUrl: Constants.CityBikes.NetworksAPI) {
             responseObject, error in
             
             let temp = responseObject
@@ -64,7 +64,7 @@ class FTUSelectCityTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellResuseIdentifier.FirstTimeUseCity, for: indexPath as IndexPath)
         
         cell.textLabel?.text = networks[indexPath.row].name
-        cell.detailTextLabel?.text = networks[indexPath.row].location?.city
+        cell.detailTextLabel?.text = (networks[indexPath.row].location?.city)! + ", " + CountryCleanupService.sharedInstance.mapCountryCodeToString(countryCode: (networks[indexPath.row].location?.country)!)
         
         return cell
     }
@@ -77,7 +77,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPath = self.tableView.indexPathForSelectedRow!
         
-        let builtAPIURL = "https://api.citybik.es" + networks[indexPath.row].href!
+        let builtAPIURL = Constants.CityBikes.BaseAPIURL + networks[indexPath.row].href!
         
         SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: networks[indexPath.row].location?.city as AnyObject)
         SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: networks[indexPath.row].name as AnyObject)

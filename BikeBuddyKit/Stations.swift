@@ -35,7 +35,13 @@ public class Stations {
         if listCopy.count > 0 {
             listCopy.sort(by: { $0.distanceFromUser < $1.distanceFromUser })
             
-            let upperLimit = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) - 1
+            var upperLimit = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
+            if listCopy.count < upperLimit {
+                upperLimit = listCopy.count
+            }
+            
+            upperLimit = upperLimit - 1
+            
             for index in 0...upperLimit {
                 stationsToReturn.append(listCopy[index])
             }

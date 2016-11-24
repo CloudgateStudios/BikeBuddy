@@ -53,6 +53,7 @@ public struct Constants {
         public static let StationsList = "StationListCell"
         public static let StationListHeader = "StationListSectionHeaderCell"
         public static let SettingsCitySelect = "SettingsCitySelectCell"
+        public static let SettingsNetworkSelect = "SettingsNetworkSelectCell"
         public static let FirstTimeUseCity = "FTUCityServiceCell"
         public static let SettingsNumberOfClosestStations = "SettingsNumberOfClosestStationsCell"
         public static let SettingsTellYourFriends = "TellYourFriends"
@@ -90,6 +91,11 @@ public struct Constants {
         public static let NameField = "name"
         public static let ServiceNameField = "serviceName"
         public static let APIURLField = "apiUrl"
+    }
+    
+    public struct CityBikes {
+        public static let BaseAPIURL = "https://api.citybik.es"
+        public static let NetworksAPI = CityBikes.BaseAPIURL + "/v2/networks"
     }
     
     // MARK: - Privacy Policy File

@@ -57,6 +57,11 @@ public class SettingsService {
         if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 0 {
             self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 1 as AnyObject)
         }
+        //If were doing an upgrade to 1.3 we need to clear out settings and have the user do a setup again so they are ready for the new CityBikes API usage
+        if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 1 {
+            self.clearAllSettings()
+            self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 2 as AnyObject)
+        }
     }
     
     /**
