@@ -38,12 +38,11 @@ class FTUSelectCityTableViewController: UITableViewController {
         NetworksDataService.sharedInstance.getAllStationData(apiUrl: Constants.CityBikes.NetworksAPI) {
             responseObject, error in
             
-            let temp = responseObject
-            self.networks = temp.sorted { $0.name! < $1.name! }
+            Networks.sharedInstance.list = responseObject
+            self.networks = Networks.getSortedByName()
             
             ProgressHUDService.sharedInstance.dismissHUD()
         }
-
     }
 
     private func setupStrings() {

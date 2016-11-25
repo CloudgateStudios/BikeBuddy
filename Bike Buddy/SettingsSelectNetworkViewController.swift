@@ -42,11 +42,12 @@ class SettingsSelectNetworkViewController: UIViewController {
         NetworksDataService.sharedInstance.getAllStationData(apiUrl: Constants.CityBikes.NetworksAPI) {
             responseObject, error in
             
-            let temp = responseObject
-            self.networks = temp.sorted { $0.name! < $1.name! }
+            Networks.sharedInstance.list = responseObject
+            self.networks = Networks.getSortedByName()
             
             ProgressHUDService.sharedInstance.dismissHUD()
         }
+    
     }
     
     private func setupStrings() {
@@ -88,6 +89,10 @@ extension SettingsSelectNetworkViewController: UITableViewDelegate, UITableViewD
         
         _ = navigationController?.popViewController(animated: true)
     }
+    
+    /*func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return Networks.sharedInstance.indexListByCountry
+    }*/
 
 }
 
