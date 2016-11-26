@@ -98,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="965" y="268"/>
         </scene>
-        <!--Select City/Service-->
+        <!--Select Network-->
         <scene sceneID="JzN-Nl-Q3R">
             <objects>
-                <tableViewController id="box-K7-zqB" customClass="FTUSelectCityTableViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="box-K7-zqB" customClass="FTUSelectNetworkTableViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lEB-ss-feD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,7 +137,7 @@
                             <outlet property="delegate" destination="box-K7-zqB" id="R5v-pW-pHY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select City/Service" id="hGr-6O-kPA"/>
+                    <navigationItem key="navigationItem" title="Select Network" id="hGr-6O-kPA"/>
                     <connections>
                         <outlet property="navBarItem" destination="hGr-6O-kPA" id="chj-Nd-J9e"/>
                         <segue destination="vJd-cQ-7bo" kind="show" identifier="GoToFTUFinished" id="Yzl-Dj-ko3"/>

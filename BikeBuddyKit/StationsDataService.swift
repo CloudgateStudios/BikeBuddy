@@ -57,7 +57,8 @@ public class StationsDataService {
      
      - returns: An array of Station objects
      */
-    public func loadStationDataFromFile(fileName: String) -> [Station] {
+    //NEEDS TO BE RE-WRITTEN AFTER MOVING TO CITY BIKES API
+    /*public func loadStationDataFromFile(fileName: String) -> [Station] {
         var fileNameParts: [String] = fileName.components(separatedBy: ".")
         var returnData = [Station]()
         
@@ -75,5 +76,5 @@ public class StationsDataService {
         }
         
         return returnData
-    }
+    }*/
 }

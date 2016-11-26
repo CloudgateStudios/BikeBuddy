@@ -34,6 +34,13 @@ public class CountryCleanupService {
 
     }
     
+    /**
+     Takes a country short code and turns it into a full string of the countries name. This uses the built in platform API's so values returned will be localized to the locale of the devices settings.
+     
+     - parameter countryCode: The country code that needs to be turned into a string. Usually this is a two character string.
+     
+     - returns: A string of the full country name based on the locale settings of the device.
+    */
     public func mapCountryCodeToString(countryCode: String) -> String {
         if let countryString = self.countryMappingDictonary.value(forKey: countryCode) {
             if let temp = countryString as? String {

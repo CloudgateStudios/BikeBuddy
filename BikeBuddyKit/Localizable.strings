@@ -41,8 +41,9 @@
 "WelcomeGetStartedButton" = "Get Started";
 
 /* Title in the nav bar when selecting city */
-"SelectCityNavBarTitle" = "Select City/Service";
+"SelectNetworkNavBarTitle" = "Select Network";
 
+/* Text in UI popup when the list of networks is loading */
 "SelectNetworkLoadingPopupMessage" = "Loading Available Networks";
 
 /* Title in the nav bar when asking for location access */
@@ -143,8 +144,8 @@
 /* Setting group label for items specific to the bike service */
 "SettingsServiceGroup" = "Service";
 
-/* Setting label for the city that is currently selected */
-"SettingsServiceCity" = "City";
+/* Setting label for getting to the list of networks */
+"SettingsServiceNetwork" = "Network";
 
 /* Setting label for the number of closest stations to show in the Stations list view */
 "SettingsServiceNumberOfStations" = "Number of Closest Stations";
@@ -161,10 +162,13 @@
 /* Setting label for going to the App Store to rate the app */
 "SettingsGeneralRateApp" = "Rate Bike Buddy";
 
-// MARK: - Settings - Select City
+// MARK: - Settings - Select Network
 
 /* Title in the nav bar of the Settings - Select City view */
-"SettingsSelectCityNavBarTitle" = "Select City";
+"SettingsSelectNetworkNavBarTitle" = "Select Network";
+
+/* Placeholder text that is in the search bar before the user taps on the search bar */
+"SettingsSelectNetworkSearchBarPlaceholder" = "Search Networks";
 
 // MARK: - Settings - Select Number of Closest Stations
 
@@ -175,6 +179,12 @@
 
 /* Title in the nav bar of the Settings - About view */
 "SettingsAboutNavBarTitle" = "About";
+
+/* Message telling the user where the data is coming from */
+"SettingsAboutCityBikesLineOne" = "All data is sourced from CityBikes";
+
+/* Message telling the user where the data is coming from */
+"SettingsAboutCityBikesLineTwo" = "Go to https://www.citybik.es for more details";
 
 // MARK: - Settings - Sharing App
 

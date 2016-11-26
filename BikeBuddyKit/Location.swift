@@ -9,6 +9,11 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Represents a Location from the CityBikes API. This is usually found under a Network object.
+ 
+ :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
+ */
 public class Location: Mappable {
     public var city: String?
     public var country: String?

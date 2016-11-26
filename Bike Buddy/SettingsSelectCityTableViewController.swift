@@ -33,7 +33,7 @@ class SettingsSelectCityTableViewController: UITableViewController {
 
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
         
-        NetworksDataService.sharedInstance.getAllStationData(apiUrl: Constants.CityBikes.NetworksAPI) {
+        NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) {
             responseObject, error in
             
             let temp = responseObject

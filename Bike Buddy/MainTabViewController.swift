@@ -80,7 +80,6 @@ class MainTabViewController: UITabBarController {
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "MapLoadingPopupMessage"))
 
         StationsDataService.sharedInstance.getAllStationData(apiUrl: SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)) {
-        //StationsDataService.sharedInstance.getAllStationData(apiUrl: "https://api.citybik.es/v2/networks/bubi") {
             responseObject, error in
 
             if responseObject.count == 0 {

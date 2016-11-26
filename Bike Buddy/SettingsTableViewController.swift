@@ -14,10 +14,10 @@ import BikeBuddyKit
 class SettingsTableViewController: UITableViewController {
     //MARK: - View Outlets
 
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var networkLabel: UILabel!
     @IBOutlet weak var numberOfClosestStationsLabel: UILabel!
     @IBOutlet weak var navBarItem: UINavigationItem!
-    @IBOutlet weak var serviceCityLabel: UILabel!
+    @IBOutlet weak var serviceNetworkLabel: UILabel!
     @IBOutlet weak var serviceNumberOfClosestStationsLabel: UILabel!
     @IBOutlet weak var generalAboutLabel: UILabel!
     @IBOutlet weak var generalTellYourFriendsLabel: UILabel!
@@ -49,7 +49,7 @@ class SettingsTableViewController: UITableViewController {
         updateViewableStrings()
 
         navBarItem.title = StringsService.getStringFor(key: "SettingsNavBarTitle")
-        serviceCityLabel.text = StringsService.getStringFor(key: "SettingsServiceCity")
+        serviceNetworkLabel.text = StringsService.getStringFor(key: "SettingsServiceNetwork")
         serviceNumberOfClosestStationsLabel.text = StringsService.getStringFor(key: "SettingsServiceNumberOfStations")
         generalAboutLabel.text = StringsService.getStringFor(key: "SettingsGeneralAbout")
         generalTellYourFriendsLabel.text = StringsService.getStringFor(key: "SettingsGeneralTellYourFriends")
@@ -57,7 +57,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     func updateViewableStrings() {
-        cityLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceName)
+        networkLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceName)
         numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.NumberOfClosestStations)
     }
 

@@ -20,6 +20,7 @@ class SettingsSelectNetworkViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var navBarTitle: UINavigationItem!
     
     //MARK: - View Lifecycle
     
@@ -37,7 +38,7 @@ class SettingsSelectNetworkViewController: UIViewController {
         
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
         
-        NetworksDataService.sharedInstance.getAllStationData(apiUrl: Constants.CityBikes.NetworksAPI) {
+        NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) {
             responseObject, error in
             
             Networks.sharedInstance.list = responseObject
@@ -49,9 +50,12 @@ class SettingsSelectNetworkViewController: UIViewController {
     }
     
     private func setupStrings() {
-        //navBarItem.title = StringsService.getStringFor(key: "SettingsSelectCityNavBarTitle")
+        navBarTitle.title = StringsService.getStringFor(key: "SettingsSelectNetworkNavBarTitle")
+        searchBar.placeholder = StringsService.getStringFor(key: "SettingsSelectNetworkSearchBarPlaceholder")
     }
 }
+
+//MARK: - Table View
 
 extension SettingsSelectNetworkViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,6 +97,8 @@ extension SettingsSelectNetworkViewController: UITableViewDelegate, UITableViewD
     }*/
 
 }
+
+//MARK: - Search Bar
 
 extension SettingsSelectNetworkViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

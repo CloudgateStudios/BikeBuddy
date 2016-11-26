@@ -34,6 +34,7 @@ class FTUFinishedViewController: UIViewController {
     }
 
     //MARK: - User Interaction
+    
     @IBAction func getStartedButtonClicked(_ sender: UIButton) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.FTUCompleted)
         

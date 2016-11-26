@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import BikeBuddyKit
 
-class FTUSelectCityTableViewController: UITableViewController {
+class FTUSelectNetworkTableViewController: UITableViewController {
     //MARK: - Class Variables
 
     var networks = [Network]() {
@@ -24,6 +24,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     @IBOutlet weak var navBarItem: UINavigationItem!
 
     //MARK: - View Lifecycle
+    
     required init!(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -35,7 +36,7 @@ class FTUSelectCityTableViewController: UITableViewController {
         
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
         
-        NetworksDataService.sharedInstance.getAllStationData(apiUrl: Constants.CityBikes.NetworksAPI) {
+        NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) {
             responseObject, error in
             
             Networks.sharedInstance.list = responseObject
@@ -46,7 +47,7 @@ class FTUSelectCityTableViewController: UITableViewController {
     }
 
     private func setupStrings() {
-        navBarItem.title = StringsService.getStringFor(key: "SelectCityNavBarTitle")
+        navBarItem.title = StringsService.getStringFor(key: "SelectNetworkNavBarTitle")
     }
 
     // MARK: - Table View

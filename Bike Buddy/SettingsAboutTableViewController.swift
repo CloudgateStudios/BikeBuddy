@@ -16,6 +16,8 @@ class SettingsAboutTableViewController: UITableViewController {
 
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var appNameAndVersionBottomLabel: UILabel!
+    @IBOutlet weak var cityBikesLineOneLabel: UILabel!
+    @IBOutlet weak var cityBikesLineTwoLabel: UILabel!
 
     // MARK: - Lifecycle
 
@@ -30,6 +32,8 @@ class SettingsAboutTableViewController: UITableViewController {
     private func setupStrings() {
         navBarItem.title = StringsService.getStringFor(key: "SettingsAboutNavBarTitle")
         appNameAndVersionBottomLabel.text = UIApplication.appName() + " " + UIApplication.versionBuild()
+        cityBikesLineOneLabel.text = StringsService.getStringFor(key: "SettingsAboutCityBikesLineOne")
+        cityBikesLineTwoLabel.text = StringsService.getStringFor(key: "SettingsAboutCityBikesLineTwo")
     }
 
     // MARK: - Table View

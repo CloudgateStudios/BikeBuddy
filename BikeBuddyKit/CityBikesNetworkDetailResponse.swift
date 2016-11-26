@@ -9,6 +9,11 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Represents a response from the CityBikes API call for details about a network.
+ 
+ :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
+ */
 public class CityBikesNetworkDetailResponse: Mappable {
     public var network: Network?
     

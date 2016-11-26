@@ -9,6 +9,11 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Represents a extra data about a Station object. This conforms to the CityBikes API.
+ 
+ :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
+ */
 public class StationExtra: Mappable {
     public var address: String?
     public var lastUpdated: Double?

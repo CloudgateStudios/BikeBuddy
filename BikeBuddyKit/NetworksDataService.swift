@@ -24,20 +24,18 @@ public class NetworksDataService {
     }
     
     /**
-     **Should not be used. Call StationsDataService.sharedInstance instead.**
+     **Should not be used. Call NetworksDataService.sharedInstance instead.**
      */
     private init() {
     }
     
     /**
-     Go get all the station data for the given API and return it as an array of Station objects
+     Go get all the network data for the given API and return it as an array of Network objects
      
-     - parameter apiUrl: The URL to the API to call. The API should return data in the format found in Supporting Files/Divvy_API_Response.json
-     - parameter completionHandler: The closure to call when the response is received. Takes 2 parameters, responseObject as an Array of Station objects and an error as NSError
-     
-     - returns: No return. Just putting in a return placeholder so SwiftLint doesn't error out.  See https://github.com/realm/SwiftLint/issues/267 for more.
+     - parameter apiUrl: The URL to the API to call. The API should return data in the format found in Supporting Files/CityBikes_Networks_API_Response.json
+     - parameter completionHandler: The closure to call when the response is received. Takes 2 parameters, responseObject as an Array of Network objects and an error as NSError
      */
-    public func getAllStationData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Network], _ error: NSError?) -> ()) {
+    public func getAllNetworkData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Network], _ error: NSError?) -> ()) {
         var returnNetworks = [Network]()
         
         Alamofire.request(apiUrl, method: .get, parameters: nil)

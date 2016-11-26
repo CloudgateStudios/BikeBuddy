@@ -9,6 +9,11 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Represents a Network from the CityBikes API.
+ 
+ :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
+ */
 public class Network: Mappable {
     public var company: Array<String>?
     public var gbfsHref: String?

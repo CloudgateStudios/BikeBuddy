@@ -20,19 +20,9 @@ public class Station: NSObject, MKAnnotation, Mappable {
     public var id: Int = -1
     public var stationName: String = ""
     public var availableDocks: Int = -1
-    public var totalDocks: Int = -1
     public var latitude: Double = 0.0
     public var longitude: Double = 0.0
-    public var statusValue: String = ""
-    public var statusKey: Int = -1
     public var availableBikes: Int = -1
-    public var city: String = ""
-    public var postalCode: String = ""
-    public var location: String = ""
-    public var altitude: String = ""
-    public var testStation: Bool = false
-    public var lastCommunicationTime: String = ""
-    public var landMark: String = ""
     public var timestamp: String = ""
     public var extraInfo: StationExtra = StationExtra()
     
@@ -52,7 +42,6 @@ public class Station: NSObject, MKAnnotation, Mappable {
     
     public var streetAddress: String {
         get {
-            //return addressLineOne + " " + addressLineTwo
             return extraInfo.address!
         }
     }
