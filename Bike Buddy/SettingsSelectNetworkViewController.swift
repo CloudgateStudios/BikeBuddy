@@ -18,8 +18,6 @@ class SettingsSelectNetworkViewController: UIViewController {
         }
     }
     
-    var filtered = [Network]()
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -43,7 +41,7 @@ class SettingsSelectNetworkViewController: UIViewController {
             responseObject, error in
             
             Networks.sharedInstance.list = responseObject
-            self.networks = Networks.getSortedByName()
+            self.networks = Networks.getSortedByNetworkName()
             
             ProgressHUDService.sharedInstance.dismissHUD()
         }
@@ -98,6 +96,10 @@ extension SettingsSelectNetworkViewController: UITableViewDelegate, UITableViewD
 
 extension SettingsSelectNetworkViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        self.networks = Networks.searchThroughList(searchText: searchText)
+        
+        if searchText.characters.count == 0 {
+            self.networks = Networks.getSortedByNetworkName()
+        }
     }
 }
