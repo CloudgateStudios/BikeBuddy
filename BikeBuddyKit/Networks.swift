@@ -14,18 +14,20 @@ public class Networks {
     public var list = [Network]() {
         didSet {
             self.lastUpdated = NSDate()
-            setupNetworkIndex()
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsListUpdated), object: self)
+
+            setupNetworksBySection()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.NetworksListUpdated), object: self)
         }
     }
     
     public private(set) var indexListByNetwork = [String]()
     public private(set) var lastUpdated = NSDate()
+    public private(set) var networksBySection = [(key: String, value: [Network])]()
     
     private init() {
     }
     
-    private func setupNetworkIndex() {
+    /*private func setupNetworkIndex() {
         var networkIndexArray = [String]()
         
         for item in self.list {
@@ -39,8 +41,31 @@ public class Networks {
         }
         
         self.indexListByNetwork = networkIndexArray.sorted()
-    }
+    }*/
     
+    private func setupNetworksBySection() {
+        var bySectionWorkingCopy = [String: [Network]]()
+        let sortedNetworkList = self.list.sorted { $0.name! < $1.name! }
+        
+        for item in sortedNetworkList {
+            if let networkName = item.name {
+                let firstLetter = String(networkName[networkName.startIndex]).uppercased()
+                
+                if bySectionWorkingCopy[firstLetter] != nil {
+                    var currentItemsInSection = bySectionWorkingCopy[firstLetter]
+                    currentItemsInSection?.append(item)
+                    bySectionWorkingCopy[firstLetter] = currentItemsInSection
+                } else {
+                    bySectionWorkingCopy[firstLetter] = [item]
+                }
+
+            }
+        }
+        
+        let workingcopy = bySectionWorkingCopy.sorted { $0.key < $1.key }
+        self.networksBySection = workingcopy
+    }
+ 
     public class func getSortedByNetworkName() -> [Network] {
         var nameSortedArray = [Network]()
             
@@ -63,5 +88,9 @@ public class Networks {
         }
 
         return returnArray.sorted { $0.name! < $1.name! }
+    }
+    
+    public class func getNetworksBySection() {
+        
     }
 }

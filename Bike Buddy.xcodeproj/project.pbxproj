@@ -16,7 +16,6 @@
 		C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516F0101B0CE80F00CF4468 /* MapViewController.swift */; };
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
 		C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */; };
-		C5C2158A1B0F782400FEB01C /* FTUSelectNetworkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C215891B0F782400FEB01C /* FTUSelectNetworkTableViewController.swift */; };
 		C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */; };
 		C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */; };
 		C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */; };
@@ -27,7 +26,6 @@
 		D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE31D988F7D00BBB480 /* SetingsService.swift */; };
 		D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE51D98901A00BBB480 /* StationsDataService.swift */; };
 		D11DDDE91D98906700BBB480 /* StationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE81D98906700BBB480 /* StationTests.swift */; };
-		D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */; };
 		D1341E231C9DE190008F9343 /* SettingsAboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */; };
 		D146DE6D1C9F40CD00083A9C /* PrivacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */; };
 		D146DE6F1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */; };
@@ -67,6 +65,7 @@
 		D1920CE51DE75E42003FBCB4 /* SettingsSelectNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CE41DE75E42003FBCB4 /* SettingsSelectNetworkViewController.swift */; };
 		D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CE61DE871C0003FBCB4 /* Networks.swift */; };
 		D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */; };
+		D19FEA521DED0C2B00EA198B /* FTUSelectNetworkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19FEA511DED0C2B00EA198B /* FTUSelectNetworkTableViewController.swift */; };
 		D1B6DD1D1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */; };
 		D1B6DD261C9EC436008543A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */; };
 		D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */; };
@@ -153,7 +152,6 @@
 		C5721B4B1B5A7A58009C5EFF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C5721B4C1B5A7A58009C5EFF /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FirstTimeUse.storyboard; sourceTree = "<group>"; };
-		C5C215891B0F782400FEB01C /* FTUSelectNetworkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUSelectNetworkTableViewController.swift; sourceTree = "<group>"; };
 		C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTULocationAccessViewController.swift; sourceTree = "<group>"; };
 		C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUFinishedViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 		D11DDDE31D988F7D00BBB480 /* SetingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingsService.swift; sourceTree = "<group>"; };
 		D11DDDE51D98901A00BBB480 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		D11DDDE81D98906700BBB480 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
-		D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSelectCityTableViewController.swift; sourceTree = "<group>"; };
 		D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutTableViewController.swift; sourceTree = "<group>"; };
 		D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PrivacyPolicy.txt; sourceTree = "<group>"; };
 		D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutPrivacyPolicyTableViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +202,7 @@
 		D1920CE41DE75E42003FBCB4 /* SettingsSelectNetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSelectNetworkViewController.swift; sourceTree = "<group>"; };
 		D1920CE61DE871C0003FBCB4 /* Networks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networks.swift; sourceTree = "<group>"; };
 		D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailTableViewController.swift; sourceTree = "<group>"; };
+		D19FEA511DED0C2B00EA198B /* FTUSelectNetworkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUSelectNetworkTableViewController.swift; sourceTree = "<group>"; };
 		D1B6DD1A1C9EC3E3008543A3 /* Bike BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bike BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddySnapshotTests.swift; sourceTree = "<group>"; };
 		D1B6DD1E1C9EC3E3008543A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -331,14 +329,13 @@
 			children = (
 				D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */,
 				C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */,
-				C5C215891B0F782400FEB01C /* FTUSelectNetworkTableViewController.swift */,
+				D19FEA511DED0C2B00EA198B /* FTUSelectNetworkTableViewController.swift */,
 				C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */,
 				C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */,
 				C516F0101B0CE80F00CF4468 /* MapViewController.swift */,
 				C516F00E1B0CE7EB00CF4468 /* StationsListTableViewController.swift */,
 				D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */,
 				C516F00C1B0CE79100CF4468 /* SettingsTableViewController.swift */,
-				D12DA3931B13884300C40E64 /* SettingsSelectCityTableViewController.swift */,
 				D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */,
 				D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */,
 				D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */,
@@ -813,11 +810,10 @@
 				C516EFEB1B0CE6CB00CF4468 /* AppDelegate.swift in Sources */,
 				C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */,
 				C516F00F1B0CE7EB00CF4468 /* StationsListTableViewController.swift in Sources */,
+				D19FEA521DED0C2B00EA198B /* FTUSelectNetworkTableViewController.swift in Sources */,
 				D111F4631CD99453003F3609 /* StationTableViewCell.swift in Sources */,
-				D12DA3941B13884300C40E64 /* SettingsSelectCityTableViewController.swift in Sources */,
 				C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */,
 				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
-				C5C2158A1B0F782400FEB01C /* FTUSelectNetworkTableViewController.swift in Sources */,
 				D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */,
 				D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */,
 				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,

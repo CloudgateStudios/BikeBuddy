@@ -54,7 +54,7 @@ public struct Constants {
         public static let StationListHeader = "StationListSectionHeaderCell"
         public static let SettingsCitySelect = "SettingsCitySelectCell"
         public static let SettingsNetworkSelect = "SettingsNetworkSelectCell"
-        public static let FirstTimeUseCity = "FTUCityServiceCell"
+        public static let FTUNetworkSelect = "FTUNetworkSelectCell"
         public static let SettingsNumberOfClosestStations = "SettingsNumberOfClosestStationsCell"
         public static let SettingsTellYourFriends = "TellYourFriends"
         public static let SettingsRateApp = "RateBikeBuddy"
@@ -83,6 +83,7 @@ public struct Constants {
         public static let NumberOfClosestStationsUpdated = "NumberOfClosestStationsUpdated"
         public static let StationsDataIsStale = "StationDataIsStale"
         public static let AppCameBackToForeground = "AppCameBackToForeground"
+        public static let NetworksListUpdated = "NetworksLIstUpdated"
     }
     
     // MARK: - Cities Plist
