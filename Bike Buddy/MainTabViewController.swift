@@ -19,12 +19,14 @@ class MainTabViewController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NSNotification.Name(Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MainTabViewController.refreshStationsData), name: NSNotification.Name(Constants.NotificationCenterEvent.StationsDataIsStale), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTabViewController.startFirstTimeUse), name: NSNotification.Name(Constants.NotificationCenterEvent.StartFirstTimeUse), object: nil)
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.FirstTimeUseCompleted), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.NewCitySelected), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.StationsDataIsStale), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Constants.NotificationCenterEvent.StartFirstTimeUse), object: nil)
     }
 
     override func viewDidLoad() {
@@ -37,14 +39,8 @@ class MainTabViewController: UITabBarController {
         if UIApplication.isUITest() {
             setupForUITests()
         } else {
-
             if !SettingsService.sharedInstance.getSettingAsBool(key: Constants.SettingsKey.FirstTimeUseCompleted) {
-                let storyboard: UIStoryboard = UIStoryboard(name: Constants.ViewNames.FirstTimeUseStoryboard, bundle: nil)
-                if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
-                    firstVC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-
-                    present(firstVC, animated: true, completion: nil)
-                }
+                startFirstTimeUse()
             } else {
                 if UIApplication.isConnectedToNetwork() {
                     if Stations.sharedInstance.list.count == 0 {
@@ -71,6 +67,15 @@ class MainTabViewController: UITabBarController {
 
         if let settingsTab = self.tabBar.items?[2] {
             settingsTab.title = StringsService.getStringFor(key: "SettingsTabBarItemLabel")
+        }
+    }
+    
+    public func startFirstTimeUse() {
+        let storyboard: UIStoryboard = UIStoryboard(name: Constants.ViewNames.FirstTimeUseStoryboard, bundle: nil)
+        if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
+            firstVC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+            
+            present(firstVC, animated: true, completion: nil)
         }
     }
 

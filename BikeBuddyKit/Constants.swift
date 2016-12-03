@@ -84,6 +84,7 @@ public struct Constants {
         public static let StationsDataIsStale = "StationDataIsStale"
         public static let AppCameBackToForeground = "AppCameBackToForeground"
         public static let NetworksListUpdated = "NetworksLIstUpdated"
+        public static let StartFirstTimeUse = "StartFirstTimeUse"
     }
     
     // MARK: - Cities Plist

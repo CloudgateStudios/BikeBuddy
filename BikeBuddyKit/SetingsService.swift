@@ -61,6 +61,8 @@ public class SettingsService {
         if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 1 {
             self.clearAllSettings()
             self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 2 as AnyObject)
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StartFirstTimeUse), object: self)
         }
     }
     
