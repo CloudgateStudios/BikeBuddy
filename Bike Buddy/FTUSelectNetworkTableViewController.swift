@@ -62,8 +62,8 @@ class FTUSelectNetworkViewController: UIViewController {
     }
     
     private func setupStrings() {
-        navBarTitle.title = StringsService.getStringFor(key: "SettingsSelectNetworkNavBarTitle")
-        searchBar.placeholder = StringsService.getStringFor(key: "SettingsSelectNetworkSearchBarPlaceholder")
+        navBarTitle.title = StringsService.getStringFor(key: "SelectNetworkNavBarTitle")
+        searchBar.placeholder = StringsService.getStringFor(key: "SelectNetworkSearchBarPlaceholder")
     }
     
     public func reloadSortedNetworksDataIntoTable() {

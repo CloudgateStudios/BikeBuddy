@@ -585,7 +585,7 @@
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Search Networks" translatesAutoresizingMaskIntoConstraints="NO" id="kU0-XM-8FO">
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

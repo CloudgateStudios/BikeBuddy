@@ -43,6 +43,9 @@
 /* Title in the nav bar when selecting city */
 "SelectNetworkNavBarTitle" = "Select Network";
 
+/* Placeholder text that is in the search bar before the user taps on the search bar */
+"SelectNetworkSearchBarPlaceholder" = "Search Networks";
+
 /* Text in UI popup when the list of networks is loading */
 "SelectNetworkLoadingPopupMessage" = "Loading Available Networks";
 

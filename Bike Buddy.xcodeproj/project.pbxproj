@@ -336,10 +336,10 @@
 				C516F00E1B0CE7EB00CF4468 /* StationsListTableViewController.swift */,
 				D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */,
 				C516F00C1B0CE79100CF4468 /* SettingsTableViewController.swift */,
+				D1920CE41DE75E42003FBCB4 /* SettingsSelectNetworkViewController.swift */,
 				D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */,
 				D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */,
 				D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */,
-				D1920CE41DE75E42003FBCB4 /* SettingsSelectNetworkViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
