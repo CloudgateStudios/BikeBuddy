@@ -1,2 +1,4 @@
-- Added a Today Widget to show the closest station to your current position.
-- Bug Fixes
+Please Note: In order to add in support for many new networks you will need to complete the setup process again. Sorry for the inconvencience.
+
+- Added support for over 450 new networks across 45 different countries
+- Bug fixes
