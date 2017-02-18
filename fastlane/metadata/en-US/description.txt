@@ -1,9 +1,50 @@
-Quickly find bike sharing stations in cities across North America. With support for 6 cities you only need one application instead of one per city.
+Quickly find bike sharing stations in cities across the world. With support for 458 networks across 45 countries you will only need one application for all your bike sharing needs.
 
-Bike Share Buddy supports the following services(cities):
-- Bike Chattanooga (Chattanooga, TN)
-- Divvy (Chicago, IL)
-- CoGo (Columbus, OH)
-- Citi Bike (New York City, NY)
-- Bay Area Bike Share (San Francisco, CA)
-- Bike Share Toronto (Toronto, Ontario Canada)
+Currently Bike Share Buddy has support for networks in the following countries:
+
+- Argentina
+- Austria
+- Australia
+- Belgium
+- Bulgaria
+- Brazil
+- Canada
+- Chile
+- Colombia
+- Croatia
+- Cyprus
+- Denmark
+- Finland
+- France
+- Georgia
+- Germany
+- Greece
+- Hungary
+- Ireland
+- Italy
+- Japan
+- Kazakhstan
+- Lithuania
+- Luxembourg
+- Latvia
+- Mexico
+- Netherlands
+- New Zealand
+- Norway
+- Poland
+- Romania
+- Russia
+- Saudi Arabia
+- Slovenia
+- Spain
+- Sweden
+- Switzerland
+- Thailand
+- Turkey
+- Taiwan
+- United Arab Emirates
+- United States
+- United Kingdom
+- Uruguay
+
+Please note that not all networks in all countries listed may be supported. 
