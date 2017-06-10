@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -339,10 +339,6 @@
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController storyboardIdentifier="MapView" id="8rJ-Kc-sve" customClass="MapViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -360,13 +356,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="F8u-L6-G2C" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="AlY-FB-sUz"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="F8u-L6-G2C" secondAttribute="bottom" id="DIY-z8-BXU"/>
+                            <constraint firstItem="uOf-HH-29R" firstAttribute="bottom" secondItem="F8u-L6-G2C" secondAttribute="bottom" id="DIY-z8-BXU"/>
                             <constraint firstItem="EqA-Kw-XcK" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-8" id="M3E-Dr-8vx"/>
-                            <constraint firstAttribute="trailing" secondItem="F8u-L6-G2C" secondAttribute="trailing" id="TAx-3w-qO4"/>
+                            <constraint firstItem="uOf-HH-29R" firstAttribute="trailing" secondItem="F8u-L6-G2C" secondAttribute="trailing" id="TAx-3w-qO4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EqA-Kw-XcK" secondAttribute="trailing" id="i6d-vJ-XY6"/>
-                            <constraint firstItem="EqA-Kw-XcK" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="5" id="jcc-Zq-Rp4"/>
-                            <constraint firstItem="F8u-L6-G2C" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="kyS-tH-7Yv"/>
+                            <constraint firstItem="EqA-Kw-XcK" firstAttribute="top" secondItem="uOf-HH-29R" secondAttribute="top" constant="5" id="jcc-Zq-Rp4"/>
+                            <constraint firstItem="F8u-L6-G2C" firstAttribute="leading" secondItem="uOf-HH-29R" secondAttribute="leading" id="kyS-tH-7Yv"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="uOf-HH-29R"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="7I6-3x-W88">
                         <barButtonItem key="rightBarButtonItem" image="showCurrentPositionNavBarIcon" id="wv8-ya-3Mq">
@@ -545,16 +542,12 @@
         <scene sceneID="h43-Bp-ZD0">
             <objects>
                 <viewController id="3hB-MF-PFn" customClass="SettingsSelectNetworkViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gyv-ZC-IG0"/>
-                        <viewControllerLayoutGuide type="bottom" id="awO-il-9Pp"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4Hz-W7-NLT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zpo-o4-AwQ">
-                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
+                                <rect key="frame" x="0.0" y="172" width="375" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsNetworkSelectCell" textLabel="Lzr-Oe-SE0" detailTextLabel="MmR-3e-gRV" style="IBUITableViewCellStyleSubtitle" id="ISU-i0-Gty">
@@ -584,20 +577,21 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Search Networks" translatesAutoresizingMaskIntoConstraints="NO" id="kU0-XM-8FO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zpo-o4-AwQ" firstAttribute="top" secondItem="kU0-XM-8FO" secondAttribute="bottom" id="4bf-av-2JB"/>
-                            <constraint firstItem="kU0-XM-8FO" firstAttribute="leading" secondItem="4Hz-W7-NLT" secondAttribute="leading" id="BZy-E3-R8T"/>
-                            <constraint firstAttribute="trailing" secondItem="kU0-XM-8FO" secondAttribute="trailing" id="UIa-gX-Fao"/>
-                            <constraint firstItem="awO-il-9Pp" firstAttribute="top" secondItem="zpo-o4-AwQ" secondAttribute="bottom" id="Vz6-qv-zNC"/>
-                            <constraint firstAttribute="trailing" secondItem="zpo-o4-AwQ" secondAttribute="trailing" id="g1b-wG-hDb"/>
-                            <constraint firstItem="zpo-o4-AwQ" firstAttribute="leading" secondItem="4Hz-W7-NLT" secondAttribute="leading" id="ohc-cS-k7d"/>
-                            <constraint firstItem="kU0-XM-8FO" firstAttribute="top" secondItem="gyv-ZC-IG0" secondAttribute="bottom" id="yh9-eO-eEy"/>
+                            <constraint firstItem="kU0-XM-8FO" firstAttribute="leading" secondItem="AWM-vQ-jJo" secondAttribute="leading" id="BZy-E3-R8T"/>
+                            <constraint firstItem="AWM-vQ-jJo" firstAttribute="trailing" secondItem="kU0-XM-8FO" secondAttribute="trailing" id="UIa-gX-Fao"/>
+                            <constraint firstItem="AWM-vQ-jJo" firstAttribute="bottom" secondItem="zpo-o4-AwQ" secondAttribute="bottom" id="Vz6-qv-zNC"/>
+                            <constraint firstItem="AWM-vQ-jJo" firstAttribute="trailing" secondItem="zpo-o4-AwQ" secondAttribute="trailing" id="g1b-wG-hDb"/>
+                            <constraint firstItem="zpo-o4-AwQ" firstAttribute="leading" secondItem="AWM-vQ-jJo" secondAttribute="leading" id="ohc-cS-k7d"/>
+                            <constraint firstItem="kU0-XM-8FO" firstAttribute="top" secondItem="AWM-vQ-jJo" secondAttribute="top" id="yh9-eO-eEy"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="AWM-vQ-jJo"/>
                     </view>
                     <navigationItem key="navigationItem" title="Select Network" id="c64-Rt-81u"/>
                     <connections>
@@ -1001,7 +995,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sGW-jV-Y56" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Station List" image="stationsNavBarIcon" id="StL-iU-sYK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7x1-WE-zqk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="7x1-WE-zqk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1039,7 +1033,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6y9-si-3SL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settingsTabBarIcon" id="a7E-gc-vuo"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D0L-nH-kor">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="D0L-nH-kor">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

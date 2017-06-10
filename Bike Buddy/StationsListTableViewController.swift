@@ -138,9 +138,6 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     // MARK: - Location Manager
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Not sure about this change yet. It will make the view more up to date but I am concerned about battery life.
-        //locationManager.stopUpdatingLocation()
-        
         let locationArray = locations as NSArray
         if let locationObj = locationArray.lastObject as? CLLocation {
             self.usersCurrentLocation = locationObj.coordinate
