@@ -14,19 +14,13 @@
         <scene sceneID="RQM-xF-CfX">
             <objects>
                 <viewController title="Welcome" id="9fG-UD-a7M" customClass="FTUWelcomeViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="nl3-5f-GMK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
-                                <rect key="frame" x="16" y="64" width="343" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <rect key="frame" x="137" y="609" width="100" height="38"/>
+                                <rect key="frame" x="137.5" y="609" width="100" height="38"/>
                                 <accessibility key="accessibilityConfiguration" hint="Tap here to start app setup" identifier="GetStartedButton" label="Get Started"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
@@ -45,7 +39,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
-                                <rect key="frame" x="62" y="240.5" width="250" height="250"/>
+                                <rect key="frame" x="62.5" y="240.5" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="0R5-eP-Ywe"/>
                                     <constraint firstAttribute="width" constant="250" id="gJr-Pu-vqb"/>
@@ -57,13 +51,21 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
+                                <rect key="frame" x="8" y="64" width="359" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95959595959595956" green="0.95959595959595956" blue="0.95959595959595956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="0Ib-PO-9a9" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="5Vu-wW-Zxb"/>
-                            <constraint firstItem="MBd-ck-Mkz" firstAttribute="bottom" secondItem="0Ib-PO-9a9" secondAttribute="bottom" constant="20" id="7LU-Ld-e4e"/>
-                            <constraint firstItem="rBP-Fi-Taj" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="FVM-1v-y71"/>
-                            <constraint firstItem="rBP-Fi-Taj" firstAttribute="centerY" secondItem="MBd-ck-Mkz" secondAttribute="centerY" id="P5W-uV-Q5E"/>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="3jX-Kp-TM5"/>
+                            <constraint firstItem="rBP-Fi-Taj" firstAttribute="centerY" secondItem="MBd-ck-Mkz" secondAttribute="centerY" id="B1Z-Fp-KrV"/>
+                            <constraint firstItem="0Ib-PO-9a9" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="CxM-fF-j1M"/>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="top" secondItem="MBd-ck-Mkz" secondAttribute="top" id="P0E-wg-9cV"/>
+                            <constraint firstItem="MBd-ck-Mkz" firstAttribute="bottom" secondItem="0Ib-PO-9a9" secondAttribute="bottom" constant="20" id="gok-uQ-nZT"/>
+                            <constraint firstItem="rBP-Fi-Taj" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="lBS-gH-Gtd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MBd-ck-Mkz"/>
                     </view>
@@ -82,6 +84,7 @@
         <scene sceneID="IU7-NL-5wW">
             <objects>
                 <viewController id="UAK-ec-VcK" customClass="FTULocationAccessViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="z20-Vy-X9z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,6 +149,7 @@
         <scene sceneID="VBf-ej-WlE">
             <objects>
                 <viewController id="vJd-cQ-7bo" customClass="FTUFinishedViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="9YZ-8D-rFZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,6 +196,7 @@
         <scene sceneID="W4s-aC-VQt">
             <objects>
                 <viewController id="nm7-ef-Q3U" customClass="FTUSelectNetworkViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="DJD-Nx-JEY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

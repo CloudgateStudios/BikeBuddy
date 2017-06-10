@@ -319,7 +319,7 @@
                             <outlet property="delegate" destination="etS-y8-Dg7" id="WIb-Na-TGc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Station Detail" id="g7d-z2-sPs"/>
+                    <navigationItem key="navigationItem" title="Station Detail" largeTitleDisplayMode="always" id="g7d-z2-sPs"/>
                     <connections>
                         <outlet property="bikesAvailableLabel" destination="uB5-Wb-CbA" id="EXW-0t-h3j"/>
                         <outlet property="directionsToStationLabel" destination="fLw-gf-FfR" id="zOb-PT-D4D"/>
@@ -339,6 +339,7 @@
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController storyboardIdentifier="MapView" id="8rJ-Kc-sve" customClass="MapViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -365,7 +366,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uOf-HH-29R"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="7I6-3x-W88">
+                    <navigationItem key="navigationItem" title="Map" largeTitleDisplayMode="never" id="7I6-3x-W88">
                         <barButtonItem key="rightBarButtonItem" image="showCurrentPositionNavBarIcon" id="wv8-ya-3Mq">
                             <connections>
                                 <action selector="currentPositionButtonTapped:" destination="8rJ-Kc-sve" id="pCJ-de-FDL"/>
@@ -542,6 +543,7 @@
         <scene sceneID="h43-Bp-ZD0">
             <objects>
                 <viewController id="3hB-MF-PFn" customClass="SettingsSelectNetworkViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="4Hz-W7-NLT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1014,7 +1016,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uvI-wc-jBq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="mapTabBarIcon" id="cPa-gy-q4n"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="q1t-mp-2iV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="q1t-mp-2iV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1055,6 +1057,6 @@
         <image name="stationsNavBarIcon" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xPA-Nd-9Db"/>
+        <segue reference="PWd-AI-Kco"/>
     </inferredMetricsTieBreakers>
 </document>
