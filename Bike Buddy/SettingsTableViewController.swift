@@ -56,7 +56,7 @@ class SettingsTableViewController: UITableViewController {
         generalRateTheAppLabel.text = StringsService.getStringFor(key: "SettingsGeneralRateApp")
     }
 
-    func updateViewableStrings() {
+    @objc func updateViewableStrings() {
         networkLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceName)
         numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.NumberOfClosestStations)
     }

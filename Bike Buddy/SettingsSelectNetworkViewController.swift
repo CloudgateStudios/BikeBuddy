@@ -68,7 +68,7 @@ class SettingsSelectNetworkViewController: UIViewController {
         searchBar.placeholder = StringsService.getStringFor(key: "SettingsSelectNetworkSearchBarPlaceholder")
     }
     
-    public func reloadSortedNetworksDataIntoTable() {
+    @objc public func reloadSortedNetworksDataIntoTable() {
         self.sortedNetworksList = Networks.sharedInstance.networksBySection
     }
 }

@@ -70,7 +70,7 @@ class MainTabViewController: UITabBarController {
         }
     }
     
-    public func startFirstTimeUse() {
+    @objc public func startFirstTimeUse() {
         let storyboard: UIStoryboard = UIStoryboard(name: Constants.ViewNames.FirstTimeUseStoryboard, bundle: nil)
         if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
             firstVC.modalPresentationStyle = UIModalPresentationStyle.formSheet
@@ -81,7 +81,7 @@ class MainTabViewController: UITabBarController {
 
     //MARK: - Stations List
 
-    func refreshStationsData() {
+    @objc func refreshStationsData() {
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "MapLoadingPopupMessage"))
 
         StationsDataService.sharedInstance.getAllStationData(apiUrl: SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)) {

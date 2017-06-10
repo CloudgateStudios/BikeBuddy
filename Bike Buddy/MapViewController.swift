@@ -46,7 +46,7 @@ class MapViewController: UIViewController {
         navBarItem.title = StringsService.getStringFor(key: "MapNavBarTitle")
     }
 
-    func refreshMapAnnotations() {
+    @objc func refreshMapAnnotations() {
         self.loadAnnotationsOnMapView()
     }
     

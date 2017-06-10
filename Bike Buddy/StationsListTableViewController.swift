@@ -59,7 +59,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         self.tableView.emptyDataSetDelegate = self
     }
     
-    func getUserLocation() {
+    @objc func getUserLocation() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()
@@ -157,7 +157,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
     // MARK: - Stations Loading
 
-    func updateClosestStations() {
+    @objc func updateClosestStations() {
         self.closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
     }
     
@@ -166,8 +166,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = StringsService.getStringFor(key: "StationsListNoDataTitle")
         let attribs = [
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
-            NSForegroundColorAttributeName: UIColor.darkGray
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
+            NSAttributedStringKey.foregroundColor: UIColor.darkGray
         ]
         
         return NSAttributedString(string: text, attributes: attribs)
@@ -181,9 +181,9 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         para.alignment = NSTextAlignment.center
         
         let attribs = [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 14),
-            NSForegroundColorAttributeName: UIColor.lightGray,
-            NSParagraphStyleAttributeName: para
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),
+            NSAttributedStringKey.foregroundColor: UIColor.lightGray,
+            NSAttributedStringKey.paragraphStyle: para
         ]
         
         return NSAttributedString(string: text, attributes: attribs)
