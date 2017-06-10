@@ -66,7 +66,7 @@ class FTUSelectNetworkViewController: UIViewController {
         searchBar.placeholder = StringsService.getStringFor(key: "SelectNetworkSearchBarPlaceholder")
     }
     
-    public func reloadSortedNetworksDataIntoTable() {
+    @objc public func reloadSortedNetworksDataIntoTable() {
         self.sortedNetworksList = Networks.sharedInstance.networksBySection
     }
 }

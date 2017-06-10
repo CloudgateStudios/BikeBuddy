@@ -66,8 +66,8 @@ class SettingsAboutTableViewController: UITableViewController {
     }
     
     private func openWebView(url: String) {
-        if let url = NSURL(string: url) {
-            let svc = SFSafariViewController(url: url as URL, entersReaderIfAvailable: true)
+        if let url = URL(string: url) {
+            let svc = SFSafariViewController(url: url)
             svc.delegate = self
             self.present(svc, animated: true) {}
         }
