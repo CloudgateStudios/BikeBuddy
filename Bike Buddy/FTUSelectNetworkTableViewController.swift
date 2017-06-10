@@ -54,8 +54,6 @@ class FTUSelectNetworkViewController: UIViewController {
             responseObject, error in
             
             Networks.sharedInstance.list = responseObject
-            //self.networks = Networks.getSortedByNetworkName()
-            
             ProgressHUDService.sharedInstance.dismissHUD()
         }
         
