@@ -211,6 +211,8 @@
 		D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddySnapshotTests.swift; sourceTree = "<group>"; };
 		D1B6DD1E1C9EC3E3008543A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		D1BB7A221F647FCE00C60BFC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D1BB7A231F647FCE00C60BFC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
@@ -476,8 +478,10 @@
 		E9678157F4E75F6588D67B18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1BB7A221F647FCE00C60BFC /* Crashlytics.framework */,
 				D13F1E3F1EEC4ED6004795AB /* Fabric.framework */,
 				D13F1E3E1EEC4ED6004795AB /* Crashlytics.framework */,
+				D1BB7A231F647FCE00C60BFC /* Fabric.framework */,
 				D14C281A1DDD4174008D4DB4 /* DZNEmptyDataSet.framework */,
 				D149580B1DB317AE0038A615 /* CoreLocation.framework */,
 				D1E551171CA33D5B002561BB /* Crashlytics.framework */,
