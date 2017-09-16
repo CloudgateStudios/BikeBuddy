@@ -64,6 +64,15 @@ public class SettingsService {
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StartFirstTimeUse), object: self)
         }
+        if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 2 {
+            var numberOfStationsSetting = self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
+            if numberOfStationsSetting < 5 {
+                numberOfStationsSetting = 5
+            }
+            self.saveSetting(key: Constants.SettingsKey.NumberOfClosestStations, value: numberOfStationsSetting as AnyObject)
+            
+            self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 3 as AnyObject)
+        }
     }
     
     /**

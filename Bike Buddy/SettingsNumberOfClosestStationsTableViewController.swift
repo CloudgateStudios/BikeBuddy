@@ -13,7 +13,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
 
     //MARK: - Class Variables
 
-    var options = [1, 2, 3, 4, 5]
+    var options = [5,10,15,20]
 
     //MARK: - View Outlets
 
@@ -40,7 +40,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return options.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
