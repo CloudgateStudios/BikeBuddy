@@ -149,7 +149,7 @@ extension FTUSelectNetworkViewController: UISearchBarDelegate {
         self.isSearching = true
         self.simpleNetworksList = Networks.searchThroughList(searchText: searchText)
         
-        if searchText.characters.count == 0 {
+        if searchText.count == 0 {
             self.isSearching = false
             self.reloadSortedNetworksDataIntoTable()
         }
