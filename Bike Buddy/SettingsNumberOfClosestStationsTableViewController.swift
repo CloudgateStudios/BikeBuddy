@@ -13,7 +13,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
 
     //MARK: - Class Variables
 
-    var options = [5,10,15,20]
+    var options = [5, 10, 15, 20]
 
     //MARK: - View Outlets
 
