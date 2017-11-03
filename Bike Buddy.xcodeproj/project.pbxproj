@@ -47,6 +47,8 @@
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
 		D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* StringsService.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
+		D17F4E481FAC8E9700824B80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17F4E461FAC8E9700824B80 /* Crashlytics.framework */; };
+		D17F4E491FAC8E9700824B80 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17F4E471FAC8E9700824B80 /* Fabric.framework */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D18F4B181D9225FC00972AF2 /* BikeBuddyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */; };
@@ -184,6 +186,8 @@
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D14D9C501DB839EC008D0656 /* StringsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsService.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
+		D17F4E461FAC8E9700824B80 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D17F4E471FAC8E9700824B80 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BikeBuddyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeBuddyKit.h; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D14C281B1DDD4174008D4DB4 /* DZNEmptyDataSet.framework in Frameworks */,
+				D17F4E491FAC8E9700824B80 /* Fabric.framework in Frameworks */,
+				D17F4E481FAC8E9700824B80 /* Crashlytics.framework in Frameworks */,
 				D149580F1DB3BAEA0038A615 /* SVProgressHUD.framework in Frameworks */,
 				D1E551151CA33C4A002561BB /* Fabric.framework in Frameworks */,
 				D13F1E411EEC4ED6004795AB /* Fabric.framework in Frameworks */,
@@ -482,6 +488,8 @@
 				D13F1E3F1EEC4ED6004795AB /* Fabric.framework */,
 				D13F1E3E1EEC4ED6004795AB /* Crashlytics.framework */,
 				D1BB7A231F647FCE00C60BFC /* Fabric.framework */,
+				D17F4E461FAC8E9700824B80 /* Crashlytics.framework */,
+				D17F4E471FAC8E9700824B80 /* Fabric.framework */,
 				D14C281A1DDD4174008D4DB4 /* DZNEmptyDataSet.framework */,
 				D149580B1DB317AE0038A615 /* CoreLocation.framework */,
 				D1E551171CA33D5B002561BB /* Crashlytics.framework */,
