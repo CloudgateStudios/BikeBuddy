@@ -15,13 +15,13 @@ import ObjectMapper
  :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
  */
 public class Network: Mappable {
-    public var company: Array<String>?
+    public var company: [String]?
     public var gbfsHref: String?
     public var href: String?
     public var id: String?
     public var location: Location?
     public var name: String?
-    public var stations: Array<Station>?
+    public var stations: [Station]?
     
     required public init?(map: Map) {
     }

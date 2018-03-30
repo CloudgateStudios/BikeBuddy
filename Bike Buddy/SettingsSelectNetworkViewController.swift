@@ -125,7 +125,7 @@ extension SettingsSelectNetworkViewController: UITableViewDelegate, UITableViewD
         
         let oldNetwork = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceName)
         let analyticAttr = [Constants.AnalyticEventDetail.OldCity: oldNetwork, Constants.AnalyticEventDetail.NewCity: tappedNetwork.name]
-        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.SelectNewCity, customAttributes: analyticAttr as [String : AnyObject])
+        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.SelectNewCity, customAttributes: analyticAttr as [String: AnyObject])
         
         let builtAPIURL = Constants.CityBikes.BaseAPIURL + tappedNetwork.href!
         

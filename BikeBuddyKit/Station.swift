@@ -29,45 +29,39 @@ public class Station: NSObject, MKAnnotation, Mappable {
     public private(set) var distanceFromUser: Double = 0.0
     
     public var approximateDistanceAwayFromUser: String {
-        get {
-            let formatter = MKDistanceFormatter()
-            formatter.units = .default
-            formatter.unitStyle = .full
-            
-            let prettyString = "~ " + formatter.string(fromDistance: self.distanceFromUser)
-            
-            return prettyString
-        }
+        let formatter = MKDistanceFormatter()
+        formatter.units = .default
+        formatter.unitStyle = .full
+        
+        let prettyString = "~ " + formatter.string(fromDistance: self.distanceFromUser)
+        
+        return prettyString
     }
     
     public var streetAddress: String {
-        get {
-            return extraInfo.address!
-        }
+        return extraInfo.address!
     }
     
     public var shareStringDescription: String {
-        get {
-            var returnString = StringsService.getStringFor(key: "StationModelShareStationName") + "\n" + stationName
-            
-            if streetAddress != "" {
-                returnString += "\n\n" + StringsService.getStringFor(key: "StationModelShareAddress") + "\n" + streetAddress
-            }
-            
-            return returnString
+        var returnString = StringsService.getStringFor(key: "StationModelShareStationName") + "\n" + stationName
+        
+        if streetAddress != "" {
+            returnString += "\n\n" + StringsService.getStringFor(key: "StationModelShareAddress") + "\n" + streetAddress
         }
+        
+        return returnString
     }
     
     @objc public var coordinate: CLLocationCoordinate2D {
-        get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) }
+        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
     
     public var title: String? {
-        get { return self.stationName }
+        return self.stationName
     }
     
     public var subtitle: String? {
-        get { return StringsService.getStringFor(key: "StationModelAnnotationBikes") + ": \(availableBikes) " +  StringsService.getStringFor(key: "StationModelAnnotationOpenDocks") + ": \(availableDocks)" }
+        return StringsService.getStringFor(key: "StationModelAnnotationBikes") + ": \(availableBikes) " +  StringsService.getStringFor(key: "StationModelAnnotationOpenDocks") + ": \(availableDocks)"
     }
     
     override init() {

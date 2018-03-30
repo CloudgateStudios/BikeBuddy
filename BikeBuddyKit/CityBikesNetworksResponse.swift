@@ -15,7 +15,7 @@ import ObjectMapper
  :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
  */
 public class CityBikesNetworksResponse: Mappable {
-    public var networks: Array<Network>?
+    public var networks: [Network]?
     
     required public init?(map: Map) {
     }
