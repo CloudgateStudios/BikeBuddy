@@ -11,18 +11,18 @@ import CoreLocation
 import BikeBuddyKit
 
 class FTULocationAccessViewController: UIViewController, CLLocationManagerDelegate {
-    //MARK: - Class Variables
+    // MARK: - Class Variables
 
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
 
-    //MARK: - View Outlets
+    // MARK: - View Outlets
 
     @IBOutlet weak var giveLocationAccessButton: UIButton!
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var mainMessageLabel: UILabel!
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
         giveLocationAccessButton.setTitle(StringsService.getStringFor(key: "LocationAccessButton"), for: .normal)
     }
 
-    //MARK: - User Interaction
+    // MARK: - User Interaction
 
     @IBAction func userTappedGiveLocationAccessButton(_ sender: UIButton) {
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -55,7 +55,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
         }
     }
     
-    //MARK: - Location Manager
+    // MARK: - Location Manager
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedWhenInUse {
@@ -69,7 +69,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
         }
     }
 
-    //MARK: - View Specific Functions
+    // MARK: - View Specific Functions
 
     private func goToNextView() {
         self.performSegue(withIdentifier: Constants.SegueNames.GoToFirstTimeUseNetworkSelect, sender: self)

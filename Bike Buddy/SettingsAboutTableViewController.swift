@@ -12,7 +12,7 @@ import BikeBuddyKit
 
 class SettingsAboutTableViewController: UITableViewController {
 
-    //MARK: - View Outlets
+    // MARK: - View Outlets
 
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var appNameAndVersionBottomLabel: UILabel!

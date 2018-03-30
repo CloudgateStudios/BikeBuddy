@@ -11,7 +11,7 @@ import BikeBuddyKit
 
 class MainTabViewController: UITabBarController {
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -79,7 +79,7 @@ class MainTabViewController: UITabBarController {
         }
     }
 
-    //MARK: - Stations List
+    // MARK: - Stations List
 
     @objc func refreshStationsData() {
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "MapLoadingPopupMessage"))
@@ -101,7 +101,7 @@ class MainTabViewController: UITabBarController {
         }
     }
     
-    //MARK: - UI Tests
+    // MARK: - UI Tests
 
     private func setupForUITests() {
         /*Stations.sharedInstance.list = StationsDataService.sharedInstance.loadStationDataFromFile(fileName: "Divvy_API_Response.json")

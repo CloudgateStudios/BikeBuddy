@@ -40,7 +40,7 @@ public class Stations {
                 upperLimit = listCopy.count
             }
             
-            upperLimit = upperLimit - 1
+            upperLimit -= 1
             
             for index in 0...upperLimit {
                 stationsToReturn.append(listCopy[index])

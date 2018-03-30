@@ -10,7 +10,7 @@ import Foundation
 import BikeBuddyKit
 
 class SettingsSelectNetworkViewController: UIViewController {
-    //MARK: - Class Variables
+    // MARK: - Class Variables
     
     var simpleNetworksList = [Network]() {
         didSet {
@@ -30,7 +30,7 @@ class SettingsSelectNetworkViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var navBarTitle: UINavigationItem!
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -73,7 +73,7 @@ class SettingsSelectNetworkViewController: UIViewController {
     }
 }
 
-//MARK: - Table View
+// MARK: - Table View
 
 extension SettingsSelectNetworkViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -150,7 +150,7 @@ extension SettingsSelectNetworkViewController: UITableViewDelegate, UITableViewD
 
 }
 
-//MARK: - Search Bar
+// MARK: - Search Bar
 
 extension SettingsSelectNetworkViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

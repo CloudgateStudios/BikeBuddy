@@ -10,12 +10,12 @@ import UIKit
 import BikeBuddyKit
 
 class FTUFinishedViewController: UIViewController {
-    //MARK: - View Outlets
+    // MARK: - View Outlets
 
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var navBarItem: UINavigationItem!
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class FTUFinishedViewController: UIViewController {
         getStartedButton.setTitle(StringsService.getStringFor(key: "FTUFinishedButton"), for: .normal)
     }
 
-    //MARK: - User Interaction
+    // MARK: - User Interaction
     
     @IBAction func getStartedButtonClicked(_ sender: UIButton) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.FTUCompleted)

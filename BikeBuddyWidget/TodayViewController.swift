@@ -15,12 +15,12 @@ import Fabric
 
 class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManagerDelegate {
     
-    //MARK: - Class Variables
+    // MARK: - Class Variables
     
     var locationManager = CLLocationManager()
     var usersCurrentLocation = CLLocationCoordinate2D()
     
-    //MARK: - View Outlets
+    // MARK: - View Outlets
     
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -29,7 +29,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loadingLabel: UILabel!
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -48,7 +48,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         getUserLocation()
     }
     
-    //MARK: - Widget Methods
+    // MARK: - Widget Methods
     
     /*func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == NCWidgetDisplayMode.compact {
@@ -118,7 +118,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         completionHandler(result)
     }
     
-    //MARK: - Location Manager
+    // MARK: - Location Manager
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locationArray = locations as NSArray

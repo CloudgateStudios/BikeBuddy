@@ -11,11 +11,11 @@ import MapKit
 import BikeBuddyKit
 
 class StationDetailTableViewController: UITableViewController {
-    //MARK: - Class Variables
+    // MARK: - Class Variables
 
     var stationObject: Station!
 
-    //MARK: - View Outlets
+    // MARK: - View Outlets
 
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
@@ -71,7 +71,7 @@ class StationDetailTableViewController: UITableViewController {
         self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
-    //MARK: - User Actions
+    // MARK: - User Actions
 
     private func userClickedOnDirectionsToStationButton() {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GetDirectionsToStation)

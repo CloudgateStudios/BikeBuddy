@@ -11,18 +11,18 @@ import MapKit
 import BikeBuddyKit
 
 class MapViewController: UIViewController {
-    //MARK: - Class Variables
+    // MARK: - Class Variables
 
     var tappedStation: Station!
 
-    //MARK: - View Outlets
+    // MARK: - View Outlets
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var currentPositionButton: UIBarButtonItem!
     @IBOutlet weak var updatedAtLabel: UILabel!
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -63,7 +63,7 @@ class MapViewController: UIViewController {
         }
     }
 
-    //MARK: - Actions
+    // MARK: - Actions
 
     @IBAction func currentPositionButtonTapped(_ sender: UIBarButtonItem) {
         AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped")
@@ -90,7 +90,7 @@ class MapViewController: UIViewController {
     }
 }
 
-//MARK: - Map View
+// MARK: - Map View
 
 extension MapViewController: MKMapViewDelegate {
     

@@ -9,14 +9,14 @@
 import UIKit
 
 public class ThemeService {
-    //MARK: - Theme Variables
+    // MARK: - Theme Variables
     
     private static let navigationBarBackgroundColor = UIColor.colorFromInteger(red: 60, green: 163, blue: 220, alpha: 1.0)
     private static let tabBarTintColor = UIColor.colorFromInteger(red: 60, green: 163, blue: 220, alpha: 1.0)
     private static let buttonBackgroundColor = UIColor.colorFromInteger(red: 60, green: 163, blue: 220, alpha: 1.0)
     private static let textOnlyButtonTextColor = UIColor.colorFromInteger(red: 0, green: 122, blue: 255, alpha: 1.0)
     
-    //MARK: - Class Functions
+    // MARK: - Class Functions
     
     /**
      Apply all the overall themes for the application.
@@ -52,7 +52,7 @@ public class ThemeService {
         textLabel.textColor = textOnlyButtonTextColor
     }
     
-    //MARK: - Private Functions
+    // MARK: - Private Functions
     
     /**
      Theme the navigation bar object for the whole app.

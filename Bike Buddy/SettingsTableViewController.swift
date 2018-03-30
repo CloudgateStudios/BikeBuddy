@@ -12,7 +12,7 @@ import MessageUI
 import BikeBuddyKit
 
 class SettingsTableViewController: UITableViewController {
-    //MARK: - View Outlets
+    // MARK: - View Outlets
 
     @IBOutlet weak var networkLabel: UILabel!
     @IBOutlet weak var numberOfClosestStationsLabel: UILabel!
@@ -23,7 +23,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var generalTellYourFriendsLabel: UILabel!
     @IBOutlet weak var generalRateTheAppLabel: UILabel!
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -61,7 +61,7 @@ class SettingsTableViewController: UITableViewController {
         numberOfClosestStationsLabel?.text = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.NumberOfClosestStations)
     }
 
-    //MARK: - Table View
+    // MARK: - Table View
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
@@ -91,7 +91,7 @@ class SettingsTableViewController: UITableViewController {
 
     }
 
-    //MARK: - Table View Actions
+    // MARK: - Table View Actions
 
     private func goToAppStorePage() {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GoToAppStoreLink)

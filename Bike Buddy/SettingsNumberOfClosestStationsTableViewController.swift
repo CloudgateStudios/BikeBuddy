@@ -11,15 +11,15 @@ import BikeBuddyKit
 
 class SettingsNumberOfClosestStationsTableViewController: UITableViewController {
 
-    //MARK: - Class Variables
+    // MARK: - Class Variables
 
     var options = [5, 10, 15, 20]
 
-    //MARK: - View Outlets
+    // MARK: - View Outlets
 
     @IBOutlet weak var navBarItem: UINavigationItem!
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
