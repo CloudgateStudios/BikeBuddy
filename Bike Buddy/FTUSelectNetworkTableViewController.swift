@@ -50,8 +50,7 @@ class FTUSelectNetworkViewController: UIViewController {
         
         ProgressHUDService.sharedInstance.showHUD(statusMessage: StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
         
-        NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) {
-            responseObject, error in
+        NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) { responseObject, _ in
             
             Networks.sharedInstance.list = responseObject
             ProgressHUDService.sharedInstance.dismissHUD()

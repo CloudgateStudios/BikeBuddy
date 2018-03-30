@@ -78,7 +78,7 @@ class FTULocationAccessViewController: UIViewController, CLLocationManagerDelega
     private func showNoLocationAccessMessage() {
         let alert = UIAlertController(title: StringsService.getStringFor(key: "LocationAccessNotGrantedMessageTitle"), message: StringsService.getStringFor(key: "LocationAccessNotGrantedMessageContent"), preferredStyle: UIAlertControllerStyle.alert)
         
-        let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
+        let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (_) -> Void in
                 self.goToNextView()
         }
         

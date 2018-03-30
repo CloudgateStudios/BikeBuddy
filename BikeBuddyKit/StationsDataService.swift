@@ -37,7 +37,7 @@ public class StationsDataService {
      
      - returns: No return. Just putting in a return placeholder so SwiftLint doesn't error out.  See https://github.com/realm/SwiftLint/issues/267 for more.
      */
-    public func getAllStationData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Station], _ error: NSError?) -> ()) {
+    public func getAllStationData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Station], _ error: NSError?) -> Void) {
         var returnStations = [Station]()
         
         Alamofire.request(apiUrl, method: .get, parameters: nil)

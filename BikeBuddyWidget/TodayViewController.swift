@@ -63,8 +63,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         
         // If we have a URL then go get data
         if apiUrl != "" {
-            StationsDataService.sharedInstance.getAllStationData(apiUrl: apiUrl) {
-                responseObject, error in
+            StationsDataService.sharedInstance.getAllStationData(apiUrl: apiUrl) { responseObject, _ in
                 
                 if responseObject.count == 0 {
                     self.endLoading(completionHandler: completionHandler, result: .failed, errorString: StringsService.getStringFor(key: "TodayWidgetNoStationDataMessage"))

@@ -43,7 +43,7 @@ class SettingsAboutTableViewController: UITableViewController {
         
         if let cellReuseID = selectedCell.reuseIdentifier {
             let analyticAttr = [Constants.AnalyticEventDetail.ThirdPartySoftwareName: cellReuseID]
-            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenThirdPartySoftware, customAttributes: analyticAttr as [String : AnyObject])
+            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenThirdPartySoftware, customAttributes: analyticAttr as [String: AnyObject])
             
             switch cellReuseID {
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyAlmaofire:

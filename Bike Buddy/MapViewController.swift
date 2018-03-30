@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
             AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped when Outside Map View")
             
             let alert = UIAlertController(title: StringsService.getStringFor(key: "MapUserOutsideViewPopupTitle"), message: StringsService.getStringFor(key: "MapUserOutsideViewPopupMessage"), preferredStyle: UIAlertControllerStyle.alert)
-            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in self.zoomMapToCurrentLocation()}
+            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (_) -> Void in self.zoomMapToCurrentLocation()}
             let alertActionCancel = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonCancel"), style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(alertActionOK)
             alert.addAction(alertActionCancel)
