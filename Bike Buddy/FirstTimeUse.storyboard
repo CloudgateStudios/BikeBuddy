@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x0g-jN-aat">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x0g-jN-aat">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController title="Welcome" id="9fG-UD-a7M" customClass="FTUWelcomeViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nl3-5f-GMK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <rect key="frame" x="137.5" y="609" width="100" height="38"/>
+                                <rect key="frame" x="137.66666666666666" y="720" width="100" height="38"/>
                                 <accessibility key="accessibilityConfiguration" hint="Tap here to start app setup" identifier="GetStartedButton" label="Get Started"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
-                                <rect key="frame" x="62.5" y="240.5" width="250" height="250"/>
+                                <rect key="frame" x="62.666666666666657" y="308" width="249.99999999999997" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="0R5-eP-Ywe"/>
                                     <constraint firstAttribute="width" constant="250" id="gJr-Pu-vqb"/>
@@ -50,8 +50,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
-                                <rect key="frame" x="8" y="80" width="359" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
+                                <rect key="frame" x="16" y="104" width="343" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -59,12 +59,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95959595959595956" green="0.95959595959595956" blue="0.95959595959595956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="iLX-qq-O20" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="3jX-Kp-TM5"/>
+                            <constraint firstItem="MBd-ck-Mkz" firstAttribute="leading" secondItem="iLX-qq-O20" secondAttribute="leading" constant="-16" id="9oD-Nk-d0C"/>
                             <constraint firstItem="rBP-Fi-Taj" firstAttribute="centerY" secondItem="MBd-ck-Mkz" secondAttribute="centerY" id="B1Z-Fp-KrV"/>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="Bs3-mw-Pzn"/>
                             <constraint firstItem="0Ib-PO-9a9" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="CxM-fF-j1M"/>
-                            <constraint firstItem="iLX-qq-O20" firstAttribute="top" secondItem="MBd-ck-Mkz" secondAttribute="top" constant="16" id="P0E-wg-9cV"/>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="top" secondItem="MBd-ck-Mkz" secondAttribute="top" constant="16" id="Ndj-cA-6xw"/>
                             <constraint firstItem="MBd-ck-Mkz" firstAttribute="bottom" secondItem="0Ib-PO-9a9" secondAttribute="bottom" constant="20" id="gok-uQ-nZT"/>
                             <constraint firstItem="rBP-Fi-Taj" firstAttribute="centerX" secondItem="MBd-ck-Mkz" secondAttribute="centerX" id="lBS-gH-Gtd"/>
+                            <constraint firstItem="iLX-qq-O20" firstAttribute="trailing" secondItem="MBd-ck-Mkz" secondAttribute="trailing" constant="-16" id="rB9-iP-4aD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MBd-ck-Mkz"/>
                     </view>
@@ -77,28 +79,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wT-Fc-w5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="965" y="268"/>
+            <point key="canvasLocation" x="963.75" y="266.25"/>
         </scene>
         <!--Location Access-->
         <scene sceneID="IU7-NL-5wW">
             <objects>
                 <viewController id="UAK-ec-VcK" customClass="FTULocationAccessViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z20-Vy-X9z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-NP-MTb">
-                                <rect key="frame" x="16" y="80" width="343" height="81.5"/>
+                                <rect key="frame" x="16" y="104" width="343" height="81.333333333333314"/>
                                 <string key="text">In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
-                                <rect key="frame" x="37.5" y="215.5" width="300" height="300"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
+                                <rect key="frame" x="37.666666666666657" y="319.66666666666669" width="300" height="300.00000000000006"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
-                                <rect key="frame" x="104" y="609" width="167" height="38"/>
+                                <rect key="frame" x="104" y="619.66666666666663" width="167" height="138.33333333333337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Dzt-2B-yLg"/>
                                     <constraint firstAttribute="height" constant="49" id="mZy-NQ-bX3"/>
@@ -124,9 +126,10 @@
                             <constraint firstItem="lvD-EL-sPQ" firstAttribute="trailing" secondItem="dwg-NP-MTb" secondAttribute="trailing" constant="16" id="Dwp-dR-nsi"/>
                             <constraint firstItem="lvD-EL-sPQ" firstAttribute="bottom" secondItem="Fzn-Qe-wpc" secondAttribute="bottom" constant="20" id="Fc4-G9-Vla"/>
                             <constraint firstItem="Fzn-Qe-wpc" firstAttribute="centerX" secondItem="lvD-EL-sPQ" secondAttribute="centerX" id="IkW-yy-ViD"/>
+                            <constraint firstItem="Fzn-Qe-wpc" firstAttribute="top" secondItem="6z7-8Y-cCL" secondAttribute="bottom" id="K6q-cP-Zm5"/>
                             <constraint firstItem="dwg-NP-MTb" firstAttribute="top" secondItem="lvD-EL-sPQ" secondAttribute="top" constant="16" id="SQ1-eQ-mlh"/>
                             <constraint firstItem="dwg-NP-MTb" firstAttribute="leading" secondItem="lvD-EL-sPQ" secondAttribute="leading" constant="16" id="bRL-dS-Wu2"/>
-                            <constraint firstItem="6z7-8Y-cCL" firstAttribute="centerY" secondItem="lvD-EL-sPQ" secondAttribute="centerY" id="leE-7g-Trc"/>
+                            <constraint firstItem="6z7-8Y-cCL" firstAttribute="centerY" secondItem="lvD-EL-sPQ" secondAttribute="centerY" constant="36.5" id="leE-7g-Trc"/>
                             <constraint firstItem="6z7-8Y-cCL" firstAttribute="centerX" secondItem="lvD-EL-sPQ" secondAttribute="centerX" id="vee-AO-t1U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lvD-EL-sPQ"/>
@@ -141,18 +144,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGw-yB-sN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711" y="268"/>
+            <point key="canvasLocation" x="1710" y="267.5"/>
         </scene>
         <!--Finished-->
         <scene sceneID="VBf-ej-WlE">
             <objects>
                 <viewController id="vJd-cQ-7bo" customClass="FTUFinishedViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9YZ-8D-rFZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
-                                <rect key="frame" x="140" y="346.5" width="95" height="38"/>
+                                <rect key="frame" x="140" y="414" width="95" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4Bu-r0-zH1"/>
                                     <constraint firstAttribute="width" constant="200" id="qtU-gg-anE"/>
@@ -194,33 +197,33 @@
             <objects>
                 <viewController id="nm7-ef-Q3U" customClass="FTUSelectNetworkViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DJD-Nx-JEY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-Jq-h4v">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ctt-sT-9uh">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="634"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FTUNetworkSelectCell" textLabel="MAj-uV-P3Q" detailTextLabel="whV-At-7nD" style="IBUITableViewCellStyleSubtitle" id="F9i-MK-Ywn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FTUNetworkSelectCell" textLabel="MAj-uV-P3Q" detailTextLabel="whV-At-7nD" style="IBUITableViewCellStyleSubtitle" id="F9i-MK-Ywn">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F9i-MK-Ywn" id="yPE-90-eto">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MAj-uV-P3Q">
-                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="5" width="33.333333333333336" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="whV-At-7nD">
-                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <rect key="frame" x="14.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -262,7 +265,7 @@
                 <navigationController storyboardIdentifier="MainNavController" automaticallyAdjustsScrollViewInsets="NO" id="x0g-jN-aat" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pSz-A7-gOV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
