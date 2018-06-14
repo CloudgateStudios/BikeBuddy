@@ -27,7 +27,7 @@ public struct Constants {
     // MARK: - Settings Defaults
     public struct SettingsDefault {
         public static let SettingsVersionNumber = 1
-        public static let NumberOfClosestStations = 5
+        public static let NumberOfClosestStations = 15
     }
     
     // MARK: - Timer Settings
@@ -157,5 +157,9 @@ public struct Constants {
     
     public struct BikeBuddyKit {
         public static let BundleIdentifier = "com.cloudgatestudios.BikeBuddyKit"
+    }
+    
+    public struct UserActivity {
+        public static let StationActivityTypeIdentifier = "com.cloudgatestudios.Bike-Buddy.station"
     }
 }
