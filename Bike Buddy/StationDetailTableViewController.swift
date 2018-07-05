@@ -35,6 +35,36 @@ class StationDetailTableViewController: UITableViewController {
         mapView.delegate = self
         mapView.addAnnotation(stationObject)
         mapView.showAnnotations([stationObject], animated: false)
+        
+        setupUserActivity()
+    }
+    
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        let userInfo = ["stationId": stationObject.id,
+                        "stationName": stationObject.stationName] as [String: Any]
+        activity.addUserInfoEntries(from: userInfo)
+        activity.requiredUserInfoKeys = ["stationId", "stationName"]
+    }
+    
+    private func setupUserActivity() {
+        let activity = NSUserActivity(activityType: Constants.UserActivity.StationActivityTypeIdentifier)
+        activity.title = stationObject.stationName
+        
+        var keywords = stationObject.stationName.components(separatedBy: " ")
+        keywords.append(stationObject.streetAddress)
+        activity.keywords = Set(keywords)
+        
+        let userInfo = ["stationId": stationObject.id,
+                        "stationName": stationObject.stationName] as [String: Any]
+        activity.addUserInfoEntries(from: userInfo)
+        activity.requiredUserInfoKeys = ["stationId", "stationName"]
+        
+        activity.isEligibleForHandoff = false
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPublicIndexing = true
+        
+        userActivity = activity
+        userActivity!.becomeCurrent()
     }
 
     private func setupTheme() {

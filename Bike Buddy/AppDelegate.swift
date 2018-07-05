@@ -34,4 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsDataIsStale), object: self)
         }
     }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        if userActivity.activityType == Constants.UserActivity.StationActivityTypeIdentifier {
+            if self.window != nil {
+                //As long as we have the window (which is the tab bar controller at root) send the restore call down to it to handle
+                self.window?.rootViewController?.restoreUserActivityState(userActivity)
+            }
+        }
+        return true
+    }
 }

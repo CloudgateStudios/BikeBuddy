@@ -41,6 +41,21 @@ class MapViewController: UIViewController {
 
         self.mapView.delegate = self
     }
+    
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        if let previousStationName = activity.userInfo!["stationName"] as? String {
+            if let previousStation = Stations.getStationByName(name: previousStationName) {
+                self.tappedStation = previousStation
+                
+                if self.isViewLoaded && (self.view.window != nil) {
+                    performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: nil)
+                } else {
+                    navigationController?.popViewController(animated: true)
+                    performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: nil)
+                }
+            }
+        }
+    }
 
     func setupStrings() {
         navBarItem.title = StringsService.getStringFor(key: "MapNavBarTitle")

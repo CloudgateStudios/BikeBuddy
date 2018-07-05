@@ -55,6 +55,20 @@ class MainTabViewController: UITabBarController {
             }
         }
     }
+    
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        if activity.activityType == Constants.UserActivity.StationActivityTypeIdentifier {
+            //Make sure we move to the map tab first to get the stack right
+            self.selectedViewController = self.viewControllers?[1]
+            
+            //Need to find the MapViewController and pass the restore call down to it.
+            if let navigationController = self.viewControllers![1] as? UINavigationController {
+                if let firstVC = navigationController.viewControllers[0] as? MapViewController {
+                    firstVC.restoreUserActivityState(activity)
+                }
+            }
+        }
+    }
 
     private func setupStrings() {
         if let stationsTab = self.tabBar.items?[0] {
