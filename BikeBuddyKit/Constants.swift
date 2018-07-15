@@ -80,6 +80,7 @@ public struct Constants {
         public static let FirstTimeUseCompleted = "FirstTimeUseCompleted"
         public static let NewCitySelected = "NewCitySelected"
         public static let StationsListUpdated = "StationsListUpdated"
+        public static let MapViewAnnotationsDrawComplete = "MapViewAnnotationsDrawComplete"
         public static let NumberOfClosestStationsUpdated = "NumberOfClosestStationsUpdated"
         public static let StationsDataIsStale = "StationDataIsStale"
         public static let AppCameBackToForeground = "AppCameBackToForeground"

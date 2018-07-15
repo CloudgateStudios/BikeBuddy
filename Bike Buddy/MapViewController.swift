@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
     // MARK: - Class Variables
 
     var tappedStation: Station!
+    var userActivityToRestore: NSUserActivity?
 
     // MARK: - View Outlets
 
@@ -28,10 +29,12 @@ class MapViewController: UIViewController {
         super.init(coder: aDecoder)
 
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.refreshMapAnnotations), name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsListUpdated), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.actuallyRestoreState), name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.MapViewAnnotationsDrawComplete), object: nil)
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsListUpdated), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.MapViewAnnotationsDrawComplete), object: nil)
     }
 
     override func viewDidLoad() {
@@ -43,15 +46,28 @@ class MapViewController: UIViewController {
     }
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
-        if let previousStationName = activity.userInfo!["stationName"] as? String {
-            if let previousStation = Stations.getStationByName(name: previousStationName) {
-                self.tappedStation = previousStation
-                
-                if self.isViewLoaded && (self.view.window != nil) {
-                    performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: nil)
-                } else {
-                    navigationController?.popViewController(animated: true)
-                    performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: nil)
+        userActivityToRestore = activity
+        
+        if Stations.sharedInstance.list.count == 0 {
+            return
+        } else {
+            actuallyRestoreState()
+        }
+        
+    }
+    
+    @objc func actuallyRestoreState() {
+        if userActivityToRestore != nil {
+            if let previousStationName = userActivityToRestore?.userInfo!["stationName"] as? String {
+                if let previousStation = Stations.getStationByName(name: previousStationName) {
+                    self.tappedStation = previousStation
+                    
+                    if self.isViewLoaded && (self.view.window != nil) {
+                        performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: nil)
+                    } else {
+                        navigationController?.popViewController(animated: true)
+                        performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: nil)
+                    }
                 }
             }
         }
@@ -151,6 +167,8 @@ extension MapViewController: MKMapViewDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
         updatedAtLabel.text = StringsService.getStringFor(key: "MapUpdatedAtLabel") + " " + dateFormatter.string(from: Stations.sharedInstance.lastUpdated as Date)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.MapViewAnnotationsDrawComplete), object: self)
     }
 
     func zoomMapToCurrentLocation() {

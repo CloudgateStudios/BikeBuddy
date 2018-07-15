@@ -61,8 +61,8 @@ class MainTabViewController: UITabBarController {
             //Make sure we move to the map tab first to get the stack right
             self.selectedViewController = self.viewControllers?[1]
             
-            //Need to find the MapViewController and pass the restore call down to it.
-            if let navigationController = self.viewControllers![1] as? UINavigationController {
+            //Need to find the MapViewController and pass the restore call down to it. Being that it sits inside a navigation controller go get that first.
+            if let navigationController = self.viewControllers![1] as? UINavigationController {                
                 if let firstVC = navigationController.viewControllers[0] as? MapViewController {
                     firstVC.restoreUserActivityState(activity)
                 }

@@ -29,11 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupApplication()
         
-        /*if let activityDic = launchOptions?[UIApplicationLaunchOptionsKey.userActivityDictionary] as? [NSObject : AnyObject],
-         let activity = activityDic["UIApplicationLaunchOptionsUserActivityKey"] as? NSUserActivity {
-         handleActivity(activity)
-         }*/
-        
         if let option = launchOptions {
             if option.keys.contains(UIApplicationLaunchOptionsKey.userActivityDictionary) {
                 if let userActivityDict = option[UIApplicationLaunchOptionsKey.userActivityDictionary] as? [AnyHashable: Any] {
