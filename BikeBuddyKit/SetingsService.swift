@@ -67,7 +67,7 @@ public class SettingsService {
         if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 2 {
             var numberOfStationsSetting = self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
             if numberOfStationsSetting < 5 {
-                numberOfStationsSetting = 5
+                numberOfStationsSetting = Constants.SettingsDefault.NumberOfClosestStations
             }
             self.saveSetting(key: Constants.SettingsKey.NumberOfClosestStations, value: numberOfStationsSetting as AnyObject)
             
