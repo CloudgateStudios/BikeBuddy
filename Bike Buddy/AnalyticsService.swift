@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Crashlytics
 
 class AnalyticsService {
     
@@ -34,6 +33,5 @@ class AnalyticsService {
      - parameter customAttributes: A dictonary of extra data that can be added to analytic events. This is optional.
      */
     func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": "" as AnyObject]) {
-        Answers.logCustomEvent(withName: eventName, customAttributes: customAttributes)
     }
 }

@@ -37,16 +37,11 @@
 		D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D149580B1DB317AE0038A615 /* CoreLocation.framework */; };
 		D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */; };
 		D149580F1DB3BAEA0038A615 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */; };
-		D14958111DB3BD120038A615 /* Answers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551141CA33C4A002561BB /* Answers.framework */; };
-		D14958121DB3BD120038A615 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551171CA33D5B002561BB /* Crashlytics.framework */; };
-		D14958131DB3BD120038A615 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E551131CA33C4A002561BB /* Fabric.framework */; };
 		D14C281B1DDD4174008D4DB4 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D14C281A1DDD4174008D4DB4 /* DZNEmptyDataSet.framework */; };
 		D14C281F1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14C281E1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift */; };
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
 		D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* StringsService.swift */; };
 		D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */; };
-		D17F4E481FAC8E9700824B80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17F4E461FAC8E9700824B80 /* Crashlytics.framework */; };
-		D17F4E491FAC8E9700824B80 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17F4E471FAC8E9700824B80 /* Fabric.framework */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D18F4B181D9225FC00972AF2 /* BikeBuddyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */; };
@@ -164,8 +159,6 @@
 		D11DDDE51D98901A00BBB480 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		D11DDDE81D98906700BBB480 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
 		D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutTableViewController.swift; sourceTree = "<group>"; };
-		D13F1E3E1EEC4ED6004795AB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		D13F1E3F1EEC4ED6004795AB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PrivacyPolicy.txt; sourceTree = "<group>"; };
 		D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutPrivacyPolicyTableViewController.swift; sourceTree = "<group>"; };
 		D14957F31DB2B2370038A615 /* Bike Buddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bike Buddy.entitlements"; sourceTree = "<group>"; };
@@ -182,8 +175,6 @@
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D14D9C501DB839EC008D0656 /* StringsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsService.swift; sourceTree = "<group>"; };
 		D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUWelcomeViewController.swift; sourceTree = "<group>"; };
-		D17F4E461FAC8E9700824B80 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		D17F4E471FAC8E9700824B80 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BikeBuddyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeBuddyKit.h; sourceTree = "<group>"; };
@@ -211,17 +202,12 @@
 		D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddySnapshotTests.swift; sourceTree = "<group>"; };
 		D1B6DD1E1C9EC3E3008543A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		D1BB7A221F647FCE00C60BFC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		D1BB7A231F647FCE00C60BFC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListSectionHeaderCell.swift; sourceTree = "<group>"; };
 		D1D98EFA1DE9C789000A226E /* CityBikes_Networks_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Networks_API_Response.json; sourceTree = "<group>"; };
 		D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Network_Detail_API_Response.json; sourceTree = "<group>"; };
-		D1E551131CA33C4A002561BB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		D1E551141CA33C4A002561BB /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Answers.framework; sourceTree = "<group>"; };
-		D1E551171CA33D5B002561BB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -231,8 +217,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D14C281B1DDD4174008D4DB4 /* DZNEmptyDataSet.framework in Frameworks */,
-				D17F4E481FAC8E9700824B80 /* Crashlytics.framework in Frameworks */,
-				D17F4E491FAC8E9700824B80 /* Fabric.framework in Frameworks */,
 				D149580F1DB3BAEA0038A615 /* SVProgressHUD.framework in Frameworks */,
 				C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */,
 				D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */,
@@ -243,9 +227,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D14958111DB3BD120038A615 /* Answers.framework in Frameworks */,
-				D14958121DB3BD120038A615 /* Crashlytics.framework in Frameworks */,
-				D14958131DB3BD120038A615 /* Fabric.framework in Frameworks */,
 				D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */,
 				D149580A1DB30EAC0038A615 /* BikeBuddyKit.framework in Frameworks */,
 				D14957FA1DB30CFC0038A615 /* NotificationCenter.framework in Frameworks */,
@@ -476,17 +457,8 @@
 		E9678157F4E75F6588D67B18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D1BB7A221F647FCE00C60BFC /* Crashlytics.framework */,
-				D13F1E3F1EEC4ED6004795AB /* Fabric.framework */,
-				D13F1E3E1EEC4ED6004795AB /* Crashlytics.framework */,
-				D1BB7A231F647FCE00C60BFC /* Fabric.framework */,
-				D17F4E461FAC8E9700824B80 /* Crashlytics.framework */,
-				D17F4E471FAC8E9700824B80 /* Fabric.framework */,
 				D14C281A1DDD4174008D4DB4 /* DZNEmptyDataSet.framework */,
 				D149580B1DB317AE0038A615 /* CoreLocation.framework */,
-				D1E551171CA33D5B002561BB /* Crashlytics.framework */,
-				D1E551131CA33C4A002561BB /* Fabric.framework */,
-				D1E551141CA33C4A002561BB /* Answers.framework */,
 				D1BDB2191BE573C000C38DEB /* SVProgressHUD.framework */,
 				D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */,
 				D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */,
@@ -523,7 +495,6 @@
 				C516EFE21B0CE6CB00CF4468 /* Frameworks */,
 				C516EFE31B0CE6CB00CF4468 /* Resources */,
 				D1E509D51DAC917F007D918A /* Copy in Carthage Frameworks */,
-				D1E551121CA33C29002561BB /* Copy in Fabric */,
 				D10C2F741CA6C9CA0098D5AD /* Run SwiftLint */,
 				D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */,
 				D1DD8BC61DA327C400DED913 /* Embed Frameworks */,
@@ -547,7 +518,6 @@
 				D14957F41DB30CFB0038A615 /* Sources */,
 				D14957F51DB30CFB0038A615 /* Frameworks */,
 				D14957F61DB30CFB0038A615 /* Resources */,
-				D14958101DB3BC9F0038A615 /* Copy in Fabric */,
 			);
 			buildRules = (
 			);
@@ -747,20 +717,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		D14958101DB3BC9F0038A615 /* Copy in Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy in Fabric";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run ${FABRIC_API_KEY} ${FABRIC_API_SECRET}";
-		};
 		D1B2EFEE1CA81FC100A5B218 /* Check for Unused Strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -793,20 +749,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		D1E551121CA33C29002561BB /* Copy in Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy in Fabric";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run ${FABRIC_API_KEY} ${FABRIC_API_SECRET}";
 		};
 /* End PBXShellScriptBuildPhase section */
 

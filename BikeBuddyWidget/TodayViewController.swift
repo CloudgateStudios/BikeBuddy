@@ -10,8 +10,6 @@ import UIKit
 import NotificationCenter
 import CoreLocation
 import BikeBuddyKit
-import Crashlytics
-import Fabric
 
 class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManagerDelegate {
     
@@ -33,8 +31,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        
-        Fabric.with([Crashlytics.self])
     }
         
     override func viewDidLoad() {

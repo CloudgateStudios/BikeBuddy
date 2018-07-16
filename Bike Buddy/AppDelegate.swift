@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import BikeBuddyKit
 
 @UIApplicationMain
@@ -71,8 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupApplication() {
         ThemeService.applyTheme()
-        
-        Fabric.with([Answers.self, Crashlytics.self])
     }
     
     private func handleActivity(userActivity: NSUserActivity) -> Bool {
