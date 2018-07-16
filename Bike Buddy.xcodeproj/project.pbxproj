@@ -1001,8 +1001,6 @@
 				CURRENT_PROJECT_VERSION = 49;
 				DEVELOPMENT_TEAM = KXYM4B4J29;
 				ENABLE_NS_ASSERTIONS = YES;
-				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
-				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1033,8 +1031,6 @@
 				DEVELOPMENT_TEAM = KXYM4B4J29;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_TESTABILITY = YES;
-				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
-				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1063,8 +1059,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = KXYM4B4J29;
-				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
-				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1089,8 +1083,6 @@
 				CODE_SIGN_ENTITLEMENTS = BikeBuddyWidget/BikeBuddyWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = KXYM4B4J29;
-				FABRIC_API_KEY = e54c6d8a4c3e3842dea83c9c93ced04d15c623c7;
-				FABRIC_API_SECRET = d55ddafdab5e860b6df5bde92b5c858ea5ffafead9d0f8ead1dd0179e197863b;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

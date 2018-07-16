@@ -54,8 +54,6 @@ class SettingsAboutTableViewController: UITableViewController {
                 openWebView(url: Constants.ExtneralURL.AFOM)
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartySVProgressHUD:
                 openWebView(url: Constants.ExtneralURL.SVProgressHUD)
-            case Constants.TableViewCellResuseIdentifier.AboutThridPartyFabric:
-                openWebView(url: Constants.ExtneralURL.Fabric)
             case Constants.TableViewCellResuseIdentifier.AboutThirdPartyDZN:
                 openWebView(url: Constants.ExtneralURL.DZNEmptyDataSet)
             default: break

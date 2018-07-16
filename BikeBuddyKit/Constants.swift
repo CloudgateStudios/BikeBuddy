@@ -64,7 +64,6 @@ public struct Constants {
         public static let AboutThirdPartyObjectMapper = "AboutThirdPartyObjectMapper"
         public static let AboutThirdPartyAFOM = "AboutThirdPartyAFOM"
         public static let AboutThirdPartySVProgressHUD = "AboutThirdPartySVProgressHUD"
-        public static let AboutThridPartyFabric = "AboutThirdPartyFabric"
         public static let AboutThirdPartyDZN = "AboutThirdPartyDZN"
         public static let AboutPrivacyPolicy = "PrivacyPolicyCell"
     }
@@ -114,7 +113,6 @@ public struct Constants {
         public static let ObjectMapper = "https://github.com/Hearst-DD/ObjectMapper"
         public static let AFOM = "https://github.com/tristanhimmelman/AlamofireObjectMapper"
         public static let SVProgressHUD = "https://github.com/SVProgressHUD/SVProgressHUD"
-        public static let Fabric = "https://get.fabric.io"
         public static let DZNEmptyDataSet = "https://github.com/dzenbot/DZNEmptyDataSet"
     }
     
