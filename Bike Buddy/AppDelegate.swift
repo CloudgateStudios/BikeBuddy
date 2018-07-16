@@ -20,19 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Basic App Launch Handlers
     
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         return true
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         var returnValue = true
         
         setupApplication()
         
         if let option = launchOptions {
-            if option.keys.contains(UIApplicationLaunchOptionsKey.userActivityDictionary) {
-                if let userActivityDict = option[UIApplicationLaunchOptionsKey.userActivityDictionary] as? [AnyHashable: Any] {
-                    if userActivityDict.keys.contains(UIApplicationLaunchOptionsKey.userActivityType) {
+            if option.keys.contains(UIApplication.LaunchOptionsKey.userActivityDictionary) {
+                if let userActivityDict = option[UIApplication.LaunchOptionsKey.userActivityDictionary] as? [AnyHashable: Any] {
+                    if userActivityDict.keys.contains(UIApplication.LaunchOptionsKey.userActivityType) {
                         if let userActivity = userActivityDict["UIApplicationLaunchOptionsUserActivityKey"] as? NSUserActivity {
                             returnValue = handleActivity(userActivity: userActivity)
                         }
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - User Activity Restore App Launch Handlers
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         return handleActivity(userActivity: userActivity)
     }
     

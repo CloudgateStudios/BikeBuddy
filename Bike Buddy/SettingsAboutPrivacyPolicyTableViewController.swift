@@ -16,7 +16,7 @@ class SettingsAboutPrivacyPolicyTableViewController: UITableViewController {
         
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenAboutPrivacyPolicy)
 
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 160.0
     }
 

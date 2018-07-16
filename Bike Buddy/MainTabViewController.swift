@@ -47,8 +47,8 @@ class MainTabViewController: UITabBarController {
                         refreshStationsData()
                     }
                 } else {
-                    let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageContent"), preferredStyle: UIAlertControllerStyle.alert)
-                    let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (_) -> Void in }
+                    let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageContent"), preferredStyle: UIAlertController.Style.alert)
+                    let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) -> Void in }
                     alert.addAction(alertAction)
                     present(alert, animated: true) { () -> Void in }
                 }
@@ -103,8 +103,8 @@ class MainTabViewController: UITabBarController {
             if responseObject.count == 0 {
                 ProgressHUDService.sharedInstance.dismissHUD()
                 
-                let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoStationsMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoStationsMessageContent"), preferredStyle: UIAlertControllerStyle.alert)
-                let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (_) -> Void in }
+                let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoStationsMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoStationsMessageContent"), preferredStyle: UIAlertController.Style.alert)
+                let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) -> Void in }
                 alert.addAction(alertAction)
                 
                 self.present(alert, animated: true) { () -> Void in }

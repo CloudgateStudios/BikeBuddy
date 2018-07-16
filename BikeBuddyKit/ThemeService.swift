@@ -36,7 +36,7 @@ public class ThemeService {
      - parameter button: The UIButton that should be themed. It will be themed in place, not returned.
      */
     public class func themeButton(button: UIButton) {
-        button.setTitleColor(UIColor.white, for: UIControlState.normal)
+        button.setTitleColor(UIColor.white, for: UIControl.State.normal)
         button.backgroundColor = buttonBackgroundColor
         button.layer.cornerRadius = 4.0
     }

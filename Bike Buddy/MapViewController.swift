@@ -100,8 +100,8 @@ class MapViewController: UIViewController {
         AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped")
         
         if !mapView.userLocation.coordinate.isCurrentUserLocationReal() {
-            let alert = UIAlertController(title: StringsService.getStringFor(key: "MapNoLocationFoundAlertTitle"), message: StringsService.getStringFor(key: "MapNoLocationFoundAlertMessage"), preferredStyle: UIAlertControllerStyle.alert)
-            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default)
+            let alert = UIAlertController(title: StringsService.getStringFor(key: "MapNoLocationFoundAlertTitle"), message: StringsService.getStringFor(key: "MapNoLocationFoundAlertMessage"), preferredStyle: UIAlertController.Style.alert)
+            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default)
             alert.addAction(alertActionOK)
             present(alert, animated: true) { () -> Void in }
         }
@@ -109,9 +109,9 @@ class MapViewController: UIViewController {
         if !mapView.isUserLocationVisible {
             AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped when Outside Map View")
             
-            let alert = UIAlertController(title: StringsService.getStringFor(key: "MapUserOutsideViewPopupTitle"), message: StringsService.getStringFor(key: "MapUserOutsideViewPopupMessage"), preferredStyle: UIAlertControllerStyle.alert)
-            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertActionStyle.default) { (_) -> Void in self.zoomMapToCurrentLocation()}
-            let alertActionCancel = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonCancel"), style: UIAlertActionStyle.cancel, handler: nil)
+            let alert = UIAlertController(title: StringsService.getStringFor(key: "MapUserOutsideViewPopupTitle"), message: StringsService.getStringFor(key: "MapUserOutsideViewPopupMessage"), preferredStyle: UIAlertController.Style.alert)
+            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) -> Void in self.zoomMapToCurrentLocation()}
+            let alertActionCancel = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonCancel"), style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(alertActionOK)
             alert.addAction(alertActionCancel)
             present(alert, animated: true) { () -> Void in }
@@ -135,7 +135,7 @@ extension MapViewController: MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewReuseIdentifier.FullMap)
             annotationView!.canShowCallout = true
-            annotationView!.rightCalloutAccessoryView =  UIButton(type: UIButtonType.detailDisclosure) as UIView
+            annotationView!.rightCalloutAccessoryView =  UIButton(type: UIButton.ButtonType.detailDisclosure) as UIView
             
             annotationView!.image = UIImage(named: "mapPin")
         }

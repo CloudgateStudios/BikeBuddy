@@ -163,8 +163,8 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = StringsService.getStringFor(key: "StationsListNoDataTitle")
         let attribs = [
-            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
-            NSAttributedStringKey.foregroundColor: UIColor.darkGray
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
+            NSAttributedString.Key.foregroundColor: UIColor.darkGray
         ]
         
         return NSAttributedString(string: text, attributes: attribs)
@@ -178,9 +178,9 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         para.alignment = NSTextAlignment.center
         
         let attribs = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),
-            NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-            NSAttributedStringKey.paragraphStyle: para
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+            NSAttributedString.Key.paragraphStyle: para
         ]
         
         return NSAttributedString(string: text, attributes: attribs)

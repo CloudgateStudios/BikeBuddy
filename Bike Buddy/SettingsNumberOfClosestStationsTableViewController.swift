@@ -49,7 +49,7 @@ class SettingsNumberOfClosestStationsTableViewController: UITableViewController 
         cell.textLabel?.text = String(options[indexPath.row])
         
         if options[indexPath.row] == SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) {
-            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         
         return cell
