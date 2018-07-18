@@ -83,9 +83,12 @@ public class Station: NSObject, MKAnnotation, Mappable {
     }
     
     public func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {
-        let usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
-        let stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
-        
-        self.distanceFromUser = usersLocation.distance(from: stationLocation)
+        //Only do this if we know the users location
+        if usersLatitude != 0 && usersLongitude != 0 {
+            let usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
+            let stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+            
+            self.distanceFromUser = usersLocation.distance(from: stationLocation)
+        }
     }
 }

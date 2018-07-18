@@ -327,6 +327,7 @@
                         <outlet property="navBarItem" destination="g7d-z2-sPs" id="blO-qQ-Rzr"/>
                         <outlet property="shareStationLabel" destination="B4K-mN-7Q1" id="5fs-LR-lAv"/>
                         <outlet property="stationDistanceLabel" destination="cgL-xT-PtC" id="Osl-hc-pbp"/>
+                        <outlet property="stationDistanceTableViewCell" destination="Dbc-4L-g8p" id="7Ab-MC-wi6"/>
                         <outlet property="stationNameLabel" destination="YIT-48-R5G" id="dss-cV-EhV"/>
                     </connections>
                 </tableViewController>

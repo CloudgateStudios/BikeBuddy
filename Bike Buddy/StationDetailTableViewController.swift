@@ -18,6 +18,7 @@ class StationDetailTableViewController: UITableViewController {
     // MARK: - View Outlets
 
     @IBOutlet weak var stationNameLabel: UILabel!
+    @IBOutlet weak var stationDistanceTableViewCell: UITableViewCell!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var stationDistanceLabel: UILabel!
     @IBOutlet weak var bikesAvailableLabel: UILabel!
@@ -35,6 +36,10 @@ class StationDetailTableViewController: UITableViewController {
         mapView.delegate = self
         mapView.addAnnotation(stationObject)
         mapView.showAnnotations([stationObject], animated: false)
+        
+        if stationObject.distanceFromUser == 0.0 {
+            stationDistanceTableViewCell.isHidden = true
+        }
         
         setupUserActivity()
     }
