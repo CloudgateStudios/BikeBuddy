@@ -60,9 +60,10 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     }
     
     @objc func getUserLocation() {
+        //Shouldn't need to ask for authorization from the location manager given that we did it in the FTU. It may be deined but at least we have a yes or no.
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
 
