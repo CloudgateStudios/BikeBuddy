@@ -39,7 +39,13 @@ public class Station: NSObject, MKAnnotation, Mappable {
     }
     
     public var streetAddress: String {
-        return extraInfo.address!
+        var returnValue: String = ""
+        
+        if let address = extraInfo.address {
+            returnValue = address
+        }
+        
+        return returnValue
     }
     
     public var shareStringDescription: String {
