@@ -164,9 +164,11 @@ extension SettingsSelectNetworkViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.isSearching = true
+        self.reloadSortedNetworksDataIntoTable()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.isSearching = false
+        self.reloadSortedNetworksDataIntoTable()
     }
 }
