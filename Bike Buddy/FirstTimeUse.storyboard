@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x0g-jN-aat">
-    <device id="retina3_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x0g-jN-aat">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14278.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,11 +14,11 @@
             <objects>
                 <viewController title="Welcome" id="9fG-UD-a7M" customClass="FTUWelcomeViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nl3-5f-GMK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ib-PO-9a9">
-                                <rect key="frame" x="110" y="422" width="100" height="38"/>
+                                <rect key="frame" x="110" y="510" width="100" height="38"/>
                                 <accessibility key="accessibilityConfiguration" hint="Tap here to start app setup" identifier="GetStartedButton" label="Get Started"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cXm-Js-4Lj"/>
@@ -38,7 +37,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
-                                <rect key="frame" x="35" y="147" width="250" height="250"/>
+                                <rect key="frame" x="35" y="191" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="0R5-eP-Ywe"/>
                                     <constraint firstAttribute="width" constant="250" id="gJr-Pu-vqb"/>
@@ -86,7 +85,7 @@
             <objects>
                 <viewController id="UAK-ec-VcK" customClass="FTULocationAccessViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z20-Vy-X9z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-NP-MTb">
@@ -97,10 +96,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
-                                <rect key="frame" x="10" y="169.5" width="300" height="205"/>
+                                <rect key="frame" x="10" y="169.5" width="300" height="293"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
-                                <rect key="frame" x="76.5" y="382.5" width="167" height="77.5"/>
+                                <rect key="frame" x="76.5" y="510" width="167" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Dzt-2B-yLg"/>
                                     <constraint firstAttribute="height" constant="49" id="mZy-NQ-bX3"/>
@@ -126,7 +125,6 @@
                             <constraint firstItem="lvD-EL-sPQ" firstAttribute="trailing" secondItem="dwg-NP-MTb" secondAttribute="trailing" constant="16" id="Dwp-dR-nsi"/>
                             <constraint firstItem="lvD-EL-sPQ" firstAttribute="bottom" secondItem="Fzn-Qe-wpc" secondAttribute="bottom" constant="20" id="Fc4-G9-Vla"/>
                             <constraint firstItem="Fzn-Qe-wpc" firstAttribute="centerX" secondItem="lvD-EL-sPQ" secondAttribute="centerX" id="IkW-yy-ViD"/>
-                            <constraint firstItem="Fzn-Qe-wpc" firstAttribute="top" secondItem="6z7-8Y-cCL" secondAttribute="bottom" constant="8" symbolic="YES" id="K6q-cP-Zm5"/>
                             <constraint firstItem="dwg-NP-MTb" firstAttribute="top" secondItem="lvD-EL-sPQ" secondAttribute="top" constant="16" id="SQ1-eQ-mlh"/>
                             <constraint firstItem="dwg-NP-MTb" firstAttribute="leading" secondItem="lvD-EL-sPQ" secondAttribute="leading" constant="16" id="bRL-dS-Wu2"/>
                             <constraint firstItem="6z7-8Y-cCL" firstAttribute="top" secondItem="dwg-NP-MTb" secondAttribute="bottom" constant="8" symbolic="YES" id="cAK-Vl-rcC"/>
@@ -152,11 +150,11 @@
             <objects>
                 <viewController id="vJd-cQ-7bo" customClass="FTUFinishedViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9YZ-8D-rFZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
-                                <rect key="frame" x="112.5" y="253" width="95" height="38"/>
+                                <rect key="frame" x="112.5" y="297" width="95" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4Bu-r0-zH1"/>
                                     <constraint firstAttribute="width" constant="200" id="qtU-gg-anE"/>
@@ -198,7 +196,7 @@
             <objects>
                 <viewController id="nm7-ef-Q3U" customClass="FTUSelectNetworkViewController" customModule="Bike_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DJD-Nx-JEY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-Jq-h4v">
@@ -206,10 +204,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ctt-sT-9uh">
-                                <rect key="frame" x="0.0" y="120" width="320" height="360"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FTUNetworkSelectCell" textLabel="MAj-uV-P3Q" detailTextLabel="whV-At-7nD" style="IBUITableViewCellStyleSubtitle" id="F9i-MK-Ywn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FTUNetworkSelectCell" textLabel="MAj-uV-P3Q" detailTextLabel="whV-At-7nD" style="IBUITableViewCellStyleSubtitle" id="F9i-MK-Ywn">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F9i-MK-Ywn" id="yPE-90-eto">
