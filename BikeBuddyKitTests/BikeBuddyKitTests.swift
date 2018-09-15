@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import BikeBuddyKit
 
 class BikeBuddyKitTests: XCTestCase {
     

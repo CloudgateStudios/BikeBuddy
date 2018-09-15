@@ -83,6 +83,13 @@
 			remoteGlobalIDString = D14957F71DB30CFB0038A615;
 			remoteInfo = BikeBuddyWidget;
 		};
+		D15701E1214D465300221726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C516EFE41B0CE6CB00CF4468;
+			remoteInfo = "Bike Buddy";
+		};
 		D18F4B141D9225FC00972AF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
@@ -143,9 +150,6 @@
 		C516F0101B0CE80F00CF4468 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C516F01A1B0DAA7C00CF4468 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BikeBuddy-Bridging-Header.h"; sourceTree = "<group>"; };
-		C5721B4A1B5A7A58009C5EFF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		C5721B4B1B5A7A58009C5EFF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		C5721B4C1B5A7A58009C5EFF /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FirstTimeUse.storyboard; sourceTree = "<group>"; };
 		C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTULocationAccessViewController.swift; sourceTree = "<group>"; };
@@ -463,9 +467,6 @@
 				D1BDB2111BE548BA00C38DEB /* AlamofireObjectMapper.framework */,
 				D1BDB2121BE548BA00C38DEB /* ObjectMapper.framework */,
 				D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */,
-				C5721B4A1B5A7A58009C5EFF /* Accounts.framework */,
-				C5721B4B1B5A7A58009C5EFF /* Social.framework */,
-				C5721B4C1B5A7A58009C5EFF /* Twitter.framework */,
 				C5E873321B10A5BA00217C93 /* Alamofire.framework */,
 				C516F01A1B0DAA7C00CF4468 /* MapKit.framework */,
 				D14957F91DB30CFC0038A615 /* NotificationCenter.framework */,
@@ -558,6 +559,7 @@
 			);
 			dependencies = (
 				D18F4B151D9225FC00972AF2 /* PBXTargetDependency */,
+				D15701E2214D465300221726 /* PBXTargetDependency */,
 			);
 			name = BikeBuddyKitTests;
 			productName = BikeBuddyKitTests;
@@ -838,6 +840,11 @@
 			target = D14957F71DB30CFB0038A615 /* BikeBuddyWidget */;
 			targetProxy = D14958021DB30CFC0038A615 /* PBXContainerItemProxy */;
 		};
+		D15701E2214D465300221726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C516EFE41B0CE6CB00CF4468 /* Bike Buddy */;
+			targetProxy = D15701E1214D465300221726 /* PBXContainerItemProxy */;
+		};
 		D18F4B151D9225FC00972AF2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D18F4B091D9225FC00972AF2 /* BikeBuddyKit */;
@@ -931,7 +938,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -981,7 +988,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1176,7 +1183,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = KXYM4B4J29;
 				INFOPLIST_FILE = BikeBuddyKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloudgatestudios.BikeBuddyKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1195,7 +1202,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = KXYM4B4J29;
 				INFOPLIST_FILE = BikeBuddyKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloudgatestudios.BikeBuddyKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
