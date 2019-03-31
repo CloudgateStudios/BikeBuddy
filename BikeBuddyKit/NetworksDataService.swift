@@ -37,7 +37,7 @@ public class NetworksDataService {
     public func getAllNetworkData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Network], _ error: NSError?) -> Void) {
         var returnNetworks = [Network]()
         
-        Alamofire.request(apiUrl, method: .get, parameters: nil)
+        AF.request(apiUrl, method: .get, parameters: nil)
             .responseObject { (response: DataResponse<CityBikesNetworksResponse>) in
                 if let testResponseResult = response.result.value?.networks {
                     returnNetworks = testResponseResult

@@ -1,5 +1,5 @@
-github "Alamofire/Alamofire" "4.7.3"
-github "Hearst-DD/ObjectMapper" "3.3.0"
+github "Alamofire/Alamofire" "5.0.0-beta.2"
 github "TransitApp/SVProgressHUD" "2.2.5"
 github "dzenbot/DZNEmptyDataSet" "v1.8.1"
-github "tristanhimmelman/AlamofireObjectMapper" "5.1.0"
+github "tristanhimmelman/AlamofireObjectMapper" "6.0.0"
+github "tristanhimmelman/ObjectMapper" "3.4.2"

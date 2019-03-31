@@ -40,7 +40,7 @@ public class StationsDataService {
     public func getAllStationData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Station], _ error: NSError?) -> Void) {
         var returnStations = [Station]()
         
-        Alamofire.request(apiUrl, method: .get, parameters: nil)
+        AF.request(apiUrl, method: .get, parameters: nil)
             .responseObject { (response: DataResponse<CityBikesNetworkDetailResponse>) in
                 if let testResponseResult = response.result.value?.network?.stations {
                     returnStations = testResponseResult
