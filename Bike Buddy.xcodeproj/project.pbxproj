@@ -592,7 +592,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Cloudgate Studios";
 				TargetAttributes = {
 					C516EFE41B0CE6CB00CF4468 = {
