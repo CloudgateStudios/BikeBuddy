@@ -108,6 +108,9 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         case .failed, .noData:
             self.errorLabel.text = errorString
             self.errorLabel.isHidden = false
+        @unknown default:
+            self.errorLabel.text = errorString
+            self.errorLabel.isHidden = false
         }
         
         completionHandler(result)
