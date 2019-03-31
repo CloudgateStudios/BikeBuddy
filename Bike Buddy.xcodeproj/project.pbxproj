@@ -637,10 +637,9 @@
 			};
 			buildConfigurationList = C516EFE01B0CE6CB00CF4468 /* Build configuration list for PBXProject "Bike Buddy" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
