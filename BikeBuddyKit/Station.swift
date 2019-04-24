@@ -9,14 +9,16 @@
 import Foundation
 import MapKit
 import CoreLocation
-import ObjectMapper
 
 /**
  Represents a bike sharing station.
  
  :Implements: MKAnnotation - Allows Station objects to be passed to MapView's for quick annotation loading
  */
-public class Station: NSObject, MKAnnotation, Mappable {
+public class Station: NSObject, MKAnnotation, Codable {
+    
+    // MARK: - Variables
+    
     public var id: Int = -1
     public var stationName: String = ""
     public var availableDocks: Int = -1
@@ -70,22 +72,46 @@ public class Station: NSObject, MKAnnotation, Mappable {
         return StringsService.getStringFor(key: "StationModelAnnotationBikes") + ": \(availableBikes) " +  StringsService.getStringFor(key: "StationModelAnnotationOpenDocks") + ": \(availableDocks)"
     }
     
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case availableBikes = "free_bikes"
+        case availableDocks = "empty_slots"
+        case stationName = "name"
+        case latitude = "latitude"
+        case longitude = "longitude"
+        case timestamp = "timestamp"
+        case extraInto = "extra"
+    }
+    
+    // MARK: - Initalizers
+    
     override init() {
     }
     
-    required convenience public init?(map: Map) {
-        self.init()
+    required public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.availableBikes = try values.decode(Int.self, forKey: .availableBikes)
+        self.availableDocks = try values.decode(Int.self, forKey: .availableDocks)
+        self.stationName = try values.decode(String.self, forKey: .stationName)
+        self.latitude = try values.decode(Double.self, forKey: .latitude)
+        self.longitude = try values.decode(Double.self, forKey: .longitude)
+        self.timestamp = try values.decode(String.self, forKey: .timestamp)
+        self.extraInfo = try values.decode(StationExtra.self, forKey: .extraInto)
     }
     
-    public func mapping(map: Map) {
-        id <- map["id"]
-        availableBikes <- map["free_bikes"]
-        availableDocks <- map["empty_slots"]
-        stationName <- map["name"]
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
-        timestamp <- map["timestamp"]
-        extraInfo <- map["extra"]
+    // MARK: - Public Functions
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(availableBikes, forKey: .availableBikes)
+        try container.encode(availableDocks, forKey: .availableDocks)
+        try container.encode(stationName, forKey: .stationName)
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
+        try container.encode(timestamp, forKey: .timestamp)
+        try container.encode(extraInfo, forKey: .extraInto)
     }
     
     public func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {

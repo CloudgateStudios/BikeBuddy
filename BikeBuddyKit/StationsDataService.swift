@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
-import Alamofire
-import AlamofireObjectMapper
 
 public class StationsDataService {
     
@@ -38,15 +35,47 @@ public class StationsDataService {
      - returns: No return. Just putting in a return placeholder so SwiftLint doesn't error out.  See https://github.com/realm/SwiftLint/issues/267 for more.
      */
     public func getAllStationData(apiUrl: String, completionHandler: @escaping (_ responseObject: [Station], _ error: NSError?) -> Void) {
+        
         var returnStations = [Station]()
         
-        AF.request(apiUrl, method: .get, parameters: nil)
-            .responseObject { (response: DataResponse<CityBikesNetworkDetailResponse>) in
-                if let testResponseResult = response.result.value?.network?.stations {
-                    returnStations = testResponseResult
+        let session = URLSession.shared
+        if let url = URL(string: apiUrl) {
+            let task = session.dataTask(with: url, completionHandler: { data, response, error in
+                
+                if error != nil || data == nil {
+                    print("Client error!")
+                    return
                 }
                 
-                completionHandler(returnStations, NSError(domain: Constants.NSErrorInfo.DomainString, code: Constants.NSErrorInfo.NetworkErrorCode))
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    print("Server error!")
+                    return
+                }
+                
+                guard let mime = response.mimeType, mime == "application/json" else {
+                    print("Wrong MIME type!")
+                    return
+                }
+                
+                do {
+                    if let safeData = data {
+                        let decoder = JSONDecoder()
+                        let model = try decoder.decode(CityBikesNetworkDetailResponse.self, from: safeData)
+                        
+                        if let testResponseResult = model.network?.stations {
+                            returnStations = testResponseResult
+                        }
+                        
+                        DispatchQueue.main.async {
+                            completionHandler(returnStations, NSError(domain: Constants.NSErrorInfo.DomainString, code: Constants.NSErrorInfo.NetworkErrorCode))
+                        }
+                    }
+                } catch {
+                    print("JSON error: \(error.localizedDescription)")
+                }
+            })
+            
+            task.resume()
         }
     }
     

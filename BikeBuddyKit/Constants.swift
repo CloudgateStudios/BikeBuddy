@@ -97,7 +97,7 @@ public struct Constants {
     
     public struct CityBikes {
         public static let BaseAPIURL = "https://api.citybik.es"
-        public static let NetworksAPI = CityBikes.BaseAPIURL + "/v2/networks"
+        public static let NetworksAPI = CityBikes.BaseAPIURL + "/v2/networks?fields=id,name,href,location"
     }
     
     // MARK: - Privacy Policy File

@@ -7,33 +7,51 @@
 //
 
 import Foundation
-import ObjectMapper
 
 /**
  Represents a extra data about a Station object. This conforms to the CityBikes API.
- 
- :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
  */
-public class StationExtra: Mappable {
+public class StationExtra: Codable {
+    
+    // MARK: - Variables
+    
     public var address: String?
     public var lastUpdated: Double?
     public var renting: Int?
     public var returning: Int?
-    public var uid: Int?
+    public var uid: String?
     
-    required public convenience init?(map: Map) {
-        self.init()
+    enum CodingKeys: String, CodingKey {
+        case address
+        case lastUpdated = "last_updated"
+        case renting
+        case returning
+        case uid
     }
+    
+    // MARK: - Initalizers
     
     init() {
-        
     }
     
-    public func mapping(map: Map) {
-        address <- map["address"]
-        lastUpdated <- map["last_updated"]
-        renting <- map["renting"]
-        returning <- map["returning"]
-        uid <- map["uid"]
+    required public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.address = try values.decodeIfPresent(String.self, forKey: .address)
+        self.lastUpdated = try values.decodeIfPresent(Double.self, forKey: .lastUpdated)
+        self.renting = try values.decodeIfPresent(Int.self, forKey: .renting)
+        self.returning = try values.decodeIfPresent(Int.self, forKey: .returning)
+        self.uid = try values.decodeIfPresent(String.self, forKey: .uid)
+    }
+    
+    // MARK: - Public Functions
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(address, forKey: .address)
+        try container.encode(lastUpdated, forKey: .lastUpdated)
+        try container.encode(renting, forKey: .renting)
+        try container.encode(returning, forKey: .returning)
+        try container.encode(uid, forKey: .uid)
     }
 }

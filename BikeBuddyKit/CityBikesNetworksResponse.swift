@@ -7,20 +7,34 @@
 //
 
 import Foundation
-import ObjectMapper
 
 /**
  Represents a response from the CityBikes API call for a list of available networks
- 
- :Implements: Mappable - Allows easy mapping from JSON to object via ObjectMapper
  */
-public class CityBikesNetworksResponse: Mappable {
+public class CityBikesNetworksResponse: Codable {
+    
+    // MARK: - Variables
+    
     public var networks: [Network]?
     
-    required public init?(map: Map) {
+    enum CodingKeys: String, CodingKey {
+        case networks
     }
     
-    public func mapping(map: Map) {
-        networks <- map["networks"]
+    // MARK: - Initalizers
+    
+    required public init?() {
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        networks = try values.decode([Network].self, forKey: .networks)
+    }
+    
+    // MARK: - Public Functions
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(networks, forKey: .networks)
     }
 }
