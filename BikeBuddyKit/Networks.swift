@@ -27,22 +27,6 @@ public class Networks {
     private init() {
     }
     
-    /*private func setupNetworkIndex() {
-        var networkIndexArray = [String]()
-        
-        for item in self.list {
-            if let country = item.location?.country {
-                let firstLetter = String(country[country.startIndex])
-                
-                if !networkIndexArray.contains(firstLetter) {
-                    networkIndexArray.append(firstLetter)
-                }
-            }
-        }
-        
-        self.indexListByNetwork = networkIndexArray.sorted()
-    }*/
-    
     private func setupNetworksBySection() {
         var bySectionWorkingCopy = [String: [Network]]()
         let sortedNetworkList = self.list.sorted { $0.name! < $1.name! }

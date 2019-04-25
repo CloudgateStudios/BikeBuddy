@@ -13,7 +13,9 @@ import CoreLocation
 /**
  Represents a bike sharing station.
  
+ :Implements: NSObject - Allows for easy object creation
  :Implements: MKAnnotation - Allows Station objects to be passed to MapView's for quick annotation loading
+ :Implements: Codable - Allows easy mapping via Swift protocols. See init(from decoder) and encode(to encoder).
  */
 public class Station: NSObject, MKAnnotation, Codable {
     

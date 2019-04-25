@@ -10,6 +10,8 @@ import Foundation
 
 /**
  Represents a extra data about a Station object. This conforms to the CityBikes API.
+ 
+ :Implements: Codable - Allows easy mapping via Swift protocols. See init(from decoder) and encode(to encoder).
  */
 public class StationExtra: Codable {
     

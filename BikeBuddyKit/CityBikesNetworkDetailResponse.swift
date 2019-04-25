@@ -10,6 +10,8 @@ import Foundation
 
 /**
  Represents a response from the CityBikes API call for details about a network.
+ 
+ :Implements: Codable - Allows easy mapping via Swift protocols. See init(from decoder) and encode(to encoder).
  */
 public class CityBikesNetworkDetailResponse: Codable {
     
