@@ -10,6 +10,8 @@ import Foundation
 
 /**
  Represents a Location from the CityBikes API. This is usually found under a Network object.
+ 
+ :Implements: Codable - Allows easy mapping via Swift protocols. See init(from decoder) and encode(to encoder).
  */
 public class Location: Codable {
     

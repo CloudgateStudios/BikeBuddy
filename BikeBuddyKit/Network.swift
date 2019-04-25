@@ -10,6 +10,8 @@ import Foundation
 
 /**
  Represents a Network from the CityBikes API.
+ 
+ :Implements: Codable - Allows easy mapping via Swift protocols. See init(from decoder) and encode(to encoder).
  */
 public class Network: Codable {
     
