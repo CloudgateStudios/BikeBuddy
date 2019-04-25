@@ -65,6 +65,9 @@ platform :ios do
     build_app(scheme: "Bike Buddy", configuration: "Release", export_xcargs: "-allowProvisioningUpdates")
     upload_to_testflight
 
+    # Cleanup 
+    clean_build_artifacts
+
     # Commit Build Number Change
     version = get_version_number(xcodeproj: "Bike Buddy.xcodeproj")
     build = get_build_number(xcodeproj: "Bike Buddy.xcodeproj")
