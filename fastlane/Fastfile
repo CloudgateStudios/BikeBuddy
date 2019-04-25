@@ -7,10 +7,10 @@ platform :ios do
     update_fastlane
 
     # This is the minimum version number required.
-    fastlane_version "2.119.0"
+    fastlane_version "2.121.0"
 
     # Make sure the repo is in a clean state
-    ensure_git_status_clean
+    #ensure_git_status_clean
   end
 
   desc "Setup the workspace for development"
@@ -53,9 +53,17 @@ platform :ios do
   #desc "- Upload to TestFlight (User needs to pull release trigger)"
   desc "- Commit the build number change, tag and push to git"
   lane :bumpAndArchive do
-    # Build
+    # Setup
     increment_build_number
-    gym(scheme: "Bike Buddy", configuration: "Release")
+
+    # App Store Cert Stuff
+    get_certificates
+    get_provisioning_profile(app_identifier: "com.cloudgatestudios.Bike-Buddy")
+    get_provisioning_profile(app_identifier: "com.cloudgatestudios.Bike-Buddy.BikeBuddyWidget")
+
+    # Build & Upload
+    build_app(scheme: "Bike Buddy", configuration: "Release", export_xcargs: "-allowProvisioningUpdates")
+    upload_to_testflight
 
     # Commit Build Number Change
     version = get_version_number(xcodeproj: "Bike Buddy.xcodeproj")
