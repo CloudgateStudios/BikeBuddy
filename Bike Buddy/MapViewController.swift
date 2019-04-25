@@ -150,6 +150,10 @@ extension MapViewController: MKMapViewDelegate {
             self.performSegue(withIdentifier: Constants.SegueNames.ShowStationDetailFromMap, sender: self)
         }
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        //For some reason it seems like this delegate function is needed in order for the calloutAccessoryControlTapped function to actually be called. Seems like it's some kind of iOS bug.
+    }
 
     /**
     Take the current Stations.list and load the needed annotations on the map
