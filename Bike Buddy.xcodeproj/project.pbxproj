@@ -719,7 +719,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/StringsChecker.py;
+			shellScript = "Scripts/StringsChecker.py\n";
 		};
 		D1E509D51DAC917F007D918A /* Copy in Carthage Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
