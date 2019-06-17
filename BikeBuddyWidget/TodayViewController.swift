@@ -67,7 +67,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                     Stations.sharedInstance.list = responseObject
                     
                     if self.usersCurrentLocation.latitude != 0.0 {
-                        var closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
+                        let closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
                         
                         self.stationNameLabel.text = closestStations[0].stationName
                         self.distanceLabel.text = closestStations[0].approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel")
