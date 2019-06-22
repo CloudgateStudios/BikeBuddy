@@ -70,6 +70,7 @@
 		D1D98EFD1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */; };
 		D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D1DD8BC51DA327C400DED913 /* BikeBuddyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D1F7E14222BE4AC600E0BDCB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +208,7 @@
 		D1D98EFA1DE9C789000A226E /* CityBikes_Networks_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Networks_API_Response.json; sourceTree = "<group>"; };
 		D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Network_Detail_API_Response.json; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 				C516EFE91B0CE6CB00CF4468 /* Info.plist */,
 				C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */,
 				D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */,
+				D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */,
 				C516EFF21B0CE6CB00CF4468 /* Main.storyboard in Resources */,
 				C516EFF71B0CE6CB00CF4468 /* LaunchScreen.xib in Resources */,
+				D1F7E14222BE4AC600E0BDCB /* Colors.xcassets in Resources */,
 				D146DE6D1C9F40CD00083A9C /* PrivacyPolicy.txt in Resources */,
 				C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */,
 			);

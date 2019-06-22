@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x0g-jN-aat">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x0g-jN-aat">
+    <device id="retina4_0" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14278.2"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.15"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ftuWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-Fi-Taj">
-                                <rect key="frame" x="35" y="191" width="250" height="250"/>
+                                <rect key="frame" x="35" y="181" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="0R5-eP-Ywe"/>
                                     <constraint firstAttribute="width" constant="250" id="gJr-Pu-vqb"/>
@@ -50,13 +50,12 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Bike Buddy We need to setup a few things before we begin" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLX-qq-O20">
-                                <rect key="frame" x="16" y="80" width="288" height="61"/>
+                                <rect key="frame" x="16" y="60" width="288" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.95959595959595956" green="0.95959595959595956" blue="0.95959595959595956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="ViewBackground"/>
                         <constraints>
                             <constraint firstItem="MBd-ck-Mkz" firstAttribute="leading" secondItem="iLX-qq-O20" secondAttribute="leading" constant="-16" id="9oD-Nk-d0C"/>
                             <constraint firstItem="rBP-Fi-Taj" firstAttribute="centerY" secondItem="MBd-ck-Mkz" secondAttribute="centerY" id="B1Z-Fp-KrV"/>
@@ -89,14 +88,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-NP-MTb">
-                                <rect key="frame" x="16" y="80" width="288" height="81.5"/>
+                                <rect key="frame" x="16" y="60" width="288" height="88"/>
                                 <string key="text">In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ftuLocationAccess" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-8Y-cCL">
-                                <rect key="frame" x="10" y="169.5" width="300" height="293"/>
+                                <rect key="frame" x="10" y="156" width="300" height="300"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-Qe-wpc">
                                 <rect key="frame" x="76.5" y="510" width="167" height="38"/>
@@ -119,7 +117,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="ViewBackground"/>
                         <constraints>
                             <constraint firstItem="dwg-NP-MTb" firstAttribute="centerX" secondItem="lvD-EL-sPQ" secondAttribute="centerX" id="9PS-5T-42A"/>
                             <constraint firstItem="lvD-EL-sPQ" firstAttribute="trailing" secondItem="dwg-NP-MTb" secondAttribute="trailing" constant="16" id="Dwp-dR-nsi"/>
@@ -154,7 +152,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-mS-eKX">
-                                <rect key="frame" x="112.5" y="297" width="95" height="38"/>
+                                <rect key="frame" x="112.5" y="287" width="95" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4Bu-r0-zH1"/>
                                     <constraint firstAttribute="width" constant="200" id="qtU-gg-anE"/>
@@ -174,7 +172,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.95959595959999999" green="0.95959595959999999" blue="0.95959595959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="ViewBackground"/>
                         <constraints>
                             <constraint firstItem="O5u-mS-eKX" firstAttribute="centerY" secondItem="1OX-E9-QCV" secondAttribute="centerY" id="7ua-Uu-3LX"/>
                             <constraint firstItem="O5u-mS-eKX" firstAttribute="centerX" secondItem="1OX-E9-QCV" secondAttribute="centerX" id="aaM-MW-yQM"/>
@@ -200,18 +198,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-Jq-h4v">
-                                <rect key="frame" x="0.0" y="64" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ctt-sT-9uh">
-                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="100" width="320" height="468"/>
+                                <color key="backgroundColor" name="ViewBackground"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FTUNetworkSelectCell" textLabel="MAj-uV-P3Q" detailTextLabel="whV-At-7nD" style="IBUITableViewCellStyleSubtitle" id="F9i-MK-Ywn">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F9i-MK-Ywn" id="yPE-90-eto">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MAj-uV-P3Q">
@@ -234,7 +232,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="ViewBackground"/>
                         <constraints>
                             <constraint firstItem="vKB-Jq-h4v" firstAttribute="top" secondItem="pOK-PM-Kbf" secondAttribute="top" id="6mA-Cp-50O"/>
                             <constraint firstItem="Ctt-sT-9uh" firstAttribute="top" secondItem="vKB-Jq-h4v" secondAttribute="bottom" id="LI5-9a-0af"/>
@@ -264,7 +262,7 @@
                 <navigationController storyboardIdentifier="MainNavController" automaticallyAdjustsScrollViewInsets="NO" id="x0g-jN-aat" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pSz-A7-gOV">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -280,5 +278,8 @@
     <resources>
         <image name="ftuLocationAccess" width="300" height="300"/>
         <image name="ftuWelcome" width="300" height="300"/>
+        <namedColor name="ViewBackground">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
