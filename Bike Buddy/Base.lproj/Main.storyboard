@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="iOS 13.0 system colors" minToolsVersion="11.0"/>
     </dependencies>
     <scenes>
         <!--Stations-->
@@ -55,7 +53,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="tertiarySystemFillColor"/>
+                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="jNM-Jy-dy5" secondAttribute="bottom" constant="3" id="5Tf-Fr-j9m"/>
                                                 <constraint firstAttribute="width" constant="72" id="5uW-xw-UDk"/>
@@ -81,7 +79,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="tertiaryLabelColor"/>
+                                            <color key="backgroundColor" systemColor="tertiaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="coy-vn-xzw" secondAttribute="bottom" constant="3" id="57N-I0-fp8"/>
                                                 <constraint firstItem="coy-vn-xzw" firstAttribute="centerX" secondItem="VKJ-PB-uyP" secondAttribute="centerX" id="PFZ-ul-bmy"/>
@@ -589,19 +587,10 @@
                     <connections>
                         <outlet property="navBarTitle" destination="c64-Rt-81u" id="CfZ-ig-kHG"/>
                         <outlet property="searchBar" destination="kU0-XM-8FO" id="4tW-Tz-EBO"/>
-                        <outlet property="searchDisplayController" destination="pSY-Hv-Chf" id="Xvz-X6-8Zf"/>
                         <outlet property="tableView" destination="zpo-o4-AwQ" id="puA-QE-2sB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tg7-sw-iON" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="pSY-Hv-Chf">
-                    <connections>
-                        <outlet property="delegate" destination="3hB-MF-PFn" id="Lts-ca-xB7"/>
-                        <outlet property="searchContentsController" destination="3hB-MF-PFn" id="aZ5-tC-b30"/>
-                        <outlet property="searchResultsDataSource" destination="3hB-MF-PFn" id="UZn-OZ-blR"/>
-                        <outlet property="searchResultsDelegate" destination="3hB-MF-PFn" id="KyV-Gd-yYQ"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2292" y="1085"/>
         </scene>
@@ -764,7 +753,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bg-rD-DqS">
-                                                    <rect key="frame" x="20" y="29" width="560" height="16"/>
+                                                    <rect key="frame" x="20" y="29" width="560" height="17"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Go to https://www.citybik.es for more details">
                                                             <attributes>
