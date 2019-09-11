@@ -88,8 +88,9 @@ class MainTabViewController: UITabBarController {
         let storyboard: UIStoryboard = UIStoryboard(name: Constants.ViewNames.FirstTimeUseStoryboard, bundle: nil)
         if let firstVC: UIViewController = storyboard.instantiateInitialViewController() {
             firstVC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+            firstVC.modalPresentationStyle = .fullScreen
             
-            present(firstVC, animated: true, completion: nil)
+            self.present(firstVC, animated: true, completion: nil)
         }
     }
 
