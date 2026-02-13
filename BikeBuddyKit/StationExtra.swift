@@ -18,7 +18,7 @@ public class StationExtra: Codable {
     // MARK: - Variables
     
     public var address: String?
-    public var lastUpdated: Double?
+    public var lastUpdated: String?
     public var renting: Int?
     public var returning: Int?
     public var uid: String?
@@ -40,7 +40,7 @@ public class StationExtra: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         self.address = try values.decodeIfPresent(String.self, forKey: .address)
-        self.lastUpdated = try values.decodeIfPresent(Double.self, forKey: .lastUpdated)
+        self.lastUpdated = try values.decodeIfPresent(String.self, forKey: .lastUpdated)
         self.renting = try values.decodeIfPresent(Int.self, forKey: .renting)
         self.returning = try values.decodeIfPresent(Int.self, forKey: .returning)
         self.uid = try values.decodeIfPresent(String.self, forKey: .uid)

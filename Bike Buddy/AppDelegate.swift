@@ -9,7 +9,7 @@
 import UIKit
 import BikeBuddyKit
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Class Variables

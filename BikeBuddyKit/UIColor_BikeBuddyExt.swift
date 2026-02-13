@@ -5,25 +5,11 @@
 //  Created by Tom Arra on 9/20/16.
 //  Copyright © 2016 Cloudgate Studios. All rights reserved.
 //
+//  NOTE: This file has been deprecated in favor of UIColor+BikeBuddy.swift
+//  The duplicate colorFromInteger method has been removed to fix ambiguity errors.
+//  This file can be safely deleted from the project.
+//
 
 import UIKit
 
-public extension UIColor {
-    
-    /**
-     Helper function for creating a custom color. Instead of having to do the math of int/255.0 every time this function can take care of it for you.
-     
-     - parameter red: The value of red as an Int
-     - parameter green: The value of green as an Int
-     - parameter blue: The value of blue as an Int
-     - parameter alpha: The alpha value of the color
-     
-     - returns: The new UIColor
-     */
-    class func colorFromInteger (red: Int, green: Int, blue: Int, alpha: Float) -> UIColor {
-        let floatRed = CGFloat(red) / 255.0
-        let floatGreen = CGFloat(green) / 255.0
-        let floatBlue = CGFloat(blue) / 255.0
-        return UIColor(red: floatRed, green: floatGreen, blue: floatBlue, alpha: CGFloat(alpha))
-    }
-}
+// Extension methods removed - see UIColor+BikeBuddy.swift instead

@@ -60,6 +60,13 @@ public class StationsDataService {
                 do {
                     if let safeData = data {
                         let decoder = JSONDecoder()
+                        
+                        // Debug: Print the raw JSON string
+                        if let jsonString = String(data: safeData, encoding: .utf8) {
+                            print("Raw JSON response:")
+                            print(jsonString.prefix(500)) // Print first 500 chars
+                        }
+                        
                         let model = try decoder.decode(CityBikesNetworkDetailResponse.self, from: safeData)
                         
                         if let testResponseResult = model.network?.stations {
@@ -70,13 +77,56 @@ public class StationsDataService {
                             completionHandler(returnStations, NSError(domain: Constants.NSErrorInfo.DomainString, code: Constants.NSErrorInfo.NetworkErrorCode))
                         }
                     }
+                } catch let DecodingError.keyNotFound(key, context) {
+                    print("JSON error: Key '\(key.stringValue)' not found:", context.debugDescription)
+                    print("Coding path:", context.codingPath.map { $0.stringValue }.joined(separator: " -> "))
+                } catch let DecodingError.typeMismatch(type, context) {
+                    print("JSON error: Type '\(type)' mismatch:", context.debugDescription)
+                    print("Coding path:", context.codingPath.map { $0.stringValue }.joined(separator: " -> "))
+                } catch let DecodingError.valueNotFound(type, context) {
+                    print("JSON error: Value of type '\(type)' not found:", context.debugDescription)
+                    print("Coding path:", context.codingPath.map { $0.stringValue }.joined(separator: " -> "))
+                } catch let DecodingError.dataCorrupted(context) {
+                    print("JSON error: Data corrupted:", context.debugDescription)
+                    print("Coding path:", context.codingPath.map { $0.stringValue }.joined(separator: " -> "))
                 } catch {
                     print("JSON error: \(error.localizedDescription)")
+                    print("Full error: \(error)")
                 }
             })
             
             task.resume()
         }
+    }
+    
+    /**
+     Modern async/await version: Get all station data for the given API and return it as an array of Station objects
+     
+     - parameter apiUrl: The URL to the API to call
+     
+     - returns: An array of Station objects
+     - throws: Network or decoding errors
+     */
+    public func getAllStationData(apiUrl: String) async throws -> [Station] {
+        guard let url = URL(string: apiUrl) else {
+            throw URLError(.badURL)
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse, 
+              (200...299).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+        
+        guard let mime = httpResponse.mimeType, mime == "application/json" else {
+            throw URLError(.cannotParseResponse)
+        }
+        
+        let decoder = JSONDecoder()
+        let model = try decoder.decode(CityBikesNetworkDetailResponse.self, from: data)
+        
+        return model.network?.stations ?? []
     }
     
     /**
