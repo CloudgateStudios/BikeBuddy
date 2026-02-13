@@ -8,10 +8,9 @@
 
 import UIKit
 import CoreLocation
-import DZNEmptyDataSet
 import BikeBuddyKit
 
-class StationsListTableViewController: UITableViewController, CLLocationManagerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class StationsListTableViewController: UITableViewController, CLLocationManagerDelegate {
     // MARK: - View Outlets
 
     @IBOutlet weak var navBarItem: UINavigationItem!
@@ -27,6 +26,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
     var closestStations = [Station]() {
         didSet {
             self.tableView.reloadData()
+            updateEmptyState()
         }
     }
     private var tappedStation: Station!
@@ -55,8 +55,7 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
 
         getUserLocation()
         
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
+        updateEmptyState()
     }
     
     @objc func getUserLocation() {
@@ -159,31 +158,17 @@ class StationsListTableViewController: UITableViewController, CLLocationManagerD
         self.closestStations = Stations.getClosestStations(latitude: self.usersCurrentLocation.latitude, longitude: self.usersCurrentLocation.longitude, numberOfStations: SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations))
     }
     
-    // MARK: - Empty Data Set Delegates
+    // MARK: - Empty State Management
     
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = StringsService.getStringFor(key: "StationsListNoDataTitle")
-        let attribs = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
-            NSAttributedString.Key.foregroundColor: UIColor.darkGray
-        ]
-        
-        return NSAttributedString(string: text, attributes: attribs)
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = StringsService.getStringFor(key: "StationsListNoDataMessage")
-        
-        let para = NSMutableParagraphStyle()
-        para.lineBreakMode = NSLineBreakMode.byWordWrapping
-        para.alignment = NSTextAlignment.center
-        
-        let attribs = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
-            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
-            NSAttributedString.Key.paragraphStyle: para
-        ]
-        
-        return NSAttributedString(string: text, attributes: attribs)
+    private func updateEmptyState() {
+        if closestStations.isEmpty {
+            tableView.showEmptyState(
+                image: UIImage(systemName: "bicycle"),
+                title: StringsService.getStringFor(key: "StationsListNoDataTitle"),
+                message: StringsService.getStringFor(key: "StationsListNoDataMessage")
+            )
+        } else {
+            tableView.hideEmptyState()
+        }
     }
 }

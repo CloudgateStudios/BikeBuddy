@@ -9,13 +9,9 @@
 import UIKit
 import BikeBuddyKit
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    // MARK: - Class Variables
-    
-    var window: UIWindow?
-    
     // MARK: - Basic App Launch Handlers
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -23,64 +19,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        var returnValue = true
-        
         setupApplication()
-        
-        if let option = launchOptions {
-            if option.keys.contains(UIApplication.LaunchOptionsKey.userActivityDictionary) {
-                if let userActivityDict = option[UIApplication.LaunchOptionsKey.userActivityDictionary] as? [AnyHashable: Any] {
-                    if userActivityDict.keys.contains(UIApplication.LaunchOptionsKey.userActivityType) {
-                        if let userActivity = userActivityDict["UIApplicationLaunchOptionsUserActivityKey"] as? NSUserActivity {
-                            returnValue = handleActivity(userActivity: userActivity)
-                        }
-                    }
-                }
-            }
-        }
-        
-        return returnValue
+        return true
     }
     
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.AppCameBackToForeground), object: self)
-        
-        if Stations.shouldBeUpdated() {
-            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.StationDataIsStale)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsDataIsStale), object: self)
-        }
+    // MARK: - UISceneSession Lifecycle
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene session is being created.
+        // Use this method to select a configuration to create the new scene with.
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
     
-    // MARK: - User Activity Restore App Launch Handlers
-    
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        return handleActivity(userActivity: userActivity)
-    }
-    
-    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
-        if userActivityType == Constants.UserActivity.StationActivityTypeIdentifier {
-            return true
-        }
-        
-        return false
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        // Called when the user discards a scene session.
+        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
     // MARK: - Private Setup Functions
     
     private func setupApplication() {
         ThemeService.applyTheme()
-    }
-    
-    private func handleActivity(userActivity: NSUserActivity) -> Bool {
-        if userActivity.activityType == Constants.UserActivity.StationActivityTypeIdentifier {
-            if self.window != nil {
-                //As long as we have the window (which is the tab bar controller at root) send the restore call down to it to handle
-                self.window?.rootViewController?.restoreUserActivityState(userActivity)
-                
-                return true
-            }
-        }
-        
-        return false
     }
 }

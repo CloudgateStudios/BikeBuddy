@@ -9,7 +9,8 @@
 #ifndef Bike_Buddy_Bridging_Header_h
 #define Bike_Buddy_Bridging_Header_h
 
-@import SVProgressHUD;
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+// Bridging header for Objective-C imports
+// Note: SVProgressHUD and DZNEmptyDataSet have been replaced with native Swift implementations
+// See ProgressHUD.swift and EmptyStateView.swift
 
 #endif

@@ -21,7 +21,7 @@ public class Station: NSObject, MKAnnotation, Codable {
     
     // MARK: - Variables
     
-    public var id: Int = -1
+    public var id: String = ""
     public var stationName: String = ""
     public var availableDocks: Int = -1
     public var latitude: Double = 0.0
@@ -45,9 +45,9 @@ public class Station: NSObject, MKAnnotation, Codable {
     public var streetAddress: String {
         var returnValue: String = ""
         
-        if let address = extraInfo.address {
-            returnValue = address
-        }
+        //if let address = extraInfo.address {
+            //returnValue = address
+        //}
         
         return returnValue
     }
@@ -82,7 +82,7 @@ public class Station: NSObject, MKAnnotation, Codable {
         case latitude = "latitude"
         case longitude = "longitude"
         case timestamp = "timestamp"
-        case extraInto = "extra"
+        case extraInfo = "extra"
     }
     
     // MARK: - Initalizers
@@ -91,15 +91,18 @@ public class Station: NSObject, MKAnnotation, Codable {
     }
     
     required public init(from decoder: Decoder) throws {
+        super.init()
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.availableBikes = try values.decode(Int.self, forKey: .availableBikes)
-        self.availableDocks = try values.decode(Int.self, forKey: .availableDocks)
-        self.stationName = try values.decode(String.self, forKey: .stationName)
-        self.latitude = try values.decode(Double.self, forKey: .latitude)
-        self.longitude = try values.decode(Double.self, forKey: .longitude)
-        self.timestamp = try values.decode(String.self, forKey: .timestamp)
-        self.extraInfo = try values.decode(StationExtra.self, forKey: .extraInto)
+        self.id = try values.decodeIfPresent(String.self, forKey: .id) ?? ""
+        self.availableBikes = try values.decodeIfPresent(Int.self, forKey: .availableBikes) ?? 0
+        self.availableDocks = try values.decodeIfPresent(Int.self, forKey: .availableDocks) ?? -1
+        self.stationName = try values.decodeIfPresent(String.self, forKey: .stationName) ?? ""
+        self.latitude = try values.decodeIfPresent(Double.self, forKey: .latitude) ?? 0.0
+        self.longitude = try values.decodeIfPresent(Double.self, forKey: .longitude) ?? 0.0
+        self.timestamp = try values.decodeIfPresent(String.self, forKey: .timestamp) ?? ""
+        self.extraInfo = try values.decodeIfPresent(StationExtra.self, forKey: .extraInfo) ?? StationExtra()
     }
     
     // MARK: - Public Functions
@@ -113,7 +116,7 @@ public class Station: NSObject, MKAnnotation, Codable {
         try container.encode(latitude, forKey: .latitude)
         try container.encode(longitude, forKey: .longitude)
         try container.encode(timestamp, forKey: .timestamp)
-        try container.encode(extraInfo, forKey: .extraInto)
+        try container.encode(extraInfo, forKey: .extraInfo)
     }
     
     public func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {

@@ -8,12 +8,12 @@
 
 import Foundation
 
-class AnalyticsService {
+public class AnalyticsService {
     
     /**
      The shared instanace that should be used to access all members of the service.
      */
-    class var sharedInstance: AnalyticsService {
+    public class var sharedInstance: AnalyticsService {
         struct Static {
             static let instance: AnalyticsService = AnalyticsService()
         }
@@ -32,6 +32,6 @@ class AnalyticsService {
      - parameter eventName: The name of the event that should be tracked. Must be provided.
      - parameter customAttributes: A dictonary of extra data that can be added to analytic events. This is optional.
      */
-    func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": "" as AnyObject]) {
+    public func pegUserAction(eventName: String, customAttributes: [String: AnyObject] = ["": "" as AnyObject]) {
     }
 }
