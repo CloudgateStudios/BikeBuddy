@@ -41,8 +41,21 @@ public class StationExtra: Codable {
 
         self.address = try values.decodeIfPresent(String.self, forKey: .address)
         self.lastUpdated = try values.decodeIfPresent(String.self, forKey: .lastUpdated)
-        self.renting = try values.decodeIfPresent(Int.self, forKey: .renting)
-        self.returning = try values.decodeIfPresent(Int.self, forKey: .returning)
+        
+        // Handle renting - can be Int or Bool
+        if let rentingInt = try? values.decodeIfPresent(Int.self, forKey: .renting) {
+            self.renting = rentingInt
+        } else if let rentingBool = try? values.decodeIfPresent(Bool.self, forKey: .renting) {
+            self.renting = rentingBool ? 1 : 0
+        }
+        
+        // Handle returning - can be Int or Bool
+        if let returningInt = try? values.decodeIfPresent(Int.self, forKey: .returning) {
+            self.returning = returningInt
+        } else if let returningBool = try? values.decodeIfPresent(Bool.self, forKey: .returning) {
+            self.returning = returningBool ? 1 : 0
+        }
+        
         self.uid = try values.decodeIfPresent(String.self, forKey: .uid)
     }
     

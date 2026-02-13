@@ -30,6 +30,8 @@
 		D13A8E882F3F8D800027B69F /* UIColor+BikeBuddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8E872F3F8D800027B69F /* UIColor+BikeBuddy.swift */; };
 		D13A8E8C2F3F8DCA0027B69F /* COMPILATION_FIXES.md in Resources */ = {isa = PBXBuildFile; fileRef = D13A8E8B2F3F8DCA0027B69F /* COMPILATION_FIXES.md */; };
 		D13A8E8E2F3F8DFC0027B69F /* TARGET_MEMBERSHIP_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = D13A8E8D2F3F8DFC0027B69F /* TARGET_MEMBERSHIP_GUIDE.md */; };
+		D13A8E902F3F9A920027B69F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8E8F2F3F9A920027B69F /* SceneDelegate.swift */; };
+		D13A8E922F3F9D110027B69F /* SCENE_DELEGATE_FIXES.md in Resources */ = {isa = PBXBuildFile; fileRef = D13A8E912F3F9D110027B69F /* SCENE_DELEGATE_FIXES.md */; };
 		D146DE6D1C9F40CD00083A9C /* PrivacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */; };
 		D146DE6F1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */; };
 		D14957FA1DB30CFC0038A615 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D14957F91DB30CFC0038A615 /* NotificationCenter.framework */; };
@@ -169,6 +171,8 @@
 		D13A8E872F3F8D800027B69F /* UIColor+BikeBuddy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+BikeBuddy.swift"; sourceTree = "<group>"; };
 		D13A8E8B2F3F8DCA0027B69F /* COMPILATION_FIXES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = COMPILATION_FIXES.md; sourceTree = "<group>"; };
 		D13A8E8D2F3F8DFC0027B69F /* TARGET_MEMBERSHIP_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TARGET_MEMBERSHIP_GUIDE.md; sourceTree = "<group>"; };
+		D13A8E8F2F3F9A920027B69F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D13A8E912F3F9D110027B69F /* SCENE_DELEGATE_FIXES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SCENE_DELEGATE_FIXES.md; sourceTree = "<group>"; };
 		D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PrivacyPolicy.txt; sourceTree = "<group>"; };
 		D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAboutPrivacyPolicyTableViewController.swift; sourceTree = "<group>"; };
 		D14957F31DB2B2370038A615 /* Bike Buddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bike Buddy.entitlements"; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 				D1C4B7DC2F3F879200D5C201 /* QUICK_START.md */,
 				D1C4B7DE2F3F87CA00D5C201 /* ARCHITECTURE.md */,
 				D1C4B7E02F3F880500D5C201 /* README_MIGRATION.md */,
+				D13A8E912F3F9D110027B69F /* SCENE_DELEGATE_FIXES.md */,
 			);
 			path = "Bike Buddy";
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 				D13A8E872F3F8D800027B69F /* UIColor+BikeBuddy.swift */,
 				D13A8E8B2F3F8DCA0027B69F /* COMPILATION_FIXES.md */,
 				D13A8E8D2F3F8DFC0027B69F /* TARGET_MEMBERSHIP_GUIDE.md */,
+				D13A8E8F2F3F9A920027B69F /* SceneDelegate.swift */,
 			);
 			path = BikeBuddyKit;
 			sourceTree = "<group>";
@@ -668,6 +674,7 @@
 				D1C4B7DD2F3F879200D5C201 /* QUICK_START.md in Resources */,
 				D1C4B7D72F3F86D900D5C201 /* COCOAPODS_REMOVAL_INSTRUCTIONS.md in Resources */,
 				D1C4B7D92F3F871700D5C201 /* TESTING_CHECKLIST.md in Resources */,
+				D13A8E922F3F9D110027B69F /* SCENE_DELEGATE_FIXES.md in Resources */,
 				D1C4B7D52F3F820C00D5C201 /* MIGRATION_GUIDE.md in Resources */,
 				D146DE6D1C9F40CD00083A9C /* PrivacyPolicy.txt in Resources */,
 				C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */,
@@ -740,6 +747,7 @@
 				D1920CDC1DE66450003FBCB4 /* NetworksDataService.swift in Sources */,
 				D1920CDA1DE6628D003FBCB4 /* StationExtra.swift in Sources */,
 				D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */,
+				D13A8E902F3F9A920027B69F /* SceneDelegate.swift in Sources */,
 				D1920CD81DE66180003FBCB4 /* Location.swift in Sources */,
 				D11DDDDE1D988E0300BBB480 /* Station.swift in Sources */,
 				D1920CE01DE75428003FBCB4 /* CountryCleanupService.swift in Sources */,
