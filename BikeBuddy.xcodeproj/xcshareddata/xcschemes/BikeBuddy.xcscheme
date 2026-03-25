@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C516EFE41B0CE6CB00CF4468"
-               BuildableName = "Bike Buddy.app"
-               BlueprintName = "Bike Buddy"
-               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+               BuildableName = "BikeBuddy.app"
+               BlueprintName = "BikeBuddy"
+               ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C516EFFB1B0CE6CB00CF4468"
-               BuildableName = "Bike BuddyTests.xctest"
-               BlueprintName = "Bike BuddyTests"
-               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+               BuildableName = "BikeBuddyTests.xctest"
+               BlueprintName = "BikeBuddyTests"
+               ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "D18F4B111D9225FC00972AF2"
                BuildableName = "BikeBuddyKitTests.xctest"
                BlueprintName = "BikeBuddyKitTests"
-               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+               ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -60,9 +60,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C516EFE41B0CE6CB00CF4468"
-            BuildableName = "Bike Buddy.app"
-            BlueprintName = "Bike Buddy"
-            ReferencedContainer = "container:Bike Buddy.xcodeproj">
+            BuildableName = "BikeBuddy.app"
+            BlueprintName = "BikeBuddy"
+            ReferencedContainer = "container:BikeBuddy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -71,9 +71,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C516EFFB1B0CE6CB00CF4468"
-               BuildableName = "Bike BuddyTests.xctest"
-               BlueprintName = "Bike BuddyTests"
-               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+               BuildableName = "BikeBuddyTests.xctest"
+               BlueprintName = "BikeBuddyTests"
+               ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -81,9 +81,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D1B6DD191C9EC3E3008543A3"
-               BuildableName = "Bike BuddyUITests.xctest"
-               BlueprintName = "Bike BuddyUITests"
-               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+               BuildableName = "BikeBuddyUITests.xctest"
+               BlueprintName = "BikeBuddyUITests"
+               ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -93,7 +93,7 @@
                BlueprintIdentifier = "D18F4B111D9225FC00972AF2"
                BuildableName = "BikeBuddyKitTests.xctest"
                BlueprintName = "BikeBuddyKitTests"
-               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+               ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -114,9 +114,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C516EFE41B0CE6CB00CF4468"
-            BuildableName = "Bike Buddy.app"
-            BlueprintName = "Bike Buddy"
-            ReferencedContainer = "container:Bike Buddy.xcodeproj">
+            BuildableName = "BikeBuddy.app"
+            BlueprintName = "BikeBuddy"
+            ReferencedContainer = "container:BikeBuddy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -131,9 +131,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C516EFE41B0CE6CB00CF4468"
-            BuildableName = "Bike Buddy.app"
-            BlueprintName = "Bike Buddy"
-            ReferencedContainer = "container:Bike Buddy.xcodeproj">
+            BuildableName = "BikeBuddy.app"
+            BlueprintName = "BikeBuddy"
+            ReferencedContainer = "container:BikeBuddy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
