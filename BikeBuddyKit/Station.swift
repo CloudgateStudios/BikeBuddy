@@ -45,9 +45,9 @@ public class Station: NSObject, MKAnnotation, Codable {
     public var streetAddress: String {
         var returnValue: String = ""
         
-        //if let address = extraInfo.address {
-            //returnValue = address
-        //}
+        // if let address = extraInfo.address {
+            // returnValue = address
+        // }
         
         return returnValue
     }
@@ -120,7 +120,7 @@ public class Station: NSObject, MKAnnotation, Codable {
     }
     
     public func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {
-        //Only do this if we know the users location
+        // Only do this if we know the users location
         if usersLatitude != 0 && usersLongitude != 0 {
             let usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
             let stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)

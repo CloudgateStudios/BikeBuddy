@@ -20,7 +20,7 @@ class AppViewModel: ObservableObject {
 
     @Published var stations: [Station] = []
     @Published var isLoadingStations: Bool = false
-    @Published var stationsLoadError: String? = nil
+    @Published var stationsLoadError: String?
     @Published var stationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
 
     @Published var showFirstTimeUse: Bool = false

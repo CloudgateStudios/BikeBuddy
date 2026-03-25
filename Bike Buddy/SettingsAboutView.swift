@@ -13,7 +13,7 @@ import BikeBuddyKit
 /// Replaces SettingsAboutTableViewController + SettingsAboutPrivacyPolicyTableViewController.
 struct SettingsAboutView: View {
 
-    @State private var safariURL: URL? = nil
+    @State private var safariURL: URL?
     @State private var showSafari = false
 
     private let thirdPartyItems: [(label: String, url: String)] = [

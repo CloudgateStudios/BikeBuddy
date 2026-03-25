@@ -38,7 +38,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
 
         _ = SettingsService.sharedInstance
         
-        //self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
+        // self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
         
         startLoading()
         getUserLocation()
@@ -80,7 +80,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
                 }
             }
         } else {
-            //At this point seems like we dont have a URL which means user did not do first time use
+            // At this point seems like we dont have a URL which means user did not do first time use
             self.endLoading(completionHandler: completionHandler, result: .failed, errorString: StringsService.getStringFor(key: "TodayWidgetPleaseSetupAppMessage"))
         }
     }

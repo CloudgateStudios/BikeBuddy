@@ -48,9 +48,9 @@ class MainTabViewController: UITabBarController {
                     }
                 } else {
                     let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoNetworkConnectionMessageContent"), preferredStyle: UIAlertController.Style.alert)
-                    let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) -> Void in }
+                    let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) in }
                     alert.addAction(alertAction)
-                    present(alert, animated: true) { () -> Void in }
+                    present(alert, animated: true) { }
                 }
             }
         }
@@ -58,10 +58,10 @@ class MainTabViewController: UITabBarController {
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         if activity.activityType == Constants.UserActivity.StationActivityTypeIdentifier {
-            //Make sure we move to the map tab first to get the stack right
+            // Make sure we move to the map tab first to get the stack right
             self.selectedViewController = self.viewControllers?[1]
-            
-            //Need to find the MapViewController and pass the restore call down to it. Being that it sits inside a navigation controller go get that first.
+
+            // Need to find the MapViewController and pass the restore call down to it. Being that it sits inside a navigation controller go get that first.
             if let navigationController = self.viewControllers![1] as? UINavigationController {                
                 if let firstVC = navigationController.viewControllers[0] as? MapViewController {
                     firstVC.restoreUserActivityState(activity)
@@ -103,12 +103,12 @@ class MainTabViewController: UITabBarController {
 
             if responseObject.count == 0 {
                 ProgressHUDService.sharedInstance.dismissHUD()
-                
+
                 let alert = UIAlertController(title: StringsService.getStringFor(key: "GeneralNoStationsMessageTitle"), message: StringsService.getStringFor(key: "GeneralNoStationsMessageContent"), preferredStyle: UIAlertController.Style.alert)
-                let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) -> Void in }
+                let alertAction = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) in }
                 alert.addAction(alertAction)
-                
-                self.present(alert, animated: true) { () -> Void in }
+
+                self.present(alert, animated: true) { }
             } else {
                 Stations.sharedInstance.list = responseObject
             }

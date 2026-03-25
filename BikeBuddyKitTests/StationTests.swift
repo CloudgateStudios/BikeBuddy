@@ -18,14 +18,6 @@ class StationTests: XCTestCase {
      private let testAvailableBikes = 3
      private let testAvailableDocks = 3
      
-     override func setUp() {
-        super.setUp()
-     }
-     
-     override func tearDown() {
-        super.tearDown()
-     }
-     
      private func createBasicTestStation() -> Station {
          let newStation = Station()
         

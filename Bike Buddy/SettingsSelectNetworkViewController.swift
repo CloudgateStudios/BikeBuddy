@@ -46,7 +46,7 @@ class SettingsSelectNetworkViewController: UIViewController {
         
         self.searchBar.delegate = self
         
-        //AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsSelectCity)
+        // AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsSelectCity)
         
         setupStrings()
         
@@ -55,7 +55,7 @@ class SettingsSelectNetworkViewController: UIViewController {
         NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) { responseObject, _ in
             
             Networks.sharedInstance.list = responseObject
-            //self.networks = Networks.getSortedByNetworkName()
+            // self.networks = Networks.getSortedByNetworkName()
             
             ProgressHUDService.sharedInstance.dismissHUD()
         }

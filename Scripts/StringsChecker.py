@@ -47,7 +47,7 @@ def language_code_in_strings_path(p):
     return None
 
 def key_in_string(s):
-    m = re.search("(?u)^\"(.*?)\"\s*=", s)
+    m = re.search(r'(?u)^"(.*?)"\s*=', s)
     if not m:
         return None
 
@@ -60,7 +60,7 @@ def key_in_string(s):
 
 def key_in_code_line(s):
     #matches = re.findall("NSLocalizedString\(@?\"(.*?)\",", s);
-    matches = re.findall("StringsService.getStringFor\(key: @?\"(.*?)\"", s);
+    matches = re.findall(r'StringsService.getStringFor\(key: @?"(.*?)"', s);
     if len(matches) == 0:
         return None;
 
@@ -89,7 +89,7 @@ def guess_encoding(path):
 def keys_set_in_strings_file_at_path(p):
 
     enc = guess_encoding(p)
-    f = codecs.open(p, encoding=enc)
+    f = open(p, encoding=enc)
     keys = set()
 
     line = 0
@@ -119,7 +119,7 @@ def keys_set_in_strings_file_at_path(p):
 def localized_strings_at_path(p):
 
     enc = guess_encoding(p)
-    f = codecs.open(p, encoding=enc)
+    f = open(p, encoding=enc)
 
     keys = set()
 

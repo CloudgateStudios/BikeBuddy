@@ -17,7 +17,7 @@ struct MapView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @StateObject private var locationManager = LocationManager()
 
-    @State private var selectedStation: Station? = nil
+    @State private var selectedStation: Station?
     @State private var navigateToDetail = false
     @State private var updatedAtText: String = ""
     // Deferred so the map frame renders before we ask SwiftUI to lay out
@@ -125,9 +125,9 @@ struct MapView: View {
     }
 
     private static let timestampFormatter: DateFormatter = {
-        let f = DateFormatter()
-        f.dateFormat = "h:mm a"
-        return f
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return formatter
     }()
 }
 
