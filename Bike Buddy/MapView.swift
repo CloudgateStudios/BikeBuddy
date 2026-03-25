@@ -37,15 +37,6 @@ struct MapView: View {
             }
         }
         .navigationTitle(StringsService.getStringFor(key: "MapNavBarTitle"))
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    currentPositionButtonTapped()
-                } label: {
-                    Image(systemName: "location")
-                }
-            }
-        }
         .navigationDestination(isPresented: $navigateToDetail) {
             if let station = selectedStation {
                 StationDetailView(station: station)
@@ -98,7 +89,6 @@ struct MapView: View {
         }
         .mapControls {
             MapUserLocationButton()
-            MapCompassButton()
         }
     }
 
@@ -116,14 +106,6 @@ struct MapView: View {
             }
         )
         .ignoresSafeArea(edges: .bottom)
-    }
-
-    // MARK: - Actions
-
-    private func currentPositionButtonTapped() {
-        AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped")
-        // The map's built-in UserAnnotation / MapUserLocationButton handles centering.
-        // For iOS 16, the LegacyMapViewRepresentable handles this via delegate.
     }
 
     // MARK: - Helpers
