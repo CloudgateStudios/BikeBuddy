@@ -53,7 +53,7 @@ jobs:
             -H "Authorization: Bearer $ADMIN_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${{ github.repository }}/rulesets" \
-            | jq '[.[] | select(.enforcement == "active") | .id]')
+            | jq -c '[.[] | select(.enforcement == "active") | .id]')
           echo "ACTIVE_RULESET_IDS=$ids" >> "$GITHUB_ENV"
 
           # GET each ruleset, flip enforcement to disabled, PUT it back
@@ -76,10 +76,10 @@ jobs:
         run: |
           version=$(xcrun agvtool what-marketing-version -terse1)
           build=$(xcrun agvtool what-version -terse)
-          git add "Bike Buddy.xcodeproj/project.pbxproj" \
-                  "Bike Buddy/Info.plist" \
+          git add "BikeBuddy.xcodeproj/project.pbxproj" \
+                  "BikeBuddy/Info.plist" \
                   "BikeBuddyKit/Info.plist" \
-                  "Bike BuddyUITests/Info.plist"
+                  "BikeBuddyUITests/Info.plist"
           git commit -m "Version Bump to ${version}-${build}"
           git tag "release/${version}/${build}"
           git push origin main --follow-tags
