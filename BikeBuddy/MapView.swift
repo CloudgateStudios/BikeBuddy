@@ -77,9 +77,12 @@ struct MapView: View {
             mapControls
         }
         .toolbar(.hidden, for: .navigationBar)
-        .navigationDestination(isPresented: $navigateToDetail) {
+        .sheet(isPresented: $navigateToDetail) {
             if let station = navigatingStation {
-                StationDetailView(station: station)
+                NavigationStack {
+                    StationDetailView(station: station)
+                }
+                .presentationDetents([.medium, .large])
             }
         }
         .onChange(of: appViewModel.stationsLastUpdated) { _, _ in
