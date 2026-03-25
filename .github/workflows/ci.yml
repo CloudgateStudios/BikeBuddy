@@ -56,7 +56,7 @@ jobs:
       - name: Build
         run: |
           xcodebuild build \
-            -scheme "Bike Buddy" \
+            -scheme "BikeBuddy" \
             -destination "platform=iOS Simulator,name=iPhone 17,OS=latest" \
             CODE_SIGNING_ALLOWED=NO \
             | xcpretty && exit ${PIPESTATUS[0]}
@@ -64,7 +64,7 @@ jobs:
       - name: Run unit tests
         run: |
           xcodebuild test \
-            -scheme "Bike Buddy" \
+            -scheme "BikeBuddy" \
             -destination "platform=iOS Simulator,name=iPhone 17,OS=latest" \
             -only-testing:BikeBuddyKitTests \
             -resultBundlePath build/results.xcresult \
