@@ -210,7 +210,7 @@ private struct StationSelectionCard: View {
             // Docks count
             availabilityPill(
                 count: station.availableDocks,
-                icon: "parkingsign",
+                icon: "arrow.down.to.line",
                 color: .primary
             )
 

@@ -39,7 +39,7 @@ struct StationsListView: View {
             }
         }
         .navigationTitle(StringsService.getStringFor(key: "StationsListNavBarTitle"))
-        .onAppear  { locationManager.startUpdatingLocation() }
+        .onAppear { locationManager.startUpdatingLocation() }
         .onDisappear { locationManager.stopUpdatingLocation() }
     }
 
@@ -127,7 +127,7 @@ struct StationRowView: View, Equatable {
                 )
                 availabilityBadge(
                     count: station.availableDocks,
-                    icon: "parkingsign",
+                    icon: "arrow.down.to.line",
                     color: availabilityColor(station.availableDocks)
                 )
             }
