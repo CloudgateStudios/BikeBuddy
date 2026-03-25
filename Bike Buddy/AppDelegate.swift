@@ -9,7 +9,8 @@
 import UIKit
 import BikeBuddyKit
 
-@main
+// NOTE: @main is now on BikeBuddyApp.swift (SwiftUI entry point).
+// This file is kept only for reference and will be removed from the Xcode build phase.
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Basic App Launch Handlers

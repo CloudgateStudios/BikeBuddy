@@ -83,6 +83,25 @@
 		D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D1DD8BC51DA327C400DED913 /* BikeBuddyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D1F7E14222BE4AC600E0BDCB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */; };
+		/* SwiftUI migration build files */
+		SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP_VM /* AppViewModel.swift */; };
+		SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP /* BikeBuddyApp.swift */; };
+		SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CONTENT /* ContentView.swift */; };
+		SWIFTUI_BF_TAB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_TAB /* MainTabView.swift */; };
+		SWIFTUI_BF_FTU_VM /* FTUViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_FTU_VM /* FTUViewModel.swift */; };
+		SWIFTUI_BF_FTU_WELCOME /* FTUWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_FTU_WELCOME /* FTUWelcomeView.swift */; };
+		SWIFTUI_BF_FTU_LOCATION /* FTULocationAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_FTU_LOCATION /* FTULocationAccessView.swift */; };
+		SWIFTUI_BF_FTU_NETWORK /* FTUSelectNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_FTU_NETWORK /* FTUSelectNetworkView.swift */; };
+		SWIFTUI_BF_FTU_FINISH /* FTUFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_FTU_FINISH /* FTUFinishedView.swift */; };
+		SWIFTUI_BF_LOCMGR /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_LOCMGR /* LocationManager.swift */; };
+		SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATIONS /* StationsListView.swift */; };
+		SWIFTUI_BF_MAP /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_MAP /* MapView.swift */; };
+		SWIFTUI_BF_DETAIL /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATION_DETAIL /* StationDetailView.swift */; };
+		SWIFTUI_BF_SETTINGS /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS /* SettingsView.swift */; };
+		SWIFTUI_BF_SETTINGS_NET /* SettingsSelectNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */; };
+		SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */; };
+		SWIFTUI_BF_SETTINGS_ABOUT /* SettingsAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */; };
+		SWIFTUI_BF_BTN_STYLE /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +248,25 @@
 		D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Network_Detail_API_Response.json; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		/* SwiftUI migration files */
+		SWIFTUI_APP_VM /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		SWIFTUI_APP /* BikeBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddyApp.swift; sourceTree = "<group>"; };
+		SWIFTUI_CONTENT /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		SWIFTUI_TAB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		SWIFTUI_FTU_VM /* FTUViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUViewModel.swift; sourceTree = "<group>"; };
+		SWIFTUI_FTU_WELCOME /* FTUWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUWelcomeView.swift; sourceTree = "<group>"; };
+		SWIFTUI_FTU_LOCATION /* FTULocationAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTULocationAccessView.swift; sourceTree = "<group>"; };
+		SWIFTUI_FTU_NETWORK /* FTUSelectNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUSelectNetworkView.swift; sourceTree = "<group>"; };
+		SWIFTUI_FTU_FINISH /* FTUFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUFinishedView.swift; sourceTree = "<group>"; };
+		SWIFTUI_LOCMGR /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		SWIFTUI_STATIONS /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
+		SWIFTUI_MAP /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		SWIFTUI_STATION_DETAIL /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
+		SWIFTUI_SETTINGS /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelectNetworkView.swift; sourceTree = "<group>"; };
+		SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNumberOfClosestStationsView.swift; sourceTree = "<group>"; };
+		SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutView.swift; sourceTree = "<group>"; };
+		SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,34 +363,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C516F0131B0CEFF100CF4468 /* ViewControllers */ = {
+		C516F0131B0CEFF100CF4468 /* SwiftUI Views */ = {
 			isa = PBXGroup;
 			children = (
-				D17C7C431B24DAE600509916 /* FTUWelcomeViewController.swift */,
-				C5E8732A1B1097AA00217C93 /* FTULocationAccessViewController.swift */,
-				D19FEA511DED0C2B00EA198B /* FTUSelectNetworkTableViewController.swift */,
-				C5E8732C1B109B2A00217C93 /* FTUFinishedViewController.swift */,
-				C5C2A8AC1B62858500B3FD65 /* MainTabViewController.swift */,
-				C516F0101B0CE80F00CF4468 /* MapViewController.swift */,
-				C516F00E1B0CE7EB00CF4468 /* StationsListTableViewController.swift */,
-				D194CA631C9D7E3F0028BDB7 /* StationDetailTableViewController.swift */,
-				C516F00C1B0CE79100CF4468 /* SettingsTableViewController.swift */,
-				D1920CE41DE75E42003FBCB4 /* SettingsSelectNetworkViewController.swift */,
-				D10242F91B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift */,
-				D1341E221C9DE190008F9343 /* SettingsAboutTableViewController.swift */,
-				D146DE6E1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift */,
+				SWIFTUI_APP_VM /* AppViewModel.swift */,
+				SWIFTUI_APP /* BikeBuddyApp.swift */,
+				SWIFTUI_CONTENT /* ContentView.swift */,
+				SWIFTUI_TAB /* MainTabView.swift */,
+				SWIFTUI_FTU_VM /* FTUViewModel.swift */,
+				SWIFTUI_FTU_WELCOME /* FTUWelcomeView.swift */,
+				SWIFTUI_FTU_LOCATION /* FTULocationAccessView.swift */,
+				SWIFTUI_FTU_NETWORK /* FTUSelectNetworkView.swift */,
+				SWIFTUI_FTU_FINISH /* FTUFinishedView.swift */,
+				SWIFTUI_LOCMGR /* LocationManager.swift */,
+				SWIFTUI_STATIONS /* StationsListView.swift */,
+				SWIFTUI_MAP /* MapView.swift */,
+				SWIFTUI_STATION_DETAIL /* StationDetailView.swift */,
+				SWIFTUI_SETTINGS /* SettingsView.swift */,
+				SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */,
+				SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */,
+				SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */,
+				SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */,
 			);
-			name = ViewControllers;
+			name = "SwiftUI Views";
 			sourceTree = "<group>";
 		};
 		C516F0151B0CF01000CF4468 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C516EFF01B0CE6CB00CF4468 /* Main.storyboard */,
-				C5C215871B0F76F000FEB01C /* FirstTimeUse.storyboard */,
 				C516EFF51B0CE6CB00CF4468 /* LaunchScreen.xib */,
-				D111F4621CD99453003F3609 /* StationTableViewCell.swift */,
-				D1C4D7691CEFC163001982F3 /* StationListSectionHeaderCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -664,8 +703,6 @@
 		C516EFE31B0CE6CB00CF4468 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				C5C215881B0F76F000FEB01C /* FirstTimeUse.storyboard in Resources */,
-				C516EFF21B0CE6CB00CF4468 /* Main.storyboard in Resources */,
 				C516EFF71B0CE6CB00CF4468 /* LaunchScreen.xib in Resources */,
 				D1F7E14222BE4AC600E0BDCB /* Colors.xcassets in Resources */,
 				D1C4B7E12F3F880500D5C201 /* README_MIGRATION.md in Resources */,
@@ -712,24 +749,26 @@
 		C516EFE11B0CE6CB00CF4468 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				D1920CE51DE75E42003FBCB4 /* SettingsSelectNetworkViewController.swift in Sources */,
-				D146DE6F1C9F419C00083A9C /* SettingsAboutPrivacyPolicyTableViewController.swift in Sources */,
-				D1341E231C9DE190008F9343 /* SettingsAboutTableViewController.swift in Sources */,
-				D194CA641C9D7E3F0028BDB7 /* StationDetailTableViewController.swift in Sources */,
-				D17C7C441B24DAE600509916 /* FTUWelcomeViewController.swift in Sources */,
-				C516F00D1B0CE79100CF4468 /* SettingsTableViewController.swift in Sources */,
 				D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */,
-				D10242FA1B21137F00FCB923 /* SettingsNumberOfClosestStationsTableViewController.swift in Sources */,
-				C516EFEB1B0CE6CB00CF4468 /* AppDelegate.swift in Sources */,
-				C5E8732D1B109B2A00217C93 /* FTUFinishedViewController.swift in Sources */,
-				C516F00F1B0CE7EB00CF4468 /* StationsListTableViewController.swift in Sources */,
-				D19FEA521DED0C2B00EA198B /* FTUSelectNetworkTableViewController.swift in Sources */,
-				D111F4631CD99453003F3609 /* StationTableViewCell.swift in Sources */,
-				C5C2A8AD1B62858500B3FD65 /* MainTabViewController.swift in Sources */,
-				C5E8732B1B1097AA00217C93 /* FTULocationAccessViewController.swift in Sources */,
-				D1C4D76A1CEFC163001982F3 /* StationListSectionHeaderCell.swift in Sources */,
+					SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */,
+				SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */,
+				SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */,
+				SWIFTUI_BF_TAB /* MainTabView.swift in Sources */,
+				SWIFTUI_BF_FTU_VM /* FTUViewModel.swift in Sources */,
+				SWIFTUI_BF_FTU_WELCOME /* FTUWelcomeView.swift in Sources */,
+				SWIFTUI_BF_FTU_LOCATION /* FTULocationAccessView.swift in Sources */,
+				SWIFTUI_BF_FTU_NETWORK /* FTUSelectNetworkView.swift in Sources */,
+				SWIFTUI_BF_FTU_FINISH /* FTUFinishedView.swift in Sources */,
+				SWIFTUI_BF_LOCMGR /* LocationManager.swift in Sources */,
+				SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */,
+				SWIFTUI_BF_MAP /* MapView.swift in Sources */,
+				SWIFTUI_BF_DETAIL /* StationDetailView.swift in Sources */,
+				SWIFTUI_BF_SETTINGS /* SettingsView.swift in Sources */,
+				SWIFTUI_BF_SETTINGS_NET /* SettingsSelectNetworkView.swift in Sources */,
+				SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */,
+				SWIFTUI_BF_SETTINGS_ABOUT /* SettingsAboutView.swift in Sources */,
+				SWIFTUI_BF_BTN_STYLE /* PrimaryButtonStyle.swift in Sources */,
 				D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */,
-				C516F0111B0CE80F00CF4468 /* MapViewController.swift in Sources */,
 			);
 		};
 		D14957F41DB30CFB0038A615 /* Sources */ = {
