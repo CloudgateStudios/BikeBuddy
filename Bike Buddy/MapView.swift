@@ -20,6 +20,9 @@ struct MapView: View {
     @State private var selectedStation: Station? = nil
     @State private var navigateToDetail = false
     @State private var updatedAtText: String = ""
+    // Deferred so the map frame renders before we ask SwiftUI to lay out
+    // potentially 100+ Annotation views simultaneously on first tab switch.
+    @State private var annotationsReady = false
 
     // MARK: - Body
 
@@ -48,6 +51,9 @@ struct MapView: View {
         .onAppear {
             locationManager.startUpdatingLocation()
             updateTimestampLabel()
+            // Yield one runloop turn so the map frame is on screen before
+            // SwiftUI tries to lay out all annotation views at once.
+            Task { annotationsReady = true }
         }
         .onDisappear {
             locationManager.stopUpdatingLocation()
@@ -70,19 +76,21 @@ struct MapView: View {
     private var modernMap: some View {
         Map {
             UserAnnotation()
-            ForEach(appViewModel.stations, id: \.id) { station in
-                Annotation(station.stationName, coordinate: station.coordinate) {
-                    Button {
-                        AnalyticsService.sharedInstance.pegUserAction(
-                            eventName: Constants.AnalyticEvent.LoadStationDetail,
-                            customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject]
-                        )
-                        selectedStation = station
-                        navigateToDetail = true
-                    } label: {
-                        Image("mapPin")
-                            .resizable()
-                            .frame(width: 32, height: 32)
+            if annotationsReady {
+                ForEach(appViewModel.stations, id: \.id) { station in
+                    Annotation(station.stationName, coordinate: station.coordinate) {
+                        Button {
+                            AnalyticsService.sharedInstance.pegUserAction(
+                                eventName: Constants.AnalyticEvent.LoadStationDetail,
+                                customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject]
+                            )
+                            selectedStation = station
+                            navigateToDetail = true
+                        } label: {
+                            Image("mapPin")
+                                .resizable()
+                                .frame(width: 32, height: 32)
+                        }
                     }
                 }
             }
@@ -164,6 +172,8 @@ struct LegacyMapViewRepresentable: UIViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
 
         var onStationTapped: (Station) -> Void
+        // Loaded once and reused across all annotation views.
+        private let pinImage = UIImage(named: "mapPin")
 
         init(onStationTapped: @escaping (Station) -> Void) {
             self.onStationTapped = onStationTapped
@@ -179,7 +189,7 @@ struct LegacyMapViewRepresentable: UIViewRepresentable {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: id)
                 view?.canShowCallout = true
                 view?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-                view?.image = UIImage(named: "mapPin")
+                view?.image = pinImage
             } else {
                 view?.annotation = annotation
             }
