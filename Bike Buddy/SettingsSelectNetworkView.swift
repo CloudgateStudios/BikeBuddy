@@ -42,7 +42,7 @@ struct SettingsSelectNetworkView: View {
             text: $searchText,
             prompt: StringsService.getStringFor(key: "SettingsSelectNetworkSearchBarPlaceholder")
         )
-        .onChange(of: searchText) { text in
+        .onValueChange(of: searchText) { text in
             applySearch(text)
         }
         .task {

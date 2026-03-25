@@ -43,7 +43,7 @@ public class Station: NSObject, MKAnnotation, Codable {
     }
     
     public var streetAddress: String {
-        var returnValue: String = ""
+        let returnValue: String = ""
         
         // if let address = extraInfo.address {
             // returnValue = address

@@ -102,8 +102,13 @@ struct StationDetailView: View {
     private func openDirections() {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GetDirectionsToStation)
 
-        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(station.latitude, station.longitude), addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
+        let coordinate = CLLocationCoordinate2DMake(station.latitude, station.longitude)
+        let mapItem: MKMapItem
+        if #available(iOS 26, *) {
+            mapItem = MKMapItem(location: CLLocation(latitude: station.latitude, longitude: station.longitude), address: nil)
+        } else {
+            mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: nil))
+        }
         mapItem.name = station.stationName
         let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
         mapItem.openInMaps(launchOptions: options)

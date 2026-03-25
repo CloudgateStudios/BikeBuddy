@@ -33,7 +33,7 @@ struct FTUSelectNetworkView: View {
         .navigationDestination(isPresented: $navigateToFinished) {
             FTUFinishedView()
         }
-        .onChange(of: ftuViewModel.currentStep) { step in
+        .onValueChange(of: ftuViewModel.currentStep) { step in
             if step == .finished { navigateToFinished = true }
         }
         .searchable(

@@ -33,7 +33,7 @@ struct FTULocationAccessView: View {
 
             NavigationLink(value: FTUViewModel.Step.selectNetwork, label: { EmptyView() })
                 .hidden()
-                .onChange(of: ftuViewModel.currentStep) { step in
+                .onValueChange(of: ftuViewModel.currentStep) { step in
                     if step == .selectNetwork { navigateToSelectNetwork = true }
                 }
 

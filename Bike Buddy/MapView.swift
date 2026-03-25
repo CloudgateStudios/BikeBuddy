@@ -45,7 +45,7 @@ struct MapView: View {
                 StationDetailView(station: station)
             }
         }
-        .onChange(of: appViewModel.stationsLastUpdated) { _ in
+        .onValueChange(of: appViewModel.stationsLastUpdated) { _ in
             updateTimestampLabel()
         }
         .onAppear {
