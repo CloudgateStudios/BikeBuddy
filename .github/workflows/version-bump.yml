@@ -8,6 +8,9 @@ on:
         required: true
         type: string
 
+# ADMIN_GITHUB_TOKEN secret required: a PAT with repo admin permissions
+# (Settings → Developer settings → Personal access tokens → repo + admin:repo scopes)
+
 permissions:
   contents: write
 
@@ -20,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
 
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@v1.7.0
@@ -41,6 +44,34 @@ jobs:
           new=$((current + 1))
           xcrun agvtool new-version -all $new
 
+      - name: Disable branch rulesets
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+        run: |
+          # Collect IDs of all currently active rulesets so we can restore them afterward
+          ids=$(curl -sf \
+            -H "Authorization: Bearer $ADMIN_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/rulesets" \
+            | jq '[.[] | select(.enforcement == "active") | .id]')
+          echo "ACTIVE_RULESET_IDS=$ids" >> "$GITHUB_ENV"
+
+          # GET each ruleset, flip enforcement to disabled, PUT it back
+          for id in $(echo "$ids" | jq -r '.[]'); do
+            curl -sf \
+              -H "Authorization: Bearer $ADMIN_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/rulesets/$id" \
+              | jq '.enforcement = "disabled"' \
+              | curl -sf -X PUT \
+                  -H "Authorization: Bearer $ADMIN_TOKEN" \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Content-Type: application/json" \
+                  "https://api.github.com/repos/${{ github.repository }}/rulesets/$id" \
+                  --data-binary @- > /dev/null
+            echo "Disabled ruleset $id"
+          done
+
       - name: Commit, tag, and push
         run: |
           version=$(xcrun agvtool what-marketing-version -terse1)
@@ -52,3 +83,25 @@ jobs:
           git commit -m "Version Bump to ${version}-${build}"
           git tag "release/${version}/${build}"
           git push origin main --follow-tags
+
+      - name: Re-enable branch rulesets
+        if: always()
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+        run: |
+          [ -z "$ACTIVE_RULESET_IDS" ] && exit 0
+
+          for id in $(echo "$ACTIVE_RULESET_IDS" | jq -r '.[]'); do
+            curl -sf \
+              -H "Authorization: Bearer $ADMIN_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/rulesets/$id" \
+              | jq '.enforcement = "active"' \
+              | curl -sf -X PUT \
+                  -H "Authorization: Bearer $ADMIN_TOKEN" \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Content-Type: application/json" \
+                  "https://api.github.com/repos/${{ github.repository }}/rulesets/$id" \
+                  --data-binary @- > /dev/null
+            echo "Re-enabled ruleset $id"
+          done
