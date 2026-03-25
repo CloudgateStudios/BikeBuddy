@@ -103,18 +103,18 @@ class MapViewController: UIViewController {
             let alert = UIAlertController(title: StringsService.getStringFor(key: "MapNoLocationFoundAlertTitle"), message: StringsService.getStringFor(key: "MapNoLocationFoundAlertMessage"), preferredStyle: UIAlertController.Style.alert)
             let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default)
             alert.addAction(alertActionOK)
-            present(alert, animated: true) { () -> Void in }
+            present(alert, animated: true) { }
         }
-        
+
         if !mapView.isUserLocationVisible {
             AnalyticsService.sharedInstance.pegUserAction(eventName: "Current Position on Map Button Tapped when Outside Map View")
-            
+
             let alert = UIAlertController(title: StringsService.getStringFor(key: "MapUserOutsideViewPopupTitle"), message: StringsService.getStringFor(key: "MapUserOutsideViewPopupMessage"), preferredStyle: UIAlertController.Style.alert)
-            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) -> Void in self.zoomMapToCurrentLocation()}
+            let alertActionOK = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonOK"), style: UIAlertAction.Style.default) { (_) in self.zoomMapToCurrentLocation()}
             let alertActionCancel = UIAlertAction(title: StringsService.getStringFor(key: "GeneralButtonCancel"), style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(alertActionOK)
             alert.addAction(alertActionCancel)
-            present(alert, animated: true) { () -> Void in }
+            present(alert, animated: true) { }
         } else {
             zoomMapToCurrentLocation()
         }

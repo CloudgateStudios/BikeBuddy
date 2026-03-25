@@ -66,41 +66,12 @@ public class ProgressHUD {
     }
     
     private func findKeyWindowFromApplication() -> UIWindow? {
-        // Check if UIApplication class exists (it won't in extensions)
-        guard let applicationClass = NSClassFromString("UIApplication") as? AnyClass else {
-            return nil
-        }
-        
-        // Get the shared instance using KVC
-        guard let sharedApplication = (applicationClass as? NSObjectProtocol)?.perform(Selector(("sharedApplication")))?.takeUnretainedValue() else {
-            return nil
-        }
-        
-        // Get connectedScenes using KVC
-        guard let scenes = (sharedApplication as AnyObject).value(forKey: "connectedScenes") as? NSSet else {
-            return nil
-        }
-        
-        // Find UIWindowScene
-        for scene in scenes {
-            // Check if this is a UIWindowScene
-            guard let windowSceneClass = NSClassFromString("UIWindowScene"),
-                  (scene as AnyObject).isKind(of: windowSceneClass) else {
-                continue
-            }
-            
-            // Get windows array
-            guard let windows = (scene as AnyObject).value(forKey: "windows") as? [UIWindow] else {
-                continue
-            }
-            
-            // Return the first key window
-            if let keyWindow = windows.first(where: { $0.isKeyWindow }) {
-                return keyWindow
-            }
-        }
-        
-        return nil
+        // UIApplication is not available in extensions; NSClassFromString returns nil there.
+        guard NSClassFromString("UIApplication") != nil else { return nil }
+        return UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
     }
     
     private func showProgress(message: String?) {

@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Bike Buddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D18F4B111D9225FC00972AF2"
+               BuildableName = "BikeBuddyKitTests.xctest"
+               BlueprintName = "BikeBuddyKitTests"
+               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -69,6 +83,16 @@
                BlueprintIdentifier = "D1B6DD191C9EC3E3008543A3"
                BuildableName = "Bike BuddyUITests.xctest"
                BlueprintName = "Bike BuddyUITests"
+               ReferencedContainer = "container:Bike Buddy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D18F4B111D9225FC00972AF2"
+               BuildableName = "BikeBuddyKitTests.xctest"
+               BlueprintName = "BikeBuddyKitTests"
                ReferencedContainer = "container:Bike Buddy.xcodeproj">
             </BuildableReference>
          </TestableReference>

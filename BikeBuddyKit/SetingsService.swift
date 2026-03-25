@@ -37,9 +37,9 @@ public class SettingsService {
     * Hopefully could be removed after 1.2 deploys.
     */
     private func checkForMigrationToShareGroup() {
-        //If the user has anything they will always have a Number of Closest Stations item. 
-        //Becuase we start with the Share Group if it is zero it is either a clean install or a migration is needed
-        //Open up the basic defaults as a dictonary, loop through it and save it to the new Share Group
+        // If the user has anything they will always have a Number of Closest Stations item.
+        // Becuase we start with the Share Group if it is zero it is either a clean install or a migration is needed
+        // Open up the basic defaults as a dictonary, loop through it and save it to the new Share Group
         if self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) == 0 {
             let allItems = UserDefaults.standard.dictionaryRepresentation()
             
@@ -53,11 +53,11 @@ public class SettingsService {
     * Used to move data from version to version.
     */
     private func checkForSettingsVersionMigration() {
-        //First migration was just getting to the Share Group and setting it to version 1. No data changes need yet.
+        // First migration was just getting to the Share Group and setting it to version 1. No data changes need yet.
         if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 0 {
             self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 1 as AnyObject)
         }
-        //If were doing an upgrade to 1.3 we need to clear out settings and have the user do a setup again so they are ready for the new CityBikes API usage
+        // If were doing an upgrade to 1.3 we need to clear out settings and have the user do a setup again so they are ready for the new CityBikes API usage
         if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 1 {
             self.clearAllSettings()
             self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 2 as AnyObject)
@@ -100,7 +100,7 @@ public class SettingsService {
      - parameter value: The value that should be stored. This can be any object and saveSetting will determine the best way to save it
      */
     public func saveSetting(key: String, value: AnyObject) {
-        //Need to determine type of object
+        // Need to determine type of object
         switch value {
         case is Int:
             if let intValue = value as? Int {

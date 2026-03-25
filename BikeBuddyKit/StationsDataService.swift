@@ -129,14 +129,10 @@ public class StationsDataService {
         return model.network?.stations ?? []
     }
     
-    /**
-     Load in Station data from a file. **Should only be used for development purposes**
-     
-     - parameter fileName: The name of the file to be loaded. Method makes the assumption that the file is part of the main bundle and is not in a subfolder.
-     
-     - returns: An array of Station objects
-     */
-    //NEEDS TO BE RE-WRITTEN AFTER MOVING TO CITY BIKES API
+    // Load in Station data from a file. Should only be used for development purposes.
+    // - parameter fileName: The name of the file to be loaded. Method makes the assumption that the file is part of the main bundle and is not in a subfolder.
+    // - returns: An array of Station objects
+    // NEEDS TO BE RE-WRITTEN AFTER MOVING TO CITY BIKES API
     /*public func loadStationDataFromFile(fileName: String) -> [Station] {
         var fileNameParts: [String] = fileName.components(separatedBy: ".")
         var returnData = [Station]()

@@ -32,10 +32,10 @@ import codecs
 import optparse
 
 def warning(file_path, line_number, message):
-    print "%s:%d: warning: %s" % (file_path, line_number, message.encode("utf8"))
+    print("%s:%d: warning: %s" % (file_path, line_number, message))
 
 def error(file_path, line_number, message):
-    print "%s:%d: error: %s" % (file_path, line_number, message)
+    print("%s:%d: error: %s" % (file_path, line_number, message))
 
 m_paths_and_line_numbers_for_key = {} # [{'k1':(('f1, n1'), ('f1, n2'), ...), ...}]
 s_paths_and_line_numbers_for_key = {} # [{'k1':(('f1, n1'), ('f1, n2'), ...), ...}]
@@ -47,7 +47,7 @@ def language_code_in_strings_path(p):
     return None
 
 def key_in_string(s):
-    m = re.search("(?u)^\"(.*?)\"\s*=", s)
+    m = re.search(r'(?u)^"(.*?)"\s*=', s)
     if not m:
         return None
 
@@ -60,7 +60,7 @@ def key_in_string(s):
 
 def key_in_code_line(s):
     #matches = re.findall("NSLocalizedString\(@?\"(.*?)\",", s);
-    matches = re.findall("StringsService.getStringFor\(key: @?\"(.*?)\"", s);
+    matches = re.findall(r'StringsService.getStringFor\(key: @?"(.*?)"', s);
     if len(matches) == 0:
         return None;
 
@@ -89,7 +89,7 @@ def guess_encoding(path):
 def keys_set_in_strings_file_at_path(p):
 
     enc = guess_encoding(p)
-    f = codecs.open(p, encoding=enc)
+    f = open(p, encoding=enc)
     keys = set()
 
     line = 0
@@ -105,7 +105,7 @@ def keys_set_in_strings_file_at_path(p):
             continue
 
         if key in keys:
-            error(p, line, "key already defined: \"%s\"" % key.encode(enc))
+            error(p, line, "key already defined: \"%s\"" % key)
             continue
 
         keys.add(key)
@@ -119,12 +119,12 @@ def keys_set_in_strings_file_at_path(p):
 def localized_strings_at_path(p):
 
     enc = guess_encoding(p)
-    f = codecs.open(p, encoding=enc)
+    f = open(p, encoding=enc)
 
     keys = set()
 
     line = 0
-    for s in f.xreadlines():
+    for s in f:
         line += 1
 
         if s.strip().startswith('//'):
@@ -182,7 +182,7 @@ def show_untranslated_keys_in_project(project_path, exclude_dirs):
         language_code = language_code_in_strings_path(p)
 
         for k in missing_keys:
-            message = "missing key in %s: \"%s\"" % (language_code, unicode(k, 'utf-8'))
+            message = "missing key in %s: \"%s\"" % (language_code, k)
 
             for (p_, n) in m_paths_and_line_numbers_for_key[k]:
                 warning(p_, n, message)
