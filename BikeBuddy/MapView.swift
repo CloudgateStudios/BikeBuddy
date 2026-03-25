@@ -33,7 +33,6 @@ struct MapView: View {
             }
             .mapControls {
                 MapUserLocationButton()
-                MapCompassButton()
             }
             .ignoresSafeArea(edges: .bottom)
 
