@@ -84,19 +84,9 @@ open class Snapshot: NSObject {
     }
     
     class func setLanguage(_ app: XCUIApplication) {
-        guard let cacheDirectory = self.cacheDirectory else {
+        guard self.cacheDirectory != nil else {
             print("CacheDirectory is not set - probably running on a physical device?")
             return
-        }
-        
-        let path = cacheDirectory.appendingPathComponent("language.txt")
-        
-        do {
-            let trimCharacterSet = CharacterSet.whitespacesAndNewlines
-            //deviceLanguage = try String(contentsOf: path, encoding: .utf8).trimmingCharacters(in: trimCharacterSet)
-            //app.launchArguments += ["-AppleLanguages", "(\(deviceLanguage))"]
-        } catch {
-            print("Couldn't detect/set language...")
         }
     }
     
@@ -199,19 +189,16 @@ open class Snapshot: NSObject {
     }
     
     class func pathPrefix() throws -> URL? {
-        let homeDir: URL
         // on OSX config is stored in /Users/<username>/Library
         // and on iOS/tvOS/WatchOS it's in simulator's home dir
         #if os(OSX)
         guard let user = ProcessInfo().environment["USER"] else {
             throw SnapshotError.cannotDetectUser
         }
-        
         guard let usersDir = FileManager.default.urls(for: .userDirectory, in: .localDomainMask).first else {
             throw SnapshotError.cannotFindHomeDirectory
         }
-        
-        homeDir = usersDir.appendingPathComponent(user)
+        return usersDir.appendingPathComponent(user).appendingPathComponent("Library/Caches/tools.fastlane")
         #else
         #if arch(i386) || arch(x86_64)
         guard let simulatorHostHome = ProcessInfo().environment["SIMULATOR_HOST_HOME"] else {
@@ -220,12 +207,11 @@ open class Snapshot: NSObject {
         guard let homeDirUrl = URL(string: simulatorHostHome) else {
             throw SnapshotError.cannotAccessSimulatorHomeDirectory(simulatorHostHome)
         }
-        homeDir = URL(fileURLWithPath: homeDirUrl.path)
+        return URL(fileURLWithPath: homeDirUrl.path).appendingPathComponent("Library/Caches/tools.fastlane")
         #else
         throw SnapshotError.cannotRunOnPhysicalDevice
         #endif
         #endif
-        return homeDir.appendingPathComponent("Library/Caches/tools.fastlane")
     }
 }
 
