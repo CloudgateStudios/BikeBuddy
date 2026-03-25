@@ -68,17 +68,14 @@ struct MapView: View {
             }
         }
         .mapStyle(mapStyleOption.mapStyle)
-        .mapControls {
-            MapUserLocationButton()
-        }
         .ignoresSafeArea()
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomBar
         }
         .overlay(alignment: .topTrailing) {
-            mapStyleToggle
+            mapControls
         }
-        .navigationTitle(StringsService.getStringFor(key: "MapNavBarTitle"))
+        .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(isPresented: $navigateToDetail) {
             if let station = navigatingStation {
                 StationDetailView(station: station)
@@ -125,18 +122,23 @@ struct MapView: View {
         .animation(.spring(response: 0.35, dampingFraction: 0.85), value: selectedStationID)
     }
 
-    // MARK: - Map style toggle
+    // MARK: - Map controls overlay
 
-    private var mapStyleToggle: some View {
-        Button {
-            withAnimation(.easeInOut(duration: 0.2)) {
-                mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
+    /// Location button + style toggle stacked in the top-trailing corner.
+    private var mapControls: some View {
+        VStack(spacing: 8) {
+            MapUserLocationButton()
+
+            Button {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
+                }
+            } label: {
+                Image(systemName: mapStyleOption.toggleIcon)
+                    .font(.system(size: 15, weight: .medium))
+                    .frame(width: 44, height: 44)
+                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
             }
-        } label: {
-            Image(systemName: mapStyleOption.toggleIcon)
-                .font(.system(size: 15, weight: .medium))
-                .frame(width: 44, height: 44)
-                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
         }
         .padding(.trailing, 10)
         .padding(.top, 8)
