@@ -19,6 +19,7 @@ struct BikeBuddyApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(appViewModel)
+                .tint(Color("BikeBuddyBlue"))
                 .onContinueUserActivity(Constants.UserActivity.StationActivityTypeIdentifier) { activity in
                     handleUserActivity(activity)
                 }

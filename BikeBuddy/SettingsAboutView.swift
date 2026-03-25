@@ -7,32 +7,18 @@
 //
 
 import SwiftUI
-import SafariServices
 import BikeBuddyKit
 
 /// Replaces SettingsAboutTableViewController + SettingsAboutPrivacyPolicyTableViewController.
 struct SettingsAboutView: View {
 
-    @State private var safariURL: URL?
-    @State private var showSafari = false
-
-    private let thirdPartyItems: [(label: String, url: String)] = [
-        ("Alamofire", Constants.ExtneralURL.Alamofire),
-        ("ObjectMapper", Constants.ExtneralURL.ObjectMapper),
-        ("AlamofireObjectMapper", Constants.ExtneralURL.AFOM),
-        ("SVProgressHUD", Constants.ExtneralURL.SVProgressHUD),
-        ("DZNEmptyDataSet", Constants.ExtneralURL.DZNEmptyDataSet)
-    ]
-
     var body: some View {
         List {
             // MARK: App info
             Section {
-                HStack {
-                    Text(UIApplication.appName() + " " + UIApplication.versionBuild())
-                        .foregroundStyle(.secondary)
-                        .font(.subheadline)
-                }
+                Text(versionString)
+                    .foregroundStyle(.secondary)
+                    .font(.subheadline)
             }
 
             // MARK: Data source
@@ -41,18 +27,6 @@ struct SettingsAboutView: View {
                 Text(StringsService.getStringFor(key: "SettingsAboutCityBikesLineTwo"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
-            }
-
-            // MARK: Third-party libraries
-            Section(header: Text("Third Party Libraries")) {
-                ForEach(thirdPartyItems, id: \.label) { item in
-                    Button {
-                        openURL(item.url)
-                    } label: {
-                        Text(item.label)
-                            .foregroundStyle(Color(red: 0/255, green: 122/255, blue: 255/255))
-                    }
-                }
             }
 
             // MARK: Privacy policy
@@ -67,21 +41,18 @@ struct SettingsAboutView: View {
         .listStyle(.insetGrouped)
         .navigationTitle(StringsService.getStringFor(key: "SettingsAboutNavBarTitle"))
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showSafari) {
-            if let url = safariURL {
-                SafariView(url: url)
-            }
-        }
         .onAppear {
             AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsAbout)
         }
     }
 
-    private func openURL(_ urlString: String) {
-        if let url = URL(string: urlString) {
-            safariURL = url
-            showSafari = true
-        }
+    // MARK: - Helpers
+
+    private var versionString: String {
+        let name = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "BikeBuddy"
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        let build = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
+        return version == build ? "\(name) \(version)" : "\(name) \(version) (\(build))"
     }
 }
 
@@ -109,16 +80,4 @@ struct PrivacyPolicyView: View {
             AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenAboutPrivacyPolicy)
         }
     }
-}
-
-// MARK: - SFSafariViewController wrapper
-
-struct SafariView: UIViewControllerRepresentable {
-    let url: URL
-
-    func makeUIViewController(context: Context) -> SFSafariViewController {
-        SFSafariViewController(url: url)
-    }
-
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
 }

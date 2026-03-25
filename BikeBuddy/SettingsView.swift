@@ -13,8 +13,7 @@ import BikeBuddyKit
 struct SettingsView: View {
 
     @EnvironmentObject var appViewModel: AppViewModel
-    @State private var showShareSheet = false
-    @State private var shareItems: [Any] = []
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
         List {
@@ -53,9 +52,9 @@ struct SettingsView: View {
                     Text(StringsService.getStringFor(key: "SettingsGeneralAbout"))
                 }
 
-                Button {
-                    shareTellYourFriends()
-                } label: {
+                ShareLink(
+                    item: StringsService.getStringFor(key: "SettingsShareMessageContent") + " " + Constants.ExtneralURL.AppStoreDeepLink
+                ) {
                     Text(StringsService.getStringFor(key: "SettingsGeneralTellYourFriends"))
                         .foregroundStyle(.primary)
                 }
@@ -70,9 +69,6 @@ struct SettingsView: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle(StringsService.getStringFor(key: "SettingsNavBarTitle"))
-        .sheet(isPresented: $showShareSheet) {
-            ShareSheet(activityItems: shareItems)
-        }
     }
 
     // MARK: - Actions
@@ -80,14 +76,7 @@ struct SettingsView: View {
     private func goToAppStorePage() {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GoToAppStoreLink)
         if let url = URL(string: Constants.ExtneralURL.AppStoreDeepLink) {
-            UIApplication.shared.open(url)
+            openURL(url)
         }
-    }
-
-    private func shareTellYourFriends() {
-        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.ShareAppWithFriends)
-        let message = StringsService.getStringFor(key: "SettingsShareMessageContent") + " " + Constants.ExtneralURL.AppStoreDeepLink
-        shareItems = [message]
-        showShareSheet = true
     }
 }

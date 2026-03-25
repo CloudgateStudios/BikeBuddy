@@ -18,8 +18,8 @@ struct PrimaryButtonStyle: ButtonStyle {
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
             .background(
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Color(red: 60/255, green: 163/255, blue: 220/255))
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color("BikeBuddyBlue"))
                     .opacity(configuration.isPressed ? 0.8 : 1.0)
             )
     }
