@@ -36,6 +36,6 @@ struct MainTabView: View {
                 Label(StringsService.getStringFor(key: "SettingsTabBarItemLabel"), systemImage: "gear")
             }
         }
-        .tint(Color(red: 60/255, green: 163/255, blue: 220/255))
+        .tint(Color("BikeBuddyBlue"))
     }
 }

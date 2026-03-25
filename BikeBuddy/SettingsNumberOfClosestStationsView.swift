@@ -29,7 +29,7 @@ struct SettingsNumberOfClosestStationsView: View {
                         Spacer()
                         if option == appViewModel.numberOfClosestStations {
                             Image(systemName: "checkmark")
-                                .foregroundStyle(Color(red: 60/255, green: 163/255, blue: 220/255))
+                                .foregroundStyle(Color("BikeBuddyBlue"))
                         }
                     }
                 }

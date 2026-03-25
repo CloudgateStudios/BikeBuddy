@@ -15,13 +15,9 @@
 		D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE31D988F7D00BBB480 /* SetingsService.swift */; };
 		D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE51D98901A00BBB480 /* StationsDataService.swift */; };
 		D11DDDE91D98906700BBB480 /* StationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE81D98906700BBB480 /* StationTests.swift */; };
-		D13A8E882F3F8D800027B69F /* UIColor+BikeBuddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8E872F3F8D800027B69F /* UIColor+BikeBuddy.swift */; };
-		D13A8E902F3F9A920027B69F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8E8F2F3F9A920027B69F /* SceneDelegate.swift */; };
 		D146DE6D1C9F40CD00083A9C /* PrivacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */; };
 		D149580A1DB30EAC0038A615 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D149580B1DB317AE0038A615 /* CoreLocation.framework */; };
-		D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */; };
-		D14C281F1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14C281E1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift */; };
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
 		D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* StringsService.swift */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
@@ -29,11 +25,7 @@
 		D18F4B181D9225FC00972AF2 /* BikeBuddyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */; };
 		D18F4B1A1D9225FC00972AF2 /* BikeBuddyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D18F4B221D92261700972AF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B211D92261700972AF2 /* Constants.swift */; };
-		D18F4B261D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B251D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift */; };
-		D18F4B281D92268C00972AF2 /* UIColor_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B271D92268C00972AF2 /* UIColor_BikeBuddyExt.swift */; };
-		D18F4B2A1D9226A100972AF2 /* UILabel_BikeBuddyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B291D9226A100972AF2 /* UILabel_BikeBuddyExt.swift */; };
 		D18F4B311D92291600972AF2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */; };
-		D18F4B331D922A9500972AF2 /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B321D922A9500972AF2 /* ThemeService.swift */; };
 		D1920CD41DE660CE003FBCB4 /* CityBikesNetworkDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CD31DE660CE003FBCB4 /* CityBikesNetworkDetailResponse.swift */; };
 		D1920CD61DE66103003FBCB4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CD51DE66103003FBCB4 /* Network.swift */; };
 		D1920CD81DE66180003FBCB4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CD71DE66180003FBCB4 /* Location.swift */; };
@@ -42,8 +34,6 @@
 		D1920CDE1DE66497003FBCB4 /* CityBikesNetworksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CDD1DE66497003FBCB4 /* CityBikesNetworksResponse.swift */; };
 		D1920CE01DE75428003FBCB4 /* CountryCleanupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */; };
 		D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CE61DE871C0003FBCB4 /* Networks.swift */; };
-		D1C4B7D12F3F81C400D5C201 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4B7D02F3F81C400D5C201 /* EmptyStateView.swift */; };
-		D1C4B7D32F3F81E000D5C201 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4B7D22F3F81E000D5C201 /* ProgressHUD.swift */; };
 		D1D98EFB1DE9C789000A226E /* CityBikes_Networks_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = D1D98EFA1DE9C789000A226E /* CityBikes_Networks_API_Response.json */; };
 		D1D98EFD1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */; };
 		D1DD8BC41DA327C400DED913 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
@@ -67,7 +57,6 @@
 		SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */; };
 		SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATIONS /* StationsListView.swift */; };
 		SWIFTUI_BF_TAB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_TAB /* MainTabView.swift */; };
-		SWIFTUI_BF_ON_CHANGE /* View+OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ON_CHANGE /* View+OnChange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +105,6 @@
 /* Begin PBXFileReference section */
 		C516EFE51B0CE6CB00CF4468 /* BikeBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BikeBuddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C516EFE91B0CE6CB00CF4468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C516EFEA1B0CE6CB00CF4468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C516EFF31B0CE6CB00CF4468 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C516EFF61B0CE6CB00CF4468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C516F01A1B0DAA7C00CF4468 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -126,13 +114,9 @@
 		D11DDDE31D988F7D00BBB480 /* SetingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingsService.swift; sourceTree = "<group>"; };
 		D11DDDE51D98901A00BBB480 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		D11DDDE81D98906700BBB480 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
-		D13A8E872F3F8D800027B69F /* UIColor+BikeBuddy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+BikeBuddy.swift"; sourceTree = "<group>"; };
-		D13A8E8F2F3F9A920027B69F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D146DE6C1C9F40CD00083A9C /* PrivacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PrivacyPolicy.txt; sourceTree = "<group>"; };
 		D14957F31DB2B2370038A615 /* BikeBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BikeBuddy.entitlements"; sourceTree = "<group>"; };
 		D149580B1DB317AE0038A615 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDService.swift; sourceTree = "<group>"; };
-		D14C281E1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2D_BikeBuddyExt.swift; sourceTree = "<group>"; };
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D14D9C501DB839EC008D0656 /* StringsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsService.swift; sourceTree = "<group>"; };
 		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
@@ -143,10 +127,6 @@
 		D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddyKitTests.swift; sourceTree = "<group>"; };
 		D18F4B191D9225FC00972AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D18F4B211D92261700972AF2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D18F4B251D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_BikeBuddyExt.swift; sourceTree = "<group>"; };
-		D18F4B271D92268C00972AF2 /* UIColor_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor_BikeBuddyExt.swift; sourceTree = "<group>"; };
-		D18F4B291D9226A100972AF2 /* UILabel_BikeBuddyExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel_BikeBuddyExt.swift; sourceTree = "<group>"; };
-		D18F4B321D922A9500972AF2 /* ThemeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
 		D1920CD31DE660CE003FBCB4 /* CityBikesNetworkDetailResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityBikesNetworkDetailResponse.swift; sourceTree = "<group>"; };
 		D1920CD51DE66103003FBCB4 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		D1920CD71DE66180003FBCB4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -157,8 +137,6 @@
 		D1920CE61DE871C0003FBCB4 /* Networks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networks.swift; sourceTree = "<group>"; };
 		D1B6DD1A1C9EC3E3008543A3 /* BikeBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BikeBuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6DD1E1C9EC3E3008543A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D1C4B7D02F3F81C400D5C201 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
-		D1C4B7D22F3F81E000D5C201 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		D1D98EFA1DE9C789000A226E /* CityBikes_Networks_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Networks_API_Response.json; sourceTree = "<group>"; };
 		D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Network_Detail_API_Response.json; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -181,7 +159,6 @@
 		SWIFTUI_STATIONS /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		SWIFTUI_STATION_DETAIL /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		SWIFTUI_TAB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		SWIFTUI_ON_CHANGE /* View+OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnChange.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,7 +219,6 @@
 				D188CCEB1DA1E8680053BB78 /* Services */,
 				C516F0131B0CEFF100CF4468 /* SwiftUI Views */,
 				C516F0151B0CF01000CF4468 /* Views */,
-				C516EFEA1B0CE6CB00CF4468 /* AppDelegate.swift */,
 				C516EFE81B0CE6CB00CF4468 /* Supporting Files */,
 			);
 			path = "BikeBuddy";
@@ -281,7 +257,6 @@
 				SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */,
 				SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */,
 				SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */,
-				SWIFTUI_ON_CHANGE /* View+OnChange.swift */,
 			);
 			name = "SwiftUI Views";
 			sourceTree = "<group>";
@@ -321,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */,
-				D149580D1DB3BAC10038A615 /* ProgressHUDService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -336,10 +310,6 @@
 				D18F4B0D1D9225FC00972AF2 /* Info.plist */,
 				D18F4B211D92261700972AF2 /* Constants.swift */,
 				D1D98EF91DE9C76A000A226E /* Supporting Files */,
-				D1C4B7D02F3F81C400D5C201 /* EmptyStateView.swift */,
-				D1C4B7D22F3F81E000D5C201 /* ProgressHUD.swift */,
-				D13A8E872F3F8D800027B69F /* UIColor+BikeBuddy.swift */,
-				D13A8E8F2F3F9A920027B69F /* SceneDelegate.swift */,
 			);
 			path = BikeBuddyKit;
 			sourceTree = "<group>";
@@ -357,10 +327,6 @@
 		D18F4B241D92265C00972AF2 /* Class Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D18F4B251D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift */,
-				D18F4B271D92268C00972AF2 /* UIColor_BikeBuddyExt.swift */,
-				D18F4B291D9226A100972AF2 /* UILabel_BikeBuddyExt.swift */,
-				D14C281E1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift */,
 			);
 			name = "Class Extensions";
 			sourceTree = "<group>";
@@ -368,7 +334,6 @@
 		D18F4B2B1D92283D00972AF2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D18F4B321D922A9500972AF2 /* ThemeService.swift */,
 				D11DDDE31D988F7D00BBB480 /* SetingsService.swift */,
 				D11DDDE51D98901A00BBB480 /* StationsDataService.swift */,
 				D14D9C501DB839EC008D0656 /* StringsService.swift */,
@@ -605,36 +570,25 @@
 				SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */,
 				SWIFTUI_BF_SETTINGS_ABOUT /* SettingsAboutView.swift in Sources */,
 				SWIFTUI_BF_BTN_STYLE /* PrimaryButtonStyle.swift in Sources */,
-				SWIFTUI_BF_ON_CHANGE /* View+OnChange.swift in Sources */,
-				D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */,
 			);
 		};
 		D18F4B051D9225FC00972AF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				D18F4B261D92266E00972AF2 /* UIApplication_BikeBuddyExt.swift in Sources */,
 				D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */,
-				D1C4B7D12F3F81C400D5C201 /* EmptyStateView.swift in Sources */,
 				D1920CDC1DE66450003FBCB4 /* NetworksDataService.swift in Sources */,
 				D1920CDA1DE6628D003FBCB4 /* StationExtra.swift in Sources */,
 				D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */,
-				D13A8E902F3F9A920027B69F /* SceneDelegate.swift in Sources */,
 				D1920CD81DE66180003FBCB4 /* Location.swift in Sources */,
 				D11DDDDE1D988E0300BBB480 /* Station.swift in Sources */,
 				D1920CE01DE75428003FBCB4 /* CountryCleanupService.swift in Sources */,
 				D18F4B221D92261700972AF2 /* Constants.swift in Sources */,
 				D1920CD61DE66103003FBCB4 /* Network.swift in Sources */,
 				D1920CDE1DE66497003FBCB4 /* CityBikesNetworksResponse.swift in Sources */,
-				D18F4B2A1D9226A100972AF2 /* UILabel_BikeBuddyExt.swift in Sources */,
-				D13A8E882F3F8D800027B69F /* UIColor+BikeBuddy.swift in Sources */,
 				D11DDDE21D988F3400BBB480 /* Stations.swift in Sources */,
-				D18F4B281D92268C00972AF2 /* UIColor_BikeBuddyExt.swift in Sources */,
 				D1920CD41DE660CE003FBCB4 /* CityBikesNetworkDetailResponse.swift in Sources */,
 				D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */,
 				D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */,
-				D18F4B331D922A9500972AF2 /* ThemeService.swift in Sources */,
-				D14C281F1DDD4C2C008D4DB4 /* CLLocationCoordinate2D_BikeBuddyExt.swift in Sources */,
-				D1C4B7D32F3F81E000D5C201 /* ProgressHUD.swift in Sources */,
 			);
 		};
 		D18F4B0E1D9225FC00972AF2 /* Sources */ = {
