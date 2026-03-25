@@ -32,7 +32,7 @@ jobs:
         uses: cirruslabs/swiftlint-action@v1.1.0
         with:
           version: latest
-          strict: true
+          args: --strict
 
       - name: Validate localization strings
         run: python3 Scripts/StringsChecker.py -p .
