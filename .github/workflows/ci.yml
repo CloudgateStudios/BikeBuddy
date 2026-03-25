@@ -36,7 +36,7 @@ jobs:
           version: latest
 
       - name: Validate localization strings
-        run: python3 Scripts/StringsChecker.py
+        run: python3 Scripts/StringsChecker.py -p .
 
   # ─────────────────────────────────────────────
   # Job 2: Build & Unit Test
