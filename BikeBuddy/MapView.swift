@@ -32,11 +32,22 @@ private enum MapStyleOption: CaseIterable {
     }
 }
 
+// MARK: - Sheet item wrapper
+
+/// Thin Identifiable wrapper around Station used for .sheet(item:).
+/// Station is a class that does not conform to Identifiable, so we wrap it
+/// here to avoid the isPresented + optional-state race condition that causes
+/// an empty white sheet on first presentation.
+private struct IdentifiableStation: Identifiable {
+    let id: String
+    let station: Station
+}
+
 // MARK: - Map view
 
 /// Full-screen map showing all bike stations as Markers.
 /// Tapping a Marker slides up a glass selection card with availability counts.
-/// Tapping "Details" on the card navigates to StationDetailView.
+/// Tapping "Details" on the card presents StationDetailView as a sheet.
 struct MapView: View {
 
     @EnvironmentObject var appViewModel: AppViewModel
@@ -44,10 +55,8 @@ struct MapView: View {
     /// Tag value from the Map selection binding — matches Station.id (String).
     @State private var cameraPosition: MapCameraPosition = .automatic
     @State private var selectedStationID: String?
-    /// Station object kept separately so the navigation destination can read it
-    /// even after the selection is cleared.
-    @State private var navigatingStation: Station?
-    @State private var navigateToDetail = false
+    /// Set to present the detail sheet; cleared automatically on dismiss.
+    @State private var sheetStation: IdentifiableStation?
     @State private var updatedAtText: String = ""
     @State private var mapStyleOption: MapStyleOption = .standard
 
@@ -77,13 +86,11 @@ struct MapView: View {
             mapControls
         }
         .toolbar(.hidden, for: .navigationBar)
-        .sheet(isPresented: $navigateToDetail) {
-            if let station = navigatingStation {
-                NavigationStack {
-                    StationDetailView(station: station)
-                }
-                .presentationDetents([.medium, .large])
+        .sheet(item: $sheetStation) { wrapper in
+            NavigationStack {
+                StationDetailView(station: wrapper.station)
             }
+            .presentationDetents([.medium, .large])
         }
         .onChange(of: appViewModel.stationsLastUpdated) { _, _ in
             updateTimestampLabel()
@@ -106,8 +113,7 @@ struct MapView: View {
                         eventName: Constants.AnalyticEvent.LoadStationDetail,
                         customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject]
                     )
-                    navigatingStation = station
-                    navigateToDetail = true
+                    sheetStation = IdentifiableStation(id: station.id, station: station)
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .padding(.horizontal)
