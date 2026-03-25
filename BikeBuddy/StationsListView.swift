@@ -10,14 +10,12 @@ import SwiftUI
 import CoreLocation
 import BikeBuddyKit
 
-/// Replaces StationsListTableViewController.
 /// Shows the closest N bike stations to the user's current location.
 struct StationsListView: View {
 
     @EnvironmentObject var appViewModel: AppViewModel
     @StateObject private var locationManager = LocationManager()
 
-    // Derived from stations + current location
     private var closestStations: [Station] {
         let lat = locationManager.coordinate.latitude
         let lon = locationManager.coordinate.longitude
@@ -27,6 +25,8 @@ struct StationsListView: View {
     private var locationIsKnown: Bool {
         locationManager.coordinate.latitude != 0.0 || locationManager.coordinate.longitude != 0.0
     }
+
+    // MARK: - Body
 
     var body: some View {
         Group {
@@ -39,30 +39,27 @@ struct StationsListView: View {
             }
         }
         .navigationTitle(StringsService.getStringFor(key: "StationsListNavBarTitle"))
-        .onAppear {
-            locationManager.startUpdatingLocation()
-        }
-        .onDisappear {
-            locationManager.stopUpdatingLocation()
-        }
+        .onAppear { locationManager.startUpdatingLocation() }
+        .onDisappear { locationManager.stopUpdatingLocation() }
     }
 
     // MARK: - Station list
 
     private var stationList: some View {
         List {
-            Section(header: Text(StringsService.getStringFor(key: "StationsListClosestStationsSectionHeader"))) {
-                ForEach(closestStations, id: \.id) { station in
-                    NavigationLink {
-                        StationDetailView(station: station)
-                    } label: {
-                        StationRowView(station: station, showDistance: locationIsKnown)
-                            .equatable()
-                    }
+            ForEach(closestStations, id: \.id) { station in
+                NavigationLink {
+                    StationDetailView(station: station)
+                } label: {
+                    StationRowView(station: station, showDistance: locationIsKnown)
+                        .equatable()
                 }
             }
         }
-        .listStyle(.plain)
+        .listStyle(.insetGrouped)
+        .refreshable {
+            await appViewModel.refreshStations()
+        }
     }
 
     // MARK: - Loading state
@@ -80,24 +77,16 @@ struct StationsListView: View {
     // MARK: - Empty state
 
     private var emptyStateView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "bicycle")
-                .font(.system(size: 60))
-                .foregroundStyle(.secondary)
-            Text(StringsService.getStringFor(key: "StationsListNoDataTitle"))
-                .font(.headline)
-            Text(StringsService.getStringFor(key: "StationsListNoDataMessage"))
-                .font(.body)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-        }
+        ContentUnavailableView(
+            StringsService.getStringFor(key: "StationsListNoDataTitle"),
+            systemImage: "bicycle",
+            description: Text(StringsService.getStringFor(key: "StationsListNoDataMessage"))
+        )
     }
 }
 
-// MARK: - Station row cell
+// MARK: - Station row
 
-/// Replaces StationTableViewCell (UITableViewCell).
 struct StationRowView: View, Equatable {
 
     let station: Station
@@ -107,59 +96,63 @@ struct StationRowView: View, Equatable {
         lhs.station.id == rhs.station.id &&
         lhs.station.availableBikes == rhs.station.availableBikes &&
         lhs.station.availableDocks == rhs.station.availableDocks &&
+        lhs.station.distanceFromUser == rhs.station.distanceFromUser &&
         lhs.showDistance == rhs.showDistance
     }
 
     var body: some View {
-        HStack {
+        HStack(alignment: .center, spacing: 12) {
+
+            // Name + distance
             VStack(alignment: .leading, spacing: 4) {
                 Text(station.stationName)
                     .font(.body)
                     .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+
                 if showDistance {
-                    Text(station.approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel"))
-                        .font(.subheadline)
+                    Text(station.approximateDistanceAwayFromUser)
+                        .font(.caption)
                         .foregroundStyle(.secondary)
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
 
-            Spacer()
-
-            // Docks tile
-            StationCountTile(
-                count: station.availableDocks,
-                label: StringsService.getStringFor(key: "StationsListDocksAvailableLabel"),
-                color: Color(.tertiaryLabel)
-            )
-
-            // Bikes tile
-            StationCountTile(
-                count: station.availableBikes,
-                label: StringsService.getStringFor(key: "StationsListBikesAvailableLabel"),
-                color: Color(.tertiarySystemFill)
-            )
+            // Availability badges
+            HStack(spacing: 20) {
+                availabilityBadge(
+                    count: station.availableBikes,
+                    icon: "bicycle",
+                    color: availabilityColor(station.availableBikes)
+                )
+                availabilityBadge(
+                    count: station.availableDocks,
+                    icon: "arrow.down.to.line",
+                    color: availabilityColor(station.availableDocks)
+                )
+            }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 6)
     }
-}
 
-// MARK: - Count tile
-
-private struct StationCountTile: View {
-    let count: Int
-    let label: String
-    let color: Color
-
-    var body: some View {
-        VStack(spacing: 8) {
-            Text(NumberFormatter.localizedString(from: count as NSNumber, number: .none))
-                .font(.system(size: 28, weight: .regular))
-            Text(label)
-                .font(.system(size: 10))
-                .multilineTextAlignment(.center)
+    private func availabilityBadge(count: Int, icon: String, color: Color) -> some View {
+        VStack(spacing: 3) {
+            Text("\(count)")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(color)
+                .monospacedDigit()
+            Image(systemName: icon)
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
-        .frame(width: 72, height: 96)
-        .background(color)
-        .clipShape(RoundedRectangle(cornerRadius: 4))
+        .frame(minWidth: 36)
+    }
+
+    private func availabilityColor(_ count: Int) -> Color {
+        switch count {
+        case 0:     .red
+        case 1...2: .orange
+        default:    .primary
+        }
     }
 }
