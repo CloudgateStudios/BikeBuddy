@@ -13,7 +13,6 @@ import BikeBuddyKit
 struct FTULocationAccessView: View {
 
     @EnvironmentObject var ftuViewModel: FTUViewModel
-    @State private var navigateToSelectNetwork = false
 
     var body: some View {
         VStack(spacing: 24) {
@@ -31,12 +30,6 @@ struct FTULocationAccessView: View {
 
             Spacer()
 
-            NavigationLink(value: FTUViewModel.Step.selectNetwork, label: { EmptyView() })
-                .hidden()
-                .onValueChange(of: ftuViewModel.currentStep) { step in
-                    if step == .selectNetwork { navigateToSelectNetwork = true }
-                }
-
             Button(StringsService.getStringFor(key: "LocationAccessButton")) {
                 ftuViewModel.requestLocationAccess()
             }
@@ -53,9 +46,6 @@ struct FTULocationAccessView: View {
             }
         } message: {
             Text(StringsService.getStringFor(key: "LocationAccessNotGrantedMessageContent"))
-        }
-        .navigationDestination(isPresented: $navigateToSelectNetwork) {
-            FTUSelectNetworkView()
         }
     }
 }

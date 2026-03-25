@@ -16,7 +16,7 @@ struct FTUWelcomeView: View {
     @StateObject private var ftuViewModel = FTUViewModel()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $ftuViewModel.path) {
             WelcomeStep()
                 .navigationTitle(StringsService.getStringFor(key: "GeneralAppName"))
                 .navigationBarTitleDisplayMode(.inline)

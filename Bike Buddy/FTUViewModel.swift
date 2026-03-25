@@ -24,6 +24,7 @@ class FTUViewModel: ObservableObject {
     }
 
     @Published var currentStep: Step = .welcome
+    @Published var path: [Step] = []
     @Published var locationAuthorizationStatus: CLAuthorizationStatus = .notDetermined
     @Published var showLocationDeniedAlert: Bool = false
 
@@ -47,11 +48,13 @@ class FTUViewModel: ObservableObject {
 
     func goToSelectNetwork() {
         currentStep = .selectNetwork
+        path.append(.selectNetwork)
         loadNetworksIfNeeded()
     }
 
     func goToFinished() {
         currentStep = .finished
+        path.append(.finished)
     }
 
     // MARK: - Location

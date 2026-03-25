@@ -14,7 +14,6 @@ import BikeBuddyKit
 struct FTUSelectNetworkView: View {
 
     @EnvironmentObject var ftuViewModel: FTUViewModel
-    @State private var navigateToFinished = false
 
     var body: some View {
         Group {
@@ -30,12 +29,6 @@ struct FTUSelectNetworkView: View {
         }
         .navigationTitle(StringsService.getStringFor(key: "SelectNetworkNavBarTitle"))
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(isPresented: $navigateToFinished) {
-            FTUFinishedView()
-        }
-        .onValueChange(of: ftuViewModel.currentStep) { step in
-            if step == .finished { navigateToFinished = true }
-        }
         .searchable(
             text: $ftuViewModel.searchText,
             prompt: StringsService.getStringFor(key: "SelectNetworkSearchBarPlaceholder")
