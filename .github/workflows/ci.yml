@@ -52,20 +52,6 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      # Cache Carthage/Build keyed on Cartfile.resolved so we only
-      # re-bootstrap when a dependency version actually changes.
-      - name: Cache Carthage
-        uses: actions/cache@v4
-        id: carthage-cache
-        with:
-          path: Carthage/Build
-          key: ${{ runner.os }}-carthage-${{ hashFiles('Cartfile.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-carthage-
-
-      - name: Bootstrap Carthage
-        if: steps.carthage-cache.outputs.cache-hit != 'true'
-        run: carthage bootstrap --platform iOS --use-xcframeworks
 
       - name: Build
         run: |
@@ -89,6 +75,7 @@ jobs:
       - name: Report test results
         uses: kishikawakatsumi/xcresulttool@v1
         if: always()
+        continue-on-error: true
         with:
           path: build/results.xcresult
           show-passed-tests: false
