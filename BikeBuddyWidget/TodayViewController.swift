@@ -11,6 +11,7 @@ import NotificationCenter
 import CoreLocation
 import BikeBuddyKit
 
+@available(iOS, deprecated: 14.0, message: "Use WidgetKit instead.")
 class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManagerDelegate {
     
     // MARK: - Class Variables

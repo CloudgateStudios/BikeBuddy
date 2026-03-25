@@ -47,7 +47,7 @@
 		D1920CE01DE75428003FBCB4 /* CountryCleanupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */; };
 		D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CE61DE871C0003FBCB4 /* Networks.swift */; };
 		D1B6DD1D1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD1C1C9EC3E3008543A3 /* BikeBuddySnapshotTests.swift */; };
-		D1B6DD261C9EC436008543A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */; };
+		D1B6DD261C9EC436008543A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6DD251C9EC436008543A3 /* SnapshotHelper.swift */; settings = {COMPILER_FLAGS = "-suppress-warnings"; }; };
 		D1C4B7D12F3F81C400D5C201 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4B7D02F3F81C400D5C201 /* EmptyStateView.swift */; };
 		D1C4B7D32F3F81E000D5C201 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4B7D22F3F81E000D5C201 /* ProgressHUD.swift */; };
 		D1D98EFB1DE9C789000A226E /* CityBikes_Networks_API_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = D1D98EFA1DE9C789000A226E /* CityBikes_Networks_API_Response.json */; };

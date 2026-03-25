@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import BikeBuddyKit
 
 @objc(SceneDelegate)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
