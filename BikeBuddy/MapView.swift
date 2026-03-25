@@ -10,44 +10,75 @@ import SwiftUI
 import MapKit
 import BikeBuddyKit
 
-/// Shows all bike stations as map annotations.
-/// Tapping a station pin navigates to StationDetailView.
+// MARK: - Map style options
+
+private enum MapStyleOption: CaseIterable {
+    case standard, satellite
+
+    var mapStyle: MapStyle {
+        switch self {
+        case .standard:  .standard
+        case .satellite: .hybrid
+        }
+    }
+
+    /// SF Symbol representing the *other* style — shown on the toggle button
+    /// so it communicates what tapping will switch *to*.
+    var toggleIcon: String {
+        switch self {
+        case .standard:  "globe.americas.fill"
+        case .satellite: "map"
+        }
+    }
+}
+
+// MARK: - Map view
+
+/// Full-screen map showing all bike stations as Markers.
+/// Tapping a Marker slides up a glass selection card with availability counts.
+/// Tapping "Details" on the card navigates to StationDetailView.
 struct MapView: View {
 
     @EnvironmentObject var appViewModel: AppViewModel
 
-    @State private var selectedStation: Station?
+    /// Tag value from the Map selection binding — matches Station.id (String).
+    @State private var cameraPosition: MapCameraPosition = .automatic
+    @State private var selectedStationID: String?
+    /// Station object kept separately so the navigation destination can read it
+    /// even after the selection is cleared.
+    @State private var navigatingStation: Station?
     @State private var navigateToDetail = false
     @State private var updatedAtText: String = ""
+    @State private var mapStyleOption: MapStyleOption = .standard
+
+    /// Derived from selectedStationID; nil when nothing is selected.
+    private var selectedStation: Station? {
+        guard let id = selectedStationID else { return nil }
+        return appViewModel.stations.first { $0.id == id }
+    }
 
     // MARK: - Body
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            Map {
-                UserAnnotation()
-                ForEach(appViewModel.stations, id: \.id) { station in
-                    Marker(station.stationName, coordinate: station.coordinate)
-                        .tint(Color("BikeBuddyBlue"))
-                }
-            }
-            .mapControls {
-                MapUserLocationButton()
-            }
-            .ignoresSafeArea(edges: .bottom)
-
-            if !updatedAtText.isEmpty {
-                Text(updatedAtText)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                    .padding(6)
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
-                    .padding(.bottom, 8)
+        Map(position: $cameraPosition, selection: $selectedStationID) {
+            UserAnnotation()
+            ForEach(appViewModel.stations, id: \.id) { station in
+                Marker(station.stationName, coordinate: station.coordinate)
+                    .tint(Color("BikeBuddyBlue"))
+                    .tag(station.id)
             }
         }
-        .navigationTitle(StringsService.getStringFor(key: "MapNavBarTitle"))
+        .mapStyle(mapStyleOption.mapStyle)
+        .ignoresSafeArea()
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            bottomBar
+        }
+        .overlay(alignment: .topTrailing) {
+            mapControls
+        }
+        .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(isPresented: $navigateToDetail) {
-            if let station = selectedStation {
+            if let station = navigatingStation {
                 StationDetailView(station: station)
             }
         }
@@ -57,6 +88,73 @@ struct MapView: View {
         .onAppear {
             updateTimestampLabel()
         }
+    }
+
+    // MARK: - Bottom bar
+
+    /// Shows the selection card when a station is active, otherwise the
+    /// last-updated timestamp.  Both swap with an animated transition.
+    @ViewBuilder
+    private var bottomBar: some View {
+        ZStack {
+            if let station = selectedStation {
+                StationSelectionCard(station: station) {
+                    AnalyticsService.sharedInstance.pegUserAction(
+                        eventName: Constants.AnalyticEvent.LoadStationDetail,
+                        customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject]
+                    )
+                    navigatingStation = station
+                    navigateToDetail = true
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .padding(.horizontal)
+                .padding(.bottom, 8)
+            } else if !updatedAtText.isEmpty {
+                Text(updatedAtText)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 6)
+                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
+                    .transition(.opacity)
+                    .padding(.bottom, 8)
+            }
+        }
+        .animation(.spring(response: 0.35, dampingFraction: 0.85), value: selectedStationID)
+    }
+
+    // MARK: - Map controls overlay
+
+    /// Location button + style toggle stacked in the top-trailing corner.
+    /// Both use the same glass pill appearance for visual consistency.
+    private var mapControls: some View {
+        VStack(spacing: 8) {
+            // Center on user location
+            Button {
+                withAnimation {
+                    cameraPosition = .userLocation(followsHeading: false, fallback: .automatic)
+                }
+            } label: {
+                Image(systemName: "location.fill")
+                    .font(.system(size: 15, weight: .medium))
+                    .frame(width: 44, height: 44)
+                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
+            }
+
+            // Toggle map style
+            Button {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
+                }
+            } label: {
+                Image(systemName: mapStyleOption.toggleIcon)
+                    .font(.system(size: 15, weight: .medium))
+                    .frame(width: 44, height: 44)
+                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
+            }
+        }
+        .padding(.trailing, 10)
+        .padding(.top, 8)
     }
 
     // MARK: - Helpers
@@ -72,4 +170,77 @@ struct MapView: View {
         formatter.dateFormat = "h:mm a"
         return formatter
     }()
+}
+
+// MARK: - Station selection card
+
+/// Glass card that slides up when a Marker is selected.
+/// Shows the station name, bike/dock availability with colour-coded counts,
+/// optional distance, and a Details button.
+private struct StationSelectionCard: View {
+
+    let station: Station
+    let onViewDetail: () -> Void
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+
+            // Name + distance
+            VStack(alignment: .leading, spacing: 4) {
+                Text(station.stationName)
+                    .font(.headline)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                if station.distanceFromUser > 0 {
+                    Text(station.approximateDistanceAwayFromUser + " away")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            // Bikes count
+            availabilityPill(
+                count: station.availableBikes,
+                icon: "bicycle",
+                color: bikesColor
+            )
+
+            // Docks count
+            availabilityPill(
+                count: station.availableDocks,
+                icon: "parkingsign",
+                color: .primary
+            )
+
+            Button("Details", action: onViewDetail)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+    }
+
+    private func availabilityPill(count: Int, icon: String, color: Color) -> some View {
+        VStack(spacing: 3) {
+            Text("\(count)")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(color)
+                .monospacedDigit()
+            Image(systemName: icon)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+        }
+        .frame(minWidth: 34)
+    }
+
+    private var bikesColor: Color {
+        switch station.availableBikes {
+        case 0:     .red
+        case 1...2: .orange
+        default:    .primary
+        }
+    }
 }
