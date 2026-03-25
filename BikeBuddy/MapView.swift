@@ -42,6 +42,7 @@ struct MapView: View {
     @EnvironmentObject var appViewModel: AppViewModel
 
     /// Tag value from the Map selection binding — matches Station.id (String).
+    @State private var cameraPosition: MapCameraPosition = .automatic
     @State private var selectedStationID: String?
     /// Station object kept separately so the navigation destination can read it
     /// even after the selection is cleared.
@@ -59,7 +60,7 @@ struct MapView: View {
     // MARK: - Body
 
     var body: some View {
-        Map(selection: $selectedStationID) {
+        Map(position: $cameraPosition, selection: $selectedStationID) {
             UserAnnotation()
             ForEach(appViewModel.stations, id: \.id) { station in
                 Marker(station.stationName, coordinate: station.coordinate)
@@ -125,10 +126,22 @@ struct MapView: View {
     // MARK: - Map controls overlay
 
     /// Location button + style toggle stacked in the top-trailing corner.
+    /// Both use the same glass pill appearance for visual consistency.
     private var mapControls: some View {
         VStack(spacing: 8) {
-            MapUserLocationButton()
+            // Center on user location
+            Button {
+                withAnimation {
+                    cameraPosition = .userLocation(followsHeading: false, fallback: .automatic)
+                }
+            } label: {
+                Image(systemName: "location.fill")
+                    .font(.system(size: 15, weight: .medium))
+                    .frame(width: 44, height: 44)
+                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
+            }
 
+            // Toggle map style
             Button {
                 withAnimation(.easeInOut(duration: 0.2)) {
                     mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
