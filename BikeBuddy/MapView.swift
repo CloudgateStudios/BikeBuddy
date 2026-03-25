@@ -15,7 +15,6 @@ import BikeBuddyKit
 struct MapView: View {
 
     @EnvironmentObject var appViewModel: AppViewModel
-    @StateObject private var locationManager = LocationManager()
 
     @State private var selectedStation: Station?
     @State private var navigateToDetail = false
@@ -49,14 +48,10 @@ struct MapView: View {
             updateTimestampLabel()
         }
         .onAppear {
-            locationManager.startUpdatingLocation()
             updateTimestampLabel()
             // Yield one runloop turn so the map frame is on screen before
             // SwiftUI tries to lay out all annotation views at once.
             Task { annotationsReady = true }
-        }
-        .onDisappear {
-            locationManager.stopUpdatingLocation()
         }
     }
 
@@ -157,8 +152,9 @@ struct LegacyMapViewRepresentable: UIViewRepresentable {
         if currentIDs != newIDs {
             mapView.removeAnnotations(mapView.annotations.filter { $0 is Station })
             mapView.addAnnotations(stations)
-            if !stations.isEmpty {
+            if !stations.isEmpty && !context.coordinator.hasSetInitialRegion {
                 mapView.showAnnotations(stations, animated: true)
+                context.coordinator.hasSetInitialRegion = true
             }
         }
     }
@@ -172,6 +168,10 @@ struct LegacyMapViewRepresentable: UIViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
 
         var onStationTapped: (Station) -> Void
+        // Tracks whether we have already zoomed the map to fit all stations.
+        // showAnnotations should only run once so subsequent refreshes don't
+        // snap the viewport back to the full-network view.
+        var hasSetInitialRegion = false
         // Loaded once and reused across all annotation views.
         private let pinImage = UIImage(named: "mapPin")
 
