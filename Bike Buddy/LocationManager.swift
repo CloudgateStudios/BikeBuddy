@@ -24,6 +24,11 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        // Only publish a new coordinate when the user moves at least 10 metres.
+        // Without this, GPS fires multiple times per second and causes the entire
+        // StationsListView (including the closest-stations sort) to re-render
+        // on every tick, which is the primary source of UI sluggishness.
+        locationManager.distanceFilter = 10
 
         if #available(iOS 14.0, *) {
             authorizationStatus = locationManager.authorizationStatus

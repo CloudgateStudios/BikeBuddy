@@ -112,11 +112,15 @@ struct MapView: View {
 
     private func updateTimestampLabel() {
         guard appViewModel.stationsLastUpdated.timeIntervalSince1970 > 0 else { return }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
         updatedAtText = StringsService.getStringFor(key: "MapUpdatedAtLabel") + " "
-            + formatter.string(from: appViewModel.stationsLastUpdated)
+            + Self.timestampFormatter.string(from: appViewModel.stationsLastUpdated)
     }
+
+    private static let timestampFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "h:mm a"
+        return f
+    }()
 }
 
 // MARK: - Legacy MKMapView (iOS 16)

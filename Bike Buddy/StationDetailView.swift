@@ -133,7 +133,10 @@ struct StationMiniMapView: UIViewRepresentable {
     }
 
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        mapView.removeAnnotations(mapView.annotations)
+        // The station is a let — it never changes after the view is created.
+        // Guard against the common SwiftUI pattern of calling updateUIView
+        // repeatedly so we don't thrash the map with remove/add on every render.
+        guard mapView.annotations.isEmpty else { return }
         mapView.addAnnotation(station)
         mapView.showAnnotations([station], animated: false)
     }

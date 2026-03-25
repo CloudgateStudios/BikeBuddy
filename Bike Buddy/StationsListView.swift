@@ -30,7 +30,9 @@ struct StationsListView: View {
 
     var body: some View {
         Group {
-            if closestStations.isEmpty {
+            if appViewModel.isLoadingStations && appViewModel.stations.isEmpty {
+                loadingView
+            } else if closestStations.isEmpty {
                 emptyStateView
             } else {
                 stationList
@@ -55,11 +57,24 @@ struct StationsListView: View {
                         StationDetailView(station: station)
                     } label: {
                         StationRowView(station: station, showDistance: locationIsKnown)
+                            .equatable()
                     }
                 }
             }
         }
         .listStyle(.plain)
+    }
+
+    // MARK: - Loading state
+
+    private var loadingView: some View {
+        VStack(spacing: 16) {
+            ProgressView()
+                .scaleEffect(1.4)
+            Text(StringsService.getStringFor(key: "StationsListLoadingMessage"))
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
     }
 
     // MARK: - Empty state
@@ -83,10 +98,17 @@ struct StationsListView: View {
 // MARK: - Station row cell
 
 /// Replaces StationTableViewCell (UITableViewCell).
-struct StationRowView: View {
+struct StationRowView: View, Equatable {
 
     let station: Station
     let showDistance: Bool
+
+    static func == (lhs: StationRowView, rhs: StationRowView) -> Bool {
+        lhs.station.id == rhs.station.id &&
+        lhs.station.availableBikes == rhs.station.availableBikes &&
+        lhs.station.availableDocks == rhs.station.availableDocks &&
+        lhs.showDistance == rhs.showDistance
+    }
 
     var body: some View {
         HStack {
