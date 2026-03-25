@@ -73,6 +73,7 @@
 		SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */; };
 		SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATIONS /* StationsListView.swift */; };
 		SWIFTUI_BF_TAB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_TAB /* MainTabView.swift */; };
+		SWIFTUI_BF_ON_CHANGE /* View+OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ON_CHANGE /* View+OnChange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		SWIFTUI_STATIONS /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		SWIFTUI_STATION_DETAIL /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		SWIFTUI_TAB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		SWIFTUI_ON_CHANGE /* View+OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnChange.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +321,7 @@
 				SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */,
 				SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */,
 				SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */,
+				SWIFTUI_ON_CHANGE /* View+OnChange.swift */,
 			);
 			name = "SwiftUI Views";
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */,
 				SWIFTUI_BF_SETTINGS_ABOUT /* SettingsAboutView.swift in Sources */,
 				SWIFTUI_BF_BTN_STYLE /* PrimaryButtonStyle.swift in Sources */,
+				SWIFTUI_BF_ON_CHANGE /* View+OnChange.swift in Sources */,
 				D149580E1DB3BAC10038A615 /* ProgressHUDService.swift in Sources */,
 			);
 		};
