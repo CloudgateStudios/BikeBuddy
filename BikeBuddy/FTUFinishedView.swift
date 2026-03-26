@@ -17,22 +17,15 @@ struct FTUFinishedView: View {
     @State private var checkmarkScale: CGFloat = 0
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        VStack(spacing: 0) {
+            Spacer()
 
-            // Subtle celebratory gradient background
-            LinearGradient(
-                colors: [Color("BikeBuddyBlue").opacity(0.18), Color(.systemBackground)],
-                startPoint: .top,
-                endPoint: .center
-            )
-            .ignoresSafeArea()
-
-            // Animated checkmark centred above the card
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 96))
                 .foregroundStyle(Color("BikeBuddyBlue"))
                 .scaleEffect(checkmarkScale)
-                .padding(.bottom, 280)   // keeps it clear of the glass card
+
+            Spacer()
 
             // Glass card anchored to bottom
             VStack(spacing: 20) {
@@ -41,6 +34,7 @@ struct FTUFinishedView: View {
                 Text(StringsService.getStringFor(key: "WelcomeMessageContent"))
                     .multilineTextAlignment(.center)
                     .font(.body)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 Button(StringsService.getStringFor(key: "FTUFinishedButton")) {
                     ftuViewModel.complete()
@@ -49,10 +43,19 @@ struct FTUFinishedView: View {
                 .frame(maxWidth: .infinity)
             }
             .padding(24)
+            .frame(maxWidth: .infinity)
             .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
-            .padding(.horizontal)
+            .padding(.horizontal, 16)
             .padding(.bottom, 32)
         }
+        .background(
+            LinearGradient(
+                colors: [Color("BikeBuddyBlue").opacity(0.14), Color(.systemBackground)],
+                startPoint: .top,
+                endPoint: .center
+            )
+            .ignoresSafeArea()
+        )
         .toolbar(.hidden, for: .navigationBar)
         .navigationBarBackButtonHidden(true)
         .onAppear {

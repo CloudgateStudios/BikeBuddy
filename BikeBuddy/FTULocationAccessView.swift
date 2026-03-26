@@ -15,17 +15,16 @@ struct FTULocationAccessView: View {
     @EnvironmentObject var ftuViewModel: FTUViewModel
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        VStack(spacing: 0) {
+            Spacer()
 
-            // Full-bleed background
             Image("ftuLocationAccess")
                 .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+                .scaledToFit()
+                .frame(maxWidth: 260)
+                .padding(.horizontal, 32)
 
-            // Dark scrim for text legibility
-            Color.black.opacity(0.25)
-                .ignoresSafeArea()
+            Spacer()
 
             // Glass card anchored to bottom
             VStack(spacing: 20) {
@@ -34,6 +33,7 @@ struct FTULocationAccessView: View {
                 Text(StringsService.getStringFor(key: "LocationAccessMessageContent"))
                     .multilineTextAlignment(.center)
                     .font(.body)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 Button(StringsService.getStringFor(key: "LocationAccessButton")) {
                     ftuViewModel.requestLocationAccess()
@@ -42,10 +42,19 @@ struct FTULocationAccessView: View {
                 .frame(maxWidth: .infinity)
             }
             .padding(24)
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 24))
-            .padding(.horizontal)
+            .frame(maxWidth: .infinity)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+            .padding(.horizontal, 16)
             .padding(.bottom, 32)
         }
+        .background(
+            LinearGradient(
+                colors: [Color("BikeBuddyBlue").opacity(0.14), Color(.systemBackground)],
+                startPoint: .top,
+                endPoint: .center
+            )
+            .ignoresSafeArea()
+        )
         .toolbar(.hidden, for: .navigationBar)
         .alert(StringsService.getStringFor(key: "LocationAccessNotGrantedMessageTitle"),
                isPresented: $ftuViewModel.showLocationDeniedAlert) {
