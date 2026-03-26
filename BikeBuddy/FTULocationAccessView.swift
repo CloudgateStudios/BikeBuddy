@@ -15,30 +15,47 @@ struct FTULocationAccessView: View {
     @EnvironmentObject var ftuViewModel: FTUViewModel
 
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 0) {
             Spacer()
 
             Image("ftuLocationAccess")
                 .resizable()
                 .scaledToFit()
-                .frame(maxHeight: 280)
-
-            Text(StringsService.getStringFor(key: "LocationAccessMessageContent"))
-                .multilineTextAlignment(.center)
-                .font(.body)
-                .padding(.horizontal)
+                .frame(maxWidth: 260)
+                .padding(.horizontal, 32)
 
             Spacer()
 
-            Button(StringsService.getStringFor(key: "LocationAccessButton")) {
-                ftuViewModel.requestLocationAccess()
+            // Glass card anchored to bottom
+            VStack(spacing: 20) {
+                FTUStepIndicator(currentStep: .locationAccess)
+
+                Text(StringsService.getStringFor(key: "LocationAccessMessageContent"))
+                    .multilineTextAlignment(.center)
+                    .font(.body)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Button(StringsService.getStringFor(key: "LocationAccessButton")) {
+                    ftuViewModel.requestLocationAccess()
+                }
+                .buttonStyle(.borderedProminent)
+                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(PrimaryButtonStyle())
-            .padding(.bottom, 40)
+            .padding(24)
+            .frame(maxWidth: .infinity)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+            .padding(.horizontal, 16)
+            .padding(.bottom, 32)
         }
-        .padding()
-        .navigationTitle(StringsService.getStringFor(key: "LocationAccessNavBarTitle"))
-        .navigationBarTitleDisplayMode(.inline)
+        .background(
+            LinearGradient(
+                colors: [Color("BikeBuddyBlue").opacity(0.14), Color(.systemBackground)],
+                startPoint: .top,
+                endPoint: .center
+            )
+            .ignoresSafeArea()
+        )
+        .toolbar(.hidden, for: .navigationBar)
         .alert(StringsService.getStringFor(key: "LocationAccessNotGrantedMessageTitle"),
                isPresented: $ftuViewModel.showLocationDeniedAlert) {
             Button(StringsService.getStringFor(key: "GeneralButtonOK")) {

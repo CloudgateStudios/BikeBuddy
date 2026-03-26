@@ -51,13 +51,16 @@ jobs:
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@v1.7.0
         with:
-          xcode-version: latest-stable
+          # Pin to 26.3 — the latest-stable (26.4 RC) ships without an iOS
+          # simulator runtime on this runner image. Xcode 26.3 has iOS 26.2
+          # simulators bundled and is stable for CI.
+          xcode-version: "26.3"
 
       - name: Build
         run: |
           xcodebuild build \
             -scheme "BikeBuddy" \
-            -destination "platform=iOS Simulator,name=iPhone 17,OS=latest" \
+            -destination "generic/platform=iOS Simulator" \
             CODE_SIGNING_ALLOWED=NO \
             | xcpretty && exit ${PIPESTATUS[0]}
 
@@ -65,7 +68,7 @@ jobs:
         run: |
           xcodebuild test \
             -scheme "BikeBuddy" \
-            -destination "platform=iOS Simulator,name=iPhone 17,OS=latest" \
+            -destination "platform=iOS Simulator,OS=26.2,name=iPhone 17" \
             -only-testing:BikeBuddyKitTests \
             -resultBundlePath build/results.xcresult \
             CODE_SIGNING_ALLOWED=NO \
