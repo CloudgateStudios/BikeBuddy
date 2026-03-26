@@ -51,7 +51,10 @@ jobs:
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@v1.7.0
         with:
-          xcode-version: latest-stable
+          # Pin to 26.3 — the latest-stable (26.4 RC) ships without an iOS
+          # simulator runtime on this runner image. Xcode 26.3 has iOS 26.2
+          # simulators bundled and is stable for CI.
+          xcode-version: "26.3"
 
       - name: Build
         run: |
