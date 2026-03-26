@@ -39,6 +39,25 @@ class AppViewModel: ObservableObject {
 
     private init() {
         loadSettingsState()
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS") {
+            // Pre-seed Citi Bike NYC so the app has a network to load without FTU
+            if bikeServiceName.isEmpty {
+                SettingsService.sharedInstance.saveSetting(
+                    key: Constants.SettingsKey.BikeServiceName,
+                    value: "Citi Bike" as AnyObject)
+                SettingsService.sharedInstance.saveSetting(
+                    key: Constants.SettingsKey.BikeServiceCityName,
+                    value: "New York" as AnyObject)
+                SettingsService.sharedInstance.saveSetting(
+                    key: Constants.SettingsKey.BikeServiceAPIURL,
+                    value: "https://api.citybik.es/v2/networks/citibike" as AnyObject)
+                loadSettingsState()
+            }
+            showFirstTimeUse = false
+            return
+        }
+        #endif
         // Fire FTU if the user has never completed setup
         if !SettingsService.sharedInstance.getSettingAsBool(key: Constants.SettingsKey.FirstTimeUseCompleted) {
             showFirstTimeUse = true

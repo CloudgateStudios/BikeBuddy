@@ -57,6 +57,8 @@
 		SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATIONS /* StationsListView.swift */; };
 		SWIFTUI_BF_TAB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_TAB /* MainTabView.swift */; };
 		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
+		0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */; };
+		94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D804A88A7804454B80E585B /* ScreenshotTests.swift */; };
 		/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +161,8 @@
 		SWIFTUI_STATION_DETAIL /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		SWIFTUI_TAB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
+		40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		8D804A88A7804454B80E585B /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
 		/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,7 +350,9 @@
 		D1B6DD1B1C9EC3E3008543A3 /* BikeBuddyUITests */ = {
 			isa = PBXGroup;
 			children = (
-					D1B6DD1E1C9EC3E3008543A3 /* Info.plist */,
+				D1B6DD1E1C9EC3E3008543A3 /* Info.plist */,
+				40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */,
+				8D804A88A7804454B80E585B /* ScreenshotTests.swift */,
 			);
 			path = "BikeBuddyUITests";
 			sourceTree = "<group>";
@@ -601,7 +607,9 @@
 		D1B6DD161C9EC3E3008543A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				);
+				0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */,
+				94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */,
+			);
 		};
 /* End PBXSourcesBuildPhase section */
 
