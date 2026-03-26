@@ -81,7 +81,7 @@ jobs:
                   "BikeBuddyKit/Info.plist" \
                   "BikeBuddyUITests/Info.plist"
           git commit -m "Version Bump to ${version}-${build}"
-          git tag "release/${version}/${build}"
+          git tag -a "release/${version}/${build}" -m "Release ${version} (${build})"
           git push origin main --follow-tags
 
       - name: Re-enable branch rulesets
