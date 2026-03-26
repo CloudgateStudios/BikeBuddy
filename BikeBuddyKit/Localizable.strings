@@ -1,7 +1,7 @@
 /*
  Localizable.strings
  Bike Buddy
- 
+
  Created by Tom Arra on 7/21/15.
  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
  */
@@ -11,23 +11,8 @@
 /* Button label for OK */
 "GeneralButtonOK" = "OK";
 
-/* Button label for Cancel */
-"GeneralButtonCancel" = "Cancel";
-
-/* App name for use around the app like nav bars */
-"GeneralAppName" = "Bike Buddy";
-
-/* Title of the message box that pops up when the user doesn't have a network connection */
-"GeneralNoNetworkConnectionMessageTitle" = "No Network Connection";
-
-/* Content of the message box that pops up when the user doesn't have a network connection */
-"GeneralNoNetworkConnectionMessageContent" = "Please connect to a network (WiFi or Celluar) in order to use Bike Buddy";
-
 /* String that goes on the back of the distance from user string e.g. ~3.0 mi 'away' */
 "GeneralAwayLabel" = "away";
-
-/* Title of the message box that pops up when there was an error getting the bike stations */
-"GeneralNoStationsMessageTitle" = "No Stations Found";
 
 /* Content of the message box that pops up when there was an error getting the bike stations */
 "GeneralNoStationsMessageContent" = "We are having troubles finding bike stations in your city. Please try again later.";
@@ -64,9 +49,6 @@
 /* Message box content for when the user doesn't grant location access */
 "LocationAccessNotGrantedMessageContent" = "Please give us location access so that we can find the closest bike stations to your location. Go to the Settings app to change this later on.";
 
-/* Title in the nav bar at the end of First Time Use */
-"FTUFinishedNavBarTitle" = "Finished";
-
 /* Button text when user completes First Time Use */
 "FTUFinishedButton" = "Let's Start!";
 
@@ -77,15 +59,6 @@
 
 /* Title in the nav bar of the Stations List view */
 "StationsListNavBarTitle" = "Stations";
-
-/* Table section header in the Stations List for the Closest Stations */
-"StationsListClosestStationsSectionHeader" = "Closest Stations";
-
-/* Label that follows the number of bikes that are available at the station */
-"StationsListBikesAvailableLabel" = "Bikes Available";
-
-/* Label that follows the number of docks that are available at the station */
-"StationsListDocksAvailableLabel" = "Docks Open";
 
 /* Message shown while station data is being fetched */
 "StationsListLoadingMessage" = "Loading stations…";
@@ -101,31 +74,10 @@
 /* Name of the tab bar item for the Map view */
 "MapTabBarItemLabel" = "Map";
 
-/* Title in the nav bar of the Map view */
-"MapNavBarTitle" = "Map";
-
-/* Loading message popup when locations are loading over the network */
-"MapLoadingPopupMessage" = "Loading Stations....";
-
-/* Message box title for when the user hits the Current Location button and they are outside of the map view */
-"MapUserOutsideViewPopupTitle" = "Outside of Bike Area";
-
-/* Message box message for when the user hits the Current Location button and they are outside of the map view */
-"MapUserOutsideViewPopupMessage" = "Your current location is outside of the current Bike Area. Are you sure you want to go to your location?";
-
 /* Label prefix for what time the data was last updated at. Should be followed by a time */
 "MapUpdatedAtLabel" = "Updated at";
 
-/* Message box title for when the user's location is not known and they tapped on the go to current position button in the Map View. */
-"MapNoLocationFoundAlertTitle" = "Location Not Found";
-
-/* Message box message for when the user's location is not known and they tapped on the go to current position button in the Map View. */
-"MapNoLocationFoundAlertMessage" = "Please check that you enabled location access. This can be done from the iOS Settings application.";
-
 // MARK: - Station Detail
-
-/* Title in the nav bar for the Station Detail view */
-"StationDetailNavBarTitle" = "Station Detail";
 
 /* Button text when the user wants directions to the station they are currently viewing */
 "StationDetailDirectionsButton" = "Directions to Station";
@@ -210,17 +162,3 @@
 
 /* Used in the Map Annotation string for the number of open docks that are available */
 "StationModelAnnotationOpenDocks" = "Open Docks";
-
-// MARK: - Today Widget
-
-/* Label that follows the number of bikes that are available at the station */
-"TodayWidgetBikesAvailableLabel" = "bikes available";
-
-/* Message shown in the widget when the data could not be loaded */
-"TodayWidgetNoStationDataMessage" = "Couldn't get Station Data";
-
-/* Message shown in the widget when the user has not given location access to the app yet. */
-"TodayWidgetAllowLocationAccessMessage" = "Please open the application and allow location access.";
-
-/* Message shown in the widget when the user has not completed first time use in the app yet. */
-"TodayWidgetPleaseSetupAppMessage" = "Please complete app setup before using";

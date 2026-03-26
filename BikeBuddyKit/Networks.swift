@@ -74,7 +74,4 @@ public class Networks {
         return returnArray.sorted { $0.name! < $1.name! }
     }
     
-    public class func getNetworksBySection() {
-        
-    }
 }

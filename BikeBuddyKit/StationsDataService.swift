@@ -61,12 +61,6 @@ public class StationsDataService {
                     if let safeData = data {
                         let decoder = JSONDecoder()
                         
-                        // Debug: Print the raw JSON string
-                        if let jsonString = String(data: safeData, encoding: .utf8) {
-                            print("Raw JSON response:")
-                            print(jsonString.prefix(500)) // Print first 500 chars
-                        }
-                        
                         let model = try decoder.decode(CityBikesNetworkDetailResponse.self, from: safeData)
                         
                         if let testResponseResult = model.network?.stations {
@@ -129,27 +123,4 @@ public class StationsDataService {
         return model.network?.stations ?? []
     }
     
-    // Load in Station data from a file. Should only be used for development purposes.
-    // - parameter fileName: The name of the file to be loaded. Method makes the assumption that the file is part of the main bundle and is not in a subfolder.
-    // - returns: An array of Station objects
-    // NEEDS TO BE RE-WRITTEN AFTER MOVING TO CITY BIKES API
-    /*public func loadStationDataFromFile(fileName: String) -> [Station] {
-        var fileNameParts: [String] = fileName.components(separatedBy: ".")
-        var returnData = [Station]()
-        
-        if fileNameParts.count == 2 {
-            //SOMETHING HERE SEEMS WRONG NOW THAT THIS IS IN A FRAMEWORK
-            let path = Bundle.main.path(forResource: fileNameParts[0] as String, ofType: fileNameParts[1] as String)
-            let possibleContent = try? String(contentsOfFile: path!, encoding:String.Encoding.utf8)
-            
-            if let data = possibleContent!.data(using: String.Encoding.utf8) {
-                if let responseObject = Mapper<BixiAPIResponse>().map(JSONObject: data) {
-                    returnData = (responseObject.stationBeanList)!
-                }
-            }
-            
-        }
-        
-        return returnData
-    }*/
 }
