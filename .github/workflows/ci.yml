@@ -68,7 +68,7 @@ jobs:
         run: |
           xcodebuild test \
             -scheme "BikeBuddy" \
-            -destination "platform=iOS Simulator,OS=latest" \
+            -destination "platform=iOS Simulator,OS=26.2,name=iPhone 17" \
             -only-testing:BikeBuddyKitTests \
             -resultBundlePath build/results.xcresult \
             CODE_SIGNING_ALLOWED=NO \
