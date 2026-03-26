@@ -31,3 +31,7 @@ Bike Buddy.app.dSYM.zip
 *.certSigningRequest
 *.p12
 Preview.html
+
+# Fastlane Screenshots
+fastlane/screenshots/
+fastlane/screenshots_framed/
