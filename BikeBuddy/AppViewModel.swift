@@ -28,6 +28,7 @@ class AppViewModel: ObservableObject {
     // MARK: - Settings (mirrored for reactive UI updates)
 
     @Published var bikeServiceName: String = ""
+    @Published var bikeServiceCityName: String = ""
     @Published var numberOfClosestStations: Int = Constants.SettingsDefault.NumberOfClosestStations
 
     // MARK: - Singleton
@@ -48,6 +49,7 @@ class AppViewModel: ObservableObject {
 
     func loadSettingsState() {
         bikeServiceName = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceName)
+        bikeServiceCityName = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceCityName)
         numberOfClosestStations = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
         if numberOfClosestStations == 0 {
             numberOfClosestStations = Constants.SettingsDefault.NumberOfClosestStations

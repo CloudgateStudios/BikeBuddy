@@ -26,7 +26,7 @@ struct SettingsView: View {
                     HStack {
                         Text(StringsService.getStringFor(key: "SettingsServiceNetwork"))
                         Spacer()
-                        Text(appViewModel.bikeServiceName)
+                        Text(networkDisplayName)
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -69,6 +69,15 @@ struct SettingsView: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle(StringsService.getStringFor(key: "SettingsNavBarTitle"))
+    }
+
+    // MARK: - Helpers
+
+    private var networkDisplayName: String {
+        guard !appViewModel.bikeServiceCityName.isEmpty else {
+            return appViewModel.bikeServiceName
+        }
+        return "\(appViewModel.bikeServiceName) — \(appViewModel.bikeServiceCityName)"
     }
 
     // MARK: - Actions
