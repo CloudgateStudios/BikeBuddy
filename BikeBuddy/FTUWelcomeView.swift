@@ -18,18 +18,16 @@ struct FTUWelcomeView: View {
     var body: some View {
         NavigationStack(path: $ftuViewModel.path) {
             WelcomeStep()
-                .navigationTitle(StringsService.getStringFor(key: "GeneralAppName"))
-                .navigationBarTitleDisplayMode(.inline)
                 .navigationDestination(for: FTUViewModel.Step.self) { step in
                     switch step {
+                    case .welcome:
+                        EmptyView()
                     case .locationAccess:
                         FTULocationAccessView()
                     case .selectNetwork:
                         FTUSelectNetworkView()
                     case .finished:
                         FTUFinishedView()
-                    default:
-                        EmptyView()
                     }
                 }
         }
@@ -37,35 +35,69 @@ struct FTUWelcomeView: View {
     }
 }
 
-// MARK: - Welcome step (embedded so it can push via navigationDestination)
+// MARK: - Welcome step
 
 private struct WelcomeStep: View {
 
     @EnvironmentObject var ftuViewModel: FTUViewModel
 
     var body: some View {
-        VStack(spacing: 24) {
-            Spacer()
+        ZStack(alignment: .bottom) {
 
+            // Full-bleed background
             Image("ftuWelcome")
                 .resizable()
-                .scaledToFit()
-                .frame(width: 250, height: 250)
+                .scaledToFill()
+                .ignoresSafeArea()
 
-            Text(StringsService.getStringFor(key: "WelcomeMessageContent"))
-                .multilineTextAlignment(.center)
-                .font(.body)
-                .padding(.horizontal)
+            // Dark scrim for text legibility
+            Color.black.opacity(0.25)
+                .ignoresSafeArea()
 
-            Spacer()
+            // Glass card anchored to bottom
+            VStack(spacing: 20) {
+                FTUStepIndicator(currentStep: .welcome)
 
-            NavigationLink(value: FTUViewModel.Step.locationAccess) {
-                Text(StringsService.getStringFor(key: "WelcomeGetStartedButton"))
-                    .frame(maxWidth: 200)
+                Text(StringsService.getStringFor(key: "WelcomeMessageContent"))
+                    .multilineTextAlignment(.center)
+                    .font(.body)
+
+                NavigationLink(value: FTUViewModel.Step.locationAccess) {
+                    Text(StringsService.getStringFor(key: "WelcomeGetStartedButton"))
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
             }
-            .buttonStyle(PrimaryButtonStyle())
-            .padding(.bottom, 40)
+            .padding(24)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 24))
+            .padding(.horizontal)
+            .padding(.bottom, 32)
         }
-        .padding()
+        .toolbar(.hidden, for: .navigationBar)
+    }
+}
+
+// MARK: - Step indicator
+
+/// Small dot row shown at the top of each FTU glass card.
+/// The current step's dot is filled with the accent colour; others are dim.
+struct FTUStepIndicator: View {
+
+    let currentStep: FTUViewModel.Step
+
+    private let orderedSteps: [FTUViewModel.Step] = [
+        .welcome, .locationAccess, .selectNetwork, .finished
+    ]
+
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach(orderedSteps.indices, id: \.self) { index in
+                Circle()
+                    .fill(orderedSteps[index] == currentStep
+                          ? Color.accentColor
+                          : Color.secondary.opacity(0.35))
+                    .frame(width: 8, height: 8)
+            }
+        }
     }
 }

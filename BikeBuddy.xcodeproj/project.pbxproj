@@ -57,7 +57,8 @@
 		SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */; };
 		SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATIONS /* StationsListView.swift */; };
 		SWIFTUI_BF_TAB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_TAB /* MainTabView.swift */; };
-/* End PBXBuildFile section */
+		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
+		/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		D15701E1214D465300221726 /* PBXContainerItemProxy */ = {
@@ -159,7 +160,8 @@
 		SWIFTUI_STATIONS /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		SWIFTUI_STATION_DETAIL /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		SWIFTUI_TAB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
+		/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C516EFE21B0CE6CB00CF4468 /* Frameworks */ = {
@@ -251,6 +253,7 @@
 				SWIFTUI_LOCMGR /* LocationManager.swift */,
 				SWIFTUI_STATIONS /* StationsListView.swift */,
 				SWIFTUI_MAP /* MapView.swift */,
+				08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */,
 				SWIFTUI_STATION_DETAIL /* StationDetailView.swift */,
 				SWIFTUI_SETTINGS /* SettingsView.swift */,
 				SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */,
@@ -564,6 +567,7 @@
 				SWIFTUI_BF_LOCMGR /* LocationManager.swift in Sources */,
 				SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */,
 				SWIFTUI_BF_MAP /* MapView.swift in Sources */,
+				37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */,
 				SWIFTUI_BF_DETAIL /* StationDetailView.swift in Sources */,
 				SWIFTUI_BF_SETTINGS /* SettingsView.swift in Sources */,
 				SWIFTUI_BF_SETTINGS_NET /* SettingsSelectNetworkView.swift in Sources */,

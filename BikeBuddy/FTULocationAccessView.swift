@@ -15,30 +15,38 @@ struct FTULocationAccessView: View {
     @EnvironmentObject var ftuViewModel: FTUViewModel
 
     var body: some View {
-        VStack(spacing: 24) {
-            Spacer()
+        ZStack(alignment: .bottom) {
 
+            // Full-bleed background
             Image("ftuLocationAccess")
                 .resizable()
-                .scaledToFit()
-                .frame(maxHeight: 280)
+                .scaledToFill()
+                .ignoresSafeArea()
 
-            Text(StringsService.getStringFor(key: "LocationAccessMessageContent"))
-                .multilineTextAlignment(.center)
-                .font(.body)
-                .padding(.horizontal)
+            // Dark scrim for text legibility
+            Color.black.opacity(0.25)
+                .ignoresSafeArea()
 
-            Spacer()
+            // Glass card anchored to bottom
+            VStack(spacing: 20) {
+                FTUStepIndicator(currentStep: .locationAccess)
 
-            Button(StringsService.getStringFor(key: "LocationAccessButton")) {
-                ftuViewModel.requestLocationAccess()
+                Text(StringsService.getStringFor(key: "LocationAccessMessageContent"))
+                    .multilineTextAlignment(.center)
+                    .font(.body)
+
+                Button(StringsService.getStringFor(key: "LocationAccessButton")) {
+                    ftuViewModel.requestLocationAccess()
+                }
+                .buttonStyle(.borderedProminent)
+                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(PrimaryButtonStyle())
-            .padding(.bottom, 40)
+            .padding(24)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 24))
+            .padding(.horizontal)
+            .padding(.bottom, 32)
         }
-        .padding()
-        .navigationTitle(StringsService.getStringFor(key: "LocationAccessNavBarTitle"))
-        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .navigationBar)
         .alert(StringsService.getStringFor(key: "LocationAccessNotGrantedMessageTitle"),
                isPresented: $ftuViewModel.showLocationDeniedAlert) {
             Button(StringsService.getStringFor(key: "GeneralButtonOK")) {

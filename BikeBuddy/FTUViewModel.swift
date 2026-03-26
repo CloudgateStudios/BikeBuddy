@@ -60,12 +60,7 @@ class FTUViewModel: ObservableObject {
     // MARK: - Location
 
     func requestLocationAccess() {
-        let status: CLAuthorizationStatus
-        if #available(iOS 14.0, *) {
-            status = locationManager.authorizationStatus
-        } else {
-            status = CLLocationManager.authorizationStatus()
-        }
+        let status = locationManager.authorizationStatus
 
         switch status {
         case .notDetermined:
@@ -163,12 +158,6 @@ private class FTULocationDelegate: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if #available(iOS 14.0, *) {
-            callback(manager.authorizationStatus)
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        callback(status)
+        callback(manager.authorizationStatus)
     }
 }

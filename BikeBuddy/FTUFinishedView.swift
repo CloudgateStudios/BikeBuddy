@@ -10,34 +10,55 @@ import SwiftUI
 import BikeBuddyKit
 
 /// Replaces FTUFinishedViewController.
+/// The checkmark icon scales in with a spring animation as a small delight moment.
 struct FTUFinishedView: View {
 
     @EnvironmentObject var ftuViewModel: FTUViewModel
+    @State private var checkmarkScale: CGFloat = 0
 
     var body: some View {
-        VStack(spacing: 24) {
-            Spacer()
+        ZStack(alignment: .bottom) {
 
+            // Subtle celebratory gradient background
+            LinearGradient(
+                colors: [Color("BikeBuddyBlue").opacity(0.18), Color(.systemBackground)],
+                startPoint: .top,
+                endPoint: .center
+            )
+            .ignoresSafeArea()
+
+            // Animated checkmark centred above the card
             Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 80))
-                .foregroundStyle(Color(red: 60/255, green: 163/255, blue: 220/255))
+                .font(.system(size: 96))
+                .foregroundStyle(Color("BikeBuddyBlue"))
+                .scaleEffect(checkmarkScale)
+                .padding(.bottom, 280)   // keeps it clear of the glass card
 
-            Text(StringsService.getStringFor(key: "WelcomeMessageContent"))
-                .multilineTextAlignment(.center)
-                .font(.body)
-                .padding(.horizontal)
+            // Glass card anchored to bottom
+            VStack(spacing: 20) {
+                FTUStepIndicator(currentStep: .finished)
 
-            Spacer()
+                Text(StringsService.getStringFor(key: "WelcomeMessageContent"))
+                    .multilineTextAlignment(.center)
+                    .font(.body)
 
-            Button(StringsService.getStringFor(key: "FTUFinishedButton")) {
-                ftuViewModel.complete()
+                Button(StringsService.getStringFor(key: "FTUFinishedButton")) {
+                    ftuViewModel.complete()
+                }
+                .buttonStyle(.borderedProminent)
+                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(PrimaryButtonStyle())
-            .padding(.bottom, 40)
+            .padding(24)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+            .padding(.horizontal)
+            .padding(.bottom, 32)
         }
-        .padding()
-        .navigationTitle(StringsService.getStringFor(key: "FTUFinishedNavBarTitle"))
-        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .navigationBar)
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.6).delay(0.2)) {
+                checkmarkScale = 1
+            }
+        }
     }
 }
