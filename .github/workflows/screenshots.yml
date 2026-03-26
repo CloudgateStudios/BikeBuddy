@@ -9,7 +9,7 @@ permissions:
 jobs:
   screenshots:
     name: Capture & Frame Screenshots
-    runs-on: macos-26-arm64
+    runs-on: macos-26
 
     steps:
       - name: Checkout
