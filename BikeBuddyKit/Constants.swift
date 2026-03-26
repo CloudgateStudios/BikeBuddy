@@ -13,7 +13,7 @@ public struct Constants {
     public struct SettingsGeneral {
         public static let ShareGroupName = "group.com.cloudgatestudios.Bike-Buddy"
     }
-    
+
     // MARK: - Settings Keys
     public struct SettingsKey {
         public static let SettingsVersionNumber = "SettingsVersionNumber"
@@ -23,89 +23,36 @@ public struct Constants {
         public static let BikeServiceName = "BikeServiceName"
         public static let NumberOfClosestStations = "NumberOfClosestStations"
     }
-    
+
     // MARK: - Settings Defaults
     public struct SettingsDefault {
         public static let SettingsVersionNumber = 1
         public static let NumberOfClosestStations = 15
     }
-    
+
     // MARK: - Timer Settings
     public struct Timers {
         public static let RefreshStationsDataDifferenceInSeconds = 300.0
     }
-    
-    // MARK: - Storyboard/View Names
-    public struct ViewNames {
-        public static let FirstTimeUseStoryboard = "FirstTimeUse"
-    }
-    
-    // MARK: - Segue Names
-    public struct SegueNames {
-        public static let GoToFirstTimeUseNetworkSelect = "GoToFTUNetworkSelect"
-        public static let GoToFirstTimeUseFinished = "GoToFTUFinished"
-        public static let ShowStationDetailFromMap = "ShowStationDetailFromMap"
-        public static let ShowStationDetailFromStationList = "ShowStationDetailFromStationsList"
-    }
-    
-    // MARK: - Table View Cell Resuse Identifiers
-    public struct TableViewCellResuseIdentifier {
-        public static let StationsList = "StationListCell"
-        public static let StationListHeader = "StationListSectionHeaderCell"
-        public static let SettingsCitySelect = "SettingsCitySelectCell"
-        public static let SettingsNetworkSelect = "SettingsNetworkSelectCell"
-        public static let FTUNetworkSelect = "FTUNetworkSelectCell"
-        public static let SettingsNumberOfClosestStations = "SettingsNumberOfClosestStationsCell"
-        public static let SettingsTellYourFriends = "TellYourFriends"
-        public static let SettingsRateApp = "RateBikeBuddy"
-        public static let StationDetailDirectionsToStation = "StationDetailDirectionsToStation"
-        public static let StationDetailShareStation = "StationDetailShareStation"
-        public static let AboutThirdPartyAlmaofire = "AboutThirdPartyAlamofire"
-        public static let AboutThirdPartyObjectMapper = "AboutThirdPartyObjectMapper"
-        public static let AboutThirdPartyAFOM = "AboutThirdPartyAFOM"
-        public static let AboutThirdPartySVProgressHUD = "AboutThirdPartySVProgressHUD"
-        public static let AboutThirdPartyDZN = "AboutThirdPartyDZN"
-        public static let AboutPrivacyPolicy = "PrivacyPolicyCell"
-    }
-    
-    // MARK: - Map View Resuse Identifiers
-    public struct MapViewReuseIdentifier {
-        public static let StationDetail = "StationDetailMapPin"
-        public static let FullMap = "FullMapPin"
-    }
-    
+
     // MARK: - NSNotificationCenter Event Names
     public struct NotificationCenterEvent {
-        public static let FirstTimeUseCompleted = "FirstTimeUseCompleted"
-        public static let NewCitySelected = "NewCitySelected"
         public static let StationsListUpdated = "StationsListUpdated"
-        public static let MapViewAnnotationsDrawComplete = "MapViewAnnotationsDrawComplete"
-        public static let NumberOfClosestStationsUpdated = "NumberOfClosestStationsUpdated"
-        public static let StationsDataIsStale = "StationDataIsStale"
-        public static let AppCameBackToForeground = "AppCameBackToForeground"
         public static let NetworksListUpdated = "NetworksLIstUpdated"
         public static let StartFirstTimeUse = "StartFirstTimeUse"
     }
-    
-    // MARK: - Cities Plist
-    public struct CitiesPlist {
-        public static let FileName = "Cities"
-        public static let NameField = "name"
-        public static let ServiceNameField = "serviceName"
-        public static let APIURLField = "apiUrl"
-    }
-    
+
     public struct CityBikes {
         public static let BaseAPIURL = "https://api.citybik.es"
         public static let NetworksAPI = CityBikes.BaseAPIURL + "/v2/networks?fields=id,name,href,location"
     }
-    
+
     // MARK: - External URL's
     public struct ExtneralURL {
         public static let AppStoreDeepLink = "https://itunes.apple.com/us/app/apple-store/id998776734?mt=8"
         public static let PrivacyPolicyURL = "https://cloudgatestudios.com/bikebuddy/privacy"
     }
-    
+
     // MARK: - Analytic Events
     public struct AnalyticEvent {
         public static let FTUCitySelected = "FTU City Selected"
@@ -122,11 +69,9 @@ public struct Constants {
         public static let OpenSettingsNumberOfClosestStations = "Open Number of Closest Stations in Settings"
         public static let SelectNewNumberOfClosestStations = "Select New Number of Closest Stations"
         public static let OpenSettingsAbout = "Open About in Settings"
-        public static let OpenThirdPartySoftware = "Open Third Party Software"
         public static let OpenAboutPrivacyPolicy = "Open Privacy Policy in About"
-        public static let StationDataIsStale = "Station Data is Stale"
     }
-    
+
     // MARK: - Analytic Event Details
     public struct AnalyticEventDetail {
         public static let CitySelected = "City Selected"
@@ -135,19 +80,18 @@ public struct Constants {
         public static let NewCity = "New City"
         public static let OldNumber = "Old Number"
         public static let NewNumber = "New Number"
-        public static let ThirdPartySoftwareName = "Software Name"
     }
-    
+
     // MARK: - Custom NSError Definitions
     public struct NSErrorInfo {
         public static let DomainString = "BSBErrorDomain"
         public static let NetworkErrorCode = 60
     }
-    
+
     public struct BikeBuddyKit {
         public static let BundleIdentifier = "com.cloudgatestudios.BikeBuddyKit"
     }
-    
+
     public struct UserActivity {
         public static let StationActivityTypeIdentifier = "com.cloudgatestudios.Bike-Buddy.station"
     }
