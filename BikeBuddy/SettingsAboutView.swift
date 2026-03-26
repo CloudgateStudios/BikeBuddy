@@ -31,10 +31,9 @@ struct SettingsAboutView: View {
 
             // MARK: Privacy policy
             Section {
-                NavigationLink {
-                    PrivacyPolicyView()
-                } label: {
-                    Text("Privacy Policy")
+                if let privacyURL = URL(string: Constants.ExtneralURL.PrivacyPolicyURL) {
+                    Link("Privacy Policy", destination: privacyURL)
+                        .foregroundStyle(.primary)
                 }
             }
         }
@@ -49,35 +48,8 @@ struct SettingsAboutView: View {
     // MARK: - Helpers
 
     private var versionString: String {
-        let name = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "BikeBuddy"
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
-        return version == build ? "\(name) \(version)" : "\(name) \(version) (\(build))"
-    }
-}
-
-// MARK: - Privacy policy view
-
-struct PrivacyPolicyView: View {
-
-    private var privacyPolicyText: String {
-        if let path = Bundle.main.path(forResource: Constants.PrivacyPolicyFile.FileName,
-                                       ofType: Constants.PrivacyPolicyFile.FileExtension),
-           let contents = try? String(contentsOfFile: path, encoding: .utf8) {
-            return contents
-        }
-        return ""
-    }
-
-    var body: some View {
-        ScrollView {
-            Text(privacyPolicyText)
-                .padding()
-        }
-        .navigationTitle("Privacy Policy")
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenAboutPrivacyPolicy)
-        }
+        return version == build ? "Version \(version)" : "Version \(version) (\(build))"
     }
 }

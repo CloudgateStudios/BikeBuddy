@@ -100,20 +100,10 @@ public struct Constants {
         public static let NetworksAPI = CityBikes.BaseAPIURL + "/v2/networks?fields=id,name,href,location"
     }
     
-    // MARK: - Privacy Policy File
-    public struct PrivacyPolicyFile {
-        public static let FileName = "PrivacyPolicy"
-        public static let FileExtension = "txt"
-    }
-    
     // MARK: - External URL's
     public struct ExtneralURL {
         public static let AppStoreDeepLink = "https://itunes.apple.com/us/app/apple-store/id998776734?mt=8"
-        public static let Alamofire = "https://github.com/Alamofire/Alamofire"
-        public static let ObjectMapper = "https://github.com/Hearst-DD/ObjectMapper"
-        public static let AFOM = "https://github.com/tristanhimmelman/AlamofireObjectMapper"
-        public static let SVProgressHUD = "https://github.com/SVProgressHUD/SVProgressHUD"
-        public static let DZNEmptyDataSet = "https://github.com/dzenbot/DZNEmptyDataSet"
+        public static let PrivacyPolicyURL = "https://cloudgatestudios.com/bikebuddy/privacy"
     }
     
     // MARK: - Analytic Events
