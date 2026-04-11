@@ -148,25 +148,34 @@ class AppViewModel: ObservableObject {
 
     // MARK: - Screenshot mock data
     // Not wrapped in #if DEBUG so it compiles in Release builds used by fastlane snapshot.
+
+    private struct MockStationData {
+        let id: String
+        let name: String
+        let bikes: Int
+        let docks: Int
+        let latitude: Double
+        let longitude: Double
+    }
+
     private static func makeMockStations() -> [Station] {
-        // (id, name, bikes, docks, lat, lon) — uses map closure to avoid 6-param function lint rule
-        let raw: [(String, String, Int, Int, Double, Double)] = [
-            ("m1", "W 41 St & 8 Ave", 12, 8, 40.7563, -73.9914),
-            ("m2", "Central Park S & 6 Ave", 3, 17, 40.7652, -73.9769),
-            ("m3", "Broadway & W 60 St", 0, 25, 40.7691, -73.9815),
-            ("m4", "E 47 St & Park Ave", 7, 2, 40.7552, -73.9757),
-            ("m5", "5 Ave & E 34 St", 15, 0, 40.7486, -73.9851),
-            ("m6", "W 72 St & Columbus Ave", 9, 11, 40.7773, -73.9809),
-            ("m7", "Hudson St & W 13 St", 6, 4, 40.7374, -74.0057)
+        let raw: [MockStationData] = [
+            MockStationData(id: "m1", name: "W 41 St & 8 Ave", bikes: 12, docks: 8, latitude: 40.7563, longitude: -73.9914),
+            MockStationData(id: "m2", name: "Central Park S & 6 Ave", bikes: 3, docks: 17, latitude: 40.7652, longitude: -73.9769),
+            MockStationData(id: "m3", name: "Broadway & W 60 St", bikes: 0, docks: 25, latitude: 40.7691, longitude: -73.9815),
+            MockStationData(id: "m4", name: "E 47 St & Park Ave", bikes: 7, docks: 2, latitude: 40.7552, longitude: -73.9757),
+            MockStationData(id: "m5", name: "5 Ave & E 34 St", bikes: 15, docks: 0, latitude: 40.7486, longitude: -73.9851),
+            MockStationData(id: "m6", name: "W 72 St & Columbus Ave", bikes: 9, docks: 11, latitude: 40.7773, longitude: -73.9809),
+            MockStationData(id: "m7", name: "Hudson St & W 13 St", bikes: 6, docks: 4, latitude: 40.7374, longitude: -74.0057)
         ]
-        return raw.map { id, name, bikes, docks, lat, lon in
+        return raw.map { data in
             let station = Station()
-            station.id = id
-            station.stationName = name
-            station.availableBikes = bikes
-            station.availableDocks = docks
-            station.latitude = lat
-            station.longitude = lon
+            station.id = data.id
+            station.stationName = data.name
+            station.availableBikes = data.bikes
+            station.availableDocks = data.docks
+            station.latitude = data.latitude
+            station.longitude = data.longitude
             return station
         }
     }
