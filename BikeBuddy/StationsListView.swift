@@ -17,8 +17,16 @@ struct StationsListView: View {
     @StateObject private var locationManager = LocationManager()
 
     private var closestStations: [Station] {
-        let lat = locationManager.coordinate.latitude
-        let lon = locationManager.coordinate.longitude
+        var lat = locationManager.coordinate.latitude
+        var lon = locationManager.coordinate.longitude
+        // In the screenshot run the simulator has no real GPS fix (both values are 0).
+        // Fall back to the centre of the mock-station cluster (Midtown Manhattan) so
+        // getClosestStations returns the pre-seeded stations instead of an empty list.
+        if lat == 0.0 && lon == 0.0 &&
+            ProcessInfo.processInfo.environment["UI_TESTING_SCREENSHOTS"] == "1" {
+            lat = 40.7563
+            lon = -73.9914
+        }
         return appViewModel.closestStations(latitude: lat, longitude: lon)
     }
 

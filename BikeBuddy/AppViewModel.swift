@@ -39,8 +39,12 @@ class AppViewModel: ObservableObject {
 
     private init() {
         loadSettingsState()
-        #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS") {
+        // Support both launch argument (set by XCUITest launchArguments) and
+        // environment variable (set by XCUITest launchEnvironment) so the mock-data
+        // path works in Debug AND Release build configurations.
+        let isScreenshotRun = ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS")
+            || ProcessInfo.processInfo.environment["UI_TESTING_SCREENSHOTS"] == "1"
+        if isScreenshotRun {
             // Pre-seed Citi Bike NYC settings
             SettingsService.sharedInstance.saveSetting(
                 key: Constants.SettingsKey.BikeServiceName,
@@ -66,7 +70,6 @@ class AppViewModel: ObservableObject {
             showFirstTimeUse = false
             return
         }
-        #endif
         // Fire FTU if the user has never completed setup
         if !SettingsService.sharedInstance.getSettingAsBool(key: Constants.SettingsKey.FirstTimeUseCompleted) {
             showFirstTimeUse = true
@@ -144,28 +147,36 @@ class AppViewModel: ObservableObject {
     }
 
     // MARK: - Screenshot mock data
+    // Not wrapped in #if DEBUG so it compiles in Release builds used by fastlane snapshot.
 
-    #if DEBUG
-    private static func makeMockStations() -> [Station] {
-        func make(_ id: String, _ name: String, _ bikes: Int, _ docks: Int, _ lat: Double, _ lon: Double) -> Station {
-            let s = Station()
-            s.id = id
-            s.stationName = name
-            s.availableBikes = bikes
-            s.availableDocks = docks
-            s.latitude = lat
-            s.longitude = lon
-            return s
-        }
-        return [
-            make("m1", "W 41 St & 8 Ave",          12,  8, 40.7563, -73.9914),
-            make("m2", "Central Park S & 6 Ave",     3, 17, 40.7652, -73.9769),
-            make("m3", "Broadway & W 60 St",          0, 25, 40.7691, -73.9815),
-            make("m4", "E 47 St & Park Ave",          7,  2, 40.7552, -73.9757),
-            make("m5", "5 Ave & E 34 St",            15,  0, 40.7486, -73.9851),
-            make("m6", "W 72 St & Columbus Ave",      9, 11, 40.7773, -73.9809),
-            make("m7", "Hudson St & W 13 St",         6,  4, 40.7374, -74.0057),
-        ]
+    private struct MockStationData {
+        let id: String
+        let name: String
+        let bikes: Int
+        let docks: Int
+        let latitude: Double
+        let longitude: Double
     }
-    #endif
+
+    private static func makeMockStations() -> [Station] {
+        let raw: [MockStationData] = [
+            MockStationData(id: "m1", name: "W 41 St & 8 Ave", bikes: 12, docks: 8, latitude: 40.7563, longitude: -73.9914),
+            MockStationData(id: "m2", name: "Central Park S & 6 Ave", bikes: 3, docks: 17, latitude: 40.7652, longitude: -73.9769),
+            MockStationData(id: "m3", name: "Broadway & W 60 St", bikes: 0, docks: 25, latitude: 40.7691, longitude: -73.9815),
+            MockStationData(id: "m4", name: "E 47 St & Park Ave", bikes: 7, docks: 2, latitude: 40.7552, longitude: -73.9757),
+            MockStationData(id: "m5", name: "5 Ave & E 34 St", bikes: 15, docks: 0, latitude: 40.7486, longitude: -73.9851),
+            MockStationData(id: "m6", name: "W 72 St & Columbus Ave", bikes: 9, docks: 11, latitude: 40.7773, longitude: -73.9809),
+            MockStationData(id: "m7", name: "Hudson St & W 13 St", bikes: 6, docks: 4, latitude: 40.7374, longitude: -74.0057)
+        ]
+        return raw.map { data in
+            let station = Station()
+            station.id = data.id
+            station.stationName = data.name
+            station.availableBikes = data.bikes
+            station.availableDocks = data.docks
+            station.latitude = data.latitude
+            station.longitude = data.longitude
+            return station
+        }
+    }
 }

@@ -37,5 +37,10 @@ struct MainTabView: View {
             }
         }
         .tint(Color("BikeBuddyBlue"))
+        // Force the traditional bottom tab bar on all devices (including iPad).
+        // iOS 18 introduced .sidebarAdaptable which makes iPad show a sidebar by
+        // default; .tabBarOnly opts back in to the bottom-bar layout everywhere.
+        // (The old .tabBar style was removed in iOS 18.)
+        .tabViewStyle(.tabBarOnly)
     }
 }
