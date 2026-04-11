@@ -1,0 +1,1 @@
+Bug fixes and support for new 2018 iPad Pro’s.
