@@ -63,7 +63,7 @@ final class ScreenshotTests: XCTestCase {
             "W 41 St & 8 Ave",
             "5 Ave & E 34 St",
             "E 47 St & Park Ave",
-            "Central Park S & 6 Ave",
+            "Central Park S & 6 Ave"
         ]
         for name in markerNames {
             // Markers can surface as otherElements OR buttons depending on iOS version.
