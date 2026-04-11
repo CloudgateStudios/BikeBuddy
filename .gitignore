@@ -16,27 +16,11 @@ DerivedData
 *.ipa
 *.xcuserstate
 
-
-# Carthage
-Carthage/
-
 # Fastlane
 fastlane/report.xml
 fastlane/test_output
-
-# Fastlane Extras (Things it does)
-*.mobileprovision
-Bike Buddy.app.dSYM.zip
-*.cer
-*.certSigningRequest
-*.p12
-Preview.html
-
-# Fastlane Screenshots
 fastlane/screenshots/
 fastlane/screenshots_framed/
-
-# Fastlane auto-generated docs (regenerated on every run)
 fastlane/README.md
 
 # Bundler — local gem install path (vendor/bundle is regenerated via `bundle install`)
