@@ -39,8 +39,12 @@ class AppViewModel: ObservableObject {
 
     private init() {
         loadSettingsState()
-        #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS") {
+        // Support both launch argument (set by XCUITest launchArguments) and
+        // environment variable (set by XCUITest launchEnvironment) so the mock-data
+        // path works in Debug AND Release build configurations.
+        let isScreenshotRun = ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS")
+            || ProcessInfo.processInfo.environment["UI_TESTING_SCREENSHOTS"] == "1"
+        if isScreenshotRun {
             // Pre-seed Citi Bike NYC settings
             SettingsService.sharedInstance.saveSetting(
                 key: Constants.SettingsKey.BikeServiceName,
@@ -66,7 +70,6 @@ class AppViewModel: ObservableObject {
             showFirstTimeUse = false
             return
         }
-        #endif
         // Fire FTU if the user has never completed setup
         if !SettingsService.sharedInstance.getSettingAsBool(key: Constants.SettingsKey.FirstTimeUseCompleted) {
             showFirstTimeUse = true
@@ -144,8 +147,7 @@ class AppViewModel: ObservableObject {
     }
 
     // MARK: - Screenshot mock data
-
-    #if DEBUG
+    // Not wrapped in #if DEBUG so it compiles in Release builds used by fastlane snapshot.
     private static func makeMockStations() -> [Station] {
         func make(_ id: String, _ name: String, _ bikes: Int, _ docks: Int, _ lat: Double, _ lon: Double) -> Station {
             let s = Station()
@@ -167,5 +169,4 @@ class AppViewModel: ObservableObject {
             make("m7", "Hudson St & W 13 St",         6,  4, 40.7374, -74.0057),
         ]
     }
-    #endif
 }

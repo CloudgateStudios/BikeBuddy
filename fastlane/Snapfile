@@ -13,3 +13,8 @@ output_directory("./fastlane/screenshots")
 clear_previous_screenshots(true)
 override_status_bar(true)
 reinstall_app(true)
+
+# Disable xcpretty: it crashes with "invalid byte sequence in US-ASCII" when
+# xcodebuild output contains Unicode/emoji and the shell locale is not UTF-8.
+# Raw xcodebuild output works reliably in all environments.
+xcodebuild_formatter("")

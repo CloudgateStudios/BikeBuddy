@@ -35,3 +35,10 @@ Preview.html
 # Fastlane Screenshots
 fastlane/screenshots/
 fastlane/screenshots_framed/
+
+# Fastlane auto-generated docs (regenerated on every run)
+fastlane/README.md
+
+# Bundler — local gem install path (vendor/bundle is regenerated via `bundle install`)
+# .bundle/config is committed so the local path is automatic for all contributors
+vendor/

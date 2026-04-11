@@ -87,7 +87,7 @@ public class Station: NSObject, MKAnnotation, Codable {
     
     // MARK: - Initalizers
     
-    override init() {
+    public override init() {
     }
     
     required public init(from decoder: Decoder) throws {
