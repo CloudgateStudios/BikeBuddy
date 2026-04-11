@@ -36,13 +36,13 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Set marketing version
-        run: xcrun agvtool new-marketing-version ${{ inputs.version }}
+        run: cd ios && xcrun agvtool new-marketing-version ${{ inputs.version }}
 
       - name: Increment build number
         run: |
-          current=$(xcrun agvtool what-version -terse)
+          current=$(cd ios && xcrun agvtool what-version -terse)
           new=$((current + 1))
-          xcrun agvtool new-version -all $new
+          cd ios && xcrun agvtool new-version -all $new
 
       - name: Disable branch rulesets
         env:
@@ -74,12 +74,12 @@ jobs:
 
       - name: Commit, tag, and push
         run: |
-          version=$(xcrun agvtool what-marketing-version -terse1)
-          build=$(xcrun agvtool what-version -terse)
-          git add "BikeBuddy.xcodeproj/project.pbxproj" \
-                  "BikeBuddy/Info.plist" \
-                  "BikeBuddyKit/Info.plist" \
-                  "BikeBuddyUITests/Info.plist"
+          version=$(cd ios && xcrun agvtool what-marketing-version -terse1)
+          build=$(cd ios && xcrun agvtool what-version -terse)
+          git add "ios/BikeBuddy.xcodeproj/project.pbxproj" \
+                  "ios/BikeBuddy/Info.plist" \
+                  "ios/BikeBuddyKit/Info.plist" \
+                  "ios/BikeBuddyUITests/Info.plist"
           git commit -m "Version Bump to ${version}-${build}"
           git tag -a "release/${version}/${build}" -m "Release ${version} (${build})"
           git push origin main --follow-tags
