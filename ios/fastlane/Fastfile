@@ -1,19 +1,22 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Capture raw screenshots and generate framed versions"
+  desc "Capture light and dark mode screenshots and generate framed versions"
   lane :screenshots do
-    snapshot
+    snapshot(output_directory: "./fastlane/screenshots/light", dark_mode: false)
+    snapshot(output_directory: "./fastlane/screenshots/dark",  dark_mode: true)
 
     # Copy raw screenshots before frameit modifies them in place
     sh "rm -rf ../fastlane/screenshots_framed && cp -R ../fastlane/screenshots ../fastlane/screenshots_framed"
 
-    frameit(path: "./fastlane/screenshots_framed")
+    frameit(path: "./fastlane/screenshots_framed/light")
+    frameit(path: "./fastlane/screenshots_framed/dark")
   end
 
   desc "Re-frame existing screenshots without re-capturing"
   lane :framed_screenshots do
     sh "rm -rf ../fastlane/screenshots_framed && cp -R ../fastlane/screenshots ../fastlane/screenshots_framed"
-    frameit(path: "./fastlane/screenshots_framed")
+    frameit(path: "./fastlane/screenshots_framed/light")
+    frameit(path: "./fastlane/screenshots_framed/dark")
   end
 end
