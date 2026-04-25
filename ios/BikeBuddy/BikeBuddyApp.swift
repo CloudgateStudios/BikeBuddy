@@ -20,6 +20,7 @@ struct BikeBuddyApp: App {
             ContentView()
                 .environmentObject(appViewModel)
                 .tint(Color("BikeBuddyBlue"))
+                .preferredColorScheme(appViewModel.appearanceMode.colorScheme)
                 .onContinueUserActivity(Constants.UserActivity.StationActivityTypeIdentifier) { activity in
                     handleUserActivity(activity)
                 }

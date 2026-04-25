@@ -43,6 +43,18 @@ struct SettingsView: View {
                 }
             }
 
+            // MARK: Appearance section
+            Section(header: Text("Appearance")) {
+                Picker("Theme", selection: Binding(
+                    get: { appViewModel.appearanceMode },
+                    set: { appViewModel.selectAppearanceMode($0) }
+                )) {
+                    ForEach(AppearanceMode.allCases, id: \.self) { mode in
+                        Text(mode.displayName).tag(mode)
+                    }
+                }
+            }
+
             // MARK: General section
             Section(header: Text(StringsService.getStringFor(key: "SettingsGeneralGroup"))) {
 
