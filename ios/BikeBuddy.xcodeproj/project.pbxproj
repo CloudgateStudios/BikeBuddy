@@ -39,6 +39,7 @@
 		D1DD8BC51DA327C400DED913 /* BikeBuddyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D1F7E14222BE4AC600E0BDCB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */; };
 		SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP /* BikeBuddyApp.swift */; };
+		SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */; };
 		SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP_VM /* AppViewModel.swift */; };
 		SWIFTUI_BF_BTN_STYLE /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */; };
 		SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CONTENT /* ContentView.swift */; };
@@ -142,6 +143,7 @@
 		D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Network_Detail_API_Response.json; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
 		SWIFTUI_APP /* BikeBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddyApp.swift; sourceTree = "<group>"; };
 		SWIFTUI_APP_VM /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		C516F0131B0CEFF100CF4468 /* SwiftUI Views */ = {
 			isa = PBXGroup;
 			children = (
+				SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */,
 				SWIFTUI_APP_VM /* AppViewModel.swift */,
 				SWIFTUI_APP /* BikeBuddyApp.swift */,
 				SWIFTUI_CONTENT /* ContentView.swift */,
@@ -557,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */,
+				SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */,
 				SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */,
 				SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */,
 				SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */,

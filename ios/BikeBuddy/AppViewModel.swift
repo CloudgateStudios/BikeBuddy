@@ -30,6 +30,7 @@ class AppViewModel: ObservableObject {
     @Published var bikeServiceName: String = ""
     @Published var bikeServiceCityName: String = ""
     @Published var numberOfClosestStations: Int = Constants.SettingsDefault.NumberOfClosestStations
+    @Published var appearanceMode: AppearanceMode = .automatic
 
     // MARK: - Singleton
 
@@ -85,6 +86,13 @@ class AppViewModel: ObservableObject {
         if numberOfClosestStations == 0 {
             numberOfClosestStations = Constants.SettingsDefault.NumberOfClosestStations
         }
+        let rawMode = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.AppearanceMode)
+        appearanceMode = AppearanceMode(rawValue: rawMode) ?? .automatic
+    }
+
+    func selectAppearanceMode(_ mode: AppearanceMode) {
+        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.AppearanceMode, value: mode.rawValue as AnyObject)
+        appearanceMode = mode
     }
 
     func completeFirstTimeUse() {

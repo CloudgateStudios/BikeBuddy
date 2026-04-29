@@ -22,12 +22,14 @@ public struct Constants {
         public static let BikeServiceCityName = "BikeServiceCityName"
         public static let BikeServiceName = "BikeServiceName"
         public static let NumberOfClosestStations = "NumberOfClosestStations"
+        public static let AppearanceMode = "AppearanceMode"
     }
 
     // MARK: - Settings Defaults
     public struct SettingsDefault {
         public static let SettingsVersionNumber = 1
         public static let NumberOfClosestStations = 15
+        public static let AppearanceMode = 0  // automatic
     }
 
     // MARK: - Timer Settings
