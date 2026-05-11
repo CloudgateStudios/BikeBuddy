@@ -51,6 +51,13 @@ struct StationDetailView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
 
+                    if !station.streetAddress.isEmpty {
+                        Text(station.streetAddress)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+
                     // MARK: Availability cards
                     HStack(spacing: 16) {
                         availabilityCard(
