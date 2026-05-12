@@ -32,7 +32,7 @@ struct SettingsAboutView: View {
             // MARK: Privacy policy
             Section {
                 if let privacyURL = URL(string: Constants.ExtneralURL.PrivacyPolicyURL) {
-                    Link("Privacy Policy", destination: privacyURL)
+                    Link(StringsService.getStringFor(key: "SettingsAboutPrivacyPolicyLabel"), destination: privacyURL)
                         .foregroundStyle(.primary)
                 }
             }

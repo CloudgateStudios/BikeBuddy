@@ -44,8 +44,8 @@ struct SettingsView: View {
             }
 
             // MARK: Appearance section
-            Section(header: Text("Appearance")) {
-                Picker("Theme", selection: Binding(
+            Section(header: Text(StringsService.getStringFor(key: "SettingsAppearanceGroup"))) {
+                Picker(StringsService.getStringFor(key: "SettingsThemeLabel"), selection: Binding(
                     get: { appViewModel.appearanceMode },
                     set: { appViewModel.selectAppearanceMode($0) }
                 )) {

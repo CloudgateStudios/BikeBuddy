@@ -77,6 +77,9 @@
 /* Label prefix for what time the data was last updated at. Should be followed by a time */
 "MapUpdatedAtLabel" = "Updated at";
 
+/* Button label on the map station selection card to open the full station detail */
+"MapStationDetailsButton" = "Details";
+
 // MARK: - Station Detail
 
 /* Button text when the user wants directions to the station they are currently viewing */
@@ -108,6 +111,12 @@
 /* Setting label for the number of closest stations to show in the Stations list view */
 "SettingsServiceNumberOfStations" = "Number of Closest Stations";
 
+/* Setting group label for appearance settings */
+"SettingsAppearanceGroup" = "Appearance";
+
+/* Picker label for selecting the app theme */
+"SettingsThemeLabel" = "Theme";
+
 /* Setting group label for general setting items */
 "SettingsGeneralGroup" = "General";
 
@@ -137,6 +146,9 @@
 
 /* Title in the nav bar of the Settings - About view */
 "SettingsAboutNavBarTitle" = "About";
+
+/* Link label for the privacy policy */
+"SettingsAboutPrivacyPolicyLabel" = "Privacy Policy";
 
 /* Message telling the user where the data is coming from */
 "SettingsAboutCityBikesLineOne" = "All data is sourced from CityBikes";

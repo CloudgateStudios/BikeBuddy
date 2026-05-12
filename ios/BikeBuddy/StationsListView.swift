@@ -123,6 +123,13 @@ struct StationRowView: View, Equatable {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+
+                if !station.streetAddress.isEmpty {
+                    Text(station.streetAddress)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
