@@ -19,21 +19,21 @@ struct MainTabView: View {
                 StationsListView()
             }
             .tabItem {
-                Label(StringsService.getStringFor(key: "StationsListTabBarItemLabel"), systemImage: "list.bullet")
+                Label { Text("StationsListTabBarItemLabel", bundle: .bikeBuddyKit) } icon: { Image(systemName: "list.bullet") }
             }
 
             NavigationStack {
                 MapView()
             }
             .tabItem {
-                Label(StringsService.getStringFor(key: "MapTabBarItemLabel"), systemImage: "map")
+                Label { Text("MapTabBarItemLabel", bundle: .bikeBuddyKit) } icon: { Image(systemName: "map") }
             }
 
             NavigationStack {
                 SettingsView()
             }
             .tabItem {
-                Label(StringsService.getStringFor(key: "SettingsTabBarItemLabel"), systemImage: "gear")
+                Label { Text("SettingsTabBarItemLabel", bundle: .bikeBuddyKit) } icon: { Image(systemName: "gear") }
             }
         }
         .tint(Color("BikeBuddyBlue"))

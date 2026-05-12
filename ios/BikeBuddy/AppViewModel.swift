@@ -135,7 +135,7 @@ class AppViewModel: ObservableObject {
         do {
             let result = try await StationsDataService.sharedInstance.getAllStationData(apiUrl: apiUrl)
             if result.isEmpty {
-                stationsLoadError = StringsService.getStringFor(key: "GeneralNoStationsMessageContent")
+                stationsLoadError = String(localized: "GeneralNoStationsMessageContent", bundle: .bikeBuddyKit)
             } else {
                 Stations.sharedInstance.list = result
                 stations = result

@@ -45,7 +45,7 @@ struct StationDetailView: View {
                     if station.distanceFromUser > 0 {
                         Text(station.approximateDistanceAwayFromUser
                              + " "
-                             + StringsService.getStringFor(key: "GeneralAwayLabel"))
+                             + String(localized: "GeneralAwayLabel", bundle: .bikeBuddyKit))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -63,13 +63,13 @@ struct StationDetailView: View {
                         availabilityCard(
                             count: station.availableBikes,
                             icon: "bicycle",
-                            label: StringsService.getStringFor(key: "StationDetailBikesAvailable"),
+                            label: String(localized: "StationDetailBikesAvailable", bundle: .bikeBuddyKit),
                             color: bikesColor
                         )
                         availabilityCard(
                             count: station.availableDocks,
                             icon: "arrow.down.to.line",
-                            label: StringsService.getStringFor(key: "StationDetailDocksAvailable"),
+                            label: String(localized: "StationDetailDocksAvailable", bundle: .bikeBuddyKit),
                             color: .primary
                         )
                     }
@@ -79,8 +79,7 @@ struct StationDetailView: View {
                         Button {
                             openDirections()
                         } label: {
-                            Label(StringsService.getStringFor(key: "StationDetailDirectionsButton"),
-                                  systemImage: "map.fill")
+                            Label { Text("StationDetailDirectionsButton", bundle: .bikeBuddyKit) } icon: { Image(systemName: "map.fill") }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .contentShape(Rectangle())
                         }
@@ -94,8 +93,7 @@ struct StationDetailView: View {
                             item: station.shareStringDescription,
                             subject: Text(station.stationName)
                         ) {
-                            Label(StringsService.getStringFor(key: "StationDetailShareButton"),
-                                  systemImage: "square.and.arrow.up")
+                            Label { Text("StationDetailShareButton", bundle: .bikeBuddyKit) } icon: { Image(systemName: "square.and.arrow.up") }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .contentShape(Rectangle())
                         }

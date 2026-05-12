@@ -23,8 +23,8 @@ struct SettingsAboutView: View {
 
             // MARK: Data source
             Section {
-                Text(StringsService.getStringFor(key: "SettingsAboutCityBikesLineOne"))
-                Text(StringsService.getStringFor(key: "SettingsAboutCityBikesLineTwo"))
+                Text("SettingsAboutCityBikesLineOne", bundle: .bikeBuddyKit)
+                Text("SettingsAboutCityBikesLineTwo", bundle: .bikeBuddyKit)
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -32,13 +32,15 @@ struct SettingsAboutView: View {
             // MARK: Privacy policy
             Section {
                 if let privacyURL = URL(string: Constants.ExtneralURL.PrivacyPolicyURL) {
-                    Link(StringsService.getStringFor(key: "SettingsAboutPrivacyPolicyLabel"), destination: privacyURL)
-                        .foregroundStyle(.primary)
+                    Link(destination: privacyURL) {
+                        Text("SettingsAboutPrivacyPolicyLabel", bundle: .bikeBuddyKit)
+                    }
+                    .foregroundStyle(.primary)
                 }
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle(StringsService.getStringFor(key: "SettingsAboutNavBarTitle"))
+        .navigationTitle(Text("SettingsAboutNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsAbout)

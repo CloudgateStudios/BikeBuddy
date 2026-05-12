@@ -170,7 +170,7 @@ struct MapView: View {
 
     private func updateTimestampLabel() {
         guard appViewModel.stationsLastUpdated.timeIntervalSince1970 > 0 else { return }
-        updatedAtText = StringsService.getStringFor(key: "MapUpdatedAtLabel") + " "
+        updatedAtText = String(localized: "MapUpdatedAtLabel", bundle: .bikeBuddyKit) + " "
             + Self.timestampFormatter.string(from: appViewModel.stationsLastUpdated)
     }
 
@@ -202,7 +202,7 @@ private struct StationSelectionCard: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 if station.distanceFromUser > 0 {
-                    Text(station.approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel"))
+                    Text(station.approximateDistanceAwayFromUser + " " + String(localized: "GeneralAwayLabel", bundle: .bikeBuddyKit))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -223,7 +223,9 @@ private struct StationSelectionCard: View {
                 color: .primary
             )
 
-            Button(StringsService.getStringFor(key: "MapStationDetailsButton"), action: onViewDetail)
+            Button(action: onViewDetail) {
+                Text("MapStationDetailsButton", bundle: .bikeBuddyKit)
+            }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
         }

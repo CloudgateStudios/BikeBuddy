@@ -31,13 +31,15 @@ struct FTUFinishedView: View {
             VStack(spacing: 20) {
                 FTUStepIndicator(currentStep: .finished)
 
-                Text(StringsService.getStringFor(key: "WelcomeMessageContent"))
+                Text("WelcomeMessageContent", bundle: .bikeBuddyKit)
                     .multilineTextAlignment(.center)
                     .font(.body)
                     .fixedSize(horizontal: false, vertical: true)
 
-                Button(StringsService.getStringFor(key: "FTUFinishedButton")) {
+                Button {
                     ftuViewModel.complete()
+                } label: {
+                    Text("FTUFinishedButton", bundle: .bikeBuddyKit)
                 }
                 .buttonStyle(.borderedProminent)
                 .frame(maxWidth: .infinity)

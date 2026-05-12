@@ -46,7 +46,7 @@ struct StationsListView: View {
                 stationList
             }
         }
-        .navigationTitle(StringsService.getStringFor(key: "StationsListNavBarTitle"))
+        .navigationTitle(Text("StationsListNavBarTitle", bundle: .bikeBuddyKit))
         .onAppear { locationManager.startUpdatingLocation() }
         .onDisappear { locationManager.stopUpdatingLocation() }
     }
@@ -76,7 +76,7 @@ struct StationsListView: View {
         VStack(spacing: 16) {
             ProgressView()
                 .scaleEffect(1.4)
-            Text(StringsService.getStringFor(key: "StationsListLoadingMessage"))
+            Text("StationsListLoadingMessage", bundle: .bikeBuddyKit)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -86,9 +86,9 @@ struct StationsListView: View {
 
     private var emptyStateView: some View {
         ContentUnavailableView(
-            StringsService.getStringFor(key: "StationsListNoDataTitle"),
+            String(localized: "StationsListNoDataTitle", bundle: .bikeBuddyKit),
             systemImage: "bicycle",
-            description: Text(StringsService.getStringFor(key: "StationsListNoDataMessage"))
+            description: Text("StationsListNoDataMessage", bundle: .bikeBuddyKit)
         )
     }
 }

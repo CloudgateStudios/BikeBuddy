@@ -18,13 +18,13 @@ struct SettingsView: View {
     var body: some View {
         List {
             // MARK: Service section
-            Section(header: Text(StringsService.getStringFor(key: "SettingsServiceGroup"))) {
+            Section(header: Text("SettingsServiceGroup", bundle: .bikeBuddyKit)) {
 
                 NavigationLink {
                     SettingsSelectNetworkView()
                 } label: {
                     HStack {
-                        Text(StringsService.getStringFor(key: "SettingsServiceNetwork"))
+                        Text("SettingsServiceNetwork", bundle: .bikeBuddyKit)
                         Spacer()
                         Text(networkDisplayName)
                             .foregroundStyle(.secondary)
@@ -35,7 +35,7 @@ struct SettingsView: View {
                     SettingsNumberOfClosestStationsView()
                 } label: {
                     HStack {
-                        Text(StringsService.getStringFor(key: "SettingsServiceNumberOfStations"))
+                        Text("SettingsServiceNumberOfStations", bundle: .bikeBuddyKit)
                         Spacer()
                         Text(String(appViewModel.numberOfClosestStations))
                             .foregroundStyle(.secondary)
@@ -44,43 +44,45 @@ struct SettingsView: View {
             }
 
             // MARK: Appearance section
-            Section(header: Text(StringsService.getStringFor(key: "SettingsAppearanceGroup"))) {
-                Picker(StringsService.getStringFor(key: "SettingsThemeLabel"), selection: Binding(
+            Section(header: Text("SettingsAppearanceGroup", bundle: .bikeBuddyKit)) {
+                Picker(selection: Binding(
                     get: { appViewModel.appearanceMode },
                     set: { appViewModel.selectAppearanceMode($0) }
                 )) {
                     ForEach(AppearanceMode.allCases, id: \.self) { mode in
                         Text(mode.displayName).tag(mode)
                     }
+                } label: {
+                    Text("SettingsThemeLabel", bundle: .bikeBuddyKit)
                 }
             }
 
             // MARK: General section
-            Section(header: Text(StringsService.getStringFor(key: "SettingsGeneralGroup"))) {
+            Section(header: Text("SettingsGeneralGroup", bundle: .bikeBuddyKit)) {
 
                 NavigationLink {
                     SettingsAboutView()
                 } label: {
-                    Text(StringsService.getStringFor(key: "SettingsGeneralAbout"))
+                    Text("SettingsGeneralAbout", bundle: .bikeBuddyKit)
                 }
 
                 ShareLink(
-                    item: StringsService.getStringFor(key: "SettingsShareMessageContent") + " " + Constants.ExtneralURL.AppStoreDeepLink
+                    item: String(localized: "SettingsShareMessageContent", bundle: .bikeBuddyKit) + " " + Constants.ExtneralURL.AppStoreDeepLink
                 ) {
-                    Text(StringsService.getStringFor(key: "SettingsGeneralTellYourFriends"))
+                    Text("SettingsGeneralTellYourFriends", bundle: .bikeBuddyKit)
                         .foregroundStyle(.primary)
                 }
 
                 Button {
                     goToAppStorePage()
                 } label: {
-                    Text(StringsService.getStringFor(key: "SettingsGeneralRateApp"))
+                    Text("SettingsGeneralRateApp", bundle: .bikeBuddyKit)
                         .foregroundStyle(.primary)
                 }
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle(StringsService.getStringFor(key: "SettingsNavBarTitle"))
+        .navigationTitle(Text("SettingsNavBarTitle", bundle: .bikeBuddyKit))
     }
 
     // MARK: - Helpers

@@ -47,12 +47,12 @@ public class Station: NSObject, MKAnnotation, Codable {
     }
     
     public var shareStringDescription: String {
-        var returnString = StringsService.getStringFor(key: "StationModelShareStationName") + "\n" + stationName
-        
+        var returnString = String(localized: "StationModelShareStationName", bundle: .bikeBuddyKit) + "\n" + stationName
+
         if streetAddress != "" {
-            returnString += "\n\n" + StringsService.getStringFor(key: "StationModelShareAddress") + "\n" + streetAddress
+            returnString += "\n\n" + String(localized: "StationModelShareAddress", bundle: .bikeBuddyKit) + "\n" + streetAddress
         }
-        
+
         return returnString
     }
     
@@ -65,7 +65,7 @@ public class Station: NSObject, MKAnnotation, Codable {
     }
     
     public var subtitle: String? {
-        return StringsService.getStringFor(key: "StationModelAnnotationBikes") + ": \(availableBikes) " +  StringsService.getStringFor(key: "StationModelAnnotationOpenDocks") + ": \(availableDocks)"
+        return String(localized: "StationModelAnnotationBikes", bundle: .bikeBuddyKit) + ": \(availableBikes) " + String(localized: "StationModelAnnotationOpenDocks", bundle: .bikeBuddyKit) + ": \(availableDocks)"
     }
     
     enum CodingKeys: String, CodingKey {

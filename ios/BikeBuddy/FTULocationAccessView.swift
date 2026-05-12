@@ -30,13 +30,15 @@ struct FTULocationAccessView: View {
             VStack(spacing: 20) {
                 FTUStepIndicator(currentStep: .locationAccess)
 
-                Text(StringsService.getStringFor(key: "LocationAccessMessageContent"))
+                Text("LocationAccessMessageContent", bundle: .bikeBuddyKit)
                     .multilineTextAlignment(.center)
                     .font(.body)
                     .fixedSize(horizontal: false, vertical: true)
 
-                Button(StringsService.getStringFor(key: "LocationAccessButton")) {
+                Button {
                     ftuViewModel.requestLocationAccess()
+                } label: {
+                    Text("LocationAccessButton", bundle: .bikeBuddyKit)
                 }
                 .buttonStyle(.borderedProminent)
                 .frame(maxWidth: .infinity)
@@ -56,13 +58,13 @@ struct FTULocationAccessView: View {
             .ignoresSafeArea()
         )
         .toolbar(.hidden, for: .navigationBar)
-        .alert(StringsService.getStringFor(key: "LocationAccessNotGrantedMessageTitle"),
+        .alert(Text("LocationAccessNotGrantedMessageTitle", bundle: .bikeBuddyKit),
                isPresented: $ftuViewModel.showLocationDeniedAlert) {
-            Button(StringsService.getStringFor(key: "GeneralButtonOK")) {
-                ftuViewModel.goToSelectNetwork()
+            Button { ftuViewModel.goToSelectNetwork() } label: {
+                Text("GeneralButtonOK", bundle: .bikeBuddyKit)
             }
         } message: {
-            Text(StringsService.getStringFor(key: "LocationAccessNotGrantedMessageContent"))
+            Text("LocationAccessNotGrantedMessageContent", bundle: .bikeBuddyKit)
         }
     }
 }

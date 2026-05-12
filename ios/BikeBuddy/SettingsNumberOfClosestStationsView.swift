@@ -36,7 +36,7 @@ struct SettingsNumberOfClosestStationsView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle(StringsService.getStringFor(key: "SettingsSelectNumOfClosestStationsNavBarTitle"))
+        .navigationTitle(Text("SettingsSelectNumOfClosestStationsNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsNumberOfClosestStations)

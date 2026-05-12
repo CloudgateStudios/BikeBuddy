@@ -18,12 +18,12 @@ struct SettingsSelectNetworkView: View {
 
     var body: some View {
         NetworkPickerView(
-            searchPrompt: StringsService.getStringFor(key: "SettingsSelectNetworkSearchBarPlaceholder"),
+            searchPrompt: String(localized: "SettingsSelectNetworkSearchBarPlaceholder", bundle: .bikeBuddyKit),
             onSelect: { network in
                 selectNetwork(network)
             }
         )
-        .navigationTitle(StringsService.getStringFor(key: "SettingsSelectNetworkNavBarTitle"))
+        .navigationTitle(Text("SettingsSelectNetworkNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
     }
 
