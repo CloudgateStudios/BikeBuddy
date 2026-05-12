@@ -18,7 +18,7 @@
 		D149580A1DB30EAC0038A615 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D149580B1DB317AE0038A615 /* CoreLocation.framework */; };
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
-		D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* StringsService.swift */; };
+		D14D9C511DB839EC008D0656 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* BundleExtension.swift */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D18F4B181D9225FC00972AF2 /* BikeBuddyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */; };
@@ -120,7 +120,7 @@
 		D14957F31DB2B2370038A615 /* BikeBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BikeBuddy.entitlements"; sourceTree = "<group>"; };
 		D149580B1DB317AE0038A615 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		D14D9C501DB839EC008D0656 /* StringsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsService.swift; sourceTree = "<group>"; };
+		D14D9C501DB839EC008D0656 /* BundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BikeBuddyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeBuddyKit.h; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 			children = (
 				D11DDDE31D988F7D00BBB480 /* SetingsService.swift */,
 				D11DDDE51D98901A00BBB480 /* StationsDataService.swift */,
-				D14D9C501DB839EC008D0656 /* StringsService.swift */,
+				D14D9C501DB839EC008D0656 /* BundleExtension.swift */,
 				D1920CDB1DE66450003FBCB4 /* NetworksDataService.swift */,
 				D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */,
 			);
@@ -585,7 +585,7 @@
 		D18F4B051D9225FC00972AF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */,
+				D14D9C511DB839EC008D0656 /* BundleExtension.swift in Sources */,
 				D1920CDC1DE66450003FBCB4 /* NetworksDataService.swift in Sources */,
 				D1920CDA1DE6628D003FBCB4 /* StationExtra.swift in Sources */,
 				D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */,

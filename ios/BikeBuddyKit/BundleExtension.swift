@@ -1,9 +1,8 @@
 //
-//  StringsService.swift
+//  BundleExtension.swift
 //  Bike Buddy
 //
-//  Created by Tom Arra on 10/19/16.
-//  Copyright © 2016 Cloudgate Studios. All rights reserved.
+//  Copyright © 2026 Cloudgate Studios. All rights reserved.
 //
 
 import Foundation
