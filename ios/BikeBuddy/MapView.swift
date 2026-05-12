@@ -202,7 +202,7 @@ private struct StationSelectionCard: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 if station.distanceFromUser > 0 {
-                    Text(station.approximateDistanceAwayFromUser + " away")
+                    Text(station.approximateDistanceAwayFromUser + " " + StringsService.getStringFor(key: "GeneralAwayLabel"))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -223,7 +223,7 @@ private struct StationSelectionCard: View {
                 color: .primary
             )
 
-            Button("Details", action: onViewDetail)
+            Button(StringsService.getStringFor(key: "MapStationDetailsButton"), action: onViewDetail)
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
         }
