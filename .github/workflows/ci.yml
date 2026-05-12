@@ -10,10 +10,29 @@ concurrency:
 
 jobs:
   # ─────────────────────────────────────────────
-  # Job 1: Lint — SwiftLint + localization check
-  # Runs in parallel with build-and-test so you
-  # get fast style feedback without waiting for
-  # the full build.
+  # Job 1: Validate semantic PR title
+  # ─────────────────────────────────────────────
+  valdiate_pr_title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            fix
+            feat
+            docs
+            refactor
+            test
+            ci
+            chore
+            revert
+          requireScope: false
+          
+  # ─────────────────────────────────────────────
+  # Job 2: Lint — SwiftLint + localization check
   # ─────────────────────────────────────────────
   lint:
     name: Lint
@@ -38,7 +57,7 @@ jobs:
         run: python3 scripts/StringsChecker.py -p .
 
   # ─────────────────────────────────────────────
-  # Job 2: Build & Unit Test
+  # Job 3: Build & Unit Test
   # ─────────────────────────────────────────────
   build-and-test:
     name: Build & Test
