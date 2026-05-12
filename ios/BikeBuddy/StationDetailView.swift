@@ -58,6 +58,25 @@ struct StationDetailView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
 
+                    // MARK: Out of service warning
+                    if !station.isRenting {
+                        HStack(spacing: 10) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundStyle(.orange)
+                            Text("StationDetailOutOfService", bundle: .bikeBuddyKit)
+                                .font(.subheadline.weight(.medium))
+                                .foregroundStyle(.primary)
+                            Spacer()
+                        }
+                        .padding(.vertical, 14)
+                        .padding(.horizontal, 16)
+                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .strokeBorder(Color.orange.opacity(0.5), lineWidth: 1)
+                        )
+                    }
+
                     // MARK: Availability cards
                     HStack(spacing: 16) {
                         availabilityCard(

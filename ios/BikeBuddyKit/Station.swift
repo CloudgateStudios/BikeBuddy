@@ -45,6 +45,14 @@ public class Station: NSObject, MKAnnotation, Codable {
     public var streetAddress: String {
         return extraInfo.address ?? ""
     }
+
+    public var isRenting: Bool {
+        return extraInfo.renting.map { $0 != 0 } ?? true
+    }
+
+    public var isReturning: Bool {
+        return extraInfo.returning.map { $0 != 0 } ?? true
+    }
     
     public var shareStringDescription: String {
         var returnString = String(localized: "StationModelShareStationName", bundle: .bikeBuddyKit) + "\n" + stationName

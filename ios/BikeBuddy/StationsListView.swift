@@ -105,6 +105,7 @@ struct StationRowView: View, Equatable {
         lhs.station.availableBikes == rhs.station.availableBikes &&
         lhs.station.availableDocks == rhs.station.availableDocks &&
         lhs.station.distanceFromUser == rhs.station.distanceFromUser &&
+        lhs.station.isRenting == rhs.station.isRenting &&
         lhs.showDistance == rhs.showDistance
     }
 
@@ -129,6 +130,15 @@ struct StationRowView: View, Equatable {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
+                }
+
+                if !station.isRenting {
+                    Text("StationRowOutOfService", bundle: .bikeBuddyKit)
+                        .font(.caption.weight(.medium))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(Color.orange, in: Capsule())
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
