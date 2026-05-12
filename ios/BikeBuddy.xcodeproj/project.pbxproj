@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */; };
+		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
+		94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D804A88A7804454B80E585B /* ScreenshotTests.swift */; };
 		C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C516EFF31B0CE6CB00CF4468 /* Images.xcassets */; };
 		C516EFF71B0CE6CB00CF4468 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C516EFF51B0CE6CB00CF4468 /* LaunchScreen.xib */; };
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
@@ -15,10 +18,8 @@
 		D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE31D988F7D00BBB480 /* SetingsService.swift */; };
 		D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE51D98901A00BBB480 /* StationsDataService.swift */; };
 		D11DDDE91D98906700BBB480 /* StationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE81D98906700BBB480 /* StationTests.swift */; };
-		D149580A1DB30EAC0038A615 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
-		D149580C1DB317AE0038A615 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D149580B1DB317AE0038A615 /* CoreLocation.framework */; };
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
-		D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* StringsService.swift */; };
+		D14D9C511DB839EC008D0656 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* BundleExtension.swift */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D18F4B181D9225FC00972AF2 /* BikeBuddyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B171D9225FC00972AF2 /* BikeBuddyKitTests.swift */; };
@@ -57,10 +58,7 @@
 		SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */; };
 		SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATIONS /* StationsListView.swift */; };
 		SWIFTUI_BF_TAB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_TAB /* MainTabView.swift */; };
-		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
-		0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */; };
-		94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D804A88A7804454B80E585B /* ScreenshotTests.swift */; };
-		/* End PBXBuildFile section */
+/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		D15701E1214D465300221726 /* PBXContainerItemProxy */ = {
@@ -68,7 +66,7 @@
 			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C516EFE41B0CE6CB00CF4468;
-			remoteInfo = "BikeBuddy";
+			remoteInfo = BikeBuddy;
 		};
 		D18F4B141D9225FC00972AF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -82,7 +80,7 @@
 			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C516EFE41B0CE6CB00CF4468;
-			remoteInfo = "BikeBuddy";
+			remoteInfo = BikeBuddy;
 		};
 		D1DD8BC11DA1F96200DED913 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -106,7 +104,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C516EFE51B0CE6CB00CF4468 /* BikeBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BikeBuddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
+		40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		8D804A88A7804454B80E585B /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
+		C516EFE51B0CE6CB00CF4468 /* BikeBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C516EFE91B0CE6CB00CF4468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C516EFF31B0CE6CB00CF4468 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C516EFF61B0CE6CB00CF4468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -117,10 +118,10 @@
 		D11DDDE31D988F7D00BBB480 /* SetingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingsService.swift; sourceTree = "<group>"; };
 		D11DDDE51D98901A00BBB480 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		D11DDDE81D98906700BBB480 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
-		D14957F31DB2B2370038A615 /* BikeBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BikeBuddy.entitlements"; sourceTree = "<group>"; };
+		D14957F31DB2B2370038A615 /* BikeBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeBuddy.entitlements; sourceTree = "<group>"; };
 		D149580B1DB317AE0038A615 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		D14D9C501DB839EC008D0656 /* StringsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsService.swift; sourceTree = "<group>"; };
+		D14D9C501DB839EC008D0656 /* BundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BikeBuddyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeBuddyKit.h; sourceTree = "<group>"; };
@@ -137,14 +138,14 @@
 		D1920CDD1DE66497003FBCB4 /* CityBikesNetworksResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityBikesNetworksResponse.swift; sourceTree = "<group>"; };
 		D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCleanupService.swift; sourceTree = "<group>"; };
 		D1920CE61DE871C0003FBCB4 /* Networks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networks.swift; sourceTree = "<group>"; };
-		D1B6DD1A1C9EC3E3008543A3 /* BikeBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BikeBuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1B6DD1A1C9EC3E3008543A3 /* BikeBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6DD1E1C9EC3E3008543A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1D98EFA1DE9C789000A226E /* CityBikes_Networks_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Networks_API_Response.json; sourceTree = "<group>"; };
 		D1D98EFC1DE9C80E000A226E /* CityBikes_Network_Detail_API_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityBikes_Network_Detail_API_Response.json; sourceTree = "<group>"; };
 		D1F7B7FB1BACE2B600D6732C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
 		SWIFTUI_APP /* BikeBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddyApp.swift; sourceTree = "<group>"; };
+		SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
 		SWIFTUI_APP_VM /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		SWIFTUI_BTN_STYLE /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		SWIFTUI_CONTENT /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -162,10 +163,7 @@
 		SWIFTUI_STATIONS /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		SWIFTUI_STATION_DETAIL /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		SWIFTUI_TAB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
-		40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		8D804A88A7804454B80E585B /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
-		/* End PBXFileReference section */
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C516EFE21B0CE6CB00CF4468 /* Frameworks */ = {
@@ -227,7 +225,7 @@
 				C516F0151B0CF01000CF4468 /* Views */,
 				C516EFE81B0CE6CB00CF4468 /* Supporting Files */,
 			);
-			path = "BikeBuddy";
+			path = BikeBuddy;
 			sourceTree = "<group>";
 		};
 		C516EFE81B0CE6CB00CF4468 /* Supporting Files */ = {
@@ -334,6 +332,7 @@
 		D18F4B241D92265C00972AF2 /* Class Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D14D9C501DB839EC008D0656 /* BundleExtension.swift */,
 			);
 			name = "Class Extensions";
 			sourceTree = "<group>";
@@ -343,7 +342,6 @@
 			children = (
 				D11DDDE31D988F7D00BBB480 /* SetingsService.swift */,
 				D11DDDE51D98901A00BBB480 /* StationsDataService.swift */,
-				D14D9C501DB839EC008D0656 /* StringsService.swift */,
 				D1920CDB1DE66450003FBCB4 /* NetworksDataService.swift */,
 				D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */,
 			);
@@ -357,7 +355,7 @@
 				40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */,
 				8D804A88A7804454B80E585B /* ScreenshotTests.swift */,
 			);
-			path = "BikeBuddyUITests";
+			path = BikeBuddyUITests;
 			sourceTree = "<group>";
 		};
 		D1D98EF91DE9C76A000A226E /* Supporting Files */ = {
@@ -406,8 +404,8 @@
 			dependencies = (
 				D1DD8BC21DA1F96200DED913 /* PBXTargetDependency */,
 			);
-			name = "BikeBuddy";
-			productName = "BikeBuddy";
+			name = BikeBuddy;
+			productName = BikeBuddy;
 			productReference = C516EFE51B0CE6CB00CF4468 /* BikeBuddy.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -459,8 +457,8 @@
 			dependencies = (
 				D1B6DD201C9EC3E3008543A3 /* PBXTargetDependency */,
 			);
-			name = "BikeBuddyUITests";
-			productName = "BikeBuddyUITests";
+			name = BikeBuddyUITests;
+			productName = BikeBuddyUITests;
 			productReference = D1B6DD1A1C9EC3E3008543A3 /* BikeBuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -473,7 +471,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2650;
 				ORGANIZATIONNAME = "Cloudgate Studios";
 				TargetAttributes = {
 					C516EFE41B0CE6CB00CF4468 = {
@@ -585,7 +583,7 @@
 		D18F4B051D9225FC00972AF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				D14D9C511DB839EC008D0656 /* StringsService.swift in Sources */,
+				D14D9C511DB839EC008D0656 /* BundleExtension.swift in Sources */,
 				D1920CDC1DE66450003FBCB4 /* NetworksDataService.swift in Sources */,
 				D1920CDA1DE6628D003FBCB4 /* StationExtra.swift in Sources */,
 				D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */,
@@ -656,6 +654,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -715,6 +714,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -768,7 +768,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "BikeBuddy/BikeBuddy.entitlements";
+				CODE_SIGN_ENTITLEMENTS = BikeBuddy/BikeBuddy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 63;
@@ -776,10 +776,10 @@
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-						"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = "BikeBuddy/Info.plist";
+				INFOPLIST_FILE = BikeBuddy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -798,7 +798,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "BikeBuddy/BikeBuddy.entitlements";
+				CODE_SIGN_ENTITLEMENTS = BikeBuddy/BikeBuddy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 63;
@@ -807,10 +807,10 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-						"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = "BikeBuddy/Info.plist";
+				INFOPLIST_FILE = BikeBuddy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -844,7 +844,7 @@
 				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-						"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BikeBuddyKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -884,7 +884,7 @@
 				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-						"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BikeBuddyKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -952,7 +952,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = "BikeBuddyUITests/Info.plist";
+				INFOPLIST_FILE = BikeBuddyUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -962,7 +962,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-BuddyUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "BikeBuddy";
+				TEST_TARGET_NAME = BikeBuddy;
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -970,7 +970,7 @@
 		D1B6DD221C9EC3E3008543A3 /* Release configuration for PBXNativeTarget "BikeBuddyUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "BikeBuddyUITests/Info.plist";
+				INFOPLIST_FILE = BikeBuddyUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -980,7 +980,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-BuddyUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "BikeBuddy";
+				TEST_TARGET_NAME = BikeBuddy;
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;

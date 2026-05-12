@@ -17,12 +17,12 @@ struct FTUSelectNetworkView: View {
 
     var body: some View {
         NetworkPickerView(
-            searchPrompt: StringsService.getStringFor(key: "SelectNetworkSearchBarPlaceholder"),
+            searchPrompt: String(localized: "SelectNetworkSearchBarPlaceholder", bundle: .bikeBuddyKit),
             onSelect: { network in
                 ftuViewModel.selectNetwork(network)
             }
         )
-        .navigationTitle(StringsService.getStringFor(key: "SelectNetworkNavBarTitle"))
+        .navigationTitle(Text("SelectNetworkNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

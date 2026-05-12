@@ -57,13 +57,13 @@ private struct WelcomeStep: View {
             VStack(spacing: 20) {
                 FTUStepIndicator(currentStep: .welcome)
 
-                Text(StringsService.getStringFor(key: "WelcomeMessageContent"))
+                Text("WelcomeMessageContent", bundle: .bikeBuddyKit)
                     .multilineTextAlignment(.center)
                     .font(.body)
                     .fixedSize(horizontal: false, vertical: true)
 
                 NavigationLink(value: FTUViewModel.Step.locationAccess) {
-                    Text(StringsService.getStringFor(key: "WelcomeGetStartedButton"))
+                    Text("WelcomeGetStartedButton", bundle: .bikeBuddyKit)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)

@@ -32,7 +32,7 @@ struct NetworkPickerView: View {
                 VStack(spacing: 16) {
                     ProgressView()
                         .scaleEffect(1.2)
-                    Text(StringsService.getStringFor(key: "SelectNetworkLoadingPopupMessage"))
+                    Text("SelectNetworkLoadingPopupMessage", bundle: .bikeBuddyKit)
                         .foregroundStyle(.secondary)
                 }
             } else {
