@@ -152,7 +152,7 @@ struct StationRowView: View, Equatable {
 
     private func availabilityBadge(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text("\(count)")
+            Text(count, format: .number)
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(color)
                 .monospacedDigit()

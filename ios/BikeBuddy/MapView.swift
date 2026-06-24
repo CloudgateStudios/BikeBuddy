@@ -236,7 +236,7 @@ private struct StationSelectionCard: View {
 
     private func availabilityPill(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text("\(count)")
+            Text(count, format: .number)
                 .font(.title3.weight(.bold))
                 .foregroundStyle(color)
                 .monospacedDigit()
