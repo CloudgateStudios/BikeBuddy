@@ -50,7 +50,7 @@ private struct IdentifiableStation: Identifiable {
 /// Tapping "Details" on the card presents StationDetailView as a sheet.
 struct MapView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Environment(AppViewModel.self) private var appViewModel
 
     /// Tag value from the Map selection binding — matches Station.id (String).
     @State private var cameraPosition: MapCameraPosition = .automatic

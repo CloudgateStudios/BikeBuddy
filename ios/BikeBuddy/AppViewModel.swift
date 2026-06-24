@@ -7,30 +7,31 @@
 //
 
 import Foundation
-import Combine
+import Observation
 import CoreLocation
 import BikeBuddyKit
 
-/// Central ObservableObject that owns all app state for SwiftUI views.
+/// Central observable object that owns all app state for SwiftUI views.
 /// Replaces the notification-centre-based wiring in the UIKit version.
 @MainActor
-class AppViewModel: ObservableObject {
+@Observable
+class AppViewModel {
 
-    // MARK: - Published State
+    // MARK: - Observed State
 
-    @Published var stations: [Station] = []
-    @Published var isLoadingStations: Bool = false
-    @Published var stationsLoadError: String?
-    @Published var stationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
+    var stations: [Station] = []
+    var isLoadingStations: Bool = false
+    var stationsLoadError: String?
+    var stationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
 
-    @Published var showFirstTimeUse: Bool = false
+    var showFirstTimeUse: Bool = false
 
     // MARK: - Settings (mirrored for reactive UI updates)
 
-    @Published var bikeServiceName: String = ""
-    @Published var bikeServiceCityName: String = ""
-    @Published var numberOfClosestStations: Int = Constants.SettingsDefault.NumberOfClosestStations
-    @Published var appearanceMode: AppearanceMode = .automatic
+    var bikeServiceName: String = ""
+    var bikeServiceCityName: String = ""
+    var numberOfClosestStations: Int = Constants.SettingsDefault.NumberOfClosestStations
+    var appearanceMode: AppearanceMode = .automatic
 
     // MARK: - Singleton
 

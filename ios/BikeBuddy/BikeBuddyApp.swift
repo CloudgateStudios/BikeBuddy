@@ -13,12 +13,12 @@ import BikeBuddyKit
 struct BikeBuddyApp: App {
 
     // AppViewModel drives all top-level state; shared via environment.
-    @StateObject private var appViewModel = AppViewModel.shared
+    @State private var appViewModel = AppViewModel.shared
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(appViewModel)
+                .environment(appViewModel)
                 .tint(Color("BikeBuddyBlue"))
                 .preferredColorScheme(appViewModel.appearanceMode.colorScheme)
                 .onContinueUserActivity(Constants.UserActivity.StationActivityTypeIdentifier) { activity in

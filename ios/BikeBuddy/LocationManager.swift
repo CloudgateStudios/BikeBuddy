@@ -8,15 +8,16 @@
 
 import Foundation
 import CoreLocation
-import Combine
+import Observation
 
 /// Observable wrapper around CLLocationManager.
 /// Used by StationsListView and MapView to get the user's current location.
 @MainActor
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+@Observable
+class LocationManager: NSObject, CLLocationManagerDelegate {
 
-    @Published var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
     private let locationManager = CLLocationManager()
 

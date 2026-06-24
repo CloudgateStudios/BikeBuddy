@@ -13,8 +13,8 @@ import BikeBuddyKit
 /// Shows the closest N bike stations to the user's current location.
 struct StationsListView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
-    @StateObject private var locationManager = LocationManager()
+    @Environment(AppViewModel.self) private var appViewModel
+    @State private var locationManager = LocationManager()
 
     private var closestStations: [Station] {
         var lat = locationManager.coordinate.latitude

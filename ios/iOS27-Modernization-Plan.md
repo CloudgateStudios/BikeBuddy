@@ -2,7 +2,7 @@
 
 **Scope:** Full modernization
 **Minimum supported OS:** iOS 27 (dropping iOS 26 — no `#available` gating needed)
-**Status:** Phase 0 complete — in progress
+**Status:** Phases 0–1 complete — in progress
 
 > All work lands on `feat/iOS27-support` (long-lived integration branch) via per-phase PRs. Each phase gets its own working branch and PR targeting `feat/iOS27-support`.
 
@@ -40,13 +40,13 @@ The app is already in strong shape for iOS 27. No hard-deprecated APIs are in us
 
 ## Phase 1 · `@Observable` migration
 
-- [ ] Convert `AppViewModel` to `@Observable` (remove 11 `@Published`)
-- [ ] Convert `FTUViewModel` to `@Observable` (remove 9 `@Published`)
-- [ ] Convert `LocationManager` to `@Observable` (remove 2 `@Published`)
-- [ ] Update views: `@StateObject` → `@State` (`BikeBuddyApp`, `StationsListView`, `FTUWelcomeView`)
-- [ ] Update views: `@EnvironmentObject` → `@Environment(_.self)` (~9 views)
-- [ ] Remove `import Combine` from `AppViewModel.swift` and `LocationManager.swift`
-- [ ] Build & verify
+- [x] Convert `AppViewModel` to `@Observable` (removed 11 `@Published`)
+- [x] Convert `FTUViewModel` to `@Observable` (removed 9 `@Published`; `searchText` `didSet` preserved)
+- [x] Convert `LocationManager` to `@Observable` (removed 2 `@Published`; dropped `NSObject`-only `ObservableObject` conformance)
+- [x] Update views: `@StateObject` → `@State` (`BikeBuddyApp`, `StationsListView`, `FTUWelcomeView`)
+- [x] Update views: `@EnvironmentObject` → `@Environment(_.self)` (9 views); `@Bindable` added in `ContentView`, `FTUWelcomeView`, `FTULocationAccessView` for `$`-bindings
+- [x] Remove `import Combine` from `AppViewModel.swift` and `LocationManager.swift`
+- [x] Build & verify — clean build, **zero errors, zero warnings**
 
 ## Phase 2 · Concurrency
 
