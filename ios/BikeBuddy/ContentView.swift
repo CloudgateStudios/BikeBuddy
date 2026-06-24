@@ -13,10 +13,11 @@ import BikeBuddyKit
 /// when the user has not yet completed first-time setup.
 struct ContentView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Environment(AppViewModel.self) private var appViewModel
 
     var body: some View {
-        MainTabView()
+        @Bindable var appViewModel = appViewModel
+        return MainTabView()
             .fullScreenCover(isPresented: $appViewModel.showFirstTimeUse) {
                 FTUWelcomeView()
             }

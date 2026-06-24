@@ -12,10 +12,11 @@ import BikeBuddyKit
 /// Replaces FTULocationAccessViewController.
 struct FTULocationAccessView: View {
 
-    @EnvironmentObject var ftuViewModel: FTUViewModel
+    @Environment(FTUViewModel.self) private var ftuViewModel
 
     var body: some View {
-        VStack(spacing: 0) {
+        @Bindable var ftuViewModel = ftuViewModel
+        return VStack(spacing: 0) {
             Spacer()
 
             Image("ftuLocationAccess")

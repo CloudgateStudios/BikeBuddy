@@ -13,8 +13,8 @@ import BikeBuddyKit
 /// Shows the closest N bike stations to the user's current location.
 struct StationsListView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
-    @StateObject private var locationManager = LocationManager()
+    @Environment(AppViewModel.self) private var appViewModel
+    @State private var locationManager = LocationManager()
 
     private var closestStations: [Station] {
         var lat = locationManager.coordinate.latitude
@@ -152,7 +152,7 @@ struct StationRowView: View, Equatable {
 
     private func availabilityBadge(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text("\(count)")
+            Text(count, format: .number)
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(color)
                 .monospacedDigit()

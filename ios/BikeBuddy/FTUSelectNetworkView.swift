@@ -13,7 +13,7 @@ import BikeBuddyKit
 /// Thin wrapper around NetworkPickerView for the FTU context.
 struct FTUSelectNetworkView: View {
 
-    @EnvironmentObject var ftuViewModel: FTUViewModel
+    @Environment(FTUViewModel.self) private var ftuViewModel
 
     var body: some View {
         NetworkPickerView(

@@ -8,11 +8,13 @@
 
 import Foundation
 import CoreLocation
+import Observation
 import BikeBuddyKit
 
 /// Drives the entire First-Time Use navigation flow.
 @MainActor
-class FTUViewModel: ObservableObject {
+@Observable
+class FTUViewModel {
 
     // MARK: - Navigation steps
 
@@ -23,17 +25,17 @@ class FTUViewModel: ObservableObject {
         case finished
     }
 
-    @Published var currentStep: Step = .welcome
-    @Published var path: [Step] = []
-    @Published var locationAuthorizationStatus: CLAuthorizationStatus = .notDetermined
-    @Published var showLocationDeniedAlert: Bool = false
+    var currentStep: Step = .welcome
+    var path: [Step] = []
+    var locationAuthorizationStatus: CLAuthorizationStatus = .notDetermined
+    var showLocationDeniedAlert: Bool = false
 
     // Networks list
-    @Published var isLoadingNetworks: Bool = false
-    @Published var sortedNetworksList: [(key: String, value: [Network])] = []
-    @Published var simpleNetworksList: [Network] = []
-    @Published var isSearching: Bool = false
-    @Published var searchText: String = "" {
+    var isLoadingNetworks: Bool = false
+    var sortedNetworksList: [(key: String, value: [Network])] = []
+    var simpleNetworksList: [Network] = []
+    var isSearching: Bool = false
+    var searchText: String = "" {
         didSet { applySearch() }
     }
 

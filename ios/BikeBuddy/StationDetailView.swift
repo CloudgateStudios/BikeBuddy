@@ -126,7 +126,7 @@ struct StationDetailView: View {
 
     private func availabilityCard(count: Int, icon: String, label: String, color: Color) -> some View {
         VStack(spacing: 8) {
-            Text("\(count)")
+            Text(count, format: .number)
                 .font(.system(size: 48, weight: .bold, design: .rounded))
                 .foregroundStyle(color)
                 .monospacedDigit()
