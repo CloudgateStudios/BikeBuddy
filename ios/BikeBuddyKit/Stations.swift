@@ -24,7 +24,7 @@ public final class Stations {
     private init() {
     }
     
-    public class func getClosestStations(latitude: Double, longitude: Double, numberOfStations: Int) -> [Station] {
+    public static func getClosestStations(latitude: Double, longitude: Double, numberOfStations: Int) -> [Station] {
         var stationsToReturn = [Station]()
         
         for station in self.sharedInstance.list {
@@ -51,7 +51,7 @@ public final class Stations {
         return stationsToReturn
     }
     
-    public class func getStationByName(name: String) -> Station? {
+    public static func getStationByName(name: String) -> Station? {
         for station in self.sharedInstance.list where station.stationName == name {
                 return station
         }
@@ -59,7 +59,7 @@ public final class Stations {
         return nil
     }
     
-    public class func shouldBeUpdated() -> Bool {
+    public static func shouldBeUpdated() -> Bool {
         let elapsedTime = NSDate().timeIntervalSince(Stations.sharedInstance.lastUpdated as Date)
         
         if elapsedTime > Constants.Timers.RefreshStationsDataDifferenceInSeconds {
