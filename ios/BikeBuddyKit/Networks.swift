@@ -8,7 +8,8 @@
 
 import Foundation
 
-public class Networks {
+@MainActor
+public final class Networks {
     public static let sharedInstance = Networks()
     
     public var list = [Network]() {

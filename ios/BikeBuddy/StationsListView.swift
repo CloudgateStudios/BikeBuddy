@@ -100,7 +100,7 @@ struct StationRowView: View, Equatable {
     let station: Station
     let showDistance: Bool
 
-    static func == (lhs: StationRowView, rhs: StationRowView) -> Bool {
+    nonisolated static func == (lhs: StationRowView, rhs: StationRowView) -> Bool {
         lhs.station.id == rhs.station.id &&
         lhs.station.availableBikes == rhs.station.availableBikes &&
         lhs.station.availableDocks == rhs.station.availableDocks &&

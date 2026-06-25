@@ -2,7 +2,7 @@
 
 **Scope:** Full modernization
 **Minimum supported OS:** iOS 27 (dropping iOS 26 — no `#available` gating needed)
-**Status:** Phases 0–1 complete — in progress
+**Status:** Phases 0–2 complete — in progress
 
 > All work lands on `feat/iOS27-support` (long-lived integration branch) via per-phase PRs. Each phase gets its own working branch and PR targeting `feat/iOS27-support`.
 
@@ -50,12 +50,17 @@ The app is already in strong shape for iOS 27. No hard-deprecated APIs are in us
 
 ## Phase 2 · Concurrency
 
-- [ ] Add `async throws` overload to `NetworksDataService.getAllNetworkData`
-- [ ] Migrate `FTUViewModel` off the completion-handler path
-- [ ] Remove dead completion-handler APIs + `DispatchQueue.main.async` in `StationsDataService` and `NetworksDataService`
-- [ ] Enable `SWIFT_STRICT_CONCURRENCY = complete`
-- [ ] Move to Swift 6 language mode; resolve fallout
-- [ ] Build & verify
+- [x] Add `async throws` overload to `NetworksDataService.getAllNetworkData`
+- [x] Migrate `FTUViewModel` **and** `NetworkPickerView` off the completion-handler path
+- [x] Remove dead completion-handler APIs + `DispatchQueue.main.async` in `StationsDataService` and `NetworksDataService`
+- [x] Enable `SWIFT_STRICT_CONCURRENCY = complete` (all 8 configs)
+- [x] Move to Swift 6 language mode (`SWIFT_VERSION = 6.0`); resolve fallout
+- [x] Build & verify — app + test targets, **zero warnings**
+
+**Concurrency fallout resolved:**
+- Isolated the 7 stateful/service singletons to `@MainActor` (`Networks`, `Stations`, `SettingsService`, `CountryCleanupService`, `NetworksDataService`, `StationsDataService`, `AnalyticsService`) and modernized their nested-struct singletons to a direct `static let`. The app's data is main-actor-confined, so this avoids forcing `Sendable` on the model classes.
+- `LocationManager` delegates now touch `self.locationManager` instead of sending the non-`Sendable` `manager` parameter into the `@MainActor` task.
+- `Station` marked `@unchecked Sendable` (legacy mutable model, effectively main-actor-confined) so `StationRowView`'s `nonisolated` `Equatable` (used by `.equatable()`) can read it race-free.
 
 ## Phase 3 · iOS 27 SwiftUI adoption
 
