@@ -8,20 +8,16 @@
 
 import Foundation
 
-public class CountryCleanupService {
-    
+@MainActor
+public final class CountryCleanupService {
+
     private var countryMappingDictonary = NSMutableDictionary()
-    
+
     /**
      The shared instanace that should be used to access all members of the service.
      */
-    public class var sharedInstance: CountryCleanupService {
-        struct Static {
-            static let instance: CountryCleanupService = CountryCleanupService()
-        }
-        return Static.instance
-    }
-    
+    public static let sharedInstance = CountryCleanupService()
+
     /**
      **Should not be used. Call CountryCleanupService.sharedInstance instead.**
      */

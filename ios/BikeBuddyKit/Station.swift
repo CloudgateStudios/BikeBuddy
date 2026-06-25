@@ -17,7 +17,12 @@ import CoreLocation
  :Implements: MKAnnotation - Allows Station objects to be passed to MapView's for quick annotation loading
  :Implements: Codable - Allows easy mapping via Swift protocols. See init(from decoder) and encode(to encoder).
  */
-public class Station: NSObject, MKAnnotation, Codable {
+/// `@unchecked Sendable`: `Station` is a legacy mutable model that is, in practice,
+/// confined to the main actor — it is decoded by the `@MainActor` data services and
+/// only mutated via `setDistanceFromUser` during the `@MainActor` closest-stations
+/// sort. The unchecked conformance lets it be read from the `nonisolated` `Equatable`
+/// comparison backing `StationRowView.equatable()` without data-race diagnostics.
+public class Station: NSObject, MKAnnotation, Codable, @unchecked Sendable {
     
     // MARK: - Variables
     

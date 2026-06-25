@@ -8,19 +8,15 @@
 
 import Foundation
 
-public class SettingsService {
+@MainActor
+public final class SettingsService {
     private var defaults: UserDefaults
-    
+
     /**
      The shared instanace that should be used to access all members of the service.
      */
-    public class var sharedInstance: SettingsService {
-        struct Static {
-            static let instance: SettingsService = SettingsService()
-        }
-        return Static.instance
-    }
-    
+    public static let sharedInstance = SettingsService()
+
     /**
      **Should not be used. Call StationsDataService.sharedInstance instead.**
      */

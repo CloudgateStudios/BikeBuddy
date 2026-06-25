@@ -57,11 +57,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         Task { @MainActor in
-            if #available(iOS 14.0, *) {
-                self.authorizationStatus = manager.authorizationStatus
-            }
+            self.authorizationStatus = self.locationManager.authorizationStatus
             if self.authorizationStatus == .authorizedWhenInUse || self.authorizationStatus == .authorizedAlways {
-                manager.startUpdatingLocation()
+                self.locationManager.startUpdatingLocation()
             }
         }
     }
@@ -70,7 +68,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         Task { @MainActor in
             self.authorizationStatus = status
             if status == .authorizedWhenInUse || status == .authorizedAlways {
-                manager.startUpdatingLocation()
+                self.locationManager.startUpdatingLocation()
             }
         }
     }

@@ -2,7 +2,7 @@
 
 **Scope:** Full modernization
 **Minimum supported OS:** iOS 27 (dropping iOS 26 — no `#available` gating needed)
-**Status:** Phases 0–1 complete — in progress
+**Status:** Phases 0–2 complete — in progress
 
 > All work lands on `feat/iOS27-support` (long-lived integration branch) via per-phase PRs. Each phase gets its own working branch and PR targeting `feat/iOS27-support`.
 
@@ -50,12 +50,17 @@ The app is already in strong shape for iOS 27. No hard-deprecated APIs are in us
 
 ## Phase 2 · Concurrency
 
-- [ ] Add `async throws` overload to `NetworksDataService.getAllNetworkData`
-- [ ] Migrate `FTUViewModel` off the completion-handler path
-- [ ] Remove dead completion-handler APIs + `DispatchQueue.main.async` in `StationsDataService` and `NetworksDataService`
-- [ ] Enable `SWIFT_STRICT_CONCURRENCY = complete`
-- [ ] Move to Swift 6 language mode; resolve fallout
-- [ ] Build & verify
+- [x] Add `async throws` overload to `NetworksDataService.getAllNetworkData`
+- [x] Migrate `FTUViewModel` **and** `NetworkPickerView` off the completion-handler path
+- [x] Remove dead completion-handler APIs + `DispatchQueue.main.async` in `StationsDataService` and `NetworksDataService`
+- [x] Enable `SWIFT_STRICT_CONCURRENCY = complete` (all 8 configs)
+- [x] Move to Swift 6 language mode (`SWIFT_VERSION = 6.0`); resolve fallout
+- [x] Build & verify — app + test targets, **zero warnings**
+
+**Concurrency fallout resolved:**
+- Isolated the 7 stateful/service singletons to `@MainActor` (`Networks`, `Stations`, `SettingsService`, `CountryCleanupService`, `NetworksDataService`, `StationsDataService`, `AnalyticsService`) and modernized their nested-struct singletons to a direct `static let`. The app's data is main-actor-confined, so this avoids forcing `Sendable` on the model classes.
+- `LocationManager` delegates now touch `self.locationManager` instead of sending the non-`Sendable` `manager` parameter into the `@MainActor` task.
+- `Station` marked `@unchecked Sendable` (legacy mutable model, effectively main-actor-confined) so `StationRowView`'s `nonisolated` `Equatable` (used by `.equatable()`) can read it race-free.
 
 ## Phase 3 · iOS 27 SwiftUI adoption
 
@@ -70,9 +75,24 @@ The app is already in strong shape for iOS 27. No hard-deprecated APIs are in us
 - [ ] **Discretionary:** replace `LaunchScreen.xib` with a modern launch configuration (cosmetic)
 - [ ] Remove unused `SystemConfiguration.framework` link
 
+## Phase 5 · `Station` → immutable value type (model refactor)
+
+Convert `Station` from a mutable `NSObject` reference type to an immutable `struct`. This is a data-model redesign, not iOS 27 API work, so it's sequenced last and can land independently of the launch timeline.
+
+- [ ] Convert `Station` (and nested `StationExtra`) to a `struct` conforming to `Codable, Identifiable, Sendable` — drops the `@unchecked Sendable` escape hatch added in Phase 2
+- [ ] Drop `NSObject` + `MKAnnotation` (only declared, never used — the modern `Map` uses `Marker(coordinate:)`)
+- [ ] Replace `setDistanceFromUser` mutation with a functional distance computation in `Stations.getClosestStations` (produce sorted copies rather than mutating in place)
+- [ ] Delete `MapView`'s `IdentifiableStation` wrapper — a struct `Station` is `Identifiable` directly
+- [ ] Simplify `StationRowView` equality (struct gets synthesized `Equatable`; revisit the custom `==`)
+- [ ] Consider the same value-type treatment for `Network` for consistency
+- [ ] Build & verify; confirm strict concurrency stays clean with **no** `@unchecked`
+
+**Why separate:** larger blast radius (model API, `Stations` helpers, Map wrapper, tests) and purely a correctness/clarity improvement — keeping it out of the iOS 27 phases keeps those PRs focused and reviewable.
+
 ---
 
 ## Notes
 
 - Build at the end of each phase so we never drift far from a compiling state.
 - Phase 3's swipe actions and Phase 4's launch-screen swap are the most discretionary — treat as "propose, don't force."
+- Phases 0–4 are the iOS 27 readiness work and gate the launch. Phase 5 is post-readiness cleanup and can be scheduled independently.

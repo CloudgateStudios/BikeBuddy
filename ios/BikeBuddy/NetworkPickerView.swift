@@ -88,15 +88,13 @@ struct NetworkPickerView: View {
             return
         }
         isLoading = true
-        await withCheckedContinuation { continuation in
-            NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) { responseObject, _ in
-                Task { @MainActor in
-                    Networks.sharedInstance.list = responseObject
-                    self.sortedList = Networks.sharedInstance.networksBySection
-                    self.isLoading = false
-                    continuation.resume()
-                }
-            }
+        defer { isLoading = false }
+        do {
+            let networks = try await NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI)
+            Networks.sharedInstance.list = networks
+            sortedList = Networks.sharedInstance.networksBySection
+        } catch {
+            print("Failed to load networks: \(error.localizedDescription)")
         }
     }
 

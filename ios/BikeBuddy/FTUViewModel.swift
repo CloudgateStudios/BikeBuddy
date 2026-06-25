@@ -103,11 +103,14 @@ class FTUViewModel {
             return
         }
         isLoadingNetworks = true
-        NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI) { [weak self] responseObject, _ in
-            Task { @MainActor [weak self] in
-                Networks.sharedInstance.list = responseObject
-                self?.sortedNetworksList = Networks.sharedInstance.networksBySection
-                self?.isLoadingNetworks = false
+        Task {
+            defer { isLoadingNetworks = false }
+            do {
+                let networks = try await NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI)
+                Networks.sharedInstance.list = networks
+                sortedNetworksList = Networks.sharedInstance.networksBySection
+            } catch {
+                print("Failed to load networks: \(error.localizedDescription)")
             }
         }
     }
