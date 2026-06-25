@@ -2,7 +2,7 @@
 
 **Scope:** Full modernization
 **Minimum supported OS:** iOS 27 (dropping iOS 26 — no `#available` gating needed)
-**Status:** Phases 0–3 complete — in progress
+**Status:** Phases 0–4 complete (iOS 27 readiness done) — Phase 5 remaining as post-readiness cleanup
 
 > All work lands on `feat/iOS27-support` (long-lived integration branch) via per-phase PRs. Each phase gets its own working branch and PR targeting `feat/iOS27-support`.
 
@@ -72,10 +72,14 @@ The app is already in strong shape for iOS 27. No hard-deprecated APIs are in us
 
 ## Phase 4 · Housekeeping
 
-- [ ] Migrate `StationTests` to Swift Testing (`@Test` / `#expect`)
-- [ ] Migrate `BikeBuddyKitTests` to Swift Testing
-- [ ] **Discretionary:** replace `LaunchScreen.xib` with a modern launch configuration (cosmetic)
-- [ ] Remove unused `SystemConfiguration.framework` link
+- [x] Migrate `StationTests` to Swift Testing (`@Test` / `#expect`) — 4 tests, all passing
+- [x] `BikeBuddyKitTests` — removed the empty Xcode-generated stub (tested nothing) rather than migrate boilerplate
+- [x] Replace `LaunchScreen.xib` with the modern `UILaunchScreen` Info.plist dict (`UIImageName: launchScreenImage` + new `LaunchBackground` named color matching the xib's blue exactly); xib deleted — removes the last UIKit xib
+- [x] Remove unused `SystemConfiguration.framework` link (4 pbxproj entries)
+- [x] Remove dead `PrimaryButtonStyle` (carried over from Phase 3's finding)
+- [x] Build & verify — **zero warnings**; migrated tests run green
+
+> **Reviewer note:** the launch-screen swap is cosmetic and asset-name-resolved at runtime, so it can't be verified by a build alone — eyeball it on first launch on an iOS 27 sim. The new `LaunchBackground` color is the xib's exact shade (sRGB 62/170/230), distinct from `BikeBuddyBlue` (60/163/220).
 
 ## Phase 5 · `Station` → immutable value type (model refactor)
 

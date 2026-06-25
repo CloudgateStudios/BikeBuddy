@@ -6,57 +6,59 @@
 //  Copyright (c) 2015 Cloudgate Studios. All rights reserved.
 //
 
-import XCTest
+import Testing
 import CoreLocation
 @testable import BikeBuddyKit
 
-class StationTests: XCTestCase {
-    
-     private let testStationName = "Test Station Name"
-     private let testLatitude = 41.93250008
-     private let testLongitude = -87.65268082
-     private let testAvailableBikes = 3
-     private let testAvailableDocks = 3
-     
-     private func createBasicTestStation() -> Station {
-         let newStation = Station()
-        
-         newStation.stationName = testStationName
-         newStation.latitude = testLatitude
-         newStation.longitude = testLongitude
-         newStation.availableBikes = testAvailableBikes
-         newStation.availableDocks = testAvailableDocks
-        
-         return newStation
-     }
-     
-     func testCreateBasicStation() {
-         let newStation = Station()
-        
-         XCTAssertNotNil(newStation, "Object should not be nil")
-     }
-     
-     func testCreateFullStation() {
-         let newStation = createBasicTestStation()
-        
-         XCTAssertEqual(newStation.stationName, testStationName, "Station name should be \(testStationName)")
-         XCTAssertEqual(newStation.latitude, testLatitude, "Station latitude should be \(testLatitude)")
-         XCTAssertEqual(newStation.longitude, testLongitude, "Station longitude should be \(testLongitude)")
-         XCTAssertEqual(newStation.availableBikes, testAvailableBikes, "Station available bikes should be \(testAvailableBikes)")
-         XCTAssertEqual(newStation.availableDocks, testAvailableDocks, "Station available docks should be \(testAvailableDocks)")
-     }
-     
-     func testStationTitleForMapAnnotation() {
-         let newStation = createBasicTestStation()
-        
-         XCTAssertEqual(newStation.title, testStationName, "Station title should match \(testStationName)")
-     }
-     
-     func testStationCoordinate() {
-         let newStation = createBasicTestStation()
-         let expectedCoordinate = CLLocationCoordinate2D(latitude: testLatitude, longitude: testLongitude)
-         
-         XCTAssertEqual(newStation.coordinate.longitude, expectedCoordinate.longitude, "Coordinate longitude should be \(expectedCoordinate.longitude)")
-         XCTAssertEqual(newStation.coordinate.latitude, expectedCoordinate.latitude, "Coordinate latitude should be \(expectedCoordinate.latitude)")
-     }
+struct StationTests {
+
+    private let testStationName = "Test Station Name"
+    private let testLatitude = 41.93250008
+    private let testLongitude = -87.65268082
+    private let testAvailableBikes = 3
+    private let testAvailableDocks = 3
+
+    private func createBasicTestStation() -> Station {
+        let newStation = Station()
+
+        newStation.stationName = testStationName
+        newStation.latitude = testLatitude
+        newStation.longitude = testLongitude
+        newStation.availableBikes = testAvailableBikes
+        newStation.availableDocks = testAvailableDocks
+
+        return newStation
+    }
+
+    @Test func newStationHasEmptyDefaults() {
+        let newStation = Station()
+
+        #expect(newStation.stationName.isEmpty)
+        #expect(newStation.availableBikes == -1)
+        #expect(newStation.availableDocks == -1)
+    }
+
+    @Test func fullStationStoresAllValues() {
+        let newStation = createBasicTestStation()
+
+        #expect(newStation.stationName == testStationName)
+        #expect(newStation.latitude == testLatitude)
+        #expect(newStation.longitude == testLongitude)
+        #expect(newStation.availableBikes == testAvailableBikes)
+        #expect(newStation.availableDocks == testAvailableDocks)
+    }
+
+    @Test func titleMatchesStationName() {
+        let newStation = createBasicTestStation()
+
+        #expect(newStation.title == testStationName)
+    }
+
+    @Test func coordinateMatchesLatitudeAndLongitude() {
+        let newStation = createBasicTestStation()
+        let expectedCoordinate = CLLocationCoordinate2D(latitude: testLatitude, longitude: testLongitude)
+
+        #expect(newStation.coordinate.latitude == expectedCoordinate.latitude)
+        #expect(newStation.coordinate.longitude == expectedCoordinate.longitude)
+    }
 }
