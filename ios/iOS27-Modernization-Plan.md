@@ -95,6 +95,14 @@ Convert `Station` from a mutable `NSObject` reference type to an immutable `stru
 
 **Why separate:** larger blast radius (model API, `Stations` helpers, Map wrapper, tests) and purely a correctness/clarity improvement — keeping it out of the iOS 27 phases keeps those PRs focused and reviewable.
 
+## CI enablement (deferred — `.github/workflows/ci.yml`)
+
+CI currently does **not** run on any of the iOS 27 phase PRs. None of this is required for the code changes; it's needed only to make GitHub Actions actually build/test the iOS 27 work. Tackle as one small PR (likely on `feat/iOS27-support`) when we're closer to merging to `main`.
+
+- [ ] **Trigger:** the workflow fires only on `pull_request` into `main`/`master`; add `feat/iOS27-support` so phase PRs run. (Remove again before/at the final merge to `main`.)
+- [ ] **Toolchain:** the `build-and-test` job pins Xcode 26.3 with the `OS=26.2` iOS simulator, but the deployment target is now iOS 27 — bump the runner's Xcode and the `-destination` `OS=` to an iOS 27 runtime, or the build/test step fails for lack of a 27 runtime.
+- [ ] **`xcpretty` → `xcbeautify`:** `xcpretty` is unmaintained and predates Swift Testing, so it renders the migrated `StationTests` output poorly (it does **not** affect pass/fail — the job relies on `${PIPESTATUS[0]}`). `xcbeautify` understands Swift Testing output. Swap it in the build and test steps once the runner is actually executing the tests.
+
 ---
 
 ## Notes
