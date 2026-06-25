@@ -97,11 +97,13 @@ Convert `Station` from a mutable `NSObject` reference type to an immutable `stru
 
 ## CI enablement (deferred — `.github/workflows/ci.yml`)
 
-CI currently does **not** run on any of the iOS 27 phase PRs. None of this is required for the code changes; it's needed only to make GitHub Actions actually build/test the iOS 27 work. Tackle as one small PR (likely on `feat/iOS27-support`) when we're closer to merging to `main`.
+The integration PR (`feat/iOS27-support` → `main`, #45) does run CI. The **Lint** and **PR-title** jobs pass; the **Build & Test** job is **expected-red until GitHub ships an Xcode 27 runner** (see Toolchain below) — **do not merge #45 to `main` until it's green**.
 
 - [ ] **Trigger:** the workflow fires only on `pull_request` into `main`/`master`; add `feat/iOS27-support` so phase PRs run. (Remove again before/at the final merge to `main`.)
-- [ ] **Toolchain:** the `build-and-test` job pins Xcode 26.3 with the `OS=26.2` iOS simulator, but the deployment target is now iOS 27 — bump the runner's Xcode and the `-destination` `OS=` to an iOS 27 runtime, or the build/test step fails for lack of a 27 runtime.
+- [ ] **Toolchain (blocking #45):** the runner currently only has **Xcode 26.3 / 26.6 RC2 — no iOS 27 SDK**, so `build-and-test` can't compile the iOS-27-only APIs (e.g. `toolbarMinimizeBehavior(.onScrollDown)`). When GitHub's macOS image ships **Xcode 27**, bump the job's `xcode-version` to it and the `-destination` `OS=` to an iOS 27 simulator. No code/`#available` workaround exists — SDK-27 symbols don't exist to compile against on SDK 26.
 - [ ] **`xcpretty` → `xcbeautify`:** `xcpretty` is unmaintained and predates Swift Testing, so it renders the migrated `StationTests` output poorly (it does **not** affect pass/fail — the job relies on `${PIPESTATUS[0]}`). `xcbeautify` understands Swift Testing output. Swap it in the build and test steps once the runner is actually executing the tests.
+
+> **Done (this PR):** SwiftLint `--strict` flagged `static_over_final_class` on the 5 `class func`s in `Stations`/`Networks` (a consequence of the Phase 2 `final` change). Converted them to `static func`; the Lint job is now clean.
 
 ---
 

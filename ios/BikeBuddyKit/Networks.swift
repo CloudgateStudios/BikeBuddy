@@ -51,7 +51,7 @@ public final class Networks {
         self.networksBySection = workingcopy
     }
  
-    public class func getSortedByNetworkName() -> [Network] {
+    public static func getSortedByNetworkName() -> [Network] {
         var nameSortedArray = [Network]()
             
         nameSortedArray = self.sharedInstance.list.sorted { $0.name! < $1.name! }
@@ -59,7 +59,7 @@ public final class Networks {
         return nameSortedArray
     }
     
-    public class func searchThroughList(searchText: String) -> [Network] {
+    public static func searchThroughList(searchText: String) -> [Network] {
         var returnArray = [Network]()
         
         let lowercasedSearchText = searchText.lowercased()
