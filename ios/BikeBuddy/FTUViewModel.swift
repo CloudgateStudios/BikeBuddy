@@ -106,7 +106,8 @@ class FTUViewModel {
         Task {
             defer { isLoadingNetworks = false }
             do {
-                let networks = try await NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI)
+                let networks = try await NetworksDataService.sharedInstance
+                    .getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI)
                 Networks.sharedInstance.list = networks
                 sortedNetworksList = Networks.sharedInstance.networksBySection
             } catch {

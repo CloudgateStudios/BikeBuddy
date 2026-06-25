@@ -90,7 +90,8 @@ struct NetworkPickerView: View {
         isLoading = true
         defer { isLoading = false }
         do {
-            let networks = try await NetworksDataService.sharedInstance.getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI)
+            let networks = try await NetworksDataService.sharedInstance
+                .getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI)
             Networks.sharedInstance.list = networks
             sortedList = Networks.sharedInstance.networksBySection
         } catch {
