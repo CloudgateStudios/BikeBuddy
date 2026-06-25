@@ -135,31 +135,36 @@ struct MapView: View {
     // MARK: - Map controls overlay
 
     /// Location button + style toggle stacked in the top-trailing corner.
-    /// Both use the same glass pill appearance for visual consistency.
+    /// Both float over the map as interactive Liquid Glass pills. They share a
+    /// `GlassEffectContainer` so the system renders the two effects together; the
+    /// container spacing is kept below the stack spacing so the pills stay distinct
+    /// at rest rather than blending into a single shape.
     private var mapControls: some View {
-        VStack(spacing: 8) {
-            // Center on user location
-            Button {
-                withAnimation {
-                    cameraPosition = .userLocation(followsHeading: false, fallback: .automatic)
+        GlassEffectContainer(spacing: 4) {
+            VStack(spacing: 8) {
+                // Center on user location
+                Button {
+                    withAnimation {
+                        cameraPosition = .userLocation(followsHeading: false, fallback: .automatic)
+                    }
+                } label: {
+                    Image(systemName: "location.fill")
+                        .font(.system(size: 15, weight: .medium))
+                        .frame(width: 44, height: 44)
+                        .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 10))
                 }
-            } label: {
-                Image(systemName: "location.fill")
-                    .font(.system(size: 15, weight: .medium))
-                    .frame(width: 44, height: 44)
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
-            }
 
-            // Toggle map style
-            Button {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
+                // Toggle map style
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
+                    }
+                } label: {
+                    Image(systemName: mapStyleOption.toggleIcon)
+                        .font(.system(size: 15, weight: .medium))
+                        .frame(width: 44, height: 44)
+                        .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 10))
                 }
-            } label: {
-                Image(systemName: mapStyleOption.toggleIcon)
-                    .font(.system(size: 15, weight: .medium))
-                    .frame(width: 44, height: 44)
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
             }
         }
         .padding(.trailing, 10)

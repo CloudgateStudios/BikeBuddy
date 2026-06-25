@@ -2,7 +2,7 @@
 
 **Scope:** Full modernization
 **Minimum supported OS:** iOS 27 (dropping iOS 26 — no `#available` gating needed)
-**Status:** Phases 0–2 complete — in progress
+**Status:** Phases 0–3 complete — in progress
 
 > All work lands on `feat/iOS27-support` (long-lived integration branch) via per-phase PRs. Each phase gets its own working branch and PR targeting `feat/iOS27-support`.
 
@@ -64,9 +64,11 @@ The app is already in strong shape for iOS 27. No hard-deprecated APIs are in us
 
 ## Phase 3 · iOS 27 SwiftUI adoption
 
-- [ ] `toolbarMinimizeBehavior(.onScrollDown, for: .navigationBar)` on stations list + map
-- [ ] Liquid Glass visual pass (`PrimaryButtonStyle`, FTU flow, sheets)
-- [ ] **Discretionary:** evaluate swipe actions on station rows — propose only if a genuinely useful action exists (don't invent one)
+- [x] `toolbarMinimizeBehavior(.onScrollDown, for: .navigationBar)` on the stations list — **map excluded** (it hides its nav bar and isn't a scroll view, so the modifier is a no-op there)
+- [x] Liquid Glass adoption — converted the floating map control pills to `GlassEffectContainer` + `.glassEffect(.regular.interactive(), in: .rect(cornerRadius:))` (the canonical floating-controls use case). Large content cards (FTU cards, detail cards, selection card) intentionally **kept** as `.regularMaterial` per Apple's guidance to limit glass to floating chrome.
+- [x] **Skipped — swipe actions:** no genuinely useful row action exists without new feature work (no favorite/delete model), so none added (per "don't invent one")
+- [x] **Flagged — `PrimaryButtonStyle` is dead code** (defined, never referenced; FTU buttons use `.buttonStyle(.borderedProminent)`). Left in place; candidate for removal in Phase 4 housekeeping.
+- [x] Build & verify — **zero warnings**
 
 ## Phase 4 · Housekeeping
 
