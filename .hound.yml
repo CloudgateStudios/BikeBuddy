@@ -1,0 +1,7 @@
+# Point Hound at the project's SwiftLint configuration (nested under ios/)
+# so its review matches the authoritative CI Lint job. Without this, Hound
+# falls back to SwiftLint's default rules and flags idiomatic identifiers
+# like `id` that ios/.swiftlint.yml explicitly allows (identifier_name
+# min_length: 2).
+swiftlint:
+  config_file: ios/.swiftlint.yml
