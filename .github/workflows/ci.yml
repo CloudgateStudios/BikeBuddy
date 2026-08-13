@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [main, master]
+    branches: [main, master, feat/iOS27-support]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -61,7 +61,13 @@ jobs:
   # ─────────────────────────────────────────────
   build-and-test:
     name: Build & Test
-    runs-on: macos-26
+    # iOS 27 is the deployment target, so we need the Xcode 27 SDK + an iOS 27
+    # simulator to compile the iOS-27-only SwiftUI APIs (e.g.
+    # `toolbarMinimizationBehavior`). The standard `macos-26` image still tops
+    # out at Xcode 26.6, so use the dedicated `xcode-27` beta image, which ships
+    # Xcode 27.0 (default) and the iOS 27.0 simulator runtime. Switch back to
+    # `macos-latest` once Xcode 27 lands on the GA image.
+    runs-on: xcode-27
 
     steps:
       - name: Checkout
@@ -70,30 +76,34 @@ jobs:
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@v1.7.0
         with:
-          # Pin to 26.3 — the latest-stable (26.4 RC) ships without an iOS
-          # simulator runtime on this runner image. Xcode 26.3 has iOS 26.2
-          # simulators bundled and is stable for CI.
-          xcode-version: "26.3"
+          # `latest` selects the highest installed Xcode — 27.0 (beta) on the
+          # xcode-27 image.
+          xcode-version: latest
+
+      - name: Install xcbeautify
+        run: brew install xcbeautify
 
       - name: Build
         run: |
+          set -o pipefail
           xcodebuild build \
             -project ios/BikeBuddy.xcodeproj \
             -scheme "BikeBuddy" \
             -destination "generic/platform=iOS Simulator" \
             CODE_SIGNING_ALLOWED=NO \
-            | xcpretty && exit ${PIPESTATUS[0]}
+            | xcbeautify
 
       - name: Run unit tests
         run: |
+          set -o pipefail
           xcodebuild test \
             -project ios/BikeBuddy.xcodeproj \
             -scheme "BikeBuddy" \
-            -destination "platform=iOS Simulator,OS=26.2,name=iPhone 17" \
+            -destination "platform=iOS Simulator,OS=27.0,name=iPhone 17" \
             -only-testing:BikeBuddyKitTests \
             -resultBundlePath build/results.xcresult \
             CODE_SIGNING_ALLOWED=NO \
-            | xcpretty && exit ${PIPESTATUS[0]}
+            | xcbeautify
 
       # Upload the full .xcresult so failures can be inspected locally.
       # (kishikawakatsumi/xcresulttool dropped — no Node 24 support)

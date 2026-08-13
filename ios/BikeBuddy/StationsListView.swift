@@ -47,7 +47,7 @@ struct StationsListView: View {
             }
         }
         .navigationTitle(Text("StationsListNavBarTitle", bundle: .bikeBuddyKit))
-        .toolbarMinimizeBehavior(.onScrollDown, for: .navigationBar)
+        .toolbarMinimizationBehavior(.onScrollDown, for: .navigationBar)
         .onAppear { locationManager.startUpdatingLocation() }
         .onDisappear { locationManager.stopUpdatingLocation() }
     }
