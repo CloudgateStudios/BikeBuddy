@@ -55,10 +55,11 @@ public final class SettingsService {
         }
         // If were doing an upgrade to 1.3 we need to clear out settings and have the user do a setup again so they are ready for the new CityBikes API usage
         if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 1 {
+            // clearAllSettings() wipes FirstTimeUseCompleted, so AppViewModel's
+            // settings-based check re-triggers the FTU flow on next launch — no
+            // notification needed (the old StartFirstTimeUse post had no observers).
             self.clearAllSettings()
             self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 2 as AnyObject)
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StartFirstTimeUse), object: self)
         }
         if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 2 {
             var numberOfStationsSetting = self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)

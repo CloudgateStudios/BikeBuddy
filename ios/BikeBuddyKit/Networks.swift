@@ -17,7 +17,6 @@ public final class Networks {
             self.lastUpdated = NSDate()
 
             setupNetworksBySection()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.NetworksListUpdated), object: self)
         }
     }
     
