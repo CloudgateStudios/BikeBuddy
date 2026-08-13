@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 @MainActor
 public final class Stations {
@@ -25,30 +26,26 @@ public final class Stations {
     }
     
     public static func getClosestStations(latitude: Double, longitude: Double, numberOfStations: Int) -> [Station] {
-        var stationsToReturn = [Station]()
-        
-        for station in self.sharedInstance.list {
-            station.setDistanceFromUser(usersLatitude: latitude, usersLongitude: longitude)
+        let stations = self.sharedInstance.list
+
+        // Without a known user location, return the list as-is (capped) rather
+        // than sorting by a meaningless zero distance.
+        guard latitude != 0 || longitude != 0 else {
+            return Array(stations.prefix(numberOfStations))
         }
-        
-        var listCopy = self.sharedInstance.list
-        
-        if listCopy.count > 0 {
-            listCopy.sort(by: { $0.distanceFromUser < $1.distanceFromUser })
-            
-            var upperLimit = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
-            if listCopy.count < upperLimit {
-                upperLimit = listCopy.count
-            }
-            
-            upperLimit -= 1
-            
-            for index in 0...upperLimit {
-                stationsToReturn.append(listCopy[index])
-            }
+
+        let usersLocation = CLLocation(latitude: latitude, longitude: longitude)
+
+        let stationsWithDistance = stations.map { station -> Station in
+            var stationCopy = station
+            let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
+            stationCopy.distanceFromUser = usersLocation.distance(from: stationLocation)
+            return stationCopy
         }
-        
-        return stationsToReturn
+
+        let sorted = stationsWithDistance.sorted { $0.distanceFromUser < $1.distanceFromUser }
+
+        return Array(sorted.prefix(numberOfStations))
     }
     
     public static func getStationByName(name: String) -> Station? {

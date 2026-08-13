@@ -12,20 +12,15 @@ import CoreLocation
 
 /**
  Represents a bike sharing station.
- 
- :Implements: NSObject - Allows for easy object creation
- :Implements: MKAnnotation - Allows Station objects to be passed to MapView's for quick annotation loading
- :Implements: Codable - Allows easy mapping via Swift protocols. See init(from decoder) and encode(to encoder).
+
+ An immutable value type decoded from the CityBikes API. `distanceFromUser` is a
+ runtime-only field (not part of the API payload) populated by
+ `Stations.getClosestStations` when the user's location is known.
  */
-/// `@unchecked Sendable`: `Station` is a legacy mutable model that is, in practice,
-/// confined to the main actor — it is decoded by the `@MainActor` data services and
-/// only mutated via `setDistanceFromUser` during the `@MainActor` closest-stations
-/// sort. The unchecked conformance lets it be read from the `nonisolated` `Equatable`
-/// comparison backing `StationRowView.equatable()` without data-race diagnostics.
-public class Station: NSObject, MKAnnotation, Codable, @unchecked Sendable {
-    
+public struct Station: Codable, Identifiable, Sendable {
+
     // MARK: - Variables
-    
+
     public var id: String = ""
     public var stationName: String = ""
     public var availableDocks: Int = -1
@@ -34,23 +29,25 @@ public class Station: NSObject, MKAnnotation, Codable, @unchecked Sendable {
     public var availableBikes: Int = -1
     public var timestamp: String = ""
     public var extraInfo: StationExtra = StationExtra()
-    
-    public private(set) var distanceFromUser: Double = 0.0
-    
+
+    /// Distance in metres from the user. Not decoded from the API; set by
+    /// `Stations.getClosestStations` (0 when the user location is unknown).
+    public var distanceFromUser: Double = 0.0
+
     public var approximateDistanceAwayFromUser: String {
         let formatter = MKDistanceFormatter()
         formatter.units = .default
         formatter.unitStyle = .full
-        
+
         let prettyString = "~ " + formatter.string(fromDistance: self.distanceFromUser)
-        
+
         return prettyString
     }
-    
+
     public var streetAddress: String {
         return extraInfo.address ?? ""
     }
-    
+
     public var shareStringDescription: String {
         var returnString = String(localized: "StationModelShareStationName", bundle: .bikeBuddyKit) + "\n" + stationName
 
@@ -60,38 +57,33 @@ public class Station: NSObject, MKAnnotation, Codable, @unchecked Sendable {
 
         return returnString
     }
-    
-    @objc public var coordinate: CLLocationCoordinate2D {
+
+    public var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
-    
-    public var title: String? {
-        return self.stationName
+
+    // MARK: - Initalizers
+
+    public init() {
     }
-    
-    public var subtitle: String? {
-        return String(localized: "StationModelAnnotationBikes", bundle: .bikeBuddyKit) + ": \(availableBikes) " + String(localized: "StationModelAnnotationOpenDocks", bundle: .bikeBuddyKit) + ": \(availableDocks)"
-    }
-    
+}
+
+// MARK: - Codable
+
+extension Station {
+
     enum CodingKeys: String, CodingKey {
-        case id = "id"
+        case id
         case availableBikes = "free_bikes"
         case availableDocks = "empty_slots"
         case stationName = "name"
-        case latitude = "latitude"
-        case longitude = "longitude"
-        case timestamp = "timestamp"
+        case latitude
+        case longitude
+        case timestamp
         case extraInfo = "extra"
     }
-    
-    // MARK: - Initalizers
-    
-    public override init() {
-    }
-    
-    required public init(from decoder: Decoder) throws {
-        super.init()
-        
+
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         self.id = try values.decodeIfPresent(String.self, forKey: .id) ?? ""
@@ -103,9 +95,7 @@ public class Station: NSObject, MKAnnotation, Codable, @unchecked Sendable {
         self.timestamp = try values.decodeIfPresent(String.self, forKey: .timestamp) ?? ""
         self.extraInfo = try values.decodeIfPresent(StationExtra.self, forKey: .extraInfo) ?? StationExtra()
     }
-    
-    // MARK: - Public Functions
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
@@ -116,15 +106,5 @@ public class Station: NSObject, MKAnnotation, Codable, @unchecked Sendable {
         try container.encode(longitude, forKey: .longitude)
         try container.encode(timestamp, forKey: .timestamp)
         try container.encode(extraInfo, forKey: .extraInfo)
-    }
-    
-    public func setDistanceFromUser(usersLatitude: Double, usersLongitude: Double) {
-        // Only do this if we know the users location
-        if usersLatitude != 0 && usersLongitude != 0 {
-            let usersLocation = CLLocation(latitude: usersLatitude, longitude: usersLongitude)
-            let stationLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
-            
-            self.distanceFromUser = usersLocation.distance(from: stationLocation)
-        }
     }
 }

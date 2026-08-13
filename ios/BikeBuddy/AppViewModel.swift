@@ -178,7 +178,7 @@ class AppViewModel {
             MockStationData(id: "m7", name: "Hudson St & W 13 St", bikes: 6, docks: 4, latitude: 40.7374, longitude: -74.0057)
         ]
         return raw.map { data in
-            let station = Station()
+            var station = Station()
             station.id = data.id
             station.stationName = data.name
             station.availableBikes = data.bikes

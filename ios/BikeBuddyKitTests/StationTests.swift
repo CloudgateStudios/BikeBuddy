@@ -19,7 +19,7 @@ struct StationTests {
     private let testAvailableDocks = 3
 
     private func createBasicTestStation() -> Station {
-        let newStation = Station()
+        var newStation = Station()
 
         newStation.stationName = testStationName
         newStation.latitude = testLatitude
@@ -48,10 +48,11 @@ struct StationTests {
         #expect(newStation.availableDocks == testAvailableDocks)
     }
 
-    @Test func titleMatchesStationName() {
-        let newStation = createBasicTestStation()
+    @Test func streetAddressReadsExtraInfoAddress() {
+        var newStation = createBasicTestStation()
+        newStation.extraInfo.address = "123 Main St"
 
-        #expect(newStation.title == testStationName)
+        #expect(newStation.streetAddress == "123 Main St")
     }
 
     @Test func coordinateMatchesLatitudeAndLongitude() {

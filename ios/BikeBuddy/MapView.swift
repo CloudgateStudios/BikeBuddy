@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 import BikeBuddyKit
 
 // MARK: - Map style options
@@ -32,17 +33,6 @@ private enum MapStyleOption: CaseIterable {
     }
 }
 
-// MARK: - Sheet item wrapper
-
-/// Thin Identifiable wrapper around Station used for .sheet(item:).
-/// Station is a class that does not conform to Identifiable, so we wrap it
-/// here to avoid the isPresented + optional-state race condition that causes
-/// an empty white sheet on first presentation.
-private struct IdentifiableStation: Identifiable {
-    let id: String
-    let station: Station
-}
-
 // MARK: - Map view
 
 /// Full-screen map showing all bike stations as Markers.
@@ -51,19 +41,30 @@ private struct IdentifiableStation: Identifiable {
 struct MapView: View {
 
     @Environment(AppViewModel.self) private var appViewModel
+    @State private var locationManager = LocationManager()
 
     /// Tag value from the Map selection binding — matches Station.id (String).
     @State private var cameraPosition: MapCameraPosition = .automatic
     @State private var selectedStationID: String?
     /// Set to present the detail sheet; cleared automatically on dismiss.
-    @State private var sheetStation: IdentifiableStation?
+    @State private var sheetStation: Station?
     @State private var updatedAtText: String = ""
     @State private var mapStyleOption: MapStyleOption = .standard
 
-    /// Derived from selectedStationID; nil when nothing is selected.
+    /// Derived from selectedStationID; nil when nothing is selected. Populates
+    /// `distanceFromUser` on the returned copy when the user's location is known
+    /// (Station is a value type, so this doesn't mutate the shared list).
     private var selectedStation: Station? {
-        guard let id = selectedStationID else { return nil }
-        return appViewModel.stations.first { $0.id == id }
+        guard let id = selectedStationID,
+              var station = appViewModel.stations.first(where: { $0.id == id }) else { return nil }
+
+        let coordinate = locationManager.coordinate
+        if coordinate.latitude != 0 || coordinate.longitude != 0 {
+            let userLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
+            station.distanceFromUser = userLocation.distance(from: stationLocation)
+        }
+        return station
     }
 
     // MARK: - Body
@@ -86,9 +87,9 @@ struct MapView: View {
             mapControls
         }
         .toolbar(.hidden, for: .navigationBar)
-        .sheet(item: $sheetStation) { wrapper in
+        .sheet(item: $sheetStation) { station in
             NavigationStack {
-                StationDetailView(station: wrapper.station)
+                StationDetailView(station: station)
             }
             .presentationDetents([.medium, .large])
         }
@@ -97,6 +98,10 @@ struct MapView: View {
         }
         .onAppear {
             updateTimestampLabel()
+            locationManager.startUpdatingLocation()
+        }
+        .onDisappear {
+            locationManager.stopUpdatingLocation()
         }
     }
 
@@ -113,7 +118,7 @@ struct MapView: View {
                         eventName: Constants.AnalyticEvent.LoadStationDetail,
                         customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject]
                     )
-                    sheetStation = IdentifiableStation(id: station.id, station: station)
+                    sheetStation = station
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .padding(.horizontal)
