@@ -31,11 +31,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         // on every tick, which is the primary source of UI sluggishness.
         locationManager.distanceFilter = 10
 
-        if #available(iOS 14.0, *) {
-            authorizationStatus = locationManager.authorizationStatus
-        } else {
-            authorizationStatus = CLLocationManager.authorizationStatus()
-        }
+        authorizationStatus = locationManager.authorizationStatus
     }
 
     func startUpdatingLocation() {
