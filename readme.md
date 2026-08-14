@@ -4,8 +4,8 @@ A simple iOS app to find the nearest bike sharing stations to your location, pow
 
 ## Requirements
 
-- Xcode 26+
-- iOS 26+ deployment target
+- Xcode 27+
+- iOS 27+ deployment target
 - Ruby (for Fastlane tooling)
 
 ## Repo Structure
@@ -26,7 +26,7 @@ docs/              Additional documentation
 
 ## Setup
 
-1. Install Xcode 26+ from the Mac App Store
+1. Install Xcode 27+ from the Mac App Store
 2. Install Homebrew dependencies:
    ```sh
    brew install swiftlint

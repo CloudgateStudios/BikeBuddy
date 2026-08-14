@@ -18,8 +18,7 @@ final class ScreenshotTests: XCTestCase {
 
     let app = XCUIApplication()
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
         continueAfterFailure = false
         setupSnapshot(app)
         // Use += to preserve fastlane's required args (-FASTLANE_SNAPSHOT, -AppleLanguages,

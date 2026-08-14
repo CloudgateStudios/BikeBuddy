@@ -8,18 +8,14 @@
 
 import Foundation
 
-public class AnalyticsService {
-    
+@MainActor
+public final class AnalyticsService {
+
     /**
      The shared instanace that should be used to access all members of the service.
      */
-    public class var sharedInstance: AnalyticsService {
-        struct Static {
-            static let instance: AnalyticsService = AnalyticsService()
-        }
-        return Static.instance
-    }
-    
+    public static let sharedInstance = AnalyticsService()
+
     /**
      Should not be used. Call AnalyticsService.sharedInstance instead.**
      */

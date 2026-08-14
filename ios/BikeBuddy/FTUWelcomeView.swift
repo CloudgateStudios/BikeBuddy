@@ -13,10 +13,11 @@ import BikeBuddyKit
 /// Replaces FirstTimeUse.storyboard + FTUWelcomeViewController.
 struct FTUWelcomeView: View {
 
-    @StateObject private var ftuViewModel = FTUViewModel()
+    @State private var ftuViewModel = FTUViewModel()
 
     var body: some View {
-        NavigationStack(path: $ftuViewModel.path) {
+        @Bindable var ftuViewModel = ftuViewModel
+        return NavigationStack(path: $ftuViewModel.path) {
             WelcomeStep()
                 .navigationDestination(for: FTUViewModel.Step.self) { step in
                     switch step {
@@ -31,7 +32,7 @@ struct FTUWelcomeView: View {
                     }
                 }
         }
-        .environmentObject(ftuViewModel)
+        .environment(ftuViewModel)
     }
 }
 
@@ -39,7 +40,7 @@ struct FTUWelcomeView: View {
 
 private struct WelcomeStep: View {
 
-    @EnvironmentObject var ftuViewModel: FTUViewModel
+    @Environment(FTUViewModel.self) private var ftuViewModel
 
     var body: some View {
         VStack(spacing: 0) {

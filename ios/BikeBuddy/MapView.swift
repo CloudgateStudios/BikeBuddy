@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 import BikeBuddyKit
 
 // MARK: - Map style options
@@ -32,17 +33,6 @@ private enum MapStyleOption: CaseIterable {
     }
 }
 
-// MARK: - Sheet item wrapper
-
-/// Thin Identifiable wrapper around Station used for .sheet(item:).
-/// Station is a class that does not conform to Identifiable, so we wrap it
-/// here to avoid the isPresented + optional-state race condition that causes
-/// an empty white sheet on first presentation.
-private struct IdentifiableStation: Identifiable {
-    let id: String
-    let station: Station
-}
-
 // MARK: - Map view
 
 /// Full-screen map showing all bike stations as Markers.
@@ -50,20 +40,31 @@ private struct IdentifiableStation: Identifiable {
 /// Tapping "Details" on the card presents StationDetailView as a sheet.
 struct MapView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Environment(AppViewModel.self) private var appViewModel
+    @State private var locationManager = LocationManager()
 
     /// Tag value from the Map selection binding — matches Station.id (String).
     @State private var cameraPosition: MapCameraPosition = .automatic
     @State private var selectedStationID: String?
     /// Set to present the detail sheet; cleared automatically on dismiss.
-    @State private var sheetStation: IdentifiableStation?
+    @State private var sheetStation: Station?
     @State private var updatedAtText: String = ""
     @State private var mapStyleOption: MapStyleOption = .standard
 
-    /// Derived from selectedStationID; nil when nothing is selected.
+    /// Derived from selectedStationID; nil when nothing is selected. Populates
+    /// `distanceFromUser` on the returned copy when the user's location is known
+    /// (Station is a value type, so this doesn't mutate the shared list).
     private var selectedStation: Station? {
-        guard let id = selectedStationID else { return nil }
-        return appViewModel.stations.first { $0.id == id }
+        guard let id = selectedStationID,
+              var station = appViewModel.stations.first(where: { $0.id == id }) else { return nil }
+
+        let coordinate = locationManager.coordinate
+        if coordinate.latitude != 0 || coordinate.longitude != 0 {
+            let userLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
+            station.distanceFromUser = userLocation.distance(from: stationLocation)
+        }
+        return station
     }
 
     // MARK: - Body
@@ -86,9 +87,9 @@ struct MapView: View {
             mapControls
         }
         .toolbar(.hidden, for: .navigationBar)
-        .sheet(item: $sheetStation) { wrapper in
+        .sheet(item: $sheetStation) { station in
             NavigationStack {
-                StationDetailView(station: wrapper.station)
+                StationDetailView(station: station)
             }
             .presentationDetents([.medium, .large])
         }
@@ -97,6 +98,10 @@ struct MapView: View {
         }
         .onAppear {
             updateTimestampLabel()
+            locationManager.startUpdatingLocation()
+        }
+        .onDisappear {
+            locationManager.stopUpdatingLocation()
         }
     }
 
@@ -113,7 +118,7 @@ struct MapView: View {
                         eventName: Constants.AnalyticEvent.LoadStationDetail,
                         customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject]
                     )
-                    sheetStation = IdentifiableStation(id: station.id, station: station)
+                    sheetStation = station
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .padding(.horizontal)
@@ -135,31 +140,36 @@ struct MapView: View {
     // MARK: - Map controls overlay
 
     /// Location button + style toggle stacked in the top-trailing corner.
-    /// Both use the same glass pill appearance for visual consistency.
+    /// Both float over the map as interactive Liquid Glass pills. They share a
+    /// `GlassEffectContainer` so the system renders the two effects together; the
+    /// container spacing is kept below the stack spacing so the pills stay distinct
+    /// at rest rather than blending into a single shape.
     private var mapControls: some View {
-        VStack(spacing: 8) {
-            // Center on user location
-            Button {
-                withAnimation {
-                    cameraPosition = .userLocation(followsHeading: false, fallback: .automatic)
+        GlassEffectContainer(spacing: 4) {
+            VStack(spacing: 8) {
+                // Center on user location
+                Button {
+                    withAnimation {
+                        cameraPosition = .userLocation(followsHeading: false, fallback: .automatic)
+                    }
+                } label: {
+                    Image(systemName: "location.fill")
+                        .font(.system(size: 15, weight: .medium))
+                        .frame(width: 44, height: 44)
+                        .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 10))
                 }
-            } label: {
-                Image(systemName: "location.fill")
-                    .font(.system(size: 15, weight: .medium))
-                    .frame(width: 44, height: 44)
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
-            }
 
-            // Toggle map style
-            Button {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
+                // Toggle map style
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        mapStyleOption = mapStyleOption == .standard ? .satellite : .standard
+                    }
+                } label: {
+                    Image(systemName: mapStyleOption.toggleIcon)
+                        .font(.system(size: 15, weight: .medium))
+                        .frame(width: 44, height: 44)
+                        .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 10))
                 }
-            } label: {
-                Image(systemName: mapStyleOption.toggleIcon)
-                    .font(.system(size: 15, weight: .medium))
-                    .frame(width: 44, height: 44)
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
             }
         }
         .padding(.trailing, 10)
@@ -236,7 +246,7 @@ private struct StationSelectionCard: View {
 
     private func availabilityPill(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text("\(count)")
+            Text(count, format: .number)
                 .font(.title3.weight(.bold))
                 .foregroundStyle(color)
                 .monospacedDigit()

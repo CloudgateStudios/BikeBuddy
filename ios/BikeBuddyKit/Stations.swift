@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import CoreLocation
 
-public class Stations {
+@MainActor
+public final class Stations {
     public static let sharedInstance = Stations()
     
     public var list = [Station]() {
         didSet {
             self.lastUpdated = NSDate()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.StationsListUpdated), object: self)
         }
     }
     
@@ -23,34 +24,30 @@ public class Stations {
     private init() {
     }
     
-    public class func getClosestStations(latitude: Double, longitude: Double, numberOfStations: Int) -> [Station] {
-        var stationsToReturn = [Station]()
-        
-        for station in self.sharedInstance.list {
-            station.setDistanceFromUser(usersLatitude: latitude, usersLongitude: longitude)
+    public static func getClosestStations(latitude: Double, longitude: Double, numberOfStations: Int) -> [Station] {
+        let stations = self.sharedInstance.list
+
+        // Without a known user location, return the list as-is (capped) rather
+        // than sorting by a meaningless zero distance.
+        guard latitude != 0 || longitude != 0 else {
+            return Array(stations.prefix(numberOfStations))
         }
-        
-        var listCopy = self.sharedInstance.list
-        
-        if listCopy.count > 0 {
-            listCopy.sort(by: { $0.distanceFromUser < $1.distanceFromUser })
-            
-            var upperLimit = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
-            if listCopy.count < upperLimit {
-                upperLimit = listCopy.count
-            }
-            
-            upperLimit -= 1
-            
-            for index in 0...upperLimit {
-                stationsToReturn.append(listCopy[index])
-            }
+
+        let usersLocation = CLLocation(latitude: latitude, longitude: longitude)
+
+        let stationsWithDistance = stations.map { station -> Station in
+            var stationCopy = station
+            let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
+            stationCopy.distanceFromUser = usersLocation.distance(from: stationLocation)
+            return stationCopy
         }
-        
-        return stationsToReturn
+
+        let sorted = stationsWithDistance.sorted { $0.distanceFromUser < $1.distanceFromUser }
+
+        return Array(sorted.prefix(numberOfStations))
     }
     
-    public class func getStationByName(name: String) -> Station? {
+    public static func getStationByName(name: String) -> Station? {
         for station in self.sharedInstance.list where station.stationName == name {
                 return station
         }
@@ -58,7 +55,7 @@ public class Stations {
         return nil
     }
     
-    public class func shouldBeUpdated() -> Bool {
+    public static func shouldBeUpdated() -> Bool {
         let elapsedTime = NSDate().timeIntervalSince(Stations.sharedInstance.lastUpdated as Date)
         
         if elapsedTime > Constants.Timers.RefreshStationsDataDifferenceInSeconds {

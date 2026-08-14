@@ -12,7 +12,7 @@ import BikeBuddyKit
 /// Replaces SettingsTableViewController.
 struct SettingsView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Environment(AppViewModel.self) private var appViewModel
     @Environment(\.openURL) private var openURL
 
     var body: some View {

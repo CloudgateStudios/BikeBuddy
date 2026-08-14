@@ -8,15 +8,16 @@
 
 import Foundation
 import CoreLocation
-import Combine
+import Observation
 
 /// Observable wrapper around CLLocationManager.
 /// Used by StationsListView and MapView to get the user's current location.
 @MainActor
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+@Observable
+class LocationManager: NSObject, CLLocationManagerDelegate {
 
-    @Published var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
     private let locationManager = CLLocationManager()
 
@@ -30,11 +31,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         // on every tick, which is the primary source of UI sluggishness.
         locationManager.distanceFilter = 10
 
-        if #available(iOS 14.0, *) {
-            authorizationStatus = locationManager.authorizationStatus
-        } else {
-            authorizationStatus = CLLocationManager.authorizationStatus()
-        }
+        authorizationStatus = locationManager.authorizationStatus
     }
 
     func startUpdatingLocation() {
@@ -56,11 +53,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         Task { @MainActor in
-            if #available(iOS 14.0, *) {
-                self.authorizationStatus = manager.authorizationStatus
-            }
+            self.authorizationStatus = self.locationManager.authorizationStatus
             if self.authorizationStatus == .authorizedWhenInUse || self.authorizationStatus == .authorizedAlways {
-                manager.startUpdatingLocation()
+                self.locationManager.startUpdatingLocation()
             }
         }
     }
@@ -69,7 +64,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         Task { @MainActor in
             self.authorizationStatus = status
             if status == .authorizedWhenInUse || status == .authorizedAlways {
-                manager.startUpdatingLocation()
+                self.locationManager.startUpdatingLocation()
             }
         }
     }

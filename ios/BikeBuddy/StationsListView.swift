@@ -13,8 +13,8 @@ import BikeBuddyKit
 /// Shows the closest N bike stations to the user's current location.
 struct StationsListView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
-    @StateObject private var locationManager = LocationManager()
+    @Environment(AppViewModel.self) private var appViewModel
+    @State private var locationManager = LocationManager()
 
     private var closestStations: [Station] {
         var lat = locationManager.coordinate.latitude
@@ -47,6 +47,7 @@ struct StationsListView: View {
             }
         }
         .navigationTitle(Text("StationsListNavBarTitle", bundle: .bikeBuddyKit))
+        .toolbarMinimizationBehavior(.onScrollDown, for: .navigationBar)
         .onAppear { locationManager.startUpdatingLocation() }
         .onDisappear { locationManager.stopUpdatingLocation() }
     }
@@ -100,7 +101,7 @@ struct StationRowView: View, Equatable {
     let station: Station
     let showDistance: Bool
 
-    static func == (lhs: StationRowView, rhs: StationRowView) -> Bool {
+    nonisolated static func == (lhs: StationRowView, rhs: StationRowView) -> Bool {
         lhs.station.id == rhs.station.id &&
         lhs.station.availableBikes == rhs.station.availableBikes &&
         lhs.station.availableDocks == rhs.station.availableDocks &&
@@ -152,7 +153,7 @@ struct StationRowView: View, Equatable {
 
     private func availabilityBadge(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text("\(count)")
+            Text(count, format: .number)
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(color)
                 .monospacedDigit()

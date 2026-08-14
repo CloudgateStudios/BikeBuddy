@@ -13,7 +13,7 @@ import BikeBuddyKit
 /// Thin wrapper around NetworkPickerView for the Settings context.
 struct SettingsSelectNetworkView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Environment(AppViewModel.self) private var appViewModel
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {

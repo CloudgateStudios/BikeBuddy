@@ -13,7 +13,7 @@ import BikeBuddyKit
 /// The checkmark icon scales in with a spring animation as a small delight moment.
 struct FTUFinishedView: View {
 
-    @EnvironmentObject var ftuViewModel: FTUViewModel
+    @Environment(FTUViewModel.self) private var ftuViewModel
     @State private var checkmarkScale: CGFloat = 0
 
     var body: some View {

@@ -8,7 +8,8 @@
 
 import Foundation
 
-public class Networks {
+@MainActor
+public final class Networks {
     public static let sharedInstance = Networks()
     
     public var list = [Network]() {
@@ -16,7 +17,6 @@ public class Networks {
             self.lastUpdated = NSDate()
 
             setupNetworksBySection()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationCenterEvent.NetworksListUpdated), object: self)
         }
     }
     
@@ -50,7 +50,7 @@ public class Networks {
         self.networksBySection = workingcopy
     }
  
-    public class func getSortedByNetworkName() -> [Network] {
+    public static func getSortedByNetworkName() -> [Network] {
         var nameSortedArray = [Network]()
             
         nameSortedArray = self.sharedInstance.list.sorted { $0.name! < $1.name! }
@@ -58,7 +58,7 @@ public class Networks {
         return nameSortedArray
     }
     
-    public class func searchThroughList(searchText: String) -> [Network] {
+    public static func searchThroughList(searchText: String) -> [Network] {
         var returnArray = [Network]()
         
         let lowercasedSearchText = searchText.lowercased()

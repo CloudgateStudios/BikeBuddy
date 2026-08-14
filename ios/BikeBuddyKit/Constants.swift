@@ -37,13 +37,6 @@ public struct Constants {
         public static let RefreshStationsDataDifferenceInSeconds = 300.0
     }
 
-    // MARK: - NSNotificationCenter Event Names
-    public struct NotificationCenterEvent {
-        public static let StationsListUpdated = "StationsListUpdated"
-        public static let NetworksListUpdated = "NetworksLIstUpdated"
-        public static let StartFirstTimeUse = "StartFirstTimeUse"
-    }
-
     public struct CityBikes {
         public static let BaseAPIURL = "https://api.citybik.es"
         public static let NetworksAPI = CityBikes.BaseAPIURL + "/v2/networks?fields=id,name,href,location"

@@ -12,7 +12,7 @@ import BikeBuddyKit
 /// Replaces SettingsNumberOfClosestStationsTableViewController.
 struct SettingsNumberOfClosestStationsView: View {
 
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Environment(AppViewModel.self) private var appViewModel
     @Environment(\.dismiss) private var dismiss
 
     private let options = [5, 10, 15, 20]
