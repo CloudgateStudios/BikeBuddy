@@ -63,7 +63,7 @@ struct SettingsView: View {
                 NavigationLink {
                     SettingsAboutView()
                 } label: {
-                    Text("SettingsGeneralAbout", bundle: .bikeBuddyKit)
+                    Text("SettingsGeneralAboutDeliberateTypo", bundle: .bikeBuddyKit)
                 }
 
                 ShareLink(
