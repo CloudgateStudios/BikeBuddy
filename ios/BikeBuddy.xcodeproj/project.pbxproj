@@ -17,6 +17,9 @@
 		D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE31D988F7D00BBB480 /* SetingsService.swift */; };
 		D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE51D98901A00BBB480 /* StationsDataService.swift */; };
 		D11DDDE91D98906700BBB480 /* StationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE81D98906700BBB480 /* StationTests.swift */; };
+		D1BB010000000000000000A2 /* NetworksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB010000000000000000A1 /* NetworksTests.swift */; };
+		D1BB010000000000000000B2 /* CountryCleanupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB010000000000000000B1 /* CountryCleanupServiceTests.swift */; };
+		D1BB010000000000000000C2 /* NetworkDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB010000000000000000C1 /* NetworkDecodingTests.swift */; };
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
 		D14D9C511DB839EC008D0656 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* BundleExtension.swift */; };
 		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
@@ -113,6 +116,9 @@
 		D11DDDE31D988F7D00BBB480 /* SetingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingsService.swift; sourceTree = "<group>"; };
 		D11DDDE51D98901A00BBB480 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		D11DDDE81D98906700BBB480 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
+		D1BB010000000000000000A1 /* NetworksTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworksTests.swift; sourceTree = "<group>"; };
+		D1BB010000000000000000B1 /* CountryCleanupServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCleanupServiceTests.swift; sourceTree = "<group>"; };
+		D1BB010000000000000000C1 /* NetworkDecodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDecodingTests.swift; sourceTree = "<group>"; };
 		D14957F31DB2B2370038A615 /* BikeBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeBuddy.entitlements; sourceTree = "<group>"; };
 		D149580B1DB317AE0038A615 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -278,10 +284,20 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		D1BB010000000000000000D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D1BB010000000000000000A1 /* NetworksTests.swift */,
+				D1BB010000000000000000B1 /* CountryCleanupServiceTests.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		D11DDDE71D98905D00BBB480 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				D11DDDE81D98906700BBB480 /* StationTests.swift */,
+				D1BB010000000000000000C1 /* NetworkDecodingTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -312,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				D11DDDE71D98905D00BBB480 /* Models */,
+				D1BB010000000000000000D1 /* Services */,
 				D18F4B191D9225FC00972AF2 /* Info.plist */,
 			);
 			path = BikeBuddyKitTests;
@@ -588,6 +605,9 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				D11DDDE91D98906700BBB480 /* StationTests.swift in Sources */,
+				D1BB010000000000000000A2 /* NetworksTests.swift in Sources */,
+				D1BB010000000000000000B2 /* CountryCleanupServiceTests.swift in Sources */,
+				D1BB010000000000000000C2 /* NetworkDecodingTests.swift in Sources */,
 			);
 		};
 		D1B6DD161C9EC3E3008543A3 /* Sources */ = {

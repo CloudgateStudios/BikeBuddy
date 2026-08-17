@@ -43,6 +43,7 @@ public class Network: Codable {
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
+        self.company = try values.decodeIfPresent([String].self, forKey: .company)
         self.gbfsHref = try values.decodeIfPresent(String.self, forKey: .gbfsHref)
         self.href = try values.decodeIfPresent(String.self, forKey: .href)
         self.id = try values.decodeIfPresent(String.self, forKey: .id)

@@ -36,10 +36,14 @@ public class Location: Codable {
     
     required public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        city = try values.decode(String.self, forKey: .city)
-        country = try values.decode(String.self, forKey: .country)
-        latitude = try values.decode(Double.self, forKey: .latitude)
-        longitude = try values.decode(Double.self, forKey: .longitude)
+
+        // Every field is optional on the model, so decode them that way too. The
+        // networks endpoint is called with a `fields` query and a single network
+        // missing one value should not fail the decode of the whole list.
+        city = try values.decodeIfPresent(String.self, forKey: .city)
+        country = try values.decodeIfPresent(String.self, forKey: .country)
+        latitude = try values.decodeIfPresent(Double.self, forKey: .latitude)
+        longitude = try values.decodeIfPresent(Double.self, forKey: .longitude)
     }
     
      // MARK: - Public Functions
