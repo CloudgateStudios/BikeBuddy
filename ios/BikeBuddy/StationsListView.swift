@@ -151,9 +151,16 @@ struct StationRowView: View, Equatable {
         .padding(.vertical, 6)
     }
 
+    @ViewBuilder
     private func availabilityBadge(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text(count, format: .number)
+            Group {
+                if count < 0 {
+                    Text(verbatim: "—")
+                } else {
+                    Text(count, format: .number)
+                }
+            }
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(color)
                 .monospacedDigit()
