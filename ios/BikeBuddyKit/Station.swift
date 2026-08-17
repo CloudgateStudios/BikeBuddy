@@ -21,14 +21,28 @@ public struct Station: Codable, Identifiable, Sendable {
 
     // MARK: - Variables
 
+    /// Stand-in for a count the API did not report. Views show a placeholder for it
+    /// rather than the raw value.
+    public static let unknownCount = -1
+
     public var id: String = ""
     public var stationName: String = ""
-    public var availableDocks: Int = -1
+    public var availableDocks: Int = Station.unknownCount
     public var latitude: Double = 0.0
     public var longitude: Double = 0.0
-    public var availableBikes: Int = -1
+    public var availableBikes: Int = Station.unknownCount
     public var timestamp: String = ""
     public var extraInfo: StationExtra = StationExtra()
+
+    /// False when the API omitted the count, so the UI can distinguish "we don't
+    /// know" from a real zero.
+    public var hasKnownBikeCount: Bool {
+        return availableBikes >= 0
+    }
+
+    public var hasKnownDockCount: Bool {
+        return availableDocks >= 0
+    }
 
     /// Distance in metres from the user. Not decoded from the API; set by
     /// `Stations.getClosestStations` (0 when the user location is unknown).
@@ -87,8 +101,11 @@ extension Station {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         self.id = try values.decodeIfPresent(String.self, forKey: .id) ?? ""
-        self.availableBikes = try values.decodeIfPresent(Int.self, forKey: .availableBikes) ?? 0
-        self.availableDocks = try values.decodeIfPresent(Int.self, forKey: .availableDocks) ?? -1
+        // Both counts fall back to the same unknown sentinel the struct defaults to.
+        // Defaulting bikes to 0 instead made an omitted count indistinguishable from a
+        // genuinely empty station, which the UI renders in red.
+        self.availableBikes = try values.decodeIfPresent(Int.self, forKey: .availableBikes) ?? Station.unknownCount
+        self.availableDocks = try values.decodeIfPresent(Int.self, forKey: .availableDocks) ?? Station.unknownCount
         self.stationName = try values.decodeIfPresent(String.self, forKey: .stationName) ?? ""
         self.latitude = try values.decodeIfPresent(Double.self, forKey: .latitude) ?? 0.0
         self.longitude = try values.decodeIfPresent(Double.self, forKey: .longitude) ?? 0.0
