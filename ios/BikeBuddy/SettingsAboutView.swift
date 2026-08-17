@@ -52,6 +52,11 @@ struct SettingsAboutView: View {
     private var versionString: String {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
-        return version == build ? "Version \(version)" : "Version \(version) (\(build))"
+
+        if version == build {
+            return String(format: String(localized: "SettingsAboutVersionLabel", bundle: .bikeBuddyKit), version)
+        }
+
+        return String(format: String(localized: "SettingsAboutVersionWithBuildLabel", bundle: .bikeBuddyKit), version, build)
     }
 }
