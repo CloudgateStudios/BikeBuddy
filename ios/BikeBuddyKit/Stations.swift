@@ -47,14 +47,6 @@ public final class Stations {
         return Array(sorted.prefix(numberOfStations))
     }
     
-    public static func getStationByName(name: String) -> Station? {
-        for station in self.sharedInstance.list where station.stationName == name {
-                return station
-        }
-        
-        return nil
-    }
-    
     public static func shouldBeUpdated() -> Bool {
         let elapsedTime = NSDate().timeIntervalSince(Stations.sharedInstance.lastUpdated as Date)
         
