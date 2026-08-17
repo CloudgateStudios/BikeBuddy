@@ -11,7 +11,7 @@
 /* Button label for OK */
 "GeneralButtonOK" = "OK";
 
-/* Button label to retry an action that failed, e.g. loading station data */
+/* Button label to retry an action that failed, e.g. loading station data or the network list */
 "GeneralButtonTryAgain" = "Try Again";
 
 /* String that goes on the back of the distance from user string e.g. ~3.0 mi 'away' */
@@ -36,6 +36,9 @@
 
 /* Text in UI popup when the list of networks is loading */
 "SelectNetworkLoadingPopupMessage" = "Loading Available Networks";
+
+/* Title shown when the list of networks could not be downloaded */
+"SelectNetworkLoadFailedTitle" = "Couldn't Load Networks";
 
 /* Title in the nav bar when asking for location access */
 "LocationAccessNavBarTitle" = "Location Access";
