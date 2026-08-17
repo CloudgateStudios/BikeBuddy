@@ -51,7 +51,9 @@ class FTUViewModel {
     func goToSelectNetwork() {
         currentStep = .selectNetwork
         path.append(.selectNetwork)
-        loadNetworksIfNeeded()
+        // NetworkPickerView loads the list from its own .task. Kicking off a second
+        // fetch here just raced it — neither saw Networks.sharedInstance.list
+        // populated yet, so both went to the network.
     }
 
     func goToFinished() {
