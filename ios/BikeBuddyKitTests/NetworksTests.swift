@@ -260,6 +260,20 @@ struct NetworksTests {
         #expect(sections.first?.value.count == 1)
     }
 
+    /// An empty name used to trap on `startIndex` while building the sections, and
+    /// because that runs from the `didSet` on `list` it took the whole picker with it.
+    @Test func sectionsExcludeNetworksWithAnEmptyName() {
+        Networks.sharedInstance.list = [
+            makeNetwork(id: "divvy", name: "Divvy", city: "Chicago", country: "US"),
+            makeNetwork(id: "empty-name", name: "", city: "Chicago", country: "US")
+        ]
+
+        let sections = Networks.sharedInstance.networksBySection
+
+        #expect(sections.count == 1)
+        #expect(names(sections.first?.value ?? []) == ["Divvy"])
+    }
+
     @Test func settingListRebuildsSections() {
         loadTestNetworks()
         #expect(Networks.sharedInstance.networksBySection.count == 6)
