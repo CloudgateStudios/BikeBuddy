@@ -30,7 +30,7 @@ struct SettingsSelectNetworkView: View {
     // MARK: - Actions
 
     private func selectNetwork(_ network: Network) {
-        let oldNetwork = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceName)
+        let oldNetwork = SettingsService.sharedInstance.getSettingAsString(key: .bikeServiceName)
         let analyticAttr = [
             Constants.AnalyticEventDetail.OldCity: oldNetwork,
             Constants.AnalyticEventDetail.NewCity: network.name ?? ""

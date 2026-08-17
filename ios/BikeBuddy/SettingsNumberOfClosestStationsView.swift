@@ -44,7 +44,7 @@ struct SettingsNumberOfClosestStationsView: View {
     }
 
     private func selectOption(_ option: Int) {
-        let oldValue = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.NumberOfClosestStations)
+        let oldValue = SettingsService.sharedInstance.getSettingAsString(key: .numberOfClosestStations)
         let analyticAttr = [
             Constants.AnalyticEventDetail.OldNumber: oldValue,
             Constants.AnalyticEventDetail.NewNumber: String(option)
