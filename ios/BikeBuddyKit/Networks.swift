@@ -29,7 +29,7 @@ public final class Networks {
     
     private func setupNetworksBySection() {
         var bySectionWorkingCopy = [String: [Network]]()
-        let sortedNetworkList = self.list.sorted { $0.name! < $1.name! }
+        let sortedNetworkList = Networks.sortedByName(self.list)
         
         for item in sortedNetworkList {
             if let networkName = item.name {
@@ -51,27 +51,73 @@ public final class Networks {
     }
  
     public static func getSortedByNetworkName() -> [Network] {
-        var nameSortedArray = [Network]()
-            
-        nameSortedArray = self.sharedInstance.list.sorted { $0.name! < $1.name! }
-        
-        return nameSortedArray
+        return sortedByName(self.sharedInstance.list)
+    }
+
+    /// Sorts by name. Networks without a name sort to the front rather than crashing.
+    private static func sortedByName(_ networks: [Network]) -> [Network] {
+        return networks.sorted { ($0.name ?? "") < ($1.name ?? "") }
     }
     
+    /**
+     Searches the network list for a match on the network name or its location. The location is
+     matched on the city, the raw country code and the localized country name so that what is
+     displayed in the picker is also what can be searched for.
+
+     - parameter searchText: The text the user typed in. Matching ignores case and diacritics.
+
+     - returns: The matching networks sorted by name.
+     */
     public static func searchThroughList(searchText: String) -> [Network] {
-        var returnArray = [Network]()
-        
-        let lowercasedSearchText = searchText.lowercased()
-        
-        for item in self.sharedInstance.list {
-            let lowercasedItem = item.name?.lowercased()
-            
-            if (lowercasedItem?.contains(lowercasedSearchText))! {
-                returnArray.append(item)
-            }
+        let trimmedSearchText = searchText.trimmingCharacters(in: .whitespaces)
+
+        if trimmedSearchText.isEmpty {
+            return getSortedByNetworkName()
         }
 
-        return returnArray.sorted { $0.name! < $1.name! }
+        let returnArray = self.sharedInstance.list.filter { item in
+            searchableStrings(for: item).contains { $0.matches(trimmedSearchText) }
+        }
+
+        return sortedByName(returnArray)
     }
-    
+
+    private static func searchableStrings(for network: Network) -> [String] {
+        var values = [String]()
+
+        if let name = network.name {
+            values.append(name)
+        }
+
+        if let city = network.location?.city {
+            values.append(city)
+        }
+
+        if let country = network.location?.country {
+            values.append(country)
+            values.append(CountryCleanupService.sharedInstance.mapCountryCodeToString(countryCode: country))
+        }
+
+        return values
+    }
+
+}
+
+private extension String {
+    /// Normalizes for searching by folding case and accents.
+    ///
+    /// `.diacriticInsensitive` alone only decomposes an accent from its base letter, so it
+    /// leaves letters that carry a stroke or slash untouched - "Wrocław" stays "wrocław" and
+    /// would never match a typed "Wroclaw". The Latin-ASCII transform handles those (ł, ø, đ)
+    /// and passes non-Latin scripts through unchanged, so those still match themselves.
+    var searchNormalized: String {
+        let transliterated = applyingTransform(StringTransform("Latin-ASCII"), reverse: false) ?? self
+
+        return transliterated.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: nil)
+    }
+
+    func matches(_ searchText: String) -> Bool {
+        searchNormalized.contains(searchText.searchNormalized)
+    }
+
 }
