@@ -244,9 +244,16 @@ private struct StationSelectionCard: View {
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
     }
 
+    @ViewBuilder
     private func availabilityPill(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text(count, format: .number)
+            Group {
+                if count < 0 {
+                    Text(verbatim: "—")
+                } else {
+                    Text(count, format: .number)
+                }
+            }
                 .font(.title3.weight(.bold))
                 .foregroundStyle(color)
                 .monospacedDigit()
