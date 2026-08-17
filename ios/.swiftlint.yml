@@ -19,3 +19,5 @@ cyclomatic_complexity:
 
 excluded:
   - fastlane
+  - vendor
+  - build
