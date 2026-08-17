@@ -32,9 +32,12 @@ public final class Networks {
         let sortedNetworkList = Networks.sortedByName(self.list)
         
         for item in sortedNetworkList {
-            if let networkName = item.name {
-                let firstLetter = String(networkName[networkName.startIndex]).uppercased()
-                
+            // `first` covers both a missing name and an empty one. Subscripting
+            // startIndex instead would trap on "", taking down the whole picker
+            // because this runs from the didSet on `list`.
+            if let firstCharacter = item.name?.first {
+                let firstLetter = String(firstCharacter).uppercased()
+
                 if bySectionWorkingCopy[firstLetter] != nil {
                     var currentItemsInSection = bySectionWorkingCopy[firstLetter]
                     currentItemsInSection?.append(item)
