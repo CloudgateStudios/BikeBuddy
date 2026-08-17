@@ -180,15 +180,11 @@ struct MapView: View {
 
     private func updateTimestampLabel() {
         guard appViewModel.stationsLastUpdated.timeIntervalSince1970 > 0 else { return }
-        updatedAtText = String(localized: "MapUpdatedAtLabel", bundle: .bikeBuddyKit) + " "
-            + Self.timestampFormatter.string(from: appViewModel.stationsLastUpdated)
+        // `.shortened` follows the device's locale and 24-hour setting. A fixed
+        // "h:mm a" format forced 12-hour AM/PM on everyone.
+        let time = appViewModel.stationsLastUpdated.formatted(date: .omitted, time: .shortened)
+        updatedAtText = String(localized: "MapUpdatedAtLabel", bundle: .bikeBuddyKit) + " " + time
     }
-
-    private static let timestampFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
-        return formatter
-    }()
 }
 
 // MARK: - Station selection card
