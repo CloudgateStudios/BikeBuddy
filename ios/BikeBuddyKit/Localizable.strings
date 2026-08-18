@@ -55,6 +55,9 @@
 /* Message box content for when the user doesn't grant location access */
 "LocationAccessNotGrantedMessageContent" = "Please give us location access so that we can find the closest bike stations to your location. Go to the Settings app to change this later on.";
 
+/* Message on the final first time use screen, once setup is complete */
+"FTUFinishedMessageContent" = "You're all set! \r\n Bike Buddy is ready to find the stations closest to you.";
+
 /* Button text when user completes First Time Use */
 "FTUFinishedButton" = "Let's Start!";
 

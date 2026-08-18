@@ -31,7 +31,7 @@ struct FTUFinishedView: View {
             VStack(spacing: 20) {
                 FTUStepIndicator(currentStep: .finished)
 
-                Text("WelcomeMessageContent", bundle: .bikeBuddyKit)
+                Text("FTUFinishedMessageContent", bundle: .bikeBuddyKit)
                     .multilineTextAlignment(.center)
                     .font(.body)
                     .fixedSize(horizontal: false, vertical: true)
