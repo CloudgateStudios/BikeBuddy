@@ -30,15 +30,6 @@ class FTUViewModel {
     var locationAuthorizationStatus: CLAuthorizationStatus = .notDetermined
     var showLocationDeniedAlert: Bool = false
 
-    // Networks list
-    var isLoadingNetworks: Bool = false
-    var sortedNetworksList: [(key: String, value: [Network])] = []
-    var simpleNetworksList: [Network] = []
-    var isSearching: Bool = false
-    var searchText: String = "" {
-        didSet { applySearch() }
-    }
-
     private let locationManager = CLLocationManager()
     private var locationDelegate: FTULocationDelegate?
 
@@ -51,7 +42,9 @@ class FTUViewModel {
     func goToSelectNetwork() {
         currentStep = .selectNetwork
         path.append(.selectNetwork)
-        loadNetworksIfNeeded()
+        // NetworkPickerView loads the list from its own .task. Kicking off a second
+        // fetch here just raced it — neither saw Networks.sharedInstance.list
+        // populated yet, so both went to the network.
     }
 
     func goToFinished() {
@@ -97,25 +90,6 @@ class FTUViewModel {
 
     // MARK: - Networks
 
-    func loadNetworksIfNeeded() {
-        guard Networks.sharedInstance.list.isEmpty else {
-            sortedNetworksList = Networks.sharedInstance.networksBySection
-            return
-        }
-        isLoadingNetworks = true
-        Task {
-            defer { isLoadingNetworks = false }
-            do {
-                let networks = try await NetworksDataService.sharedInstance
-                    .getAllNetworkData(apiUrl: Constants.CityBikes.NetworksAPI)
-                Networks.sharedInstance.list = networks
-                sortedNetworksList = Networks.sharedInstance.networksBySection
-            } catch {
-                print("Failed to load networks: \(error.localizedDescription)")
-            }
-        }
-    }
-
     func selectNetwork(_ network: Network) {
         AppViewModel.shared.selectNetwork(network)
         AnalyticsService.sharedInstance.pegUserAction(
@@ -128,29 +102,6 @@ class FTUViewModel {
     func complete() {
         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.FTUCompleted)
         AppViewModel.shared.completeFirstTimeUse()
-    }
-
-    // MARK: - Search
-
-    private func applySearch() {
-        let text = searchText
-        if text.isEmpty {
-            isSearching = false
-            sortedNetworksList = Networks.sharedInstance.networksBySection
-        } else {
-            isSearching = true
-            simpleNetworksList = Networks.searchThroughList(searchText: text)
-        }
-    }
-
-    // MARK: - Network display helper
-
-    func locationString(for network: Network) -> String {
-        let city = network.location?.city ?? ""
-        let country = CountryCleanupService.sharedInstance.mapCountryCodeToString(
-            countryCode: network.location?.country ?? ""
-        )
-        return "\(city), \(country)"
     }
 }
 

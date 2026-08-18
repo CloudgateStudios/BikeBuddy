@@ -85,12 +85,30 @@ struct StationsListView: View {
 
     // MARK: - Empty state
 
+    /// Shows why the list is empty. `refreshStations` already builds a message for
+    /// both the failed-request and no-stations-returned cases, so prefer that over
+    /// the generic copy and give the user a way to retry without leaving the tab.
     private var emptyStateView: some View {
-        ContentUnavailableView(
-            String(localized: "StationsListNoDataTitle", bundle: .bikeBuddyKit),
-            systemImage: "bicycle",
-            description: Text("StationsListNoDataMessage", bundle: .bikeBuddyKit)
-        )
+        ContentUnavailableView {
+            Label {
+                Text("StationsListNoDataTitle", bundle: .bikeBuddyKit)
+            } icon: {
+                Image(systemName: "bicycle")
+            }
+        } description: {
+            if let loadError = appViewModel.stationsLoadError {
+                Text(loadError)
+            } else {
+                Text("StationsListNoDataMessage", bundle: .bikeBuddyKit)
+            }
+        } actions: {
+            Button {
+                Task { await appViewModel.refreshStations() }
+            } label: {
+                Text("GeneralButtonTryAgain", bundle: .bikeBuddyKit)
+            }
+            .buttonStyle(.borderedProminent)
+        }
     }
 }
 
@@ -151,9 +169,16 @@ struct StationRowView: View, Equatable {
         .padding(.vertical, 6)
     }
 
+    @ViewBuilder
     private func availabilityBadge(count: Int, icon: String, color: Color) -> some View {
         VStack(spacing: 3) {
-            Text(count, format: .number)
+            Group {
+                if count < 0 {
+                    Text(verbatim: "—")
+                } else {
+                    Text(count, format: .number)
+                }
+            }
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(color)
                 .monospacedDigit()

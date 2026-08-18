@@ -11,6 +11,9 @@
 /* Button label for OK */
 "GeneralButtonOK" = "OK";
 
+/* Button label to retry an action that failed, e.g. loading station data or the network list */
+"GeneralButtonTryAgain" = "Try Again";
+
 /* String that goes on the back of the distance from user string e.g. ~3.0 mi 'away' */
 "GeneralAwayLabel" = "away";
 
@@ -34,8 +37,8 @@
 /* Text in UI popup when the list of networks is loading */
 "SelectNetworkLoadingPopupMessage" = "Loading Available Networks";
 
-/* Title in the nav bar when asking for location access */
-"LocationAccessNavBarTitle" = "Location Access";
+/* Title shown when the list of networks could not be downloaded */
+"SelectNetworkLoadFailedTitle" = "Couldn't Load Networks";
 
 /* Message content when asking for location access */
 "LocationAccessMessageContent" = "In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.";
@@ -48,6 +51,9 @@
 
 /* Message box content for when the user doesn't grant location access */
 "LocationAccessNotGrantedMessageContent" = "Please give us location access so that we can find the closest bike stations to your location. Go to the Settings app to change this later on.";
+
+/* Message on the final first time use screen, once setup is complete */
+"FTUFinishedMessageContent" = "You're all set! \r\n Bike Buddy is ready to find the stations closest to you.";
 
 /* Button text when user completes First Time Use */
 "FTUFinishedButton" = "Let's Start!";
@@ -117,6 +123,15 @@
 /* Picker label for selecting the app theme */
 "SettingsThemeLabel" = "Theme";
 
+/* Theme option that follows the system light/dark setting */
+"SettingsThemeAutomatic" = "Automatic";
+
+/* Theme option that forces the light appearance */
+"SettingsThemeLight" = "Light";
+
+/* Theme option that forces the dark appearance */
+"SettingsThemeDark" = "Dark";
+
 /* Setting group label for general setting items */
 "SettingsGeneralGroup" = "General";
 
@@ -147,6 +162,12 @@
 /* Title in the nav bar of the Settings - About view */
 "SettingsAboutNavBarTitle" = "About";
 
+/* App version label. %@ is the marketing version, e.g. "Version 3.0.0" */
+"SettingsAboutVersionLabel" = "Version %@";
+
+/* App version label including the build number, e.g. "Version 3.0.0 (65)" */
+"SettingsAboutVersionWithBuildLabel" = "Version %1$@ (%2$@)";
+
 /* Link label for the privacy policy */
 "SettingsAboutPrivacyPolicyLabel" = "Privacy Policy";
 
@@ -168,9 +189,3 @@
 
 /* Used when creating the station detail share string. Only if an address is available. */
 "StationModelShareAddress" = "Address";
-
-/* Used in the Map Annotation string for the number of bikes that are available. */
-"StationModelAnnotationBikes" = "Bikes";
-
-/* Used in the Map Annotation string for the number of open docks that are available */
-"StationModelAnnotationOpenDocks" = "Open Docks";

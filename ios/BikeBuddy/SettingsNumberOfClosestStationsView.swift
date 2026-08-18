@@ -44,9 +44,12 @@ struct SettingsNumberOfClosestStationsView: View {
     }
 
     private func selectOption(_ option: Int) {
-        let oldValue = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.NumberOfClosestStations)
+        // Saved as an Int, so read it back as one. getSettingAsString goes through
+        // UserDefaults.string(forKey:), which returns nil for a number, making the
+        // old value always an empty string.
+        let oldValue = SettingsService.sharedInstance.getSettingAsInt(key: .numberOfClosestStations)
         let analyticAttr = [
-            Constants.AnalyticEventDetail.OldNumber: oldValue,
+            Constants.AnalyticEventDetail.OldNumber: String(oldValue),
             Constants.AnalyticEventDetail.NewNumber: String(option)
         ]
         AnalyticsService.sharedInstance.pegUserAction(
