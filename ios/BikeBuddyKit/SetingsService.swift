@@ -85,8 +85,11 @@ public final class SettingsService {
      Will completely wipe out all settings. There's no going back after calling this.
      */
     public func clearAllSettings() {
-        let appDomain: String = Bundle.main.bundleIdentifier!
-        defaults.removePersistentDomain(forName: appDomain as String)
+        // Every read and write goes through the app group suite, so that is the
+        // domain to remove. Passing Bundle.main.bundleIdentifier here cleared the
+        // standard app domain instead and left the settings the app actually reads
+        // completely untouched.
+        defaults.removePersistentDomain(forName: Constants.SettingsGeneral.ShareGroupName)
         defaults.synchronize()
     }
     
