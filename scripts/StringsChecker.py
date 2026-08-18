@@ -58,11 +58,26 @@ def key_in_string(s):
 
     return key
 
+# The app loads strings through the native SwiftUI bundle APIs:
+#
+#     Text("Key", bundle: .bikeBuddyKit)
+#     String(localized: "Key", bundle: .bikeBuddyKit)
+#
+# Both patterns require the literal to be followed by a `bundle:`/`localized:`
+# label so that non-localized calls such as Text(verbatim: "—"),
+# Text(station.stationName) or Text(String(option)) are not picked up.
+LOCALIZED_KEY_PATTERNS = [
+    re.compile(r'Text\(\s*"(.*?)"\s*,\s*bundle:'),
+    re.compile(r'String\(\s*localized:\s*"(.*?)"'),
+]
+
 def key_in_code_line(s):
-    #matches = re.findall("NSLocalizedString\(@?\"(.*?)\",", s);
-    matches = re.findall(r'StringsService.getStringFor\(key: @?"(.*?)"', s);
+    matches = []
+    for pattern in LOCALIZED_KEY_PATTERNS:
+        matches.extend(pattern.findall(s))
+
     if len(matches) == 0:
-        return None;
+        return None
 
     return matches
 
@@ -86,14 +101,31 @@ def guess_encoding(path):
 
     return enc
 
+def read_lines(path):
+    """Decoded lines of a source or .strings file, or None if it isn't text.
+
+    Xcode compiles Localizable.strings into a binary plist inside a built
+    .framework, so a stray build/ directory would otherwise blow the run up with
+    a UnicodeDecodeError partway through.
+    """
+    enc = guess_encoding(path)
+
+    try:
+        with open(path, encoding=enc) as f:
+            return f.readlines()
+    except (UnicodeDecodeError, UnicodeError):
+        return None
+
 def keys_set_in_strings_file_at_path(p):
 
-    enc = guess_encoding(p)
-    f = open(p, encoding=enc)
+    lines = read_lines(p)
+    if lines is None:
+        return None
+
     keys = set()
 
     line = 0
-    for s in f:
+    for s in lines:
         line += 1
 
         if s.strip().startswith('//'):
@@ -118,13 +150,14 @@ def keys_set_in_strings_file_at_path(p):
 
 def localized_strings_at_path(p):
 
-    enc = guess_encoding(p)
-    f = open(p, encoding=enc)
+    lines = read_lines(p)
+    if lines is None:
+        return set()
 
     keys = set()
 
     line = 0
-    for s in f:
+    for s in lines:
         line += 1
 
         if s.strip().startswith('//'):
@@ -162,18 +195,24 @@ def keys_set_in_code_at_path(path, exclude_dirs):
     return localized_strings
 
 def show_untranslated_keys_in_project(project_path, exclude_dirs):
+    """Returns the number of missing keys found, or -1 if the project path is bad."""
 
     if not project_path or not os.path.exists(project_path):
         error("", 0, "bad project path:%s" % project_path)
-        return
+        return -1
 
     keys_set_in_code = keys_set_in_code_at_path(project_path, exclude_dirs)
 
     strings_paths = paths_with_files_passing_test_at_path(lambda f:f == "Localizable.strings", project_path, exclude_dirs)
 
+    missing_key_count = 0
+
     for p in strings_paths:
 
         keys_set_in_strings = keys_set_in_strings_file_at_path(p)
+
+        if keys_set_in_strings is None:
+            continue
 
         missing_keys = keys_set_in_code - keys_set_in_strings
 
@@ -181,11 +220,14 @@ def show_untranslated_keys_in_project(project_path, exclude_dirs):
 
         language_code = language_code_in_strings_path(p)
 
+        # A key used in code with no entry in the .strings file ships as the raw
+        # key to the user, so it fails the run. An unused key is only untidy.
         for k in missing_keys:
+            missing_key_count += 1
             message = "missing key in %s: \"%s\"" % (language_code, k)
 
             for (p_, n) in m_paths_and_line_numbers_for_key[k]:
-                warning(p_, n, message)
+                error(p_, n, message)
 
         for k in unused_keys:
             message = "unused key in %s: \"%s\"" % (language_code, k)
@@ -193,11 +235,19 @@ def show_untranslated_keys_in_project(project_path, exclude_dirs):
             for (p, n) in s_paths_and_line_numbers_for_key[k]:
                 warning(p, n, message)
 
+    return missing_key_count
+
+# Directories that never hold first-party source: build output (which contains
+# Localizable.strings compiled to a binary plist) and vendored Ruby gems.
+DEFAULT_EXCLUDE_DIRS = ['.git', 'build', 'vendor', 'Pods', 'DerivedData']
+
 def main():
 
     p = optparse.OptionParser()
     p.add_option('--project-path', '-p', dest="project_path")
-    p.add_option('--exclude-dirs', '-e', type="string", default=[], dest="exclude_dirs")
+    p.add_option('--exclude-dirs', '-e', type="string", default="", dest="exclude_dirs",
+                 help="comma separated directory names to skip, added to the defaults: %s"
+                      % ",".join(DEFAULT_EXCLUDE_DIRS))
     options, arguments = p.parse_args()
 
     project_path = None
@@ -207,7 +257,15 @@ def main():
     elif options.project_path:
         project_path = options.project_path
 
-    show_untranslated_keys_in_project(project_path, options.exclude_dirs)
+    # optparse hands this back as one string, so split it. Comparing a directory
+    # name against a bare string with `in` would match on any substring.
+    extra_exclude_dirs = [d for d in options.exclude_dirs.split(",") if d]
+    exclude_dirs = set(DEFAULT_EXCLUDE_DIRS) | set(extra_exclude_dirs)
+
+    missing_key_count = show_untranslated_keys_in_project(project_path, exclude_dirs)
+
+    if missing_key_count != 0:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
