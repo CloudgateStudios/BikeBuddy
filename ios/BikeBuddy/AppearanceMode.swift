@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BikeBuddyKit
 
 enum AppearanceMode: Int, CaseIterable {
     case automatic = 0
@@ -22,9 +23,9 @@ enum AppearanceMode: Int, CaseIterable {
 
     var displayName: String {
         switch self {
-        case .automatic: return "Automatic"
-        case .light: return "Light"
-        case .dark: return "Dark"
+        case .automatic: return String(localized: "SettingsThemeAutomatic", bundle: .bikeBuddyKit)
+        case .light: return String(localized: "SettingsThemeLight", bundle: .bikeBuddyKit)
+        case .dark: return String(localized: "SettingsThemeDark", bundle: .bikeBuddyKit)
         }
     }
 }

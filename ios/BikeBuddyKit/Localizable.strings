@@ -126,6 +126,15 @@
 /* Picker label for selecting the app theme */
 "SettingsThemeLabel" = "Theme";
 
+/* Theme option that follows the system light/dark setting */
+"SettingsThemeAutomatic" = "Automatic";
+
+/* Theme option that forces the light appearance */
+"SettingsThemeLight" = "Light";
+
+/* Theme option that forces the dark appearance */
+"SettingsThemeDark" = "Dark";
+
 /* Setting group label for general setting items */
 "SettingsGeneralGroup" = "General";
 
@@ -155,6 +164,12 @@
 
 /* Title in the nav bar of the Settings - About view */
 "SettingsAboutNavBarTitle" = "About";
+
+/* App version label. %@ is the marketing version, e.g. "Version 3.0.0" */
+"SettingsAboutVersionLabel" = "Version %@";
+
+/* App version label including the build number, e.g. "Version 3.0.0 (65)" */
+"SettingsAboutVersionWithBuildLabel" = "Version %1$@ (%2$@)";
 
 /* Link label for the privacy policy */
 "SettingsAboutPrivacyPolicyLabel" = "Privacy Policy";
