@@ -124,9 +124,16 @@ struct StationDetailView: View {
 
     // MARK: - Availability card
 
+    @ViewBuilder
     private func availabilityCard(count: Int, icon: String, label: String, color: Color) -> some View {
         VStack(spacing: 8) {
-            Text(count, format: .number)
+            Group {
+                if count < 0 {
+                    Text(verbatim: "—")
+                } else {
+                    Text(count, format: .number)
+                }
+            }
                 .font(.system(size: 48, weight: .bold, design: .rounded))
                 .foregroundStyle(color)
                 .monospacedDigit()

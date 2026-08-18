@@ -18,6 +18,7 @@ struct NetworkPickerView: View {
     let onSelect: (Network) -> Void
 
     @State private var isLoading = false
+    @State private var loadError: String?
     @State private var sortedList: [(key: String, value: [Network])] = []
     @State private var filteredList: [Network] = []
     @State private var searchText = ""
@@ -29,12 +30,9 @@ struct NetworkPickerView: View {
     var body: some View {
         Group {
             if isLoading {
-                VStack(spacing: 16) {
-                    ProgressView()
-                        .scaleEffect(1.2)
-                    Text("SelectNetworkLoadingPopupMessage", bundle: .bikeBuddyKit)
-                        .foregroundStyle(.secondary)
-                }
+                loadingView
+            } else if let loadError, sortedList.isEmpty {
+                errorView(loadError)
             } else {
                 networkList
             }
@@ -42,6 +40,41 @@ struct NetworkPickerView: View {
         .searchable(text: $searchText, prompt: searchPrompt)
         .onChange(of: searchText) { _, text in applySearch(text) }
         .task { await loadNetworks() }
+    }
+
+    // MARK: - Loading state
+
+    private var loadingView: some View {
+        VStack(spacing: 16) {
+            ProgressView()
+                .scaleEffect(1.2)
+            Text("SelectNetworkLoadingPopupMessage", bundle: .bikeBuddyKit)
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    // MARK: - Error state
+
+    /// The picker is the only way past this step during first-time use, so a failed
+    /// download needs to say what went wrong and offer a retry rather than leaving
+    /// an empty list behind.
+    private func errorView(_ message: String) -> some View {
+        ContentUnavailableView {
+            Label {
+                Text("SelectNetworkLoadFailedTitle", bundle: .bikeBuddyKit)
+            } icon: {
+                Image(systemName: "exclamationmark.triangle")
+            }
+        } description: {
+            Text(message)
+        } actions: {
+            Button {
+                Task { await loadNetworks() }
+            } label: {
+                Text("GeneralButtonTryAgain", bundle: .bikeBuddyKit)
+            }
+            .buttonStyle(.borderedProminent)
+        }
     }
 
     // MARK: - Network list
@@ -88,6 +121,7 @@ struct NetworkPickerView: View {
             return
         }
         isLoading = true
+        loadError = nil
         defer { isLoading = false }
         do {
             let networks = try await NetworksDataService.sharedInstance
@@ -95,7 +129,7 @@ struct NetworkPickerView: View {
             Networks.sharedInstance.list = networks
             sortedList = Networks.sharedInstance.networksBySection
         } catch {
-            print("Failed to load networks: \(error.localizedDescription)")
+            loadError = error.localizedDescription
         }
     }
 
