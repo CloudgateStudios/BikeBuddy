@@ -40,9 +40,6 @@
 /* Title shown when the list of networks could not be downloaded */
 "SelectNetworkLoadFailedTitle" = "Couldn't Load Networks";
 
-/* Title in the nav bar when asking for location access */
-"LocationAccessNavBarTitle" = "Location Access";
-
 /* Message content when asking for location access */
 "LocationAccessMessageContent" = "In order to give distance estimates Bike Buddy needs to get your location. Hit the button below to grant that permission and move on.";
 
@@ -192,9 +189,3 @@
 
 /* Used when creating the station detail share string. Only if an address is available. */
 "StationModelShareAddress" = "Address";
-
-/* Used in the Map Annotation string for the number of bikes that are available. */
-"StationModelAnnotationBikes" = "Bikes";
-
-/* Used in the Map Annotation string for the number of open docks that are available */
-"StationModelAnnotationOpenDocks" = "Open Docks";

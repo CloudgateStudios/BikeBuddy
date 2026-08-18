@@ -20,7 +20,6 @@ public final class Networks {
         }
     }
     
-    public private(set) var indexListByNetwork = [String]()
     public private(set) var lastUpdated = NSDate()
     public private(set) var networksBySection = [(key: String, value: [Network])]()
     
