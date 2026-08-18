@@ -49,18 +49,18 @@ class AppViewModel {
         if isScreenshotRun {
             // Pre-seed Citi Bike NYC settings
             SettingsService.sharedInstance.saveSetting(
-                key: Constants.SettingsKey.BikeServiceName,
+                key: .bikeServiceName,
                 value: "Citi Bike" as AnyObject)
             SettingsService.sharedInstance.saveSetting(
-                key: Constants.SettingsKey.BikeServiceCityName,
+                key: .bikeServiceCityName,
                 value: "New York" as AnyObject)
             SettingsService.sharedInstance.saveSetting(
-                key: Constants.SettingsKey.BikeServiceAPIURL,
+                key: .bikeServiceAPIURL,
                 value: "https://api.citybik.es/v2/networks/citibike" as AnyObject)
             // Ensure NumberOfClosestStations is saved so getClosestStations doesn't
             // crash with an uninitialised (0) value on a fresh simulator.
             SettingsService.sharedInstance.saveSetting(
-                key: Constants.SettingsKey.NumberOfClosestStations,
+                key: .numberOfClosestStations,
                 value: Constants.SettingsDefault.NumberOfClosestStations as AnyObject)
             loadSettingsState()
 
@@ -73,7 +73,7 @@ class AppViewModel {
             return
         }
         // Fire FTU if the user has never completed setup
-        if !SettingsService.sharedInstance.getSettingAsBool(key: Constants.SettingsKey.FirstTimeUseCompleted) {
+        if !SettingsService.sharedInstance.getSettingAsBool(key: .firstTimeUseCompleted) {
             showFirstTimeUse = true
         }
     }
@@ -81,23 +81,23 @@ class AppViewModel {
     // MARK: - Settings helpers
 
     func loadSettingsState() {
-        bikeServiceName = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceName)
-        bikeServiceCityName = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceCityName)
-        numberOfClosestStations = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
+        bikeServiceName = SettingsService.sharedInstance.getSettingAsString(key: .bikeServiceName)
+        bikeServiceCityName = SettingsService.sharedInstance.getSettingAsString(key: .bikeServiceCityName)
+        numberOfClosestStations = SettingsService.sharedInstance.getSettingAsInt(key: .numberOfClosestStations)
         if numberOfClosestStations == 0 {
             numberOfClosestStations = Constants.SettingsDefault.NumberOfClosestStations
         }
-        let rawMode = SettingsService.sharedInstance.getSettingAsInt(key: Constants.SettingsKey.AppearanceMode)
+        let rawMode = SettingsService.sharedInstance.getSettingAsInt(key: .appearanceMode)
         appearanceMode = AppearanceMode(rawValue: rawMode) ?? .automatic
     }
 
     func selectAppearanceMode(_ mode: AppearanceMode) {
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.AppearanceMode, value: mode.rawValue as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: .appearanceMode, value: mode.rawValue as AnyObject)
         appearanceMode = mode
     }
 
     func completeFirstTimeUse() {
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.FirstTimeUseCompleted, value: true as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: .firstTimeUseCompleted, value: true as AnyObject)
         loadSettingsState()
         showFirstTimeUse = false
         // Refresh stations with newly selected network
@@ -107,14 +107,14 @@ class AppViewModel {
     func selectNetwork(_ network: Network) {
         guard let href = network.href else { return }
         let builtAPIURL = Constants.CityBikes.BaseAPIURL + href
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceCityName, value: (network.location?.city ?? "") as AnyObject)
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceName, value: (network.name ?? "") as AnyObject)
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.BikeServiceAPIURL, value: builtAPIURL as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: .bikeServiceCityName, value: (network.location?.city ?? "") as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: .bikeServiceName, value: (network.name ?? "") as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: .bikeServiceAPIURL, value: builtAPIURL as AnyObject)
         loadSettingsState()
     }
 
     func selectNumberOfClosestStations(_ count: Int) {
-        SettingsService.sharedInstance.saveSetting(key: Constants.SettingsKey.NumberOfClosestStations, value: count as AnyObject)
+        SettingsService.sharedInstance.saveSetting(key: .numberOfClosestStations, value: count as AnyObject)
         numberOfClosestStations = count
     }
 
@@ -127,7 +127,7 @@ class AppViewModel {
     }
 
     func refreshStations() async {
-        let apiUrl = SettingsService.sharedInstance.getSettingAsString(key: Constants.SettingsKey.BikeServiceAPIURL)
+        let apiUrl = SettingsService.sharedInstance.getSettingAsString(key: .bikeServiceAPIURL)
         guard !apiUrl.isEmpty else { return }
 
         isLoadingStations = true

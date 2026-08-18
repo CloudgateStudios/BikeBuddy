@@ -15,14 +15,20 @@ public struct Constants {
     }
 
     // MARK: - Settings Keys
-    public struct SettingsKey {
-        public static let SettingsVersionNumber = "SettingsVersionNumber"
-        public static let FirstTimeUseCompleted = "IsFirstTimeUseCompleted"
-        public static let BikeServiceAPIURL = "BikeServiceApiUrl"
-        public static let BikeServiceCityName = "BikeServiceCityName"
-        public static let BikeServiceName = "BikeServiceName"
-        public static let NumberOfClosestStations = "NumberOfClosestStations"
-        public static let AppearanceMode = "AppearanceMode"
+
+    /// The keys the app owns, and the only ones SettingsService will read or write.
+    ///
+    /// CaseIterable rather than a hand written list: the app group migration needs to
+    /// walk every key, and `allCases` is synthesized by the compiler, so adding a case
+    /// below is all it takes for the migration to pick it up.
+    public enum SettingsKey: String, CaseIterable {
+        case settingsVersionNumber = "SettingsVersionNumber"
+        case firstTimeUseCompleted = "IsFirstTimeUseCompleted"
+        case bikeServiceAPIURL = "BikeServiceApiUrl"
+        case bikeServiceCityName = "BikeServiceCityName"
+        case bikeServiceName = "BikeServiceName"
+        case numberOfClosestStations = "NumberOfClosestStations"
+        case appearanceMode = "AppearanceMode"
     }
 
     // MARK: - Settings Defaults

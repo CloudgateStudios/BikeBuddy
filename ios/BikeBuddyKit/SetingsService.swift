@@ -35,13 +35,23 @@ public final class SettingsService {
     private func checkForMigrationToShareGroup() {
         // If the user has anything they will always have a Number of Closest Stations item.
         // Becuase we start with the Share Group if it is zero it is either a clean install or a migration is needed
-        // Open up the basic defaults as a dictonary, loop through it and save it to the new Share Group
-        if self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) == 0 {
-            let allItems = UserDefaults.standard.dictionaryRepresentation()
-            
-            for item in allItems {
-                self.saveSetting(key: item.key, value: item.value as AnyObject)
+        guard self.getSettingAsInt(key: .numberOfClosestStations) == 0 else {
+            return
+        }
+
+        // Copy only the keys the app owns. dictionaryRepresentation() returns the
+        // whole standard domain, including the system globals layered underneath it
+        // (AppleLanguages, AppleLocale, AppleKeyboards and friends). Since the check
+        // above cannot tell a clean install from a 1.0/1.1 upgrade, every fresh
+        // install was writing that entire pile into the shared app group.
+        let standardDefaults = UserDefaults.standard
+
+        for key in Constants.SettingsKey.allCases {
+            guard let value = standardDefaults.object(forKey: key.rawValue) else {
+                continue
             }
+
+            self.saveSetting(key: key, value: value as AnyObject)
         }
     }
     
@@ -50,25 +60,25 @@ public final class SettingsService {
     */
     private func checkForSettingsVersionMigration() {
         // First migration was just getting to the Share Group and setting it to version 1. No data changes need yet.
-        if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 0 {
-            self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 1 as AnyObject)
+        if self.getSettingAsInt(key: .settingsVersionNumber) == 0 {
+            self.saveSetting(key: .settingsVersionNumber, value: 1 as AnyObject)
         }
         // If were doing an upgrade to 1.3 we need to clear out settings and have the user do a setup again so they are ready for the new CityBikes API usage
-        if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 1 {
+        if self.getSettingAsInt(key: .settingsVersionNumber) == 1 {
             // clearAllSettings() wipes FirstTimeUseCompleted, so AppViewModel's
             // settings-based check re-triggers the FTU flow on next launch — no
             // notification needed (the old StartFirstTimeUse post had no observers).
             self.clearAllSettings()
-            self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 2 as AnyObject)
+            self.saveSetting(key: .settingsVersionNumber, value: 2 as AnyObject)
         }
-        if self.getSettingAsInt(key: Constants.SettingsKey.SettingsVersionNumber) == 2 {
-            var numberOfStationsSetting = self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations)
+        if self.getSettingAsInt(key: .settingsVersionNumber) == 2 {
+            var numberOfStationsSetting = self.getSettingAsInt(key: .numberOfClosestStations)
             if numberOfStationsSetting < 5 {
                 numberOfStationsSetting = Constants.SettingsDefault.NumberOfClosestStations
             }
-            self.saveSetting(key: Constants.SettingsKey.NumberOfClosestStations, value: numberOfStationsSetting as AnyObject)
+            self.saveSetting(key: .numberOfClosestStations, value: numberOfStationsSetting as AnyObject)
             
-            self.saveSetting(key: Constants.SettingsKey.SettingsVersionNumber, value: 3 as AnyObject)
+            self.saveSetting(key: .settingsVersionNumber, value: 3 as AnyObject)
         }
     }
     
@@ -76,8 +86,8 @@ public final class SettingsService {
      All default values should be set here. Most values can be added at runtime but any values that are needed during the first execution should be set here.
      */
     private func setupDefaults() {
-        if self.getSettingAsInt(key: Constants.SettingsKey.NumberOfClosestStations) == 0 {
-            self.saveSetting(key: Constants.SettingsKey.NumberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations as AnyObject)
+        if self.getSettingAsInt(key: .numberOfClosestStations) == 0 {
+            self.saveSetting(key: .numberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations as AnyObject)
         }
     }
     
@@ -99,27 +109,27 @@ public final class SettingsService {
      - parameter key: The key that should be used to save the setting.
      - parameter value: The value that should be stored. This can be any object and saveSetting will determine the best way to save it
      */
-    public func saveSetting(key: String, value: AnyObject) {
+    public func saveSetting(key: Constants.SettingsKey, value: AnyObject) {
         // Need to determine type of object
         switch value {
         case is Int:
             if let intValue = value as? Int {
-                defaults.set(intValue, forKey: key as String)
+                defaults.set(intValue, forKey: key.rawValue)
             }
         case is Float:
             if let floatValue = value as? Float {
-                defaults.set(floatValue, forKey: key as String)
+                defaults.set(floatValue, forKey: key.rawValue)
             }
         case is Double:
             if let doubleValue = value as? Double {
-                defaults.set(doubleValue, forKey: key as String)
+                defaults.set(doubleValue, forKey: key.rawValue)
             }
         case is Bool:
             if let boolValue = value as? Bool {
-                defaults.set(boolValue, forKey: key as String)
+                defaults.set(boolValue, forKey: key.rawValue)
             }
         default:
-            defaults.set(value, forKey: key as String)
+            defaults.set(value, forKey: key.rawValue)
             
         }
         
@@ -133,8 +143,8 @@ public final class SettingsService {
      
      - returns: The value per the key given as a Bool
      */
-    public func getSettingAsBool(key: String) -> Bool {
-        return defaults.bool(forKey: key)
+    public func getSettingAsBool(key: Constants.SettingsKey) -> Bool {
+        return defaults.bool(forKey: key.rawValue)
     }
     
     /**
@@ -144,8 +154,8 @@ public final class SettingsService {
      
      - returns: The value per the key given as a String
      */
-    public func getSettingAsString(key: String) -> String {
-        if let result = defaults.string(forKey: key) {
+    public func getSettingAsString(key: Constants.SettingsKey) -> String {
+        if let result = defaults.string(forKey: key.rawValue) {
             return result
         } else {
             return ""
@@ -159,8 +169,8 @@ public final class SettingsService {
      
      - returns: The value per the key given as a Int
      */
-    public func getSettingAsInt(key: String) -> Int {
-        return defaults.integer(forKey: key)
+    public func getSettingAsInt(key: Constants.SettingsKey) -> Int {
+        return defaults.integer(forKey: key.rawValue)
     }
     
 }
