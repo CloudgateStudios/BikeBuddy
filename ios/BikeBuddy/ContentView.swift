@@ -32,5 +32,27 @@ struct ContentView: View {
                     await appViewModel.refreshStationsIfNeeded()
                 }
             }
+            // A Spotlight result opens the station directly rather than switching tabs,
+            // so it behaves the same whichever tab the app was last left on. The item
+            // stays nil until the station list can resolve the id, which is what makes
+            // a cold launch work: the sheet appears once the stations finish loading.
+            .sheet(item: spotlightStationBinding) { station in
+                NavigationStack {
+                    StationDetailView(station: station)
+                }
+            }
+    }
+
+    /// Presents the deep linked station, and clears the pending id when the sheet is
+    /// dismissed so the same result can be tapped again later.
+    private var spotlightStationBinding: Binding<Station?> {
+        Binding(
+            get: { appViewModel.showFirstTimeUse ? nil : appViewModel.deepLinkedStation },
+            set: { newValue in
+                if newValue == nil {
+                    appViewModel.clearPendingStation()
+                }
+            }
+        )
     }
 }

@@ -26,6 +26,27 @@ class AppViewModel {
 
     var showFirstTimeUse: Bool = false
 
+    /// Station id carried in by a Spotlight result, held until the station list can
+    /// resolve it. On a cold launch the activity arrives before any stations exist,
+    /// so this cannot be resolved to a Station at the point it is set.
+    var pendingStationID: String?
+
+    /// The station a Spotlight result asked for, once it is actually loadable.
+    /// Recomputes as `stations` fills in, so a cold launch resolves on its own.
+    var deepLinkedStation: Station? {
+        guard let pendingStationID else { return nil }
+
+        return stations.first { $0.id == pendingStationID }
+    }
+
+    func openStationFromSpotlight(id: String) {
+        pendingStationID = id
+    }
+
+    func clearPendingStation() {
+        pendingStationID = nil
+    }
+
     // MARK: - Settings (mirrored for reactive UI updates)
 
     var bikeServiceName: String = ""
