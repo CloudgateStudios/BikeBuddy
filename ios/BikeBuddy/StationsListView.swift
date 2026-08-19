@@ -37,13 +37,18 @@ struct StationsListView: View {
     // MARK: - Body
 
     var body: some View {
-        Group {
+        // Read the computed property once per evaluation and pass the result down.
+        // Touching it in both the isEmpty check and the ForEach ran the whole
+        // map-and-sort twice for every render.
+        let stations = closestStations
+
+        return Group {
             if appViewModel.isLoadingStations && appViewModel.stations.isEmpty {
                 loadingView
-            } else if closestStations.isEmpty {
+            } else if stations.isEmpty {
                 emptyStateView
             } else {
-                stationList
+                stationList(stations)
             }
         }
         .navigationTitle(Text("StationsListNavBarTitle", bundle: .bikeBuddyKit))
@@ -54,9 +59,9 @@ struct StationsListView: View {
 
     // MARK: - Station list
 
-    private var stationList: some View {
+    private func stationList(_ stations: [Station]) -> some View {
         List {
-            ForEach(closestStations, id: \.id) { station in
+            ForEach(stations, id: \.id) { station in
                 NavigationLink {
                     StationDetailView(station: station)
                 } label: {
