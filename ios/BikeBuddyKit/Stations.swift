@@ -35,16 +35,21 @@ public final class Stations {
 
         let usersLocation = CLLocation(latitude: latitude, longitude: longitude)
 
-        let stationsWithDistance = stations.map { station -> Station in
-            var stationCopy = station
-            let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
-            stationCopy.distanceFromUser = usersLocation.distance(from: stationLocation)
-            return stationCopy
+        // Measure into a parallel array and sort indices against it. Copying every
+        // Station just to carry a Double meant building a second copy of the whole
+        // list, then discarding all but `numberOfStations` of it. Only the stations
+        // actually returned are copied now.
+        let distances = stations.map { station in
+            usersLocation.distance(from: CLLocation(latitude: station.latitude, longitude: station.longitude))
         }
 
-        let sorted = stationsWithDistance.sorted { $0.distanceFromUser < $1.distanceFromUser }
+        let closestFirst = distances.indices.sorted { distances[$0] < distances[$1] }
 
-        return Array(sorted.prefix(numberOfStations))
+        return closestFirst.prefix(numberOfStations).map { index in
+            var station = stations[index]
+            station.distanceFromUser = distances[index]
+            return station
+        }
     }
     
     public static func shouldBeUpdated() -> Bool {
