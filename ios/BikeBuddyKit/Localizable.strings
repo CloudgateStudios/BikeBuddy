@@ -75,6 +75,15 @@
 /* Message content shown to the user when the station data could not be loaded */
 "StationsListNoDataMessage" = "The station data could not be loaded. Please check your Internet connection and try again.";
 
+/* Title of the notice shown above the station list when location access is unavailable */
+"StationsListLocationOffTitle" = "Not Sorted by Distance";
+
+/* Explains that without location access the stations shown are not the closest ones */
+"StationsListLocationOffMessage" = "Bike Buddy needs your location to work out which stations are closest. Without it these are just the first stations in the network.";
+
+/* Button that opens the iOS Settings app so the user can grant location access */
+"GeneralButtonOpenSettings" = "Open Settings";
+
 // MARK: - Map View
 
 /* Name of the tab bar item for the Map view */
