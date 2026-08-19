@@ -1,0 +1,46 @@
+# Dependabot version updates.
+#
+# Security updates are configured separately in the repository settings and do not
+# need an entry here — they are what opened the earlier faraday/jwt/addressable
+# bumps. This file adds routine updates on top of those.
+#
+# Two things to keep in mind when editing:
+#
+#   1. CI runs `amannn/action-semantic-pull-request`, which reads the PR *title* and
+#      fails it without a Conventional Commits type. The commit-message prefixes
+#      below are what keep Dependabot's titles passing, so they must stay within the
+#      types allowed in ci.yml (fix, feat, docs, refactor, test, ci, chore, revert).
+#   2. Every PR here triggers Build & Test on the xcode-27 runner, which is the
+#      slowest job in CI. The groups and the monthly cadence keep that in check by
+#      collapsing many bumps into a single PR.
+
+version: 2
+updates:
+  # GitHub Actions. Not covered by security updates at all, so without this the
+  # pinned versions in .github/workflows only ever move by hand — which is how an
+  # action gets deprecated out from under the build on a runtime EOL.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "ci"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  # Ruby tooling for fastlane. CVEs are already handled by security updates; this
+  # is for staying current between them.
+  - package-ecosystem: "bundler"
+    directory: "/ios"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    groups:
+      ruby:
+        patterns:
+          - "*"
