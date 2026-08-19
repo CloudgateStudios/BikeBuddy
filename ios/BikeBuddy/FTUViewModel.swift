@@ -25,9 +25,8 @@ class FTUViewModel {
         case finished
     }
 
-    var currentStep: Step = .welcome
+    /// Drives the NavigationStack in FTUWelcomeView. The steps the user has pushed.
     var path: [Step] = []
-    var locationAuthorizationStatus: CLAuthorizationStatus = .notDetermined
     var showLocationDeniedAlert: Bool = false
 
     private let locationManager = CLLocationManager()
@@ -35,12 +34,7 @@ class FTUViewModel {
 
     // MARK: - Navigation helpers
 
-    func goToLocationAccess() {
-        currentStep = .locationAccess
-    }
-
     func goToSelectNetwork() {
-        currentStep = .selectNetwork
         path.append(.selectNetwork)
         // NetworkPickerView loads the list from its own .task. Kicking off a second
         // fetch here just raced it — neither saw Networks.sharedInstance.list
@@ -48,7 +42,6 @@ class FTUViewModel {
     }
 
     func goToFinished() {
-        currentStep = .finished
         path.append(.finished)
     }
 
@@ -61,7 +54,6 @@ class FTUViewModel {
         case .notDetermined:
             let delegate = FTULocationDelegate { [weak self] newStatus in
                 Task { @MainActor in
-                    self?.locationAuthorizationStatus = newStatus
                     if newStatus == .authorizedWhenInUse || newStatus == .authorizedAlways {
                         AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessGranted)
                         self?.goToSelectNetwork()
