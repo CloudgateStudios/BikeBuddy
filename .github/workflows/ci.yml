@@ -101,6 +101,7 @@ jobs:
             -scheme "BikeBuddy" \
             -destination "platform=iOS Simulator,OS=27.0,name=iPhone 17" \
             -only-testing:BikeBuddyKitTests \
+            -only-testing:BikeBuddyAppTests \
             -resultBundlePath build/results.xcresult \
             CODE_SIGNING_ALLOWED=NO \
             | xcbeautify

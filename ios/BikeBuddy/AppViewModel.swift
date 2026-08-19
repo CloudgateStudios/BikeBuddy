@@ -39,7 +39,9 @@ class AppViewModel {
 
     // MARK: - Init
 
-    private init() {
+    // Not private so the test bundle can build isolated instances rather than
+    // mutating the shared one. Production code should still go through `shared`.
+    init() {
         loadSettingsState()
         // Support both launch argument (set by XCUITest launchArguments) and
         // environment variable (set by XCUITest launchEnvironment) so the mock-data
