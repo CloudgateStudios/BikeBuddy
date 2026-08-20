@@ -19,12 +19,53 @@ class AppViewModel {
 
     // MARK: - Observed State
 
-    var stations: [Station] = []
+    var stations: [Station] = [] {
+        didSet { discardUnresolvableSpotlightStation() }
+    }
     var isLoadingStations: Bool = false
     var stationsLoadError: String?
     var stationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
 
     var showFirstTimeUse: Bool = false
+
+    /// Station id carried in by a Spotlight result, held until the station list can
+    /// resolve it. On a cold launch the activity arrives before any stations exist,
+    /// so this cannot be resolved to a Station at the point it is set.
+    /// Only the two entry points below may set this. A direct write would skip the
+    /// invalidation that keeps an unresolvable id from surfacing later.
+    private(set) var pendingStationID: String?
+
+    /// The station a Spotlight result asked for, once it is actually loadable.
+    /// Recomputes as `stations` fills in, so a cold launch resolves on its own.
+    var deepLinkedStation: Station? {
+        guard let pendingStationID else { return nil }
+
+        return stations.first { $0.id == pendingStationID }
+    }
+
+    func openStationFromSpotlight(id: String) {
+        pendingStationID = id
+        discardUnresolvableSpotlightStation()
+    }
+
+    func clearPendingStation() {
+        pendingStationID = nil
+    }
+
+    /// A pending id is only worth holding while it might still resolve. Once a station
+    /// list has been seen that does not contain it, it never will for this network —
+    /// and keeping it would open the sheet unprompted if that network were selected
+    /// again later, long after the user tapped the result.
+    ///
+    /// An empty list means nothing has loaded yet, which is the cold launch case the
+    /// id exists to survive, so that is left alone.
+    private func discardUnresolvableSpotlightStation() {
+        guard let pendingStationID, !stations.isEmpty else { return }
+
+        if !stations.contains(where: { $0.id == pendingStationID }) {
+            self.pendingStationID = nil
+        }
+    }
 
     // MARK: - Settings (mirrored for reactive UI updates)
 
@@ -39,7 +80,9 @@ class AppViewModel {
 
     // MARK: - Init
 
-    private init() {
+    // Not private so the test bundle can build isolated instances rather than
+    // mutating the shared one. Production code should still go through `shared`.
+    init() {
         loadSettingsState()
         // Support both launch argument (set by XCUITest launchArguments) and
         // environment variable (set by XCUITest launchEnvironment) so the mock-data
@@ -130,12 +173,17 @@ class AppViewModel {
 
         do {
             let result = try await StationsDataService.sharedInstance.getAllStationData(apiUrl: apiUrl)
+
+            // Take the response either way. Keeping the previous stations on an empty
+            // one left the list populated, which both presented stations the feed no
+            // longer lists as current and hid the message below — the empty state is
+            // the only place it renders.
+            Stations.sharedInstance.list = result
+            stations = result
+            stationsLastUpdated = Date()
+
             if result.isEmpty {
                 stationsLoadError = String(localized: "GeneralNoStationsMessageContent", bundle: .bikeBuddyKit)
-            } else {
-                Stations.sharedInstance.list = result
-                stations = result
-                stationsLastUpdated = Date()
             }
         } catch {
             stationsLoadError = error.localizedDescription

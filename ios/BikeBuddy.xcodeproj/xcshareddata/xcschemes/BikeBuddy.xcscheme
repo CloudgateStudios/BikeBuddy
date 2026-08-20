@@ -22,15 +22,15 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
+            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C516EFFB1B0CE6CB00CF4468"
-               BuildableName = "BikeBuddyTests.xctest"
-               BlueprintName = "BikeBuddyTests"
+               BlueprintIdentifier = "D18F4B111D9225FC00972AF2"
+               BuildableName = "BikeBuddyKitTests.xctest"
+               BlueprintName = "BikeBuddyKitTests"
                ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D18F4B111D9225FC00972AF2"
-               BuildableName = "BikeBuddyKitTests.xctest"
-               BlueprintName = "BikeBuddyKitTests"
+               BlueprintIdentifier = "APPTESTS_TARGET"
+               BuildableName = "BikeBuddyAppTests.xctest"
+               BlueprintName = "BikeBuddyAppTests"
                ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -70,16 +70,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C516EFFB1B0CE6CB00CF4468"
-               BuildableName = "BikeBuddyTests.xctest"
-               BlueprintName = "BikeBuddyTests"
-               ReferencedContainer = "container:BikeBuddy.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "D1B6DD191C9EC3E3008543A3"
                BuildableName = "BikeBuddyUITests.xctest"
                BlueprintName = "BikeBuddyUITests"
@@ -93,6 +83,16 @@
                BlueprintIdentifier = "D18F4B111D9225FC00972AF2"
                BuildableName = "BikeBuddyKitTests.xctest"
                BlueprintName = "BikeBuddyKitTests"
+               ReferencedContainer = "container:BikeBuddy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "APPTESTS_TARGET"
+               BuildableName = "BikeBuddyAppTests.xctest"
+               BlueprintName = "BikeBuddyAppTests"
                ReferencedContainer = "container:BikeBuddy.xcodeproj">
             </BuildableReference>
          </TestableReference>

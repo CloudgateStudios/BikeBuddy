@@ -29,8 +29,13 @@ struct BikeBuddyApp: App {
 
     // MARK: - User Activity (Handoff / Spotlight)
 
+    /// StationDetailView donates each station it shows to Spotlight, so tapping one of
+    /// those results launches us with the activity below. The station id travels in
+    /// userInfo under the same key the donation writes, and is required there via
+    /// requiredUserInfoKeys, so anything reaching us has one.
     private func handleUserActivity(_ activity: NSUserActivity) {
-        // Handled inside ContentView / MapView via environment; no-op at app level.
-        _ = activity
+        guard let stationID = activity.userInfo?["stationId"] as? String else { return }
+
+        appViewModel.openStationFromSpotlight(id: stationID)
     }
 }
