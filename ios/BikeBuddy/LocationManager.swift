@@ -76,13 +76,4 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             }
         }
     }
-
-    nonisolated func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        Task { @MainActor in
-            self.authorizationStatus = status
-            if status == .authorizedWhenInUse || status == .authorizedAlways {
-                self.locationManager.startUpdatingLocation()
-            }
-        }
-    }
 }
