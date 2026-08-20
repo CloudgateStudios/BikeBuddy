@@ -34,6 +34,23 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         authorizationStatus = locationManager.authorizationStatus
     }
 
+    /// Prompts for permission. Only does anything while the status is notDetermined —
+    /// once the user has answered, iOS ignores this and Settings is the only route back.
+    func requestAuthorization() {
+        locationManager.requestWhenInUseAuthorization()
+    }
+
+    /// True when we cannot produce distances: either the user has said no, or they have
+    /// not been asked yet outside of first-time use.
+    var canProvideLocation: Bool {
+        switch authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            return true
+        default:
+            return false
+        }
+    }
+
     func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
     }
@@ -55,15 +72,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         Task { @MainActor in
             self.authorizationStatus = self.locationManager.authorizationStatus
             if self.authorizationStatus == .authorizedWhenInUse || self.authorizationStatus == .authorizedAlways {
-                self.locationManager.startUpdatingLocation()
-            }
-        }
-    }
-
-    nonisolated func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        Task { @MainActor in
-            self.authorizationStatus = status
-            if status == .authorizedWhenInUse || status == .authorizedAlways {
                 self.locationManager.startUpdatingLocation()
             }
         }

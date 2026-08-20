@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		APPTESTS_BF_VM /* AppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPTESTS_FR_VM /* AppViewModelTests.swift */; };
 		0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */; };
 		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
 		94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D804A88A7804454B80E585B /* ScreenshotTests.swift */; };
@@ -60,6 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		APPTESTS_PROXY /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C516EFE41B0CE6CB00CF4468;
+			remoteInfo = BikeBuddy;
+		};
 		D15701E1214D465300221726 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C516EFDD1B0CE6CB00CF4468 /* Project object */;
@@ -103,6 +111,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		APPTESTS_FR_VM /* AppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModelTests.swift; sourceTree = "<group>"; };
+		APPTESTS_PRODUCT /* BikeBuddyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeBuddyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
 		40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		8D804A88A7804454B80E585B /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
@@ -164,6 +174,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		APPTESTS_FRAMEWORKS /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C516EFE21B0CE6CB00CF4468 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
@@ -190,6 +207,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		APPTESTS_GROUP /* BikeBuddyAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				APPTESTS_FR_VM /* AppViewModelTests.swift */,
+			);
+			path = BikeBuddyAppTests;
+			sourceTree = "<group>";
+		};
 		C516EFDC1B0CE6CB00CF4468 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +222,7 @@
 				D1B6DD1B1C9EC3E3008543A3 /* BikeBuddyUITests */,
 				D18F4B0B1D9225FC00972AF2 /* BikeBuddyKit */,
 				D18F4B161D9225FC00972AF2 /* BikeBuddyKitTests */,
+				APPTESTS_GROUP /* BikeBuddyAppTests */,
 				C516EFE61B0CE6CB00CF4468 /* Products */,
 				E9678157F4E75F6588D67B18 /* Frameworks */,
 			);
@@ -209,6 +235,7 @@
 				D1B6DD1A1C9EC3E3008543A3 /* BikeBuddyUITests.xctest */,
 				D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */,
 				D18F4B121D9225FC00972AF2 /* BikeBuddyKitTests.xctest */,
+				APPTESTS_PRODUCT /* BikeBuddyAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -394,6 +421,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		APPTESTS_TARGET /* BikeBuddyAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = APPTESTS_CFG_LIST /* Build configuration list for PBXNativeTarget "BikeBuddyAppTests" */;
+			buildPhases = (
+				APPTESTS_SOURCES /* Sources */,
+				APPTESTS_FRAMEWORKS /* Frameworks */,
+				APPTESTS_RESOURCES /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				APPTESTS_DEP /* PBXTargetDependency */,
+			);
+			name = BikeBuddyAppTests;
+			productName = BikeBuddyAppTests;
+			productReference = APPTESTS_PRODUCT /* BikeBuddyAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C516EFE41B0CE6CB00CF4468 /* BikeBuddy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C516F0061B0CE6CB00CF4468 /* Build configuration list for PBXNativeTarget "BikeBuddy" */;
@@ -524,11 +569,19 @@
 				D1B6DD191C9EC3E3008543A3 /* BikeBuddyUITests */,
 				D18F4B091D9225FC00972AF2 /* BikeBuddyKit */,
 				D18F4B111D9225FC00972AF2 /* BikeBuddyKitTests */,
+				APPTESTS_TARGET /* BikeBuddyAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		APPTESTS_RESOURCES /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C516EFE31B0CE6CB00CF4468 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
@@ -557,6 +610,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		APPTESTS_SOURCES /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				APPTESTS_BF_VM /* AppViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C516EFE11B0CE6CB00CF4468 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
@@ -620,6 +681,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		APPTESTS_DEP /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C516EFE41B0CE6CB00CF4468 /* BikeBuddy */;
+			targetProxy = APPTESTS_PROXY /* PBXContainerItemProxy */;
+		};
 		D15701E2214D465300221726 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C516EFE41B0CE6CB00CF4468 /* BikeBuddy */;
@@ -643,6 +709,48 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		APPTESTS_CFG_DEBUG /* Debug configuration for PBXNativeTarget "BikeBuddyAppTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = KXYM4B4J29;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cloudgatestudios.BikeBuddyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BikeBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BikeBuddy";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+			};
+			name = Debug;
+		};
+		APPTESTS_CFG_RELEASE /* Release configuration for PBXNativeTarget "BikeBuddyAppTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = KXYM4B4J29;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cloudgatestudios.BikeBuddyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BikeBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BikeBuddy";
+			};
+			name = Release;
+		};
 		C516F0041B0CE6CB00CF4468 /* Debug configuration for PBXProject "BikeBuddy" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -989,6 +1097,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		APPTESTS_CFG_LIST /* Build configuration list for PBXNativeTarget "BikeBuddyAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				APPTESTS_CFG_DEBUG /* Debug configuration for PBXNativeTarget "BikeBuddyAppTests" */,
+				APPTESTS_CFG_RELEASE /* Release configuration for PBXNativeTarget "BikeBuddyAppTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
 		C516EFE01B0CE6CB00CF4468 /* Build configuration list for PBXProject "BikeBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
