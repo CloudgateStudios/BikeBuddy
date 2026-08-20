@@ -90,27 +90,22 @@ class AppViewModel {
         let isScreenshotRun = ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS")
             || ProcessInfo.processInfo.environment["UI_TESTING_SCREENSHOTS"] == "1"
         if isScreenshotRun {
-            // Pre-seed Citi Bike NYC settings
-            SettingsService.sharedInstance.saveSetting(
-                key: .bikeServiceName,
-                value: "Citi Bike" as AnyObject)
-            SettingsService.sharedInstance.saveSetting(
-                key: .bikeServiceCityName,
-                value: "New York" as AnyObject)
-            SettingsService.sharedInstance.saveSetting(
-                key: .bikeServiceAPIURL,
-                value: "https://api.citybik.es/v2/networks/citibike" as AnyObject)
-            // Ensure NumberOfClosestStations is saved so getClosestStations doesn't
-            // crash with an uninitialised (0) value on a fresh simulator.
-            SettingsService.sharedInstance.saveSetting(
-                key: .numberOfClosestStations,
-                value: Constants.SettingsDefault.NumberOfClosestStations as AnyObject)
-            loadSettingsState()
+            // Present Citi Bike NYC in memory only. These used to be written through
+            // SettingsService, which persists to the shared app group — so anything
+            // that set the flag on a device with real settings would overwrite the
+            // user's chosen network and station count. The views read these mirrored
+            // properties, not the store, so nothing needs persisting to render.
+            bikeServiceName = "Citi Bike"
+            bikeServiceCityName = "New York"
+            numberOfClosestStations = Constants.SettingsDefault.NumberOfClosestStations
 
-            // Pre-populate mock stations so screenshots are network-independent.
+            // Pre-populate mock stations so screenshots are network-independent. With
+            // no API URL persisted, a refresh now bails out instead of reaching for the
+            // live API and replacing these, which is what network-independent means.
             let mockStations = AppViewModel.makeMockStations()
             Stations.sharedInstance.list = mockStations
             stations = mockStations
+            stationsLastUpdated = Date()
 
             showFirstTimeUse = false
             return
