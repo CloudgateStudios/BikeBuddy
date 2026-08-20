@@ -178,12 +178,17 @@ class AppViewModel {
 
         do {
             let result = try await StationsDataService.sharedInstance.getAllStationData(apiUrl: apiUrl)
+
+            // Take the response either way. Keeping the previous stations on an empty
+            // one left the list populated, which both presented stations the feed no
+            // longer lists as current and hid the message below — the empty state is
+            // the only place it renders.
+            Stations.sharedInstance.list = result
+            stations = result
+            stationsLastUpdated = Date()
+
             if result.isEmpty {
                 stationsLoadError = String(localized: "GeneralNoStationsMessageContent", bundle: .bikeBuddyKit)
-            } else {
-                Stations.sharedInstance.list = result
-                stations = result
-                stationsLastUpdated = Date()
             }
         } catch {
             stationsLoadError = error.localizedDescription
