@@ -14,6 +14,7 @@ import BikeBuddyKit
 struct StationsListView: View {
 
     @Environment(AppViewModel.self) private var appViewModel
+    @Environment(\.openURL) private var openURL
     @State private var locationManager = LocationManager()
 
     private var closestStations: [Station] {
@@ -37,13 +38,18 @@ struct StationsListView: View {
     // MARK: - Body
 
     var body: some View {
-        Group {
+        // Read the computed property once per evaluation and pass the result down.
+        // Touching it in both the isEmpty check and the ForEach ran the whole
+        // map-and-sort twice for every render.
+        let stations = closestStations
+
+        return Group {
             if appViewModel.isLoadingStations && appViewModel.stations.isEmpty {
                 loadingView
-            } else if closestStations.isEmpty {
+            } else if stations.isEmpty {
                 emptyStateView
             } else {
-                stationList
+                stationList(stations)
             }
         }
         .navigationTitle(Text("StationsListNavBarTitle", bundle: .bikeBuddyKit))
@@ -54,9 +60,15 @@ struct StationsListView: View {
 
     // MARK: - Station list
 
-    private var stationList: some View {
+    private func stationList(_ stations: [Station]) -> some View {
         List {
-            ForEach(closestStations, id: \.id) { station in
+            if !locationManager.canProvideLocation {
+                Section {
+                    locationUnavailableNotice
+                }
+            }
+
+            ForEach(stations, id: \.id) { station in
                 NavigationLink {
                     StationDetailView(station: station)
                 } label: {
@@ -68,6 +80,52 @@ struct StationsListView: View {
         .listStyle(.insetGrouped)
         .refreshable {
             await appViewModel.refreshStations()
+        }
+    }
+
+    // MARK: - Location unavailable notice
+
+    /// Without a location fix getClosestStations cannot sort, and falls back to the
+    /// first N stations in feed order. That looks identical to a real result, so say
+    /// so plainly rather than presenting arbitrary stations as the closest ones.
+    private var locationUnavailableNotice: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label {
+                Text("StationsListLocationOffTitle", bundle: .bikeBuddyKit)
+                    .font(.subheadline.weight(.semibold))
+            } icon: {
+                Image(systemName: "location.slash")
+                    .foregroundStyle(.orange)
+            }
+
+            Text("StationsListLocationOffMessage", bundle: .bikeBuddyKit)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Button(action: resolveLocationAccess) {
+                // Before the user has answered we can still prompt in app. Afterwards
+                // iOS ignores the request, so the only way back is the Settings app.
+                if locationManager.authorizationStatus == .notDetermined {
+                    Text("LocationAccessButton", bundle: .bikeBuddyKit)
+                } else {
+                    Text("GeneralButtonOpenSettings", bundle: .bikeBuddyKit)
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.small)
+        }
+        .padding(.vertical, 4)
+    }
+
+    private func resolveLocationAccess() {
+        if locationManager.authorizationStatus == .notDetermined {
+            locationManager.requestAuthorization()
+            return
+        }
+
+        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+            openURL(settingsURL)
         }
     }
 

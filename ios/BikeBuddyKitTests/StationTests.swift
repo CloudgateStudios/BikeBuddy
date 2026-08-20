@@ -11,6 +11,11 @@ import Testing
 import CoreLocation
 @testable import BikeBuddyKit
 
+/// Also owns every test that mutates `Stations.sharedInstance`. That is a `@MainActor`
+/// singleton, so the suite is serialized — and because Swift Testing parallelizes
+/// *across* suites, all mutation of it has to stay in this one.
+@MainActor
+@Suite(.serialized)
 struct StationTests {
 
     private let testStationName = "Test Station Name"
@@ -107,6 +112,69 @@ struct StationTests {
         #expect(decoded.availableBikes == 0)
         #expect(decoded.hasKnownBikeCount)
         #expect(decoded.hasKnownDockCount)
+    }
+
+    // MARK: - Closest stations
+
+    private func station(id: String, latitude: Double, longitude: Double) -> Station {
+        var station = Station()
+        station.id = id
+        station.stationName = "Station \(id)"
+        station.latitude = latitude
+        station.longitude = longitude
+        return station
+    }
+
+    /// Roughly north-south along a Chicago street, so "closest" is unambiguous.
+    private func loadSpacedStations() {
+        Stations.sharedInstance.list = [
+            station(id: "far", latitude: 41.95, longitude: -87.65),
+            station(id: "near", latitude: 41.90, longitude: -87.65),
+            station(id: "middle", latitude: 41.92, longitude: -87.65)
+        ]
+    }
+
+    @Test func closestStationsAreSortedByDistance() {
+        loadSpacedStations()
+
+        let closest = Stations.getClosestStations(latitude: 41.90, longitude: -87.65, numberOfStations: 3)
+
+        #expect(closest.map { $0.id } == ["near", "middle", "far"])
+    }
+
+    @Test func closestStationsAreCappedAtTheRequestedCount() {
+        loadSpacedStations()
+
+        let closest = Stations.getClosestStations(latitude: 41.90, longitude: -87.65, numberOfStations: 2)
+
+        #expect(closest.map { $0.id } == ["near", "middle"])
+    }
+
+    /// The returned copies carry their measured distance; the shared list must not.
+    @Test func closestStationsCarryTheirDistanceWithoutMutatingTheList() {
+        loadSpacedStations()
+
+        let closest = Stations.getClosestStations(latitude: 41.90, longitude: -87.65, numberOfStations: 3)
+
+        #expect(closest[0].distanceFromUser < closest[1].distanceFromUser)
+        #expect(closest[1].distanceFromUser < closest[2].distanceFromUser)
+        #expect(Stations.sharedInstance.list.allSatisfy { $0.distanceFromUser == 0 })
+    }
+
+    /// With no fix there is nothing to sort by, so the list comes back in feed order.
+    @Test func closestStationsFallBackToFeedOrderWithoutALocation() {
+        loadSpacedStations()
+
+        let closest = Stations.getClosestStations(latitude: 0, longitude: 0, numberOfStations: 2)
+
+        #expect(closest.map { $0.id } == ["far", "near"])
+        #expect(closest.allSatisfy { $0.distanceFromUser == 0 })
+    }
+
+    @Test func closestStationsOnAnEmptyListReturnsEmpty() {
+        Stations.sharedInstance.list = []
+
+        #expect(Stations.getClosestStations(latitude: 41.90, longitude: -87.65, numberOfStations: 5).isEmpty)
     }
 
     // MARK: - Coordinate
