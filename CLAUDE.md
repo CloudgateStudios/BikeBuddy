@@ -59,8 +59,22 @@ the build) and `python3 scripts/StringsChecker.py -p .` for localization coverag
 
 ## Tests
 
-Unit tests live in `ios/BikeBuddyKitTests` and use **Swift Testing** (`@Test`, `#expect`,
-`#require`), not XCTest.
+Unit tests live in two bundles, both using **Swift Testing** (`@Test`, `#expect`,
+`#require`), not XCTest:
+
+- `ios/BikeBuddyKitTests` — tests `BikeBuddyKit`. Standalone, no host app.
+- `ios/BikeBuddyAppTests` — tests the `BikeBuddy` app target (`AppViewModel` and
+  friends). Hosted by the app via `TEST_HOST`/`BUNDLE_LOADER`, so it can
+  `@testable import BikeBuddy`. Its Info.plist is generated
+  (`GENERATE_INFOPLIST_FILE`) so `agvtool` and `version-bump.yml` have nothing extra
+  to track.
+
+CI runs both via two `-only-testing:` flags. Add a new bundle to that list or it will
+build but never gate anything.
+
+The two bundles run in separate processes, so a `@MainActor` singleton mutated in one
+does not contend with the other — but within a bundle the `.serialized` rule below
+still applies.
 
 The project has no synchronized file groups, so **a new test file must be added to
 `project.pbxproj` by hand** — a `PBXBuildFile`, a `PBXFileReference`, an entry in the
