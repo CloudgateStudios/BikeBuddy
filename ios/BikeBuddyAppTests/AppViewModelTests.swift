@@ -45,6 +45,89 @@ struct AppViewModelTests {
         return viewModel
     }
 
+    // MARK: - Spotlight deep link
+
+    private func namedStation(id: String) -> Station {
+        var station = Station()
+        station.id = id
+        station.stationName = "Station \(id)"
+        return station
+    }
+
+    @Test func noPendingIDResolvesToNoStation() {
+        let viewModel = AppViewModel()
+        viewModel.stations = [namedStation(id: "abc")]
+
+        #expect(viewModel.deepLinkedStation == nil)
+    }
+
+    @Test func aPendingIDResolvesToItsStation() {
+        let viewModel = AppViewModel()
+        viewModel.stations = [namedStation(id: "abc"), namedStation(id: "def")]
+
+        viewModel.openStationFromSpotlight(id: "def")
+
+        #expect(viewModel.deepLinkedStation?.id == "def")
+    }
+
+    /// The cold launch case the whole deferral exists for: the activity arrives before
+    /// any station has loaded, so it must resolve later rather than being dropped.
+    @Test func aPendingIDSurvivesUntilTheStationsLoad() {
+        let viewModel = AppViewModel()
+
+        viewModel.openStationFromSpotlight(id: "abc")
+
+        #expect(viewModel.deepLinkedStation == nil)
+        #expect(viewModel.pendingStationID == "abc")
+
+        viewModel.stations = [namedStation(id: "abc")]
+
+        #expect(viewModel.deepLinkedStation?.id == "abc")
+    }
+
+    /// Tapping a result for a station the current network does not have. Nothing should
+    /// open, and nothing should be left behind.
+    @Test func aPendingIDTheLoadedListCannotSatisfyIsDiscarded() {
+        let viewModel = AppViewModel()
+        viewModel.stations = [namedStation(id: "abc")]
+
+        viewModel.openStationFromSpotlight(id: "not-in-this-network")
+
+        #expect(viewModel.deepLinkedStation == nil)
+        #expect(viewModel.pendingStationID == nil)
+    }
+
+    /// Guards the surprise this is really about: an id held from a cold launch that the
+    /// loaded network turns out not to contain must not sit around and open the sheet
+    /// unprompted if that station later appears — e.g. on switching networks back.
+    @Test func anUnresolvedPendingIDDoesNotReappearLater() {
+        let viewModel = AppViewModel()
+
+        viewModel.openStationFromSpotlight(id: "abc")
+        #expect(viewModel.pendingStationID == "abc")
+
+        // A different network loads, without that station.
+        viewModel.stations = [namedStation(id: "other")]
+        #expect(viewModel.pendingStationID == nil)
+        #expect(viewModel.deepLinkedStation == nil)
+
+        // The original network comes back. The stale result must stay closed.
+        viewModel.stations = [namedStation(id: "abc")]
+        #expect(viewModel.deepLinkedStation == nil)
+    }
+
+    @Test func clearingThePendingStationClosesTheLink() {
+        let viewModel = AppViewModel()
+        viewModel.stations = [namedStation(id: "abc")]
+        viewModel.openStationFromSpotlight(id: "abc")
+        #expect(viewModel.deepLinkedStation?.id == "abc")
+
+        viewModel.clearPendingStation()
+
+        #expect(viewModel.deepLinkedStation == nil)
+        #expect(viewModel.pendingStationID == nil)
+    }
+
     // MARK: - Closest stations
 
     @Test func closestStationsAreOrderedByDistance() {

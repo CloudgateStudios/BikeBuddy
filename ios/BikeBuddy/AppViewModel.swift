@@ -19,7 +19,9 @@ class AppViewModel {
 
     // MARK: - Observed State
 
-    var stations: [Station] = []
+    var stations: [Station] = [] {
+        didSet { discardUnresolvableSpotlightStation() }
+    }
     var isLoadingStations: Bool = false
     var stationsLoadError: String?
     var stationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
@@ -29,7 +31,9 @@ class AppViewModel {
     /// Station id carried in by a Spotlight result, held until the station list can
     /// resolve it. On a cold launch the activity arrives before any stations exist,
     /// so this cannot be resolved to a Station at the point it is set.
-    var pendingStationID: String?
+    /// Only the two entry points below may set this. A direct write would skip the
+    /// invalidation that keeps an unresolvable id from surfacing later.
+    private(set) var pendingStationID: String?
 
     /// The station a Spotlight result asked for, once it is actually loadable.
     /// Recomputes as `stations` fills in, so a cold launch resolves on its own.
@@ -41,10 +45,26 @@ class AppViewModel {
 
     func openStationFromSpotlight(id: String) {
         pendingStationID = id
+        discardUnresolvableSpotlightStation()
     }
 
     func clearPendingStation() {
         pendingStationID = nil
+    }
+
+    /// A pending id is only worth holding while it might still resolve. Once a station
+    /// list has been seen that does not contain it, it never will for this network —
+    /// and keeping it would open the sheet unprompted if that network were selected
+    /// again later, long after the user tapped the result.
+    ///
+    /// An empty list means nothing has loaded yet, which is the cold launch case the
+    /// id exists to survive, so that is left alone.
+    private func discardUnresolvableSpotlightStation() {
+        guard let pendingStationID, !stations.isEmpty else { return }
+
+        if !stations.contains(where: { $0.id == pendingStationID }) {
+            self.pendingStationID = nil
+        }
     }
 
     // MARK: - Settings (mirrored for reactive UI updates)
