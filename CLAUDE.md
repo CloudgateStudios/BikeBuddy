@@ -36,19 +36,22 @@ Better to just open it correctly the first time.
 
 ## Building and testing
 
-**Requires Xcode 27 (currently beta.)** `IPHONEOS_DEPLOYMENT_TARGET` is 27.0 and
-`StationsListView` uses iOS-27-only SwiftUI APIs such as `toolbarMinimizationBehavior`,
-which the stable 26.x SDK cannot compile. Point `DEVELOPER_DIR` at the beta rather than
-running `xcode-select`, so the default toolchain stays untouched:
+**Requires Xcode 27.** `IPHONEOS_DEPLOYMENT_TARGET` is 27.0 and `StationsListView` uses
+iOS-27-only SwiftUI APIs such as `toolbarMinimizationBehavior`, which the 26.x SDK cannot
+compile. Xcode 27 is GA, so the default toolchain is all you need — no `DEVELOPER_DIR`
+override:
 
 ```bash
-DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer xcodebuild \
-  -project ios/BikeBuddy.xcodeproj -scheme BikeBuddy \
+xcodebuild -project ios/BikeBuddy.xcodeproj -scheme BikeBuddy \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
 ```
 
-CI handles this by running `build-and-test` on the `xcode-27` runner image while `lint`
-stays on `macos-26`. Revisit both once Xcode 27 reaches the GA image.
+CI is a different story, and the runner pins in `ci.yml` are still deliberate: GitHub's
+GA macOS image tops out at Xcode 26.6, so `build-and-test` stays on the dedicated
+`xcode-27` image (still flagged *preview*, and carrying only Xcode 27.0 — not 27.1),
+while `lint` stays on `macos-26`, which is fine because it only needs SwiftLint and
+Python. Revisit when `macos-latest` ships Xcode 27, or when `xcode-27` loses its preview
+badge — not before.
 
 Do not pipe `xcodebuild` into `tail` or `head` when you care about the result — the
 pipeline reports the *last* command's exit status, so a failed test run looks like a pass.
