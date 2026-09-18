@@ -35,10 +35,15 @@ private enum MapStyleOption: CaseIterable {
 
 // MARK: - Map view
 
-/// Full-screen map showing all bike stations as Markers.
+/// Full-screen map showing nearby bike stations, grouped into count bubbles where
+/// they are too close together to draw separately.
 /// Tapping a Marker slides up a glass selection card with availability counts.
 /// Tapping "Details" on the card presents StationDetailView as a sheet.
 struct MapView: View {
+
+    /// How wide a view to open on, once the user's location is known. Roughly a
+    /// walkable radius, which is the question this tab answers.
+    private static let initialSpanMeters: CLLocationDistance = 2000
 
     @Environment(AppViewModel.self) private var appViewModel
     @State private var locationManager = LocationManager()
@@ -50,6 +55,12 @@ struct MapView: View {
     @State private var sheetStation: Station?
     @State private var updatedAtText: String = ""
     @State private var mapStyleOption: MapStyleOption = .standard
+    /// What the map last told us it is showing. Clustering is computed against this
+    /// rather than the whole network, so the work scales with what is on screen.
+    @State private var visibleRegion: MKCoordinateRegion?
+    /// Set once the camera has been moved to the user, so a later location update
+    /// does not yank the map back while they are panning around.
+    @State private var hasCenteredOnUser = false
 
     /// Derived from selectedStationID; nil when nothing is selected. Populates
     /// `distanceFromUser` on the returned copy when the user's location is known
@@ -67,19 +78,63 @@ struct MapView: View {
         return station
     }
 
+    // MARK: - Clustering
+
+    /// The pins to draw right now. A network the size of Citi Bike NYC is ~2,400
+    /// stations; drawing a Marker each covered the city in overlapping pins and gave
+    /// the map nothing to say. Grouping by grid cell keeps the pin count bounded by
+    /// the grid rather than the network.
+    private var visibleClusters: [StationCluster] {
+        guard let clusteringRegion else { return [] }
+
+        return StationClustering.clusters(for: appViewModel.stations, in: clusteringRegion)
+    }
+
+    /// What to cluster against: the region the map reported, falling back to the area
+    /// we are about to centre on so the first frame is not empty while we wait for
+    /// the camera to settle.
+    private var clusteringRegion: MKCoordinateRegion? {
+        if let visibleRegion {
+            return visibleRegion
+        }
+
+        let coordinate = locationManager.coordinate
+        guard coordinate.latitude != 0 || coordinate.longitude != 0 else { return nil }
+
+        return MKCoordinateRegion(
+            center: coordinate,
+            latitudinalMeters: Self.initialSpanMeters,
+            longitudinalMeters: Self.initialSpanMeters
+        )
+    }
+
     // MARK: - Body
 
     var body: some View {
         Map(position: $cameraPosition, selection: $selectedStationID) {
             UserAnnotation()
-            ForEach(appViewModel.stations, id: \.id) { station in
-                Marker(station.stationName, coordinate: station.coordinate)
-                    .tint(Color("BikeBuddyBlue"))
-                    .tag(station.id)
+            ForEach(visibleClusters) { cluster in
+                if let station = cluster.singleStation {
+                    Marker(station.stationName, coordinate: station.coordinate)
+                        .tint(Color("BikeBuddyBlue"))
+                        .tag(station.id)
+                } else {
+                    // A group gets custom content rather than a Marker, because a
+                    // Marker cannot show the count that makes the bubble readable.
+                    Annotation("", coordinate: cluster.coordinate) {
+                        StationClusterBubble(count: cluster.count) {
+                            zoom(into: cluster)
+                        }
+                    }
+                    .annotationTitles(.hidden)
+                }
             }
         }
         .mapStyle(mapStyleOption.mapStyle)
         .ignoresSafeArea()
+        .onMapCameraChange(frequency: .onEnd) { context in
+            visibleRegion = context.region
+        }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomBar
         }
@@ -96,9 +151,13 @@ struct MapView: View {
         .onChange(of: appViewModel.stationsLastUpdated) { _, _ in
             updateTimestampLabel()
         }
+        .onChange(of: locationManager.coordinate.latitude) { _, _ in
+            centerOnUserIfNeeded()
+        }
         .onAppear {
             updateTimestampLabel()
             locationManager.startUpdatingLocation()
+            centerOnUserIfNeeded()
         }
         .onDisappear {
             locationManager.stopUpdatingLocation()
@@ -174,6 +233,36 @@ struct MapView: View {
         }
         .padding(.trailing, 10)
         .padding(.top, 8)
+    }
+
+    // MARK: - Camera
+
+    /// Opens on the user rather than on the whole network. `.automatic` frames every
+    /// annotation, which for a city-wide network meant the first thing the tab showed
+    /// was the entire service area — the one view in which no station is legible.
+    /// Runs once, so panning away is not undone by the next location update.
+    private func centerOnUserIfNeeded() {
+        guard !hasCenteredOnUser else { return }
+
+        let coordinate = locationManager.coordinate
+        guard coordinate.latitude != 0 || coordinate.longitude != 0 else { return }
+
+        hasCenteredOnUser = true
+        withAnimation {
+            cameraPosition = .region(MKCoordinateRegion(
+                center: coordinate,
+                latitudinalMeters: Self.initialSpanMeters,
+                longitudinalMeters: Self.initialSpanMeters
+            ))
+        }
+    }
+
+    /// Tightens onto the cluster's own footprint instead of stepping a fixed amount,
+    /// so one tap breaks the group apart whether it spans a block or half the city.
+    private func zoom(into cluster: StationCluster) {
+        withAnimation(.easeInOut(duration: 0.35)) {
+            cameraPosition = .region(cluster.boundingRegion)
+        }
     }
 
     // MARK: - Helpers
