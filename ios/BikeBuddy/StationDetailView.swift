@@ -161,7 +161,6 @@ struct StationDetailView: View {
     // MARK: - Actions
 
     private func openDirections() {
-        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GetDirectionsToStation)
         let mapItem = MKMapItem(
             location: CLLocation(latitude: station.latitude, longitude: station.longitude),
             address: nil

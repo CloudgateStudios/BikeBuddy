@@ -30,15 +30,6 @@ struct SettingsSelectNetworkView: View {
     // MARK: - Actions
 
     private func selectNetwork(_ network: Network) {
-        let oldNetwork = SettingsService.sharedInstance.getSettingAsString(key: .bikeServiceName)
-        let analyticAttr = [
-            Constants.AnalyticEventDetail.OldCity: oldNetwork,
-            Constants.AnalyticEventDetail.NewCity: network.name ?? ""
-        ]
-        AnalyticsService.sharedInstance.pegUserAction(
-            eventName: Constants.AnalyticEvent.SelectNewCity,
-            customAttributes: analyticAttr as [String: AnyObject]
-        )
         appViewModel.selectNetwork(network)
         Task { await appViewModel.refreshStations() }
         dismiss()

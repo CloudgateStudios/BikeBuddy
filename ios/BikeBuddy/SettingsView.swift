@@ -97,7 +97,6 @@ struct SettingsView: View {
     // MARK: - Actions
 
     private func goToAppStorePage() {
-        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.GoToAppStoreLink)
         if let url = URL(string: Constants.ExtneralURL.AppStoreDeepLink) {
             openURL(url)
         }

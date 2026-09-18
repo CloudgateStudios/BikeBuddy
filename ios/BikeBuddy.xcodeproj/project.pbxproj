@@ -23,7 +23,6 @@
 		D1BB010000000000000000C2 /* NetworkDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB010000000000000000C1 /* NetworkDecodingTests.swift */; };
 		D14D9C4D1DB83780008D0656 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D14D9C4C1DB83780008D0656 /* Localizable.strings */; };
 		D14D9C511DB839EC008D0656 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D9C501DB839EC008D0656 /* BundleExtension.swift */; };
-		D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */; };
 		D18F4B131D9225FC00972AF2 /* BikeBuddyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */; };
 		D18F4B1A1D9225FC00972AF2 /* BikeBuddyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D18F4B221D92261700972AF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18F4B211D92261700972AF2 /* Constants.swift */; };
@@ -133,7 +132,6 @@
 		D149580B1DB317AE0038A615 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D14D9C4C1DB83780008D0656 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D14D9C501DB839EC008D0656 /* BundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
-		D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D18F4B0A1D9225FC00972AF2 /* BikeBuddyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BikeBuddyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18F4B0C1D9225FC00972AF2 /* BikeBuddyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeBuddyKit.h; sourceTree = "<group>"; };
 		D18F4B0D1D9225FC00972AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 		D188CCEB1DA1E8680053BB78 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D188CCEC1DA1E88B0053BB78 /* AnalyticsService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -621,7 +618,6 @@
 		C516EFE11B0CE6CB00CF4468 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				D188CCED1DA1E88B0053BB78 /* AnalyticsService.swift in Sources */,
 				SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */,
 				SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */,
 				SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */,
