@@ -41,10 +41,6 @@ private enum MapStyleOption: CaseIterable {
 /// Tapping "Details" on the card presents StationDetailView as a sheet.
 struct MapView: View {
 
-    /// How wide a view to open on, once the user's location is known. Roughly a
-    /// walkable radius, which is the question this tab answers.
-    private static let initialSpanMeters: CLLocationDistance = 2000
-
     @Environment(AppViewModel.self) private var appViewModel
     @State private var locationManager = LocationManager()
 
@@ -103,8 +99,8 @@ struct MapView: View {
 
         return MKCoordinateRegion(
             center: coordinate,
-            latitudinalMeters: Self.initialSpanMeters,
-            longitudinalMeters: Self.initialSpanMeters
+            latitudinalMeters: StationClusteringTuning.initialSpanMeters,
+            longitudinalMeters: StationClusteringTuning.initialSpanMeters
         )
     }
 
@@ -251,8 +247,8 @@ struct MapView: View {
         withAnimation {
             cameraPosition = .region(MKCoordinateRegion(
                 center: coordinate,
-                latitudinalMeters: Self.initialSpanMeters,
-                longitudinalMeters: Self.initialSpanMeters
+                latitudinalMeters: StationClusteringTuning.initialSpanMeters,
+                longitudinalMeters: StationClusteringTuning.initialSpanMeters
             ))
         }
     }

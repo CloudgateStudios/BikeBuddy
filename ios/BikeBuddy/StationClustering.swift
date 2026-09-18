@@ -10,6 +10,42 @@ import MapKit
 import CoreLocation
 import BikeBuddyKit
 
+// MARK: - Tuning
+
+/// Every value worth adjusting after seeing the map against a real network, in one
+/// place. These stay in the app target rather than moving to BikeBuddyKit's
+/// Constants: they describe how this view draws pins, which is meaningless to the
+/// framework's models and services, and each only reads sensibly beside the
+/// algorithm it feeds.
+enum StationClusteringTuning {
+
+    /// Cells across the visible span. Ten keeps a cell near a pin's own width at any
+    /// zoom, which is what stops neighbours overlapping without collapsing a whole
+    /// neighbourhood into a single bubble. Raise it for more, smaller groups.
+    static let gridDivisions = 10.0
+
+    /// How far past the visible region to keep clustering, as a fraction of the span.
+    /// Stations just off screen still need grouping, or they pop in ungrouped as soon
+    /// as the user pans towards them.
+    static let offscreenMargin = 0.25
+
+    /// How much room to leave around a cluster's members when zooming to it. 1.0 would
+    /// put the outermost pins exactly on the edge.
+    static let zoomPadding = 1.6
+
+    /// Smallest span a zoom-to-cluster will produce, in degrees (~450m). Without a
+    /// floor, tapping a tight group jumps straight past street level.
+    static let minimumZoomSpan = 0.004
+
+    /// Span used when a cluster somehow has no coordinates to measure. Only reachable
+    /// if `stations` is empty, which the clustering never produces.
+    static let fallbackZoomMeters: CLLocationDistance = 500
+
+    /// How wide a view to open on once the user's location is known. Roughly a
+    /// walkable radius, which is the question the map tab answers.
+    static let initialSpanMeters: CLLocationDistance = 2000
+}
+
 // MARK: - Station clustering
 
 /// A group of stations that sit in the same grid cell at the current zoom, and so
@@ -33,8 +69,15 @@ struct StationCluster: Identifiable {
 
         guard let minLatitude = latitudes.min(), let maxLatitude = latitudes.max(),
               let minLongitude = longitudes.min(), let maxLongitude = longitudes.max() else {
-            return MKCoordinateRegion(center: coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+            return MKCoordinateRegion(
+                center: coordinate,
+                latitudinalMeters: StationClusteringTuning.fallbackZoomMeters,
+                longitudinalMeters: StationClusteringTuning.fallbackZoomMeters
+            )
         }
+
+        let padding = StationClusteringTuning.zoomPadding
+        let minimumSpan = StationClusteringTuning.minimumZoomSpan
 
         return MKCoordinateRegion(
             center: CLLocationCoordinate2D(
@@ -42,24 +85,14 @@ struct StationCluster: Identifiable {
                 longitude: (minLongitude + maxLongitude) / 2
             ),
             span: MKCoordinateSpan(
-                latitudeDelta: max((maxLatitude - minLatitude) * 1.6, 0.004),
-                longitudeDelta: max((maxLongitude - minLongitude) * 1.6, 0.004)
+                latitudeDelta: max((maxLatitude - minLatitude) * padding, minimumSpan),
+                longitudeDelta: max((maxLongitude - minLongitude) * padding, minimumSpan)
             )
         )
     }
 }
 
 enum StationClustering {
-
-    /// Cells across the visible span. Ten keeps a cell near a pin's own width at any
-    /// zoom, which is what stops neighbours overlapping without collapsing a whole
-    /// neighbourhood into a single bubble.
-    private static let gridDivisions = 10.0
-
-    /// How far past the visible region to keep clustering, as a fraction of the span.
-    /// Stations just off screen still need grouping, or they pop in ungrouped as soon
-    /// as the user pans towards them.
-    private static let margin = 0.25
 
     /// Buckets stations into grid cells sized off the visible span, so the pin count
     /// is bounded by the grid rather than by how big the network is.
@@ -68,13 +101,15 @@ enum StationClustering {
         let longitudeSpan = region.span.longitudeDelta
         guard latitudeSpan > 0, longitudeSpan > 0 else { return [] }
 
-        let minLatitude = region.center.latitude - latitudeSpan * (0.5 + margin)
-        let maxLatitude = region.center.latitude + latitudeSpan * (0.5 + margin)
-        let minLongitude = region.center.longitude - longitudeSpan * (0.5 + margin)
-        let maxLongitude = region.center.longitude + longitudeSpan * (0.5 + margin)
+        let halfSpan = 0.5 + StationClusteringTuning.offscreenMargin
 
-        let cellLatitude = latitudeSpan / gridDivisions
-        let cellLongitude = longitudeSpan / gridDivisions
+        let minLatitude = region.center.latitude - latitudeSpan * halfSpan
+        let maxLatitude = region.center.latitude + latitudeSpan * halfSpan
+        let minLongitude = region.center.longitude - longitudeSpan * halfSpan
+        let maxLongitude = region.center.longitude + longitudeSpan * halfSpan
+
+        let cellLatitude = latitudeSpan / StationClusteringTuning.gridDivisions
+        let cellLongitude = longitudeSpan / StationClusteringTuning.gridDivisions
 
         var buckets = [String: [Station]]()
 
