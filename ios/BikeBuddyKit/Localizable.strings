@@ -95,6 +95,10 @@
 /* Button label on the map station selection card to open the full station detail */
 "MapStationDetailsButton" = "Details";
 
+/* VoiceOver label for a map pin standing in for several stations too close together
+   to draw separately. %d is how many stations it covers. Tapping it zooms in. */
+"MapStationClusterLabel" = "%d stations, zoom in to see each one";
+
 // MARK: - Station Detail
 
 /* Button text when the user wants directions to the station they are currently viewing */
