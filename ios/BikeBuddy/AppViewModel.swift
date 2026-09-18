@@ -78,18 +78,23 @@ class AppViewModel {
 
     static let shared = AppViewModel()
 
+    /// True when fastlane's screenshot run launched us. XCUITest can pass the flag as a
+    /// launch argument or as a launch environment value depending on build
+    /// configuration, and ScreenshotTests sets both — so the test lives here rather
+    /// than at each call site, where the two copies had already drifted to checking
+    /// different halves of it.
+    static var isScreenshotRun: Bool {
+        ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS")
+            || ProcessInfo.processInfo.environment["UI_TESTING_SCREENSHOTS"] == "1"
+    }
+
     // MARK: - Init
 
     // Not private so the test bundle can build isolated instances rather than
     // mutating the shared one. Production code should still go through `shared`.
     init() {
         loadSettingsState()
-        // Support both launch argument (set by XCUITest launchArguments) and
-        // environment variable (set by XCUITest launchEnvironment) so the mock-data
-        // path works in Debug AND Release build configurations.
-        let isScreenshotRun = ProcessInfo.processInfo.arguments.contains("UI_TESTING_SCREENSHOTS")
-            || ProcessInfo.processInfo.environment["UI_TESTING_SCREENSHOTS"] == "1"
-        if isScreenshotRun {
+        if AppViewModel.isScreenshotRun {
             // Present Citi Bike NYC in memory only. These used to be written through
             // SettingsService, which persists to the shared app group — so anything
             // that set the flag on a device with real settings would overwrite the

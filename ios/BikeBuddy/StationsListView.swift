@@ -23,8 +23,7 @@ struct StationsListView: View {
         // In the screenshot run the simulator has no real GPS fix (both values are 0).
         // Fall back to the centre of the mock-station cluster (Midtown Manhattan) so
         // getClosestStations returns the pre-seeded stations instead of an empty list.
-        if lat == 0.0 && lon == 0.0 &&
-            ProcessInfo.processInfo.environment["UI_TESTING_SCREENSHOTS"] == "1" {
+        if lat == 0.0 && lon == 0.0 && AppViewModel.isScreenshotRun {
             lat = 40.7563
             lon = -73.9914
         }
