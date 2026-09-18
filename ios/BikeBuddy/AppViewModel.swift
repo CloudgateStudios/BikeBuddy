@@ -20,13 +20,55 @@ class AppViewModel {
     // MARK: - Observed State
 
     var stations: [Station] = [] {
-        didSet { discardUnresolvableSpotlightStation() }
+        didSet {
+            discardUnresolvableSpotlightStation()
+            discardUnresolvableSelection()
+        }
     }
     var isLoadingStations: Bool = false
     var stationsLoadError: String?
     var stationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
 
     var showFirstTimeUse: Bool = false
+
+    // MARK: - Selection
+
+    /// The station the whole app is currently pointed at. One value drives three
+    /// things that used to track their own: the highlighted sidebar row, the selected
+    /// map pin, and whichever surface is showing that station's detail.
+    ///
+    /// Held as an id rather than a `Station` so it survives a refresh — a stored copy
+    /// would keep showing the counts the feed had when it was tapped.
+    var selectedStationID: String?
+
+    /// `selectedStationID` resolved against the current list, settable so it can back
+    /// a sidebar selection directly.
+    var selectedStation: Station? {
+        get { station(withID: selectedStationID) }
+        set { selectedStationID = newValue?.id }
+    }
+
+    /// Where the user is, as last reported by whichever view is watching location.
+    ///
+    /// Held here because the station list is not the only thing that needs it: the map
+    /// card and the pushed detail both show "N feet away", and they resolve a station
+    /// from an id rather than taking a row's already-measured copy.
+    var userCoordinate = CLLocationCoordinate2D()
+
+    /// A station by id, carrying its distance from the user when that is known.
+    ///
+    /// `Station` is a value type, so the returned copy can be annotated without
+    /// touching the shared list.
+    func station(withID id: String?) -> Station? {
+        guard let id, var station = stations.first(where: { $0.id == id }) else { return nil }
+
+        if userCoordinate.latitude != 0 || userCoordinate.longitude != 0 {
+            let user = CLLocation(latitude: userCoordinate.latitude, longitude: userCoordinate.longitude)
+            let here = CLLocation(latitude: station.latitude, longitude: station.longitude)
+            station.distanceFromUser = user.distance(from: here)
+        }
+        return station
+    }
 
     /// Station id carried in by a Spotlight result, held until the station list can
     /// resolve it. On a cold launch the activity arrives before any stations exist,
@@ -64,6 +106,17 @@ class AppViewModel {
 
         if !stations.contains(where: { $0.id == pendingStationID }) {
             self.pendingStationID = nil
+        }
+    }
+
+    /// Switching networks replaces the whole list, so a selection made against the old
+    /// one names a station that no longer exists. Left alone it would keep a sidebar
+    /// row highlighted and a detail pane populated from a network the user has left.
+    private func discardUnresolvableSelection() {
+        guard let selectedStationID, !stations.isEmpty else { return }
+
+        if !stations.contains(where: { $0.id == selectedStationID }) {
+            self.selectedStationID = nil
         }
     }
 
@@ -153,6 +206,12 @@ class AppViewModel {
 
     func selectNetwork(_ network: Network) {
         guard let href = network.href else { return }
+
+        // Clear before the fetch rather than after it. `stations` is not replaced until
+        // the request returns, so waiting for `didSet` would leave the old station
+        // selected and its detail on screen for the whole round trip.
+        selectedStationID = nil
+
         let builtAPIURL = Constants.CityBikes.BaseAPIURL + href
         SettingsService.sharedInstance.saveSetting(key: .bikeServiceCityName, value: (network.location?.city ?? "") as AnyObject)
         SettingsService.sharedInstance.saveSetting(key: .bikeServiceName, value: (network.name ?? "") as AnyObject)

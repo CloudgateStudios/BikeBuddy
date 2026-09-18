@@ -1,8 +1,7 @@
 //
-//  StationsListView.swift
+//  StationsPanel.swift
 //  Bike Buddy
 //
-//  Created by SwiftUI migration.
 //  Copyright © 2026 Cloudgate Studios. All rights reserved.
 //
 
@@ -10,16 +9,24 @@ import SwiftUI
 import CoreLocation
 import BikeBuddyKit
 
-/// Shows the closest N bike stations to the user's current location.
-struct StationsListView: View {
+/// The closest stations, with the network and settings controls above them.
+///
+/// One component serves both layouts: it is the sidebar of the iPad split view and the
+/// content of the iPhone sheet. Only how a row is chosen differs, and that is a real
+/// platform difference rather than a style choice — see `stationList`.
+struct StationsPanel: View {
 
     @Environment(AppViewModel.self) private var appViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.openURL) private var openURL
+
     @State private var locationManager = LocationManager()
+    @State private var isShowingSettings = false
+    @State private var isShowingNetworkPicker = false
+
+    private var isRegularWidth: Bool { horizontalSizeClass == .regular }
 
     private var closestStations: [Station] {
-        // The screenshot run's stand-in coordinate comes from LocationManager now, so
-        // this needs no special case: it sorts by whatever the manager reports.
         appViewModel.closestStations(
             latitude: locationManager.coordinate.latitude,
             longitude: locationManager.coordinate.longitude
@@ -38,7 +45,12 @@ struct StationsListView: View {
         // map-and-sort twice for every render.
         let stations = closestStations
 
-        return Group {
+        return VStack(spacing: 0) {
+            StationsPanelHeader(
+                onOpenNetworkPicker: { isShowingNetworkPicker = true },
+                onOpenSettings: { isShowingSettings = true }
+            )
+
             if appViewModel.isLoadingStations && appViewModel.stations.isEmpty {
                 loadingView
             } else if stations.isEmpty {
@@ -47,35 +59,77 @@ struct StationsListView: View {
                 stationList(stations)
             }
         }
-        .navigationTitle(Text("StationsListNavBarTitle", bundle: .bikeBuddyKit))
-        .toolbarMinimizationBehavior(.onScrollDown, for: .navigationBar)
+        .background(Color(.systemGroupedBackground))
         .onAppear { locationManager.startUpdatingLocation() }
         .onDisappear { locationManager.stopUpdatingLocation() }
+        .onChange(of: locationManager.coordinate.latitude, initial: true) { _, _ in
+            appViewModel.userCoordinate = locationManager.coordinate
+        }
+        .sheet(isPresented: $isShowingSettings) {
+            SettingsSheet()
+        }
+        .sheet(isPresented: $isShowingNetworkPicker) {
+            NavigationStack {
+                SettingsSelectNetworkView()
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button {
+                                isShowingNetworkPicker = false
+                            } label: {
+                                Text("GeneralButtonCancel", bundle: .bikeBuddyKit)
+                            }
+                        }
+                    }
+            }
+        }
     }
 
     // MARK: - Station list
 
+    /// Regular width uses `List(selection:)`, which a split view sidebar turns into
+    /// tap-to-select and — the part worth having — arrow-key navigation with a
+    /// keyboard attached. In a plain stack that same selection only responds in edit
+    /// mode, so compact drives the identical state from a button instead.
+    @ViewBuilder
     private func stationList(_ stations: [Station]) -> some View {
-        List {
-            if !locationManager.canProvideLocation {
-                Section {
-                    locationUnavailableNotice
-                }
-            }
+        @Bindable var appViewModel = appViewModel
 
-            ForEach(stations, id: \.id) { station in
-                NavigationLink {
-                    StationDetailView(station: station)
-                } label: {
+        if isRegularWidth {
+            List(selection: $appViewModel.selectedStationID) {
+                locationSection
+                ForEach(stations, id: \.id) { station in
                     StationRowView(station: station, showDistance: locationIsKnown)
                         .equatable()
+                        .tag(station.id)
                 }
             }
+            .listStyle(.sidebar)
+            .refreshable { await appViewModel.refreshStations() }
+        } else {
+            List {
+                locationSection
+                ForEach(stations, id: \.id) { station in
+                    Button {
+                        appViewModel.selectedStationID = station.id
+                    } label: {
+                        StationRowView(station: station, showDistance: locationIsKnown)
+                            .equatable()
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .listStyle(.plain)
+            .refreshable { await appViewModel.refreshStations() }
         }
-        .listStyle(.insetGrouped)
-        .adaptiveListWidth()
-        .refreshable {
-            await appViewModel.refreshStations()
+    }
+
+    @ViewBuilder
+    private var locationSection: some View {
+        if !locationManager.canProvideLocation {
+            Section {
+                locationUnavailableNotice
+            }
         }
     }
 
@@ -135,13 +189,14 @@ struct StationsListView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     // MARK: - Empty state
 
     /// Shows why the list is empty. `refreshStations` already builds a message for
     /// both the failed-request and no-stations-returned cases, so prefer that over
-    /// the generic copy and give the user a way to retry without leaving the tab.
+    /// the generic copy and give the user a way to retry without leaving the panel.
     private var emptyStateView: some View {
         ContentUnavailableView {
             Label {
@@ -162,6 +217,97 @@ struct StationsListView: View {
                 Text("GeneralButtonTryAgain", bundle: .bikeBuddyKit)
             }
             .buttonStyle(.borderedProminent)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+// MARK: - Panel header
+
+/// Title, the current network, and the way in to settings.
+///
+/// The network reads as a control rather than a caption because it is the one setting
+/// that changes with any regularity — a bike share app is only useful once it is
+/// pointed at the right city, and travelling is exactly when that changes. The gear
+/// keeps everything that does not.
+private struct StationsPanelHeader: View {
+
+    /// The screenshot run drives both of these, and neither has stable visible text to
+    /// find it by — the network button is named after whatever network is selected,
+    /// and the gear is an icon.
+    static let networkButtonIdentifier = "stationsPanel.networkButton"
+    static let settingsButtonIdentifier = "stationsPanel.settingsButton"
+
+    @Environment(AppViewModel.self) private var appViewModel
+
+    let onOpenNetworkPicker: () -> Void
+    let onOpenSettings: () -> Void
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("StationsListNavBarTitle", bundle: .bikeBuddyKit)
+                    .font(.title2.weight(.bold))
+
+                Button(action: onOpenNetworkPicker) {
+                    HStack(spacing: 4) {
+                        Text(appViewModel.bikeServiceName)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.primary)
+                        if !appViewModel.bikeServiceCityName.isEmpty {
+                            Text(appViewModel.bikeServiceCityName)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        Image(systemName: "chevron.down")
+                            .font(.caption2.weight(.semibold))
+                            .foregroundStyle(.secondary)
+                    }
+                    .lineLimit(1)
+                }
+                .buttonStyle(.plain)
+                .hoverEffect(.highlight)
+                .accessibilityLabel(Text("StationsPanelChangeNetworkAccessibilityLabel", bundle: .bikeBuddyKit))
+                .accessibilityIdentifier(StationsPanelHeader.networkButtonIdentifier)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            Button(action: onOpenSettings) {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 17, weight: .medium))
+                    .frame(width: 38, height: 38)
+                    .background(Color(.secondarySystemFill), in: Circle())
+            }
+            .buttonStyle(.plain)
+            .hoverEffect(.lift)
+            .accessibilityLabel(Text("SettingsNavBarTitle", bundle: .bikeBuddyKit))
+            .accessibilityIdentifier(StationsPanelHeader.settingsButtonIdentifier)
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 8)
+        .padding(.bottom, 12)
+    }
+}
+
+// MARK: - Settings sheet
+
+/// Settings is a sheet now rather than a tab, so it needs its own stack and a way out.
+struct SettingsSheet: View {
+
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            SettingsView()
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("GeneralButtonDone", bundle: .bikeBuddyKit)
+                        }
+                    }
+                }
         }
     }
 }

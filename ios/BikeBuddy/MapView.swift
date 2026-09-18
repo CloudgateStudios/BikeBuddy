@@ -42,13 +42,10 @@ private enum MapStyleOption: CaseIterable {
 struct MapView: View {
 
     @Environment(AppViewModel.self) private var appViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var locationManager = LocationManager()
 
-    /// Tag value from the Map selection binding — matches Station.id (String).
     @State private var cameraPosition: MapCameraPosition = .automatic
-    @State private var selectedStationID: String?
-    /// Set to present the detail sheet; cleared automatically on dismiss.
-    @State private var sheetStation: Station?
     @State private var updatedAtText: String = ""
     @State private var mapStyleOption: MapStyleOption = .standard
     /// What the map last told us it is showing. Clustering is computed against this
@@ -62,16 +59,7 @@ struct MapView: View {
     /// `distanceFromUser` on the returned copy when the user's location is known
     /// (Station is a value type, so this doesn't mutate the shared list).
     private var selectedStation: Station? {
-        guard let id = selectedStationID,
-              var station = appViewModel.stations.first(where: { $0.id == id }) else { return nil }
-
-        let coordinate = locationManager.coordinate
-        if coordinate.latitude != 0 || coordinate.longitude != 0 {
-            let userLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
-            station.distanceFromUser = userLocation.distance(from: stationLocation)
-        }
-        return station
+        appViewModel.selectedStation
     }
 
     // MARK: - Clustering
@@ -107,7 +95,24 @@ struct MapView: View {
     // MARK: - Body
 
     var body: some View {
-        Map(position: $cameraPosition, selection: $selectedStationID) {
+        @Bindable var appViewModel = appViewModel
+
+        // The controls sit in a ZStack beside the map rather than in an overlay on it.
+        // An overlay inherits the map's bounds, and the map deliberately ignores the
+        // safe area — which put the location button under the status bar now that
+        // there is no tab bar or nav bar holding it down.
+        return ZStack(alignment: .topTrailing) {
+            map
+            mapControls
+        }
+        .toolbar(.hidden, for: .navigationBar)
+    }
+
+    @ViewBuilder
+    private var map: some View {
+        @Bindable var appViewModel = appViewModel
+
+        Map(position: $cameraPosition, selection: $appViewModel.selectedStationID) {
             UserAnnotation()
             ForEach(visibleClusters) { cluster in
                 if let station = cluster.singleStation {
@@ -127,28 +132,26 @@ struct MapView: View {
             }
         }
         .mapStyle(mapStyleOption.mapStyle)
-        .ignoresSafeArea()
+        // Vertical only. Ignoring every edge let the map — and with it the selection
+        // card riding in its bottom safe-area inset — run underneath the split view's
+        // sidebar, which quietly ate the left half of the card.
+        .ignoresSafeArea(edges: .vertical)
         .onMapCameraChange(frequency: .onEnd) { context in
             visibleRegion = context.region
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomBar
         }
-        .overlay(alignment: .topTrailing) {
-            mapControls
-        }
-        .toolbar(.hidden, for: .navigationBar)
-        .sheet(item: $sheetStation) { station in
-            NavigationStack {
-                StationDetailView(station: station)
-            }
-            .presentationDetents([.medium, .large])
-        }
         .onChange(of: appViewModel.stationsLastUpdated) { _, _ in
             updateTimestampLabel()
         }
         .onChange(of: locationManager.coordinate.latitude) { _, _ in
             centerOnUserIfNeeded()
+        }
+        // A station chosen in the panel is usually off screen, or under the sheet.
+        // Without this the sidebar and the map would disagree about what is selected.
+        .onChange(of: appViewModel.selectedStationID) { _, _ in
+            centerOnSelection()
         }
         .onAppear {
             updateTimestampLabel()
@@ -164,12 +167,16 @@ struct MapView: View {
 
     /// Shows the selection card when a station is active, otherwise the
     /// last-updated timestamp.  Both swap with an animated transition.
+    ///
+    /// Only regular width draws the card. On a phone the stations sheet sits over this
+    /// exact spot and pushes the selected station's detail itself, so a card here
+    /// would be a second copy of the same thing, hidden behind the first.
     @ViewBuilder
     private var bottomBar: some View {
         ZStack {
-            if let station = selectedStation {
+            if let station = selectedStation, horizontalSizeClass == .regular {
                 StationSelectionCard(station: station) {
-                    sheetStation = station
+                    appViewModel.selectedStationID = nil
                 }
                 .adaptiveContentWidth()
                 .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -186,7 +193,7 @@ struct MapView: View {
                     .padding(.bottom, 8)
             }
         }
-        .animation(.spring(response: 0.35, dampingFraction: 0.85), value: selectedStationID)
+        .animation(.spring(response: 0.35, dampingFraction: 0.85), value: appViewModel.selectedStationID)
     }
 
     // MARK: - Map controls overlay
@@ -250,6 +257,22 @@ struct MapView: View {
         }
     }
 
+    /// Brings the chosen station into view without changing how far in the user is
+    /// zoomed — re-framing the map under them because they tapped a row in a list is
+    /// disorienting, and they may have zoomed deliberately.
+    private func centerOnSelection() {
+        guard let station = appViewModel.selectedStation else { return }
+
+        let span = visibleRegion?.span ?? MKCoordinateSpan(
+            latitudeDelta: StationClusteringTuning.minimumZoomSpan,
+            longitudeDelta: StationClusteringTuning.minimumZoomSpan
+        )
+
+        withAnimation(.easeInOut(duration: 0.35)) {
+            cameraPosition = .region(MKCoordinateRegion(center: station.coordinate, span: span))
+        }
+    }
+
     /// Tightens onto the cluster's own footprint instead of stepping a fixed amount,
     /// so one tap breaks the group apart whether it spans a block or half the city.
     private func zoom(into cluster: StationCluster) {
@@ -266,88 +289,5 @@ struct MapView: View {
         // "h:mm a" format forced 12-hour AM/PM on everyone.
         let time = appViewModel.stationsLastUpdated.formatted(date: .omitted, time: .shortened)
         updatedAtText = String(localized: "MapUpdatedAtLabel", bundle: .bikeBuddyKit) + " " + time
-    }
-}
-
-// MARK: - Station selection card
-
-/// Glass card that slides up when a Marker is selected.
-/// Shows the station name, bike/dock availability with colour-coded counts,
-/// optional distance, and a Details button.
-private struct StationSelectionCard: View {
-
-    let station: Station
-    let onViewDetail: () -> Void
-
-    var body: some View {
-        HStack(alignment: .center, spacing: 12) {
-
-            // Name + distance
-            VStack(alignment: .leading, spacing: 4) {
-                Text(station.stationName)
-                    .font(.headline)
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                if station.distanceFromUser > 0 {
-                    Text(station.approximateDistanceAwayFromUser + " " + String(localized: "GeneralAwayLabel", bundle: .bikeBuddyKit))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            // Bikes count
-            availabilityPill(
-                count: station.availableBikes,
-                icon: "bicycle",
-                color: bikesColor
-            )
-
-            // Docks count
-            availabilityPill(
-                count: station.availableDocks,
-                icon: "arrow.down.to.line",
-                color: .primary
-            )
-
-            Button(action: onViewDetail) {
-                Text("MapStationDetailsButton", bundle: .bikeBuddyKit)
-            }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
-                .hoverEffect(.lift)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 14)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
-    }
-
-    @ViewBuilder
-    private func availabilityPill(count: Int, icon: String, color: Color) -> some View {
-        VStack(spacing: 3) {
-            Group {
-                if count < 0 {
-                    Text(verbatim: "—")
-                } else {
-                    Text(count, format: .number)
-                }
-            }
-                .font(.title3.weight(.bold))
-                .foregroundStyle(color)
-                .monospacedDigit()
-            Image(systemName: icon)
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-        }
-        .frame(minWidth: 34)
-    }
-
-    private var bikesColor: Color {
-        switch station.availableBikes {
-        case 0:     .red
-        case 1...2: .orange
-        default:    .primary
-        }
     }
 }
