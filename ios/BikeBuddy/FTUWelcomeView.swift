@@ -42,6 +42,14 @@ private struct WelcomeStep: View {
 
     @Environment(FTUViewModel.self) private var ftuViewModel
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private var artworkMaxWidth: CGFloat {
+        horizontalSizeClass == .regular
+            ? AdaptiveLayout.onboardingArtworkMaxWidthRegular
+            : AdaptiveLayout.onboardingArtworkMaxWidthCompact
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             Spacer()
@@ -49,7 +57,7 @@ private struct WelcomeStep: View {
             Image("ftuWelcome")
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: 260)
+                .frame(maxWidth: artworkMaxWidth)
                 .padding(.horizontal, 32)
 
             Spacer()
@@ -72,9 +80,14 @@ private struct WelcomeStep: View {
             .padding(24)
             .frame(maxWidth: .infinity)
             .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+            .adaptiveContentWidth(AdaptiveLayout.onboardingCardMaxWidth)
             .padding(.horizontal, 16)
             .padding(.bottom, 32)
         }
+        // The stack is only as wide as its widest child, and every child is now width
+        // capped — without this the gradient would paint a column down the middle of
+        // the screen instead of behind the whole step.
+        .frame(maxWidth: .infinity)
         .background(
             LinearGradient(
                 colors: [Color("BikeBuddyBlue").opacity(0.14), Color(.systemBackground)],

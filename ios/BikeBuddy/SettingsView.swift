@@ -82,6 +82,7 @@ struct SettingsView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .adaptiveListWidth()
         .navigationTitle(Text("SettingsNavBarTitle", bundle: .bikeBuddyKit))
     }
 

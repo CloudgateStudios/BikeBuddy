@@ -36,6 +36,7 @@ struct SettingsNumberOfClosestStationsView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .adaptiveListWidth()
         .navigationTitle(Text("SettingsSelectNumOfClosestStationsNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
     }

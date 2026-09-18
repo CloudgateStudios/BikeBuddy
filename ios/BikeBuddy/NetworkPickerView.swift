@@ -22,6 +22,7 @@ struct NetworkPickerView: View {
     @State private var sortedList: [(key: String, value: [Network])] = []
     @State private var filteredList: [Network] = []
     @State private var searchText = ""
+    @FocusState private var searchIsFocused: Bool
 
     private var isSearching: Bool { !searchText.isEmpty }
 
@@ -38,8 +39,30 @@ struct NetworkPickerView: View {
             }
         }
         .searchable(text: $searchText, prompt: searchPrompt)
+        .searchFocused($searchIsFocused)
+        .background(findShortcut)
         .onChange(of: searchText) { _, text in applySearch(text) }
         .task { await loadNetworks() }
+    }
+
+    // MARK: - Hardware keyboard
+
+    /// ⌘F puts the cursor in the search field, which is the Find shortcut anyone with
+    /// a keyboard attached will reach for first on a list this long — there are
+    /// roughly 700 networks, so scrolling to one is not a real option.
+    ///
+    /// Carried by an invisible button because a keyboard shortcut needs a control to
+    /// hang off. `.opacity(0)` rather than `.hidden()`: hidden views are removed from
+    /// layout, and a removed button registers no shortcut.
+    private var findShortcut: some View {
+        Button {
+            searchIsFocused = true
+        } label: {
+            EmptyView()
+        }
+        .keyboardShortcut("f", modifiers: .command)
+        .opacity(0)
+        .accessibilityHidden(true)
     }
 
     // MARK: - Loading state
@@ -97,6 +120,9 @@ struct NetworkPickerView: View {
             }
         }
         .listStyle(.plain)
+        // A plain list draws rows straight onto the system background, so that is the
+        // colour the capped column has to blend into.
+        .adaptiveListWidth(background: Color(.systemBackground))
     }
 
     private func networkRow(_ network: Network) -> some View {
@@ -110,7 +136,12 @@ struct NetworkPickerView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+            // The label is two short lines against a wide row, so without this the
+            // pointer only finds the text rather than the row it selects.
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
         }
+        .hoverEffect(.highlight)
     }
 
     // MARK: - Data loading
