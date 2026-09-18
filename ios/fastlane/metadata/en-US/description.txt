@@ -1,50 +1,61 @@
-Quickly find bike sharing stations in cities across the world. With support for 458 networks across 45 countries you will only need one application for all your bike sharing needs.
+Quickly find bike sharing stations in cities across the world. With support for more than 800 networks across over 50 countries you will only need one application for all your bike sharing needs.
+
+See the stations closest to you with how many bikes and docks each one has right now, find any station on the map, and get walking directions in a tap.
 
 Currently Bike Share Buddy has support for networks in the following countries:
 
 - Argentina
 - Austria
-- Australia
 - Belgium
-- Bulgaria
+- Bosnia & Herzegovina
 - Brazil
 - Canada
 - Chile
+- China mainland
 - Colombia
+- Costa Rica
 - Croatia
 - Cyprus
-- Denmark
+- Czechia
+- Ecuador
 - Finland
 - France
 - Georgia
 - Germany
 - Greece
 - Hungary
+- India
 - Ireland
+- Israel
 - Italy
 - Japan
 - Kazakhstan
+- Kosovo
+- Latvia
 - Lithuania
 - Luxembourg
-- Latvia
+- Malaysia
+- Malta
 - Mexico
+- Monaco
+- Montenegro
 - Netherlands
-- New Zealand
 - Norway
+- Peru
 - Poland
+- Portugal
 - Romania
-- Russia
 - Saudi Arabia
+- Slovakia
 - Slovenia
+- South Korea
 - Spain
 - Sweden
 - Switzerland
-- Thailand
-- Turkey
 - Taiwan
+- Türkiye
 - United Arab Emirates
-- United States
 - United Kingdom
-- Uruguay
+- United States
 
 Please note that not all networks in all countries listed may be supported.

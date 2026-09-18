@@ -51,7 +51,13 @@ public struct Constants {
     // MARK: - External URL's
     public struct ExtneralURL {
         public static let AppStoreDeepLink = "https://itunes.apple.com/us/app/apple-store/id998776734?mt=8"
-        public static let PrivacyPolicyURL = "https://cloudgatestudios.com/bikebuddy/privacy"
+        // The URL the App Store listing points at, per
+        // fastlane/metadata/en-US/privacy_url.txt. The app used to link somewhere else
+        // entirely, which had never been published and returned 404 from Settings ›
+        // About › Privacy Policy. Keep the two in step: App Review opens the listing's
+        // copy, and a reviewer following the in-app link expects to land in the same
+        // place.
+        public static let PrivacyPolicyURL = "https://cloudgatestudios.com/BikeShareBuddy/privacyPolicy.htm"
     }
 
     // MARK: - Custom NSError Definitions
