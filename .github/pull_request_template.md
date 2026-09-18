@@ -16,7 +16,7 @@
 
 ## Testing
 
-<!-- How this was verified. Note if `DEVELOPER_DIR` had to point at Xcode beta 27. -->
+<!-- How this was verified. Note the Xcode version if it was not the default toolchain. -->
 
 ## Reviewer notes
 
