@@ -18,16 +18,12 @@ struct StationsListView: View {
     @State private var locationManager = LocationManager()
 
     private var closestStations: [Station] {
-        var lat = locationManager.coordinate.latitude
-        var lon = locationManager.coordinate.longitude
-        // In the screenshot run the simulator has no real GPS fix (both values are 0).
-        // Fall back to the centre of the mock-station cluster (Midtown Manhattan) so
-        // getClosestStations returns the pre-seeded stations instead of an empty list.
-        if lat == 0.0 && lon == 0.0 && AppViewModel.isScreenshotRun {
-            lat = 40.7563
-            lon = -73.9914
-        }
-        return appViewModel.closestStations(latitude: lat, longitude: lon)
+        // The screenshot run's stand-in coordinate comes from LocationManager now, so
+        // this needs no special case: it sorts by whatever the manager reports.
+        appViewModel.closestStations(
+            latitude: locationManager.coordinate.latitude,
+            longitude: locationManager.coordinate.longitude
+        )
     }
 
     private var locationIsKnown: Bool {

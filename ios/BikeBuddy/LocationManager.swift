@@ -21,8 +21,21 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     private let locationManager = CLLocationManager()
 
+    /// Under the screenshot run CoreLocation is stood down entirely and a fixed
+    /// coordinate stands in for it. Starting updates with nothing granted would put an
+    /// authorization prompt on top of the very screen being captured.
+    private var isScreenshotRun = false
+
     override init() {
         super.init()
+
+        if AppViewModel.isScreenshotRun {
+            isScreenshotRun = true
+            coordinate = ScreenshotMockData.coordinate
+            authorizationStatus = .authorizedWhenInUse
+            return
+        }
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         // Only publish a new coordinate when the user moves at least 10 metres.
@@ -37,6 +50,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     /// Prompts for permission. Only does anything while the status is notDetermined —
     /// once the user has answered, iOS ignores this and Settings is the only route back.
     func requestAuthorization() {
+        guard !isScreenshotRun else { return }
+
         locationManager.requestWhenInUseAuthorization()
     }
 
@@ -52,10 +67,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func startUpdatingLocation() {
+        guard !isScreenshotRun else { return }
+
         locationManager.startUpdatingLocation()
     }
 
     func stopUpdatingLocation() {
+        guard !isScreenshotRun else { return }
+
         locationManager.stopUpdatingLocation()
     }
 

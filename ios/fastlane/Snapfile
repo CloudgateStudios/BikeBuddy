@@ -1,8 +1,12 @@
+# One capture device per App Store Connect family, each chosen because its native
+# resolution IS the slot it feeds — so nothing inside the device frame is ever
+# upscaled. iPhone 17 Pro Max is 1320x2868 (the 6.9" slot) and iPad Pro 13-inch is
+# 2064x2752 (the 13" slot). Apple scales within a family, and AppStore/compose.py
+# renders any other slot at its own resolution, so extra capture devices would only
+# be more to re-shoot on every change.
 devices([
   "iPhone 17 Pro Max",
-  "iPhone Air",
-  "iPad Pro 13-inch (M5)",
-  "iPad Pro 11-inch (M5)"
+  "iPad Pro 13-inch (M5)"
 ])
 
 languages(["en-US"])
