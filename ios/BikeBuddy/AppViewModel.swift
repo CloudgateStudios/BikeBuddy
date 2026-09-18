@@ -107,10 +107,10 @@ class AppViewModel {
             // Pre-populate mock stations so screenshots are network-independent. With
             // no API URL persisted, a refresh now bails out instead of reaching for the
             // live API and replacing these, which is what network-independent means.
-            let mockStations = AppViewModel.makeMockStations()
+            let mockStations = ScreenshotMockData.stations()
             Stations.sharedInstance.list = mockStations
             stations = mockStations
-            stationsLastUpdated = Date()
+            stationsLastUpdated = ScreenshotMockData.lastUpdated
 
             showFirstTimeUse = false
             return
@@ -201,39 +201,5 @@ class AppViewModel {
 
     func closestStations(latitude: Double, longitude: Double) -> [Station] {
         return Stations.getClosestStations(latitude: latitude, longitude: longitude, numberOfStations: numberOfClosestStations)
-    }
-
-    // MARK: - Screenshot mock data
-    // Not wrapped in #if DEBUG so it compiles in Release builds used by fastlane snapshot.
-
-    private struct MockStationData {
-        let id: String
-        let name: String
-        let bikes: Int
-        let docks: Int
-        let latitude: Double
-        let longitude: Double
-    }
-
-    private static func makeMockStations() -> [Station] {
-        let raw: [MockStationData] = [
-            MockStationData(id: "m1", name: "W 41 St & 8 Ave", bikes: 12, docks: 8, latitude: 40.7563, longitude: -73.9914),
-            MockStationData(id: "m2", name: "Central Park S & 6 Ave", bikes: 3, docks: 17, latitude: 40.7652, longitude: -73.9769),
-            MockStationData(id: "m3", name: "Broadway & W 60 St", bikes: 0, docks: 25, latitude: 40.7691, longitude: -73.9815),
-            MockStationData(id: "m4", name: "E 47 St & Park Ave", bikes: 7, docks: 2, latitude: 40.7552, longitude: -73.9757),
-            MockStationData(id: "m5", name: "5 Ave & E 34 St", bikes: 15, docks: 0, latitude: 40.7486, longitude: -73.9851),
-            MockStationData(id: "m6", name: "W 72 St & Columbus Ave", bikes: 9, docks: 11, latitude: 40.7773, longitude: -73.9809),
-            MockStationData(id: "m7", name: "Hudson St & W 13 St", bikes: 6, docks: 4, latitude: 40.7374, longitude: -74.0057)
-        ]
-        return raw.map { data in
-            var station = Station()
-            station.id = data.id
-            station.stationName = data.name
-            station.availableBikes = data.bikes
-            station.availableDocks = data.docks
-            station.latitude = data.latitude
-            station.longitude = data.longitude
-            return station
-        }
     }
 }

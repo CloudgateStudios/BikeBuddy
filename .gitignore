@@ -23,7 +23,6 @@ DerivedData
 ios/fastlane/report.xml
 ios/fastlane/test_output
 ios/fastlane/screenshots/
-ios/fastlane/screenshots_framed/
 ios/fastlane/README.md
 
 # Bundler — local gem install path (vendor/bundle is regenerated via `bundle install`)

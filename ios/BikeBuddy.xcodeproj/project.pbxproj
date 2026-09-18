@@ -53,6 +53,7 @@
 		SWIFTUI_BF_LOCMGR /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_LOCMGR /* LocationManager.swift */; };
 		SWIFTUI_BF_MAP /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_MAP /* MapView.swift */; };
 		SWIFTUI_BF_CLUSTER /* StationClustering.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CLUSTER /* StationClustering.swift */; };
+		SWIFTUI_BF_MOCK /* ScreenshotMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_MOCK /* ScreenshotMockData.swift */; };
 		SWIFTUI_BF_SETTINGS /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS /* SettingsView.swift */; };
 		SWIFTUI_BF_SETTINGS_ABOUT /* SettingsAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */; };
 		SWIFTUI_BF_SETTINGS_NET /* SettingsSelectNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */; };
@@ -166,6 +167,7 @@
 		SWIFTUI_LOCMGR /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		SWIFTUI_MAP /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		SWIFTUI_CLUSTER /* StationClustering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationClustering.swift; sourceTree = "<group>"; };
+		SWIFTUI_MOCK /* ScreenshotMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMockData.swift; sourceTree = "<group>"; };
 		SWIFTUI_SETTINGS /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutView.swift; sourceTree = "<group>"; };
 		SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelectNetworkView.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				SWIFTUI_STATIONS /* StationsListView.swift */,
 				SWIFTUI_MAP /* MapView.swift */,
 				SWIFTUI_CLUSTER /* StationClustering.swift */,
+				SWIFTUI_MOCK /* ScreenshotMockData.swift */,
 				08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */,
 				SWIFTUI_STATION_DETAIL /* StationDetailView.swift */,
 				SWIFTUI_SETTINGS /* SettingsView.swift */,
@@ -639,6 +642,7 @@
 				SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */,
 				SWIFTUI_BF_MAP /* MapView.swift in Sources */,
 				SWIFTUI_BF_CLUSTER /* StationClustering.swift in Sources */,
+				SWIFTUI_BF_MOCK /* ScreenshotMockData.swift in Sources */,
 				37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */,
 				SWIFTUI_BF_DETAIL /* StationDetailView.swift in Sources */,
 				SWIFTUI_BF_SETTINGS /* SettingsView.swift in Sources */,
