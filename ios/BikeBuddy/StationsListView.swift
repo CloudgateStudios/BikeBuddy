@@ -73,6 +73,7 @@ struct StationsListView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .adaptiveListWidth()
         .refreshable {
             await appViewModel.refreshStations()
         }

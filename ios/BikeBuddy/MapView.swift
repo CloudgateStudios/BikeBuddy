@@ -171,6 +171,7 @@ struct MapView: View {
                 StationSelectionCard(station: station) {
                     sheetStation = station
                 }
+                .adaptiveContentWidth()
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .padding(.horizontal)
                 .padding(.bottom, 8)
@@ -315,6 +316,7 @@ private struct StationSelectionCard: View {
             }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
+                .hoverEffect(.lift)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)

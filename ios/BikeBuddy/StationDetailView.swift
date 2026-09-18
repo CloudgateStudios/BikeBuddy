@@ -18,6 +18,10 @@ struct StationDetailView: View {
 
     let station: Station
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private var isRegularWidth: Bool { horizontalSizeClass == .regular }
+
     // MARK: - Body
 
     var body: some View {
@@ -25,18 +29,7 @@ struct StationDetailView: View {
             VStack(spacing: 0) {
 
                 // MARK: Map header
-                Map(initialPosition: .region(MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: station.latitude, longitude: station.longitude),
-                    latitudinalMeters: 500,
-                    longitudinalMeters: 500
-                ))) {
-                    Marker(station.stationName, coordinate: CLLocationCoordinate2D(
-                        latitude: station.latitude,
-                        longitude: station.longitude
-                    ))
-                    .tint(Color("BikeBuddyBlue"))
-                }
-                .frame(height: 250)
+                mapHeader
 
                 // MARK: Content
                 VStack(spacing: 16) {
@@ -104,6 +97,8 @@ struct StationDetailView: View {
                 }
                 .padding(16)
             }
+            .adaptiveContentWidth()
+            .frame(maxWidth: .infinity)
         }
         .navigationTitle(station.stationName)
         .navigationBarTitleDisplayMode(.large)
@@ -119,6 +114,39 @@ struct StationDetailView: View {
             keywords.append(station.streetAddress)
             activity.keywords = Set(keywords)
             activity.becomeCurrent()
+        }
+    }
+
+    // MARK: - Map header
+
+    /// Bleeds to the edges on a phone, as it always has. At regular width the content
+    /// below sits in a capped column, so a full-bleed map would be a band the column
+    /// no longer lines up with — it joins the column instead, and takes the extra
+    /// height that capping the column frees up.
+    @ViewBuilder
+    private var mapHeader: some View {
+        let map = Map(initialPosition: .region(MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: station.latitude, longitude: station.longitude),
+            latitudinalMeters: 500,
+            longitudinalMeters: 500
+        ))) {
+            Marker(station.stationName, coordinate: CLLocationCoordinate2D(
+                latitude: station.latitude,
+                longitude: station.longitude
+            ))
+            .tint(Color("BikeBuddyBlue"))
+        }
+
+        if isRegularWidth {
+            map
+                .containerRelativeFrame(.vertical) { height, _ in
+                    height * AdaptiveLayout.detailMapHeightFractionRegular
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+        } else {
+            map.frame(height: AdaptiveLayout.detailMapHeightCompact)
         }
     }
 

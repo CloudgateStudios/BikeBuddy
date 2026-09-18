@@ -40,6 +40,7 @@ struct SettingsAboutView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .adaptiveListWidth()
         .navigationTitle(Text("SettingsAboutNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
     }

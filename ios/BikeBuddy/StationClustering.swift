@@ -164,6 +164,7 @@ struct StationClusterBubble: View {
                 .shadow(radius: 2, y: 1)
         }
         .buttonStyle(.plain)
+        .hoverEffect(.lift)
         .accessibilityLabel(Text(String(
             format: String(localized: "MapStationClusterLabel", bundle: .bikeBuddyKit),
             count
