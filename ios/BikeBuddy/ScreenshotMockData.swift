@@ -136,4 +136,32 @@ enum ScreenshotMockData {
             return station
         }
     }
+
+    // MARK: - Networks
+
+    /// The 36 networks the picker shows at the top of its alphabetical list, taken
+    /// verbatim from the live networks endpoint so the screen reads exactly as it does
+    /// in the app - obscure first entries and all. The headline beside it can make the
+    /// coverage claim; the screen itself should not be curated into something the user
+    /// will not see when they open it.
+    ///
+    /// Seeded so the picker never reaches for the network mid-capture, which is what
+    /// "screenshots are network-independent" has to mean for the one screen whose whole
+    /// job is a downloaded list.
+    ///
+    /// Decoded through CityBikesNetworksResponse rather than built by hand: Network's
+    /// only initialiser is failable, and going through the real decode path means the
+    /// fixture cannot drift from what the API actually produces.
+    static func networks() -> [Network] {
+        guard let data = networksJSON.data(using: .utf8),
+              let response = try? JSONDecoder().decode(CityBikesNetworksResponse.self, from: data) else {
+            return []
+        }
+
+        return response.networks ?? []
+    }
+
+    private static let networksJSON = #"""
+{"networks":[{"id":"arbike","name":"ARbike","href":"/v2/networks/arbike","location":{"city":"Arezzo","country":"IT"}},{"id":"aw-bike","name":"AW-bike Ahrweiler","href":"/v2/networks/aw-bike","location":{"city":"Ahrweiler","country":"DE"}},{"id":"abu-dhabi-careem-bike","name":"Abu Dhabi Careem BIKE","href":"/v2/networks/abu-dhabi-careem-bike","location":{"city":"Abu Dhabi","country":"AE"}},{"id":"acces-velo-saguenay","name":"Accès Vélo","href":"/v2/networks/acces-velo-saguenay","location":{"city":"Saguenay","country":"CA"}},{"id":"aduriz","name":"Aduriz en Bici","href":"/v2/networks/aduriz","location":{"city":"Medina de Pomar","country":"ES"}},{"id":"aksu","name":"Aksu","href":"/v2/networks/aksu","location":{"city":"阿克苏市 (Aksu City)","country":"CN"}},{"id":"algira","name":"AlGira","href":"/v2/networks/algira","location":{"city":"Almeirim","country":"PT"}},{"id":"alba","name":"Alba","href":"/v2/networks/alba","location":{"city":"Alba","country":"IT"}},{"id":"albabici","name":"AlbaBici","href":"/v2/networks/albabici","location":{"city":"Albacete","country":"ES"}},{"id":"alsa-nextbike-leon","name":"Alsa nextbike León","href":"/v2/networks/alsa-nextbike-leon","location":{"city":"León","country":"ES"}},{"id":"ambici-amb","name":"Ambici","href":"/v2/networks/ambici-amb","location":{"city":"Barcelona","country":"ES"}},{"id":"ambici-badalona","name":"Ambici","href":"/v2/networks/ambici-badalona","location":{"city":"Badalona","country":"ES"}},{"id":"ambici-castelldefels","name":"Ambici","href":"/v2/networks/ambici-castelldefels","location":{"city":"Castelldefels","country":"ES"}},{"id":"ambici-cornella-de-llobregat","name":"Ambici","href":"/v2/networks/ambici-cornella-de-llobregat","location":{"city":"Cornellà de Llobregat","country":"ES"}},{"id":"ambici-el-prat-de-llobregat","name":"Ambici","href":"/v2/networks/ambici-el-prat-de-llobregat","location":{"city":"El Prat de Llobregat","country":"ES"}},{"id":"ambici-esplugues-de-llobregat","name":"Ambici","href":"/v2/networks/ambici-esplugues-de-llobregat","location":{"city":"Esplugues de Llobregat","country":"ES"}},{"id":"ambici-gava","name":"Ambici","href":"/v2/networks/ambici-gava","location":{"city":"Gavà","country":"ES"}},{"id":"ambici-hospitalet-de-llobregat","name":"Ambici","href":"/v2/networks/ambici-hospitalet-de-llobregat","location":{"city":"Hospitalet de Llobregat","country":"ES"}},{"id":"ambici-molins-de-rei","name":"Ambici","href":"/v2/networks/ambici-molins-de-rei","location":{"city":"Molins de Rei","country":"ES"}},{"id":"ambici-sant-adria-de-besos","name":"Ambici","href":"/v2/networks/ambici-sant-adria-de-besos","location":{"city":"Sant Adrià de Besòs","country":"ES"}},{"id":"ambici-sant-boi-de-llobregat","name":"Ambici","href":"/v2/networks/ambici-sant-boi-de-llobregat","location":{"city":"Sant Boi de Llobregat","country":"ES"}},{"id":"ambici-sant-feliu-de-llobregat","name":"Ambici","href":"/v2/networks/ambici-sant-feliu-de-llobregat","location":{"city":"Sant Feliu de Llobregat","country":"ES"}},{"id":"ambici-sant-joan-despi","name":"Ambici","href":"/v2/networks/ambici-sant-joan-despi","location":{"city":"Sant Joan Despí","country":"ES"}},{"id":"ambici-sant-just-desvern","name":"Ambici","href":"/v2/networks/ambici-sant-just-desvern","location":{"city":"Sant Just Desvern","country":"ES"}},{"id":"ambici-santa-coloma-de-gramenet","name":"Ambici","href":"/v2/networks/ambici-santa-coloma-de-gramenet","location":{"city":"Santa Coloma de Gramenet","country":"ES"}},{"id":"ambici-viladecans","name":"Ambici","href":"/v2/networks/ambici-viladecans","location":{"city":"Viladecans","country":"ES"}},{"id":"andria","name":"Andria in Bici","href":"/v2/networks/andria","location":{"city":"Andria","country":"IT"}},{"id":"aral","name":"Aral","href":"/v2/networks/aral","location":{"city":"阿拉尔市 (Aral)","country":"CN"}},{"id":"nextbike-arriva-bike","name":"Arriva Bike","href":"/v2/networks/nextbike-arriva-bike","location":{"city":"Senec","country":"SK"}},{"id":"ascoli-piceno","name":"Ascoli Piceno","href":"/v2/networks/ascoli-piceno","location":{"city":"Ascoli Piceno","country":"IT"}},{"id":"velobike","name":"Astana Bike","href":"/v2/networks/velobike","location":{"city":"Astana","country":"KZ"}},{"id":"athens-bikes","name":"AthensBikes","href":"/v2/networks/athens-bikes","location":{"city":"Athens","country":"GR"}},{"id":"auxrmlevelo","name":"AuxR_M","href":"/v2/networks/auxrmlevelo","location":{"city":"Auxerre","country":"FR"}},{"id":"aventura","name":"Aventura BCycle","href":"/v2/networks/aventura","location":{"city":"Aventura, FL","country":"US"}},{"id":"aviles-en-bici","name":"Avilés en Bici","href":"/v2/networks/aviles-en-bici","location":{"city":"Avilés","country":"ES"}},{"id":"madison","name":"BCycle","href":"/v2/networks/madison","location":{"city":"Madison, WI","country":"US"}}]}
+"""#
 }

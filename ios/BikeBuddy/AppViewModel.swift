@@ -112,6 +112,10 @@ class AppViewModel {
             stations = mockStations
             stationsLastUpdated = ScreenshotMockData.lastUpdated
 
+            // The picker's own .task sees a non-empty list and returns without
+            // fetching, so the network-picker capture needs no network either.
+            Networks.sharedInstance.list = ScreenshotMockData.networks()
+
             showFirstTimeUse = false
             return
         }
