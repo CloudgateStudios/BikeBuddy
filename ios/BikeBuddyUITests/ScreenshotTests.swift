@@ -9,7 +9,7 @@
 //   01 – Stations List  (with mock station rows)
 //   02 – Station Detail (pushed from list)
 //   03 – Map            (pins visible; station selection card if tap succeeds)
-//   04 – Settings
+//   04 – Networks       (the picker, seeded from ScreenshotMockData)
 
 import XCTest
 
@@ -34,15 +34,14 @@ final class ScreenshotTests: XCTestCase {
 
     func test01_StationsList() {
         // Wait for station rows to appear (mock data pre-seeded via launch env).
-        // The first mock station name is "W 41 St & 8 Ave".
-        let firstRow = app.staticTexts["W 41 St & 8 Ave"].firstMatch
+        let firstRow = app.staticTexts[Self.nearestStation].firstMatch
         _ = firstRow.waitForExistence(timeout: 20)
         snapshot("01_StationsList")
     }
 
     func test02_StationDetail() {
         // Wait for the list to be populated, then tap the first station row.
-        let firstRow = app.staticTexts["W 41 St & 8 Ave"].firstMatch
+        let firstRow = app.staticTexts[Self.nearestStation].firstMatch
         guard firstRow.waitForExistence(timeout: 20) else { return }
         firstRow.tap()
         // Allow the NavigationStack push animation to complete.
@@ -58,11 +57,14 @@ final class ScreenshotTests: XCTestCase {
         // Try to tap a station marker so the selection card slides up.
         // In iOS 17+ SwiftUI Map, Markers are accessible as otherElements
         // keyed by their title string.
+        // Only stations the grid leaves unclustered surface as tappable markers, so
+        // try several. A miss just means no selection card, which is still a usable
+        // shot of the map.
         let markerNames = [
+            Self.nearestStation,
             "W 41 St & 8 Ave",
-            "5 Ave & E 34 St",
-            "E 47 St & Park Ave",
-            "Central Park S & 6 Ave"
+            "W 45 St & 8 Ave",
+            "W 40 St & 7 Ave"
         ]
         for name in markerNames {
             // Markers can surface as otherElements OR buttons depending on iOS version.
@@ -82,14 +84,27 @@ final class ScreenshotTests: XCTestCase {
         snapshot("03_Map")
     }
 
-    func test04_Settings() {
+    func test04_Networks() {
         tapTab("Settings")
-        // Give the list a moment to fully render.
         sleep(1)
-        snapshot("04_Settings")
+
+        // Settings > Network opens the shared picker. Its list is seeded in
+        // ScreenshotMockData, so this needs no network and always looks the same.
+        let networkRow = app.staticTexts["Network"].firstMatch
+        guard networkRow.waitForExistence(timeout: 10) else { return }
+        networkRow.tap()
+
+        let firstNetwork = app.staticTexts["ARbike"].firstMatch
+        _ = firstNetwork.waitForExistence(timeout: 10)
+        sleep(1)
+        snapshot("04_Networks")
     }
 
     // MARK: - Helpers
+
+    /// The closest station to ScreenshotMockData.coordinate, and so the first row in
+    /// the list. Named once here because three tests key off it.
+    private static let nearestStation = "W 42 St & 8 Ave"
 
     /// Navigate to a named tab.
     ///

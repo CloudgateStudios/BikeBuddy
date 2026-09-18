@@ -1,9 +1,38 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Capture light and dark screenshots for AppStore/compose.py"
+  desc "Capture light and dark screenshots into AppStore/captures for compose.py"
   lane :screenshots do
     snapshot(output_directory: "./fastlane/screenshots/light", dark_mode: false)
     snapshot(output_directory: "./fastlane/screenshots/dark",  dark_mode: true)
+
+    collect_captures
+  end
+
+  # snapshot writes fastlane/screenshots/<theme>/en-US/<device>-<NN_Name>.png, which is
+  # gitignored. compose.py reads AppStore/captures/<device>/<theme>/<NN_Name>.png, which
+  # is committed — so composing works from a clean checkout without booting a simulator.
+  desc "Copy the latest snapshot output into AppStore/captures without re-capturing"
+  lane :collect_captures do
+    root = File.expand_path("..", File.dirname(__FILE__))
+    captures = File.join(root, "AppStore", "captures")
+    FileUtils.rm_rf(captures)
+
+    count = 0
+    %w[light dark].each do |theme|
+      Dir.glob(File.join(root, "fastlane", "screenshots", theme, "en-US", "*.png")).each do |path|
+        # "iPhone 17 Pro Max-01_StationsList.png" -> device, shot
+        match = File.basename(path).match(/\A(.*)-(\d\d_[A-Za-z]+)\.png\z/)
+        next unless match
+
+        dest = File.join(captures, match[1], theme)
+        FileUtils.mkdir_p(dest)
+        FileUtils.cp(path, File.join(dest, "#{match[2]}.png"))
+        count += 1
+      end
+    end
+
+    UI.success("Collected #{count} captures into AppStore/captures")
+    UI.message("Now run: python3 ios/AppStore/compose.py")
   end
 end
