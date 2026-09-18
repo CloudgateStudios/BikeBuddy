@@ -169,10 +169,6 @@ struct MapView: View {
         ZStack {
             if let station = selectedStation {
                 StationSelectionCard(station: station) {
-                    AnalyticsService.sharedInstance.pegUserAction(
-                        eventName: Constants.AnalyticEvent.LoadStationDetail,
-                        customAttributes: [Constants.AnalyticEventDetail.LoadedFrom: "Map View" as AnyObject]
-                    )
                     sheetStation = station
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))

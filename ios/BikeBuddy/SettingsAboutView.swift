@@ -42,9 +42,6 @@ struct SettingsAboutView: View {
         .listStyle(.insetGrouped)
         .navigationTitle(Text("SettingsAboutNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsAbout)
-        }
     }
 
     // MARK: - Helpers

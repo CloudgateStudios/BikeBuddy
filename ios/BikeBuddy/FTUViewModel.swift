@@ -55,10 +55,8 @@ class FTUViewModel {
             let delegate = FTULocationDelegate { [weak self] newStatus in
                 Task { @MainActor in
                     if newStatus == .authorizedWhenInUse || newStatus == .authorizedAlways {
-                        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessGranted)
                         self?.goToSelectNetwork()
                     } else {
-                        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessDenied)
                         self?.showLocationDeniedAlert = true
                     }
                 }
@@ -68,11 +66,9 @@ class FTUViewModel {
             locationManager.requestWhenInUseAuthorization()
 
         case .restricted, .denied:
-            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessDenied)
             showLocationDeniedAlert = true
 
         case .authorizedWhenInUse, .authorizedAlways:
-            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.LocationAccessGranted)
             goToSelectNetwork()
 
         @unknown default:
@@ -84,15 +80,10 @@ class FTUViewModel {
 
     func selectNetwork(_ network: Network) {
         AppViewModel.shared.selectNetwork(network)
-        AnalyticsService.sharedInstance.pegUserAction(
-            eventName: Constants.AnalyticEvent.FTUCitySelected,
-            customAttributes: [Constants.AnalyticEventDetail.CitySelected: (network.name ?? "") as AnyObject]
-        )
         goToFinished()
     }
 
     func complete() {
-        AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.FTUCompleted)
         AppViewModel.shared.completeFirstTimeUse()
     }
 }

@@ -54,35 +54,6 @@ public struct Constants {
         public static let PrivacyPolicyURL = "https://cloudgatestudios.com/bikebuddy/privacy"
     }
 
-    // MARK: - Analytic Events
-    public struct AnalyticEvent {
-        public static let FTUCitySelected = "FTU City Selected"
-        public static let LocationAccessGranted = "Location Access Granted"
-        public static let LocationAccessDenied = "Location Access Denied"
-        public static let FTUCompleted = "FTU Completed"
-        public static let LoadStationDetail = "Load Station Detail"
-        public static let GetDirectionsToStation = "Get Directions to Station"
-        public static let ShareStation = "Share Station"
-        public static let GoToAppStoreLink = "Go To App Store Link"
-        public static let ShareAppWithFriends = "Share App with Friends"
-        public static let OpenSettingsSelectCity = "Open Select City in Settings"
-        public static let SelectNewCity = "Select New City"
-        public static let OpenSettingsNumberOfClosestStations = "Open Number of Closest Stations in Settings"
-        public static let SelectNewNumberOfClosestStations = "Select New Number of Closest Stations"
-        public static let OpenSettingsAbout = "Open About in Settings"
-        public static let OpenAboutPrivacyPolicy = "Open Privacy Policy in About"
-    }
-
-    // MARK: - Analytic Event Details
-    public struct AnalyticEventDetail {
-        public static let CitySelected = "City Selected"
-        public static let LoadedFrom = "LoadedFrom"
-        public static let OldCity = "Old City"
-        public static let NewCity = "New City"
-        public static let OldNumber = "Old Number"
-        public static let NewNumber = "New Number"
-    }
-
     // MARK: - Custom NSError Definitions
     public struct NSErrorInfo {
         public static let DomainString = "BSBErrorDomain"

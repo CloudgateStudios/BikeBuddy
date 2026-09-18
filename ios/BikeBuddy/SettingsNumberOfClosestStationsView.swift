@@ -38,24 +38,9 @@ struct SettingsNumberOfClosestStationsView: View {
         .listStyle(.insetGrouped)
         .navigationTitle(Text("SettingsSelectNumOfClosestStationsNavBarTitle", bundle: .bikeBuddyKit))
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            AnalyticsService.sharedInstance.pegUserAction(eventName: Constants.AnalyticEvent.OpenSettingsNumberOfClosestStations)
-        }
     }
 
     private func selectOption(_ option: Int) {
-        // Saved as an Int, so read it back as one. getSettingAsString goes through
-        // UserDefaults.string(forKey:), which returns nil for a number, making the
-        // old value always an empty string.
-        let oldValue = SettingsService.sharedInstance.getSettingAsInt(key: .numberOfClosestStations)
-        let analyticAttr = [
-            Constants.AnalyticEventDetail.OldNumber: String(oldValue),
-            Constants.AnalyticEventDetail.NewNumber: String(option)
-        ]
-        AnalyticsService.sharedInstance.pegUserAction(
-            eventName: Constants.AnalyticEvent.SelectNewNumberOfClosestStations,
-            customAttributes: analyticAttr as [String: AnyObject]
-        )
         appViewModel.selectNumberOfClosestStations(option)
         dismiss()
     }
