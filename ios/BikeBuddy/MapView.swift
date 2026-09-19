@@ -42,13 +42,10 @@ private enum MapStyleOption: CaseIterable {
 struct MapView: View {
 
     @Environment(AppViewModel.self) private var appViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var locationManager = LocationManager()
 
-    /// Tag value from the Map selection binding — matches Station.id (String).
     @State private var cameraPosition: MapCameraPosition = .automatic
-    @State private var selectedStationID: String?
-    /// Set to present the detail sheet; cleared automatically on dismiss.
-    @State private var sheetStation: Station?
     @State private var updatedAtText: String = ""
     @State private var mapStyleOption: MapStyleOption = .standard
     /// What the map last told us it is showing. Clustering is computed against this
@@ -57,21 +54,15 @@ struct MapView: View {
     /// Set once the camera has been moved to the user, so a later location update
     /// does not yank the map back while they are panning around.
     @State private var hasCenteredOnUser = false
+    /// Set once the camera has been pointed at the whole network as a stand-in for a
+    /// location fix. Provisional: a real fix still gets to replace it.
+    @State private var hasFramedNetwork = false
 
     /// Derived from selectedStationID; nil when nothing is selected. Populates
     /// `distanceFromUser` on the returned copy when the user's location is known
     /// (Station is a value type, so this doesn't mutate the shared list).
     private var selectedStation: Station? {
-        guard let id = selectedStationID,
-              var station = appViewModel.stations.first(where: { $0.id == id }) else { return nil }
-
-        let coordinate = locationManager.coordinate
-        if coordinate.latitude != 0 || coordinate.longitude != 0 {
-            let userLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
-            station.distanceFromUser = userLocation.distance(from: stationLocation)
-        }
-        return station
+        appViewModel.selectedStation
     }
 
     // MARK: - Clustering
@@ -86,28 +77,90 @@ struct MapView: View {
         return StationClustering.clusters(for: appViewModel.stations, in: clusteringRegion)
     }
 
-    /// What to cluster against: the region the map reported, falling back to the area
-    /// we are about to centre on so the first frame is not empty while we wait for
-    /// the camera to settle.
+    /// What to cluster against: the region the map reported, falling back to wherever
+    /// the camera is about to go, so the first frame is not empty while it settles.
+    ///
+    /// The network-wide fallback is load bearing. With no location fix this used to
+    /// return nil, which meant no clusters, which meant the map had no annotations,
+    /// which meant `.automatic` had nothing to frame and picked somewhere arbitrary —
+    /// and then clustered against *that*, found nothing there either, and stayed
+    /// empty. The map could never find the network it was showing.
     private var clusteringRegion: MKCoordinateRegion? {
         if let visibleRegion {
             return visibleRegion
         }
 
         let coordinate = locationManager.coordinate
-        guard coordinate.latitude != 0 || coordinate.longitude != 0 else { return nil }
+        if coordinate.latitude != 0 || coordinate.longitude != 0 {
+            return MKCoordinateRegion(
+                center: coordinate,
+                latitudinalMeters: StationClusteringTuning.initialSpanMeters,
+                longitudinalMeters: StationClusteringTuning.initialSpanMeters
+            )
+        }
+
+        return StationClustering.region(enclosing: appViewModel.stations)
+    }
+
+    /// The whole selected network, framed. What the map opens on when it has no idea
+    /// where the user is.
+    ///
+    /// On a phone the stations sheet covers the bottom of the map, so a region centred
+    /// the usual way puts the middle of the network — and often the user's own end of
+    /// it — behind the sheet. Framing it into the strip that is actually visible costs
+    /// some zoom but shows the network rather than the half of it that fits.
+    private var networkRegion: MKCoordinateRegion? {
+        guard let region = StationClustering.region(enclosing: appViewModel.stations) else { return nil }
+        guard horizontalSizeClass != .regular else { return region }
+
+        return Self.region(region, framedAbove: StationsSheet.restingFraction)
+    }
+
+    /// Re-frames `region` so it fills the top `1 - covered` of the map instead of the
+    /// whole of it: the span grows to make room, and the centre moves down by half of
+    /// what was added, which pushes the content up into the clear.
+    private static func region(
+        _ region: MKCoordinateRegion,
+        framedAbove covered: CGFloat
+    ) -> MKCoordinateRegion {
+        let visible = 1 - Double(covered)
+        guard visible > 0 else { return region }
+
+        let latitudeDelta = region.span.latitudeDelta / visible
 
         return MKCoordinateRegion(
-            center: coordinate,
-            latitudinalMeters: StationClusteringTuning.initialSpanMeters,
-            longitudinalMeters: StationClusteringTuning.initialSpanMeters
+            center: CLLocationCoordinate2D(
+                latitude: region.center.latitude - Double(covered) * latitudeDelta / 2,
+                longitude: region.center.longitude
+            ),
+            span: MKCoordinateSpan(
+                latitudeDelta: latitudeDelta,
+                longitudeDelta: region.span.longitudeDelta
+            )
         )
     }
 
     // MARK: - Body
 
     var body: some View {
-        Map(position: $cameraPosition, selection: $selectedStationID) {
+        @Bindable var appViewModel = appViewModel
+
+        // The controls sit in a ZStack beside the map rather than in an overlay on it.
+        // An overlay inherits the map's bounds, and the map deliberately ignores the
+        // safe area — which put the location button under the status bar now that
+        // there is no tab bar or nav bar holding it down.
+        return ZStack(alignment: .topTrailing) {
+            map
+            placedMapControls
+        }
+        .toolbar(.hidden, for: .navigationBar)
+    }
+
+    @ViewBuilder
+    private var map: some View {
+        @Bindable var appViewModel = appViewModel
+
+        Map(position: $cameraPosition, selection: $appViewModel.selectedStationID) {
             UserAnnotation()
             ForEach(visibleClusters) { cluster in
                 if let station = cluster.singleStation {
@@ -127,33 +180,34 @@ struct MapView: View {
             }
         }
         .mapStyle(mapStyleOption.mapStyle)
-        .ignoresSafeArea()
+        // Vertical only. Ignoring every edge let the map — and with it the selection
+        // card riding in its bottom safe-area inset — run underneath the split view's
+        // sidebar, which quietly ate the left half of the card.
+        .ignoresSafeArea(edges: .vertical)
         .onMapCameraChange(frequency: .onEnd) { context in
             visibleRegion = context.region
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomBar
         }
-        .overlay(alignment: .topTrailing) {
-            mapControls
-        }
-        .toolbar(.hidden, for: .navigationBar)
-        .sheet(item: $sheetStation) { station in
-            NavigationStack {
-                StationDetailView(station: station)
-            }
-            .presentationDetents([.medium, .large])
-        }
         .onChange(of: appViewModel.stationsLastUpdated) { _, _ in
             updateTimestampLabel()
+            // The first load usually finishes after this view appears, and until it
+            // does there is no network to frame.
+            establishCameraIfNeeded()
         }
         .onChange(of: locationManager.coordinate.latitude) { _, _ in
-            centerOnUserIfNeeded()
+            establishCameraIfNeeded()
+        }
+        // A station chosen in the panel is usually off screen, or under the sheet.
+        // Without this the sidebar and the map would disagree about what is selected.
+        .onChange(of: appViewModel.selectedStationID) { _, _ in
+            centerOnSelection()
         }
         .onAppear {
             updateTimestampLabel()
             locationManager.startUpdatingLocation()
-            centerOnUserIfNeeded()
+            establishCameraIfNeeded()
         }
         .onDisappear {
             locationManager.stopUpdatingLocation()
@@ -164,12 +218,16 @@ struct MapView: View {
 
     /// Shows the selection card when a station is active, otherwise the
     /// last-updated timestamp.  Both swap with an animated transition.
+    ///
+    /// Only regular width draws the card. On a phone the stations sheet sits over this
+    /// exact spot and pushes the selected station's detail itself, so a card here
+    /// would be a second copy of the same thing, hidden behind the first.
     @ViewBuilder
     private var bottomBar: some View {
         ZStack {
-            if let station = selectedStation {
+            if let station = selectedStation, horizontalSizeClass == .regular {
                 StationSelectionCard(station: station) {
-                    sheetStation = station
+                    appViewModel.selectedStationID = nil
                 }
                 .adaptiveContentWidth()
                 .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -186,10 +244,29 @@ struct MapView: View {
                     .padding(.bottom, 8)
             }
         }
-        .animation(.spring(response: 0.35, dampingFraction: 0.85), value: selectedStationID)
+        .animation(.spring(response: 0.35, dampingFraction: 0.85), value: appViewModel.selectedStationID)
     }
 
     // MARK: - Map controls overlay
+
+    /// Keeps the controls clear of the top of the display whether or not the system
+    /// has reserved anything up there.
+    ///
+    /// Most iPhones report a top safe area inset of 50-60pt for the status bar, so a
+    /// small padding on top of it lands the buttons comfortably. A folded iPhone
+    /// unfolded reports `top 0` — its status bar runs down the *trailing* edge
+    /// instead — and the same small padding put a 44pt button hard against the
+    /// rounded corner. So the padding is whatever it takes to reach a minimum margin
+    /// from the edge, and never less than the breathing room the inset already buys.
+    private static let minimumControlsTopMargin: CGFloat = 28
+
+    private var placedMapControls: some View {
+        GeometryReader { proxy in
+            mapControls
+                .padding(.top, max(8, Self.minimumControlsTopMargin - proxy.safeAreaInsets.top))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+        }
+    }
 
     /// Location button + style toggle stacked in the top-trailing corner.
     /// Both float over the map as interactive Liquid Glass pills. They share a
@@ -225,28 +302,61 @@ struct MapView: View {
             }
         }
         .padding(.trailing, 10)
-        .padding(.top, 8)
     }
 
     // MARK: - Camera
 
-    /// Opens on the user rather than on the whole network. `.automatic` frames every
-    /// annotation, which for a city-wide network meant the first thing the tab showed
-    /// was the entire service area — the one view in which no station is legible.
-    /// Runs once, so panning away is not undone by the next location update.
-    private func centerOnUserIfNeeded() {
+    /// Points the camera somewhere useful, preferring a walkable radius around the
+    /// user and settling for the whole network when their location is unknown.
+    ///
+    /// Opening on the user rather than the network matters: `.automatic` frames every
+    /// annotation, and for a city-wide network that is the entire service area — the
+    /// one view in which no individual station is legible. But the network is far
+    /// better than the alternative, which was leaving `.automatic` to frame nothing
+    /// at all and land somewhere with no relationship to the stations in the list.
+    ///
+    /// Framing the network is provisional: a location fix arriving later replaces it,
+    /// once. Centring on the user is final, so panning away is not undone by the next
+    /// location update.
+    private func establishCameraIfNeeded() {
         guard !hasCenteredOnUser else { return }
 
         let coordinate = locationManager.coordinate
-        guard coordinate.latitude != 0 || coordinate.longitude != 0 else { return }
+        if coordinate.latitude != 0 || coordinate.longitude != 0 {
+            hasCenteredOnUser = true
+            withAnimation {
+                cameraPosition = .region(MKCoordinateRegion(
+                    center: coordinate,
+                    latitudinalMeters: StationClusteringTuning.initialSpanMeters,
+                    longitudinalMeters: StationClusteringTuning.initialSpanMeters
+                ))
+            }
+            return
+        }
 
-        hasCenteredOnUser = true
+        // Stations arrive asynchronously, so this is reached once with nothing to
+        // frame and again when the network lands.
+        guard !hasFramedNetwork, let networkRegion else { return }
+
+        hasFramedNetwork = true
         withAnimation {
-            cameraPosition = .region(MKCoordinateRegion(
-                center: coordinate,
-                latitudinalMeters: StationClusteringTuning.initialSpanMeters,
-                longitudinalMeters: StationClusteringTuning.initialSpanMeters
-            ))
+            cameraPosition = .region(networkRegion)
+        }
+    }
+
+    /// Brings the chosen station into view without changing how far in the user is
+    /// zoomed — re-framing the map under them because they tapped a row in a list is
+    /// disorienting, and they may have zoomed deliberately.
+    private func centerOnSelection() {
+        guard let station = appViewModel.selectedStation else { return }
+
+        let span = visibleRegion?.span ?? MKCoordinateSpan(
+            latitudeDelta: StationClusteringTuning.minimumZoomSpan,
+            longitudeDelta: StationClusteringTuning.minimumZoomSpan
+        )
+
+        withAnimation(.easeInOut(duration: 0.35)) {
+            cameraPosition = .region(MKCoordinateRegion(center: station.coordinate, span: span))
         }
     }
 
@@ -266,88 +376,5 @@ struct MapView: View {
         // "h:mm a" format forced 12-hour AM/PM on everyone.
         let time = appViewModel.stationsLastUpdated.formatted(date: .omitted, time: .shortened)
         updatedAtText = String(localized: "MapUpdatedAtLabel", bundle: .bikeBuddyKit) + " " + time
-    }
-}
-
-// MARK: - Station selection card
-
-/// Glass card that slides up when a Marker is selected.
-/// Shows the station name, bike/dock availability with colour-coded counts,
-/// optional distance, and a Details button.
-private struct StationSelectionCard: View {
-
-    let station: Station
-    let onViewDetail: () -> Void
-
-    var body: some View {
-        HStack(alignment: .center, spacing: 12) {
-
-            // Name + distance
-            VStack(alignment: .leading, spacing: 4) {
-                Text(station.stationName)
-                    .font(.headline)
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                if station.distanceFromUser > 0 {
-                    Text(station.approximateDistanceAwayFromUser + " " + String(localized: "GeneralAwayLabel", bundle: .bikeBuddyKit))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            // Bikes count
-            availabilityPill(
-                count: station.availableBikes,
-                icon: "bicycle",
-                color: bikesColor
-            )
-
-            // Docks count
-            availabilityPill(
-                count: station.availableDocks,
-                icon: "arrow.down.to.line",
-                color: .primary
-            )
-
-            Button(action: onViewDetail) {
-                Text("MapStationDetailsButton", bundle: .bikeBuddyKit)
-            }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
-                .hoverEffect(.lift)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 14)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
-    }
-
-    @ViewBuilder
-    private func availabilityPill(count: Int, icon: String, color: Color) -> some View {
-        VStack(spacing: 3) {
-            Group {
-                if count < 0 {
-                    Text(verbatim: "—")
-                } else {
-                    Text(count, format: .number)
-                }
-            }
-                .font(.title3.weight(.bold))
-                .foregroundStyle(color)
-                .monospacedDigit()
-            Image(systemName: icon)
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-        }
-        .frame(minWidth: 34)
-    }
-
-    private var bikesColor: Color {
-        switch station.availableBikes {
-        case 0:     .red
-        case 1...2: .orange
-        default:    .primary
-        }
     }
 }
