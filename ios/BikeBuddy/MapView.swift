@@ -54,6 +54,9 @@ struct MapView: View {
     /// Set once the camera has been moved to the user, so a later location update
     /// does not yank the map back while they are panning around.
     @State private var hasCenteredOnUser = false
+    /// Set once the camera has been pointed at the whole network as a stand-in for a
+    /// location fix. Provisional: a real fix still gets to replace it.
+    @State private var hasFramedNetwork = false
 
     /// Derived from selectedStationID; nil when nothing is selected. Populates
     /// `distanceFromUser` on the returned copy when the user's location is known
@@ -74,21 +77,66 @@ struct MapView: View {
         return StationClustering.clusters(for: appViewModel.stations, in: clusteringRegion)
     }
 
-    /// What to cluster against: the region the map reported, falling back to the area
-    /// we are about to centre on so the first frame is not empty while we wait for
-    /// the camera to settle.
+    /// What to cluster against: the region the map reported, falling back to wherever
+    /// the camera is about to go, so the first frame is not empty while it settles.
+    ///
+    /// The network-wide fallback is load bearing. With no location fix this used to
+    /// return nil, which meant no clusters, which meant the map had no annotations,
+    /// which meant `.automatic` had nothing to frame and picked somewhere arbitrary —
+    /// and then clustered against *that*, found nothing there either, and stayed
+    /// empty. The map could never find the network it was showing.
     private var clusteringRegion: MKCoordinateRegion? {
         if let visibleRegion {
             return visibleRegion
         }
 
         let coordinate = locationManager.coordinate
-        guard coordinate.latitude != 0 || coordinate.longitude != 0 else { return nil }
+        if coordinate.latitude != 0 || coordinate.longitude != 0 {
+            return MKCoordinateRegion(
+                center: coordinate,
+                latitudinalMeters: StationClusteringTuning.initialSpanMeters,
+                longitudinalMeters: StationClusteringTuning.initialSpanMeters
+            )
+        }
+
+        return StationClustering.region(enclosing: appViewModel.stations)
+    }
+
+    /// The whole selected network, framed. What the map opens on when it has no idea
+    /// where the user is.
+    ///
+    /// On a phone the stations sheet covers the bottom of the map, so a region centred
+    /// the usual way puts the middle of the network — and often the user's own end of
+    /// it — behind the sheet. Framing it into the strip that is actually visible costs
+    /// some zoom but shows the network rather than the half of it that fits.
+    private var networkRegion: MKCoordinateRegion? {
+        guard let region = StationClustering.region(enclosing: appViewModel.stations) else { return nil }
+        guard horizontalSizeClass != .regular else { return region }
+
+        return Self.region(region, framedAbove: StationsSheet.restingFraction)
+    }
+
+    /// Re-frames `region` so it fills the top `1 - covered` of the map instead of the
+    /// whole of it: the span grows to make room, and the centre moves down by half of
+    /// what was added, which pushes the content up into the clear.
+    private static func region(
+        _ region: MKCoordinateRegion,
+        framedAbove covered: CGFloat
+    ) -> MKCoordinateRegion {
+        let visible = 1 - Double(covered)
+        guard visible > 0 else { return region }
+
+        let latitudeDelta = region.span.latitudeDelta / visible
 
         return MKCoordinateRegion(
-            center: coordinate,
-            latitudinalMeters: StationClusteringTuning.initialSpanMeters,
-            longitudinalMeters: StationClusteringTuning.initialSpanMeters
+            center: CLLocationCoordinate2D(
+                latitude: region.center.latitude - Double(covered) * latitudeDelta / 2,
+                longitude: region.center.longitude
+            ),
+            span: MKCoordinateSpan(
+                latitudeDelta: latitudeDelta,
+                longitudeDelta: region.span.longitudeDelta
+            )
         )
     }
 
@@ -144,9 +192,12 @@ struct MapView: View {
         }
         .onChange(of: appViewModel.stationsLastUpdated) { _, _ in
             updateTimestampLabel()
+            // The first load usually finishes after this view appears, and until it
+            // does there is no network to frame.
+            establishCameraIfNeeded()
         }
         .onChange(of: locationManager.coordinate.latitude) { _, _ in
-            centerOnUserIfNeeded()
+            establishCameraIfNeeded()
         }
         // A station chosen in the panel is usually off screen, or under the sheet.
         // Without this the sidebar and the map would disagree about what is selected.
@@ -156,7 +207,7 @@ struct MapView: View {
         .onAppear {
             updateTimestampLabel()
             locationManager.startUpdatingLocation()
-            centerOnUserIfNeeded()
+            establishCameraIfNeeded()
         }
         .onDisappear {
             locationManager.stopUpdatingLocation()
@@ -255,23 +306,41 @@ struct MapView: View {
 
     // MARK: - Camera
 
-    /// Opens on the user rather than on the whole network. `.automatic` frames every
-    /// annotation, which for a city-wide network meant the first thing the tab showed
-    /// was the entire service area — the one view in which no station is legible.
-    /// Runs once, so panning away is not undone by the next location update.
-    private func centerOnUserIfNeeded() {
+    /// Points the camera somewhere useful, preferring a walkable radius around the
+    /// user and settling for the whole network when their location is unknown.
+    ///
+    /// Opening on the user rather than the network matters: `.automatic` frames every
+    /// annotation, and for a city-wide network that is the entire service area — the
+    /// one view in which no individual station is legible. But the network is far
+    /// better than the alternative, which was leaving `.automatic` to frame nothing
+    /// at all and land somewhere with no relationship to the stations in the list.
+    ///
+    /// Framing the network is provisional: a location fix arriving later replaces it,
+    /// once. Centring on the user is final, so panning away is not undone by the next
+    /// location update.
+    private func establishCameraIfNeeded() {
         guard !hasCenteredOnUser else { return }
 
         let coordinate = locationManager.coordinate
-        guard coordinate.latitude != 0 || coordinate.longitude != 0 else { return }
+        if coordinate.latitude != 0 || coordinate.longitude != 0 {
+            hasCenteredOnUser = true
+            withAnimation {
+                cameraPosition = .region(MKCoordinateRegion(
+                    center: coordinate,
+                    latitudinalMeters: StationClusteringTuning.initialSpanMeters,
+                    longitudinalMeters: StationClusteringTuning.initialSpanMeters
+                ))
+            }
+            return
+        }
 
-        hasCenteredOnUser = true
+        // Stations arrive asynchronously, so this is reached once with nothing to
+        // frame and again when the network lands.
+        guard !hasFramedNetwork, let networkRegion else { return }
+
+        hasFramedNetwork = true
         withAnimation {
-            cameraPosition = .region(MKCoordinateRegion(
-                center: coordinate,
-                latitudinalMeters: StationClusteringTuning.initialSpanMeters,
-                longitudinalMeters: StationClusteringTuning.initialSpanMeters
-            ))
+            cameraPosition = .region(networkRegion)
         }
     }
 

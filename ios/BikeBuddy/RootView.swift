@@ -41,6 +41,20 @@ struct RootView: View {
     }
 }
 
+// MARK: - Stations sheet
+
+/// The stations sheet's resting geometry, shared because the map has to know what the
+/// sheet is covering in order to frame anything underneath it.
+enum StationsSheet {
+
+    /// Where the sheet sits on launch, as a fraction of the height.
+    static let restingFraction: CGFloat = 0.45
+
+    /// The peek height. Enough for the header and a row, so the sheet still says what
+    /// it is when it is out of the way.
+    static let peekHeight: CGFloat = 150
+}
+
 // MARK: - Phone
 
 /// Map behind, stations on a sheet over it. The sheet is always presented — it is the
@@ -50,11 +64,10 @@ private struct PhoneLayout: View {
 
     @Environment(AppViewModel.self) private var appViewModel
 
-    @State private var detent: PresentationDetent = .fraction(0.45)
+    @State private var detent: PresentationDetent = .fraction(StationsSheet.restingFraction)
 
-    /// The peek height. Enough for the header and a row, so the sheet still says what
-    /// it is when it is out of the way.
-    private static let peek: PresentationDetent = .height(150)
+    private static let peek: PresentationDetent = .height(StationsSheet.peekHeight)
+    private static let resting: PresentationDetent = .fraction(StationsSheet.restingFraction)
 
     var body: some View {
         @Bindable var appViewModel = appViewModel
@@ -72,16 +85,16 @@ private struct PhoneLayout: View {
                             }
                         }
                 }
-                .presentationDetents([Self.peek, .fraction(0.45), .large], selection: $detent)
+                .presentationDetents([Self.peek, Self.resting, .large], selection: $detent)
                 .presentationDragIndicator(.visible)
-                .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.45)))
+                .presentationBackgroundInteraction(.enabled(upThrough: Self.resting))
                 .interactiveDismissDisabled()
             }
             // Choosing a pin while the sheet is parked at the peek would push the
             // detail behind the fold, so meet the selection halfway up.
             .onChange(of: appViewModel.selectedStationID) { _, id in
                 if id != nil && detent == Self.peek {
-                    detent = .fraction(0.45)
+                    detent = Self.resting
                 }
             }
     }
