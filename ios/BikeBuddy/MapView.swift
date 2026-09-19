@@ -103,7 +103,7 @@ struct MapView: View {
         // there is no tab bar or nav bar holding it down.
         return ZStack(alignment: .topTrailing) {
             map
-            mapControls
+            placedMapControls
         }
         .toolbar(.hidden, for: .navigationBar)
     }
@@ -198,6 +198,25 @@ struct MapView: View {
 
     // MARK: - Map controls overlay
 
+    /// Keeps the controls clear of the top of the display whether or not the system
+    /// has reserved anything up there.
+    ///
+    /// Most iPhones report a top safe area inset of 50-60pt for the status bar, so a
+    /// small padding on top of it lands the buttons comfortably. A folded iPhone
+    /// unfolded reports `top 0` — its status bar runs down the *trailing* edge
+    /// instead — and the same small padding put a 44pt button hard against the
+    /// rounded corner. So the padding is whatever it takes to reach a minimum margin
+    /// from the edge, and never less than the breathing room the inset already buys.
+    private static let minimumControlsTopMargin: CGFloat = 28
+
+    private var placedMapControls: some View {
+        GeometryReader { proxy in
+            mapControls
+                .padding(.top, max(8, Self.minimumControlsTopMargin - proxy.safeAreaInsets.top))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+        }
+    }
+
     /// Location button + style toggle stacked in the top-trailing corner.
     /// Both float over the map as interactive Liquid Glass pills. They share a
     /// `GlassEffectContainer` so the system renders the two effects together; the
@@ -232,7 +251,6 @@ struct MapView: View {
             }
         }
         .padding(.trailing, 10)
-        .padding(.top, 8)
     }
 
     // MARK: - Camera
