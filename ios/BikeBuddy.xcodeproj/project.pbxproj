@@ -11,6 +11,7 @@
 		0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */; };
 		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
 		94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D804A88A7804454B80E585B /* ScreenshotTests.swift */; };
+		DUOTESTS_BF /* DuoLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DUOTESTS_REF /* DuoLayoutTests.swift */; };
 		C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C516EFF31B0CE6CB00CF4468 /* Images.xcassets */; };
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
 		D11DDDDE1D988E0300BBB480 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDDD1D988E0300BBB480 /* Station.swift */; };
@@ -42,6 +43,7 @@
 		PRIVACY_MANIFEST_BUILD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIVACY_MANIFEST_REF /* PrivacyInfo.xcprivacy */; };
 		SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP /* BikeBuddyApp.swift */; };
 		SWIFTUI_BF_ADAPTIVE /* AdaptiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */; };
+		SWIFTUI_BF_PANEL_HEAD /* StationsPanelHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_PANEL_HEAD /* StationsPanelHeader.swift */; };
 		SWIFTUI_BF_CAM_FRAME /* MapCameraFraming.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */; };
 		SWIFTUI_BF_SEL_CARD /* StationSelectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SEL_CARD /* StationSelectionCard.swift */; };
 		SWIFTUI_BF_ROOT /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ROOT /* RootView.swift */; };
@@ -122,6 +124,7 @@
 		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
 		40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		8D804A88A7804454B80E585B /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
+		DUOTESTS_REF /* DuoLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoLayoutTests.swift; sourceTree = "<group>"; };
 		C516EFE51B0CE6CB00CF4468 /* BikeBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C516EFE91B0CE6CB00CF4468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C516EFF31B0CE6CB00CF4468 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 		PRIVACY_MANIFEST_REF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		SWIFTUI_APP /* BikeBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddyApp.swift; sourceTree = "<group>"; };
 		SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveLayout.swift; sourceTree = "<group>"; };
+		SWIFTUI_PANEL_HEAD /* StationsPanelHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsPanelHeader.swift; sourceTree = "<group>"; };
 		SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraFraming.swift; sourceTree = "<group>"; };
 		SWIFTUI_SEL_CARD /* StationSelectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSelectionCard.swift; sourceTree = "<group>"; };
 		SWIFTUI_ROOT /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */,
+				SWIFTUI_PANEL_HEAD /* StationsPanelHeader.swift */,
 				SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */,
 				SWIFTUI_SEL_CARD /* StationSelectionCard.swift */,
 				SWIFTUI_ROOT /* RootView.swift */,
@@ -404,6 +409,7 @@
 				D1B6DD1E1C9EC3E3008543A3 /* Info.plist */,
 				40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */,
 				8D804A88A7804454B80E585B /* ScreenshotTests.swift */,
+				DUOTESTS_REF /* DuoLayoutTests.swift */,
 			);
 			path = BikeBuddyUITests;
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				SWIFTUI_BF_ADAPTIVE /* AdaptiveLayout.swift in Sources */,
+				SWIFTUI_BF_PANEL_HEAD /* StationsPanelHeader.swift in Sources */,
 				SWIFTUI_BF_CAM_FRAME /* MapCameraFraming.swift in Sources */,
 				SWIFTUI_BF_SEL_CARD /* StationSelectionCard.swift in Sources */,
 				SWIFTUI_BF_ROOT /* RootView.swift in Sources */,
@@ -700,6 +707,7 @@
 			files = (
 				0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */,
 				94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */,
+				DUOTESTS_BF /* DuoLayoutTests.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */

@@ -241,6 +241,9 @@ struct MapView: View {
     /// to find it by.
     static let styleToggleIdentifier = "map.styleToggle"
 
+    /// Likewise for the location button: an icon with no stable text.
+    static let locationButtonIdentifier = "map.locationButton"
+
     private var placedMapControls: some View {
         GeometryReader { proxy in
             mapControls
@@ -269,6 +272,7 @@ struct MapView: View {
                         .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 10))
                 }
                 .accessibilityLabel(Text("MapCenterOnLocationAccessibilityLabel", bundle: .bikeBuddyKit))
+                .accessibilityIdentifier(Self.locationButtonIdentifier)
 
                 // Toggle map style
                 Button {
