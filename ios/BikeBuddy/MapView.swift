@@ -236,6 +236,11 @@ struct MapView: View {
     /// from the edge, and never less than the breathing room the inset already buys.
     private static let minimumControlsTopMargin: CGFloat = 28
 
+    /// The screenshot run switches to satellite through this. The button is an icon
+    /// whose symbol changes with the current style, so there is no stable text on it
+    /// to find it by.
+    static let styleToggleIdentifier = "map.styleToggle"
+
     private var placedMapControls: some View {
         GeometryReader { proxy in
             mapControls
@@ -263,6 +268,7 @@ struct MapView: View {
                         .frame(width: 44, height: 44)
                         .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 10))
                 }
+                .accessibilityLabel(Text("MapCenterOnLocationAccessibilityLabel", bundle: .bikeBuddyKit))
 
                 // Toggle map style
                 Button {
@@ -275,6 +281,8 @@ struct MapView: View {
                         .frame(width: 44, height: 44)
                         .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 10))
                 }
+                .accessibilityLabel(Text("MapToggleStyleAccessibilityLabel", bundle: .bikeBuddyKit))
+                .accessibilityIdentifier(Self.styleToggleIdentifier)
             }
         }
         .padding(.trailing, 10)

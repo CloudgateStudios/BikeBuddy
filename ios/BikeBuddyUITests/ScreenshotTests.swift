@@ -50,8 +50,12 @@ final class ScreenshotTests: XCTestCase {
         snapshot("02_StationDetail")
     }
 
-    /// The map is never more than a drag away now, so this shot is the same screen with
-    /// the stations panel pushed aside rather than a different tab.
+    /// The map in satellite, with the stations panel pushed aside.
+    ///
+    /// Panel position alone is not enough to make this its own screenshot. The panel
+    /// and the map are one screen now, so this shot and `test01` are the same picture
+    /// at two sheet heights — and on iPad, where there is no sheet to move, they were
+    /// identical. Changing the map itself is what separates them.
     func test03_Map() {
         guard waitForStations() else { return }
 
@@ -70,6 +74,7 @@ final class ScreenshotTests: XCTestCase {
             }
         }
 
+        switchToSatellite()
         snapshot("03_Map")
     }
 
@@ -89,6 +94,25 @@ final class ScreenshotTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    /// Switches the map to satellite, which is what makes this a different screenshot
+    /// from `test01` rather than the same one with the panel lower.
+    ///
+    /// Zooming out was the other candidate and does not work: the fixture spans about
+    /// 2km and the app opens on a 2000m radius, so it is already showing the whole of
+    /// it. Pulling back further would only shrink the pins.
+    private func switchToSatellite() {
+        let toggle = app.buttons[Self.styleToggleIdentifier].firstMatch
+        guard toggle.waitForExistence(timeout: 5) else { return }
+
+        toggle.tap()
+        // Satellite tiles are fetched rather than restyled, so this waits on the
+        // network, not the animation.
+        sleep(5)
+    }
+
+    /// Mirrors MapView.styleToggleIdentifier, which the app target owns.
+    private static let styleToggleIdentifier = "map.styleToggle"
 
     /// The closest station to ScreenshotMockData.coordinate, and so the first row in
     /// the list. Named once here because every test keys off it.

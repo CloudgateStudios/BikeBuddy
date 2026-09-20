@@ -192,9 +192,9 @@ SPECS = {
     ("01-stations", "Nearby", "Bikes near you,<br><em>right now.</em>",
      "The closest stations, sorted by how far you actually have to walk &mdash; with how "
      "many bikes and docks each one has this minute."),
-    ("02-map", "Map", "The whole network,<br><em>on one map.</em>",
-     "Every station in the city, grouped where they cluster. Tap a pin for what is "
-     "there and how far it is."),
+    ("02-map", "Map", "Street map,<br><em>or satellite.</em>",
+     "Switch the map when the corner matters &mdash; which side of the street the rack "
+     "is on, which park path actually gets you there."),
     ("03-detail", "Station", "Bikes, docks,<br><em>and the walk.</em>",
      "Tap any station for its counts and a walking route straight into Maps."),
     ("04-networks", "Coverage", "800+ networks.<br><em>One app.</em>",
@@ -206,9 +206,9 @@ SPECS = {
     ("01-stations", "Nearby", "Bikes near you,<br><em>right now.</em>",
      "The closest stations, sorted by how far you actually have to walk &mdash; with how "
      "many bikes and docks each one has this minute."),
-    ("02-map", "Map", "The whole network,<br><em>on one map.</em>",
-     "Every station in the city, grouped where they cluster. Tap a pin for what is "
-     "there and how far it is."),
+    ("02-map", "Map", "Street map,<br><em>or satellite.</em>",
+     "Switch the map when the corner matters &mdash; which side of the street the rack "
+     "is on, which park path actually gets you there."),
     # This used to be cropped: a station's detail was its own screen, it did not fill
     # 1376pt of portrait iPad, and the foot of it was white. There is no such screen
     # any more -- choosing a station keeps the map and puts the counts and actions on a

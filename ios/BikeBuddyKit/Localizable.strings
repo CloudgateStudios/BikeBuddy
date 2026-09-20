@@ -99,6 +99,12 @@
 /* VoiceOver label for the button that closes the map's station selection card */
 "MapDeselectStationAccessibilityLabel" = "Close station details";
 
+/* VoiceOver label for the map button that recentres on the user's own location */
+"MapCenterOnLocationAccessibilityLabel" = "Center on my location";
+
+/* VoiceOver label for the map button that switches between street and satellite */
+"MapToggleStyleAccessibilityLabel" = "Switch map style";
+
 /* VoiceOver label for a map pin standing in for several stations too close together
    to draw separately. %d is how many stations it covers. Tapping it zooms in. */
 "MapStationClusterLabel" = "%d stations, zoom in to see each one";
