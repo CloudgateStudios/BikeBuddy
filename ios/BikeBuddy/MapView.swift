@@ -113,31 +113,7 @@ struct MapView: View {
         guard let region = StationClustering.region(enclosing: appViewModel.stations) else { return nil }
         guard horizontalSizeClass != .regular else { return region }
 
-        return Self.region(region, framedAbove: StationsSheet.restingFraction)
-    }
-
-    /// Re-frames `region` so it fills the top `1 - covered` of the map instead of the
-    /// whole of it: the span grows to make room, and the centre moves down by half of
-    /// what was added, which pushes the content up into the clear.
-    private static func region(
-        _ region: MKCoordinateRegion,
-        framedAbove covered: CGFloat
-    ) -> MKCoordinateRegion {
-        let visible = 1 - Double(covered)
-        guard visible > 0 else { return region }
-
-        let latitudeDelta = region.span.latitudeDelta / visible
-
-        return MKCoordinateRegion(
-            center: CLLocationCoordinate2D(
-                latitude: region.center.latitude - Double(covered) * latitudeDelta / 2,
-                longitude: region.center.longitude
-            ),
-            span: MKCoordinateSpan(
-                latitudeDelta: latitudeDelta,
-                longitudeDelta: region.span.longitudeDelta
-            )
-        )
+        return MapCameraFraming.region(region, framedAbove: StationsSheet.restingFraction)
     }
 
     // MARK: - Body
@@ -344,19 +320,29 @@ struct MapView: View {
         }
     }
 
-    /// Brings the chosen station into view without changing how far in the user is
-    /// zoomed — re-framing the map under them because they tapped a row in a list is
-    /// disorienting, and they may have zoomed deliberately.
+    /// Zooms to the chosen station, and on a phone puts it in the strip above the
+    /// sheet rather than behind it.
+    ///
+    /// This only ever zooms in. Picking a row while looking at a whole network needs
+    /// to actually arrive somewhere — holding the span made the station a dot in a
+    /// view sixty miles across — but someone already down at street level chose that,
+    /// and pulling them back out to a fixed span would undo it. A pin is only
+    /// selectable once it has separated from its cluster, so tapping one on the map
+    /// already means close enough, and it leaves the camera alone.
     private func centerOnSelection() {
         guard let station = appViewModel.selectedStation else { return }
 
-        let span = visibleRegion?.span ?? MKCoordinateSpan(
-            latitudeDelta: StationClusteringTuning.minimumZoomSpan,
-            longitudeDelta: StationClusteringTuning.minimumZoomSpan
-        )
+        let span = MapCameraFraming.selectionSpan(from: visibleRegion?.span)
+        let center = horizontalSizeClass == .regular
+            ? station.coordinate
+            : MapCameraFraming.center(
+                station.coordinate,
+                clearing: StationsSheet.restingFraction,
+                latitudeDelta: span.latitudeDelta
+            )
 
         withAnimation(.easeInOut(duration: 0.35)) {
-            cameraPosition = .region(MKCoordinateRegion(center: station.coordinate, span: span))
+            cameraPosition = .region(MKCoordinateRegion(center: center, span: span))
         }
     }
 

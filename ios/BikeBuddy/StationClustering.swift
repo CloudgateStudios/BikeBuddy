@@ -44,6 +44,11 @@ enum StationClusteringTuning {
     /// How wide a view to open on once the user's location is known. Roughly a
     /// walkable radius, which is the question the map tab answers.
     static let initialSpanMeters: CLLocationDistance = 2000
+
+    /// How close to settle when a single station is chosen, in degrees (~650m).
+    /// Close enough to read the cross streets it sits on, wide enough to see what is
+    /// around it and walk there.
+    static let selectedStationSpan = 0.006
 }
 
 // MARK: - Station clustering

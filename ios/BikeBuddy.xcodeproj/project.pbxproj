@@ -42,6 +42,7 @@
 		PRIVACY_MANIFEST_BUILD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIVACY_MANIFEST_REF /* PrivacyInfo.xcprivacy */; };
 		SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP /* BikeBuddyApp.swift */; };
 		SWIFTUI_BF_ADAPTIVE /* AdaptiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */; };
+		SWIFTUI_BF_CAM_FRAME /* MapCameraFraming.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */; };
 		SWIFTUI_BF_SEL_CARD /* StationSelectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SEL_CARD /* StationSelectionCard.swift */; };
 		SWIFTUI_BF_ROOT /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ROOT /* RootView.swift */; };
 		SWIFTUI_BF_PANEL /* StationsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_PANEL /* StationsPanel.swift */; };
@@ -160,6 +161,7 @@
 		PRIVACY_MANIFEST_REF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		SWIFTUI_APP /* BikeBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddyApp.swift; sourceTree = "<group>"; };
 		SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveLayout.swift; sourceTree = "<group>"; };
+		SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraFraming.swift; sourceTree = "<group>"; };
 		SWIFTUI_SEL_CARD /* StationSelectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSelectionCard.swift; sourceTree = "<group>"; };
 		SWIFTUI_ROOT /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		SWIFTUI_PANEL /* StationsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsPanel.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */,
+				SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */,
 				SWIFTUI_SEL_CARD /* StationSelectionCard.swift */,
 				SWIFTUI_ROOT /* RootView.swift */,
 				SWIFTUI_PANEL /* StationsPanel.swift */,
@@ -638,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				SWIFTUI_BF_ADAPTIVE /* AdaptiveLayout.swift in Sources */,
+				SWIFTUI_BF_CAM_FRAME /* MapCameraFraming.swift in Sources */,
 				SWIFTUI_BF_SEL_CARD /* StationSelectionCard.swift in Sources */,
 				SWIFTUI_BF_ROOT /* RootView.swift in Sources */,
 				SWIFTUI_BF_PANEL /* StationsPanel.swift in Sources */,
