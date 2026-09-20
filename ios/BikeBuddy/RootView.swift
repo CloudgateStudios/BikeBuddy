@@ -115,7 +115,7 @@ private struct PadLayout: View {
             StationsPanel()
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(.hidden, for: .navigationBar)
-                .navigationSplitViewColumnWidth(min: 320, ideal: 380, max: 460)
+                .navigationSplitViewColumnWidth(min: 280, ideal: 320, max: 420)
         } detail: {
             MapView()
         }
