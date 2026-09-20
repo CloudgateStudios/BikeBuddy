@@ -10,13 +10,21 @@ import SwiftUI
 import MapKit
 import BikeBuddyKit
 
-/// Full-screen detail for a single bike station.
-/// Layout: full-width interactive map header, glass availability cards,
-/// glass actions card. Presents as a push from the station list or as a
-/// sheet (with detents) when launched from the map callout.
+/// Detail for a single bike station: map header, availability cards, actions.
+///
+/// Pushed inside the stations sheet on a phone, where the live map is already on
+/// screen behind it — see `showsMapHeader`.
 struct StationDetailView: View {
 
     let station: Station
+
+    /// Whether to draw the small map at the top.
+    ///
+    /// Off when this is presented over the real map, which is the phone's whole
+    /// layout: a static 250pt map of the same station, laid over an interactive one
+    /// showing the same pin, is a picture of what the user is already looking at. It
+    /// also costs a second MKMapView for the privilege.
+    var showsMapHeader: Bool = true
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
@@ -101,7 +109,7 @@ struct StationDetailView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle(station.stationName)
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(showsMapHeader ? .large : .inline)
         .userActivity(Constants.UserActivity.StationActivityTypeIdentifier) { activity in
             activity.title = station.stationName
             let userInfo: [String: Any] = ["stationId": station.id, "stationName": station.stationName]
@@ -125,6 +133,13 @@ struct StationDetailView: View {
     /// height that capping the column frees up.
     @ViewBuilder
     private var mapHeader: some View {
+        if showsMapHeader {
+            sizedMap
+        }
+    }
+
+    @ViewBuilder
+    private var sizedMap: some View {
         let map = Map(initialPosition: .region(MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: station.latitude, longitude: station.longitude),
             latitudinalMeters: 500,
@@ -189,11 +204,6 @@ struct StationDetailView: View {
     // MARK: - Actions
 
     private func openDirections() {
-        let mapItem = MKMapItem(
-            location: CLLocation(latitude: station.latitude, longitude: station.longitude),
-            address: nil
-        )
-        mapItem.name = station.stationName
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+        station.openInMaps()
     }
 }

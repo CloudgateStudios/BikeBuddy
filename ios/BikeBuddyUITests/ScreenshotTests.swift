@@ -6,10 +6,14 @@
 //  Run via: fastlane screenshots
 //
 //  Screenshots captured (in order):
-//   01 – Stations List  (with mock station rows)
-//   02 – Station Detail (pushed from list)
-//   03 – Map            (pins visible; station selection card if tap succeeds)
-//   04 – Networks       (the picker, seeded from ScreenshotMockData)
+//   01 – Stations      (the main screen: map with the stations panel beside or over it)
+//   02 – Station Detail(a station chosen — pushed in the sheet, or the card on iPad)
+//   03 – Map           (the map given the whole screen)
+//   04 – Networks      (the picker, seeded from ScreenshotMockData)
+//
+//  There is no tab bar to navigate by any more: the map is always on screen and the
+//  stations sit on a sheet over it (compact) or in a split view sidebar (regular), so
+//  each shot is reached by acting on what is already visible.
 
 import XCTest
 
@@ -32,67 +36,56 @@ final class ScreenshotTests: XCTestCase {
 
     // MARK: - Screenshot tests (run in alphabetical order by Xcode)
 
-    func test01_StationsList() {
-        // Wait for station rows to appear (mock data pre-seeded via launch env).
-        let firstRow = app.staticTexts[Self.nearestStation].firstMatch
-        _ = firstRow.waitForExistence(timeout: 20)
+    func test01_Stations() {
+        guard waitForStations() else { return }
         snapshot("01_StationsList")
     }
 
     func test02_StationDetail() {
-        // Wait for the list to be populated, then tap the first station row.
-        let firstRow = app.staticTexts[Self.nearestStation].firstMatch
-        guard firstRow.waitForExistence(timeout: 20) else { return }
-        firstRow.tap()
-        // Allow the NavigationStack push animation to complete.
+        guard waitForStations() else { return }
+
+        app.staticTexts[Self.nearestStation].firstMatch.tap()
+        // Allow the push (compact) or the card's spring (regular) to settle.
         sleep(2)
         snapshot("02_StationDetail")
     }
 
+    /// The map in satellite, with the stations panel pushed aside.
+    ///
+    /// Panel position alone is not enough to make this its own screenshot. The panel
+    /// and the map are one screen now, so this shot and `test01` are the same picture
+    /// at two sheet heights — and on iPad, where there is no sheet to move, they were
+    /// identical. Changing the map itself is what separates them.
     func test03_Map() {
-        tapTab("Map")
-        // Let map tiles load and markers render.
-        sleep(4)
+        guard waitForStations() else { return }
 
-        // Try to tap a station marker so the selection card slides up.
-        // In iOS 17+ SwiftUI Map, Markers are accessible as otherElements
-        // keyed by their title string.
-        // Only stations the grid leaves unclustered surface as tappable markers, so
-        // try several. A miss just means no selection card, which is still a usable
-        // shot of the map.
-        let markerNames = [
-            Self.nearestStation,
-            "W 41 St & 8 Ave",
-            "W 45 St & 8 Ave",
-            "W 40 St & 7 Ave"
-        ]
-        for name in markerNames {
-            // Markers can surface as otherElements OR buttons depending on iOS version.
-            let asOther = app.otherElements[name].firstMatch
-            let asButton = app.buttons[name].firstMatch
-            if asOther.exists {
-                asOther.tap()
-                sleep(2) // Wait for selection card spring animation
-                break
-            } else if asButton.exists {
-                asButton.tap()
+        // Compact: drag the sheet down to its smallest detent so the map has the screen.
+        // Regular: the map already has everything the sidebar is not using, so there is
+        // nothing to move and the drag is skipped.
+        if !isRegularWidth {
+            let sheet = app.staticTexts[Self.panelTitle].firstMatch
+            if sheet.waitForExistence(timeout: 5) {
+                // Coordinate to coordinate: dragging to an element would aim at that
+                // element's centre, and the target here is the bottom of the screen.
+                let grab = sheet.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+                let bottom = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.97))
+                grab.press(forDuration: 0.1, thenDragTo: bottom)
                 sleep(2)
-                break
             }
         }
 
+        switchToSatellite()
         snapshot("03_Map")
     }
 
     func test04_Networks() {
-        tapTab("Settings")
-        sleep(1)
+        guard waitForStations() else { return }
 
-        // Settings > Network opens the shared picker. Its list is seeded in
-        // ScreenshotMockData, so this needs no network and always looks the same.
-        let networkRow = app.staticTexts["Network"].firstMatch
-        guard networkRow.waitForExistence(timeout: 10) else { return }
-        networkRow.tap()
+        // The network is a control in the panel header now rather than a row inside
+        // Settings, so the picker is one tap from the main screen.
+        let networkButton = app.buttons[Self.networkButtonIdentifier].firstMatch
+        guard networkButton.waitForExistence(timeout: 10) else { return }
+        networkButton.tap()
 
         let firstNetwork = app.staticTexts["ARbike"].firstMatch
         _ = firstNetwork.waitForExistence(timeout: 10)
@@ -102,30 +95,45 @@ final class ScreenshotTests: XCTestCase {
 
     // MARK: - Helpers
 
+    /// Switches the map to satellite, which is what makes this a different screenshot
+    /// from `test01` rather than the same one with the panel lower.
+    ///
+    /// Zooming out was the other candidate and does not work: the fixture spans about
+    /// 2km and the app opens on a 2000m radius, so it is already showing the whole of
+    /// it. Pulling back further would only shrink the pins.
+    private func switchToSatellite() {
+        let toggle = app.buttons[Self.styleToggleIdentifier].firstMatch
+        guard toggle.waitForExistence(timeout: 5) else { return }
+
+        toggle.tap()
+        // Satellite tiles are fetched rather than restyled, so this waits on the
+        // network, not the animation.
+        sleep(5)
+    }
+
+    /// Mirrors MapView.styleToggleIdentifier, which the app target owns.
+    private static let styleToggleIdentifier = "map.styleToggle"
+
     /// The closest station to ScreenshotMockData.coordinate, and so the first row in
-    /// the list. Named once here because three tests key off it.
+    /// the list. Named once here because every test keys off it.
     private static let nearestStation = "W 42 St & 8 Ave"
 
-    /// Navigate to a named tab.
-    ///
-    /// On iPhone, SwiftUI's TabView exposes its items under a `tabBar`
-    /// accessibility container.  On iPad with iOS 18+, Apple replaced the
-    /// classic bottom bar with a `_UIFloatingTabBar` whose items do NOT form
-    /// a `tabBar` accessibility element — they show up as plain `buttons`
-    /// directly on the app with `identifier` == SF-symbol name and
-    /// `label` == the tab title string.  We try the traditional path first
-    /// and fall back to the global button query for iPad.
-    private func tapTab(_ label: String) {
-        // iPhone: traditional tabBar container
-        let tabBarButton = app.tabBars.buttons[label]
-        if tabBarButton.exists {
-            tabBarButton.tap()
-            return
-        }
-        // iPad iOS 18+: floating tab bar items appear as top-level buttons
-        let floatingButton = app.buttons[label].firstMatch
-        XCTAssertTrue(floatingButton.waitForExistence(timeout: 5),
-                      "Could not find tab '\(label)' in tabBar or floating tab bar")
-        floatingButton.tap()
+    /// Matches the localized panel title, which is also the sheet's drag handle area.
+    private static let panelTitle = "Stations"
+
+    /// Mirrors StationsPanelHeader.networkButtonIdentifier, which the app target owns.
+    private static let networkButtonIdentifier = "stationsPanel.networkButton"
+
+    /// Mock data is seeded at launch, so this only waits out the first render.
+    @discardableResult
+    private func waitForStations() -> Bool {
+        app.staticTexts[Self.nearestStation].firstMatch.waitForExistence(timeout: 20)
+    }
+
+    /// A split view sidebar exists only at regular width, which is what tells the two
+    /// layouts apart from out here without reaching for the device idiom.
+    private var isRegularWidth: Bool {
+        app.descendants(matching: .any)["stationsPanel.settingsButton"].firstMatch.exists
+            && app.windows.firstMatch.frame.width >= 700
     }
 }

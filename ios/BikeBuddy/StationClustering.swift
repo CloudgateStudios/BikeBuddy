@@ -44,6 +44,11 @@ enum StationClusteringTuning {
     /// How wide a view to open on once the user's location is known. Roughly a
     /// walkable radius, which is the question the map tab answers.
     static let initialSpanMeters: CLLocationDistance = 2000
+
+    /// How close to settle when a single station is chosen, in degrees (~650m).
+    /// Close enough to read the cross streets it sits on, wide enough to see what is
+    /// around it and walk there.
+    static let selectedStationSpan = 0.006
 }
 
 // MARK: - Station clustering
@@ -64,16 +69,30 @@ struct StationCluster: Identifiable {
     /// A region snug around the members, padded so they do not sit on the edge and
     /// floored so a tight group does not jump straight to street level.
     var boundingRegion: MKCoordinateRegion {
+        StationClustering.region(enclosing: stations) ?? MKCoordinateRegion(
+            center: coordinate,
+            latitudinalMeters: StationClusteringTuning.fallbackZoomMeters,
+            longitudinalMeters: StationClusteringTuning.fallbackZoomMeters
+        )
+    }
+}
+
+enum StationClustering {
+
+    /// Buckets stations into grid cells sized off the visible span, so the pin count
+    /// is bounded by the grid rather than by how big the network is.
+    /// The region that just contains these stations, with a little room around them.
+    ///
+    /// Shared by a cluster zooming to its own members and by the map framing a whole
+    /// network when it has no better idea where to look. Nil for an empty list, which
+    /// is the caller's cue that there is nothing to frame yet.
+    static func region(enclosing stations: [Station]) -> MKCoordinateRegion? {
         let latitudes = stations.map(\.latitude)
         let longitudes = stations.map(\.longitude)
 
         guard let minLatitude = latitudes.min(), let maxLatitude = latitudes.max(),
               let minLongitude = longitudes.min(), let maxLongitude = longitudes.max() else {
-            return MKCoordinateRegion(
-                center: coordinate,
-                latitudinalMeters: StationClusteringTuning.fallbackZoomMeters,
-                longitudinalMeters: StationClusteringTuning.fallbackZoomMeters
-            )
+            return nil
         }
 
         let padding = StationClusteringTuning.zoomPadding
@@ -90,12 +109,7 @@ struct StationCluster: Identifiable {
             )
         )
     }
-}
 
-enum StationClustering {
-
-    /// Buckets stations into grid cells sized off the visible span, so the pin count
-    /// is bounded by the grid rather than by how big the network is.
     static func clusters(for stations: [Station], in region: MKCoordinateRegion) -> [StationCluster] {
         let latitudeSpan = region.span.latitudeDelta
         let longitudeSpan = region.span.longitudeDelta

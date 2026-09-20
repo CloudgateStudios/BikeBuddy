@@ -14,6 +14,12 @@
 /* Button label to retry an action that failed, e.g. loading station data or the network list */
 "GeneralButtonTryAgain" = "Try Again";
 
+/* Button label that closes a sheet, keeping whatever was changed in it */
+"GeneralButtonDone" = "Done";
+
+/* Button label that closes a sheet without choosing anything */
+"GeneralButtonCancel" = "Cancel";
+
 /* String that goes on the back of the distance from user string e.g. ~3.0 mi 'away' */
 "GeneralAwayLabel" = "away";
 
@@ -60,9 +66,6 @@
 
 // MARK: - Stations List
 
-/*  Name of the tab bar item for the Stations List */
-"StationsListTabBarItemLabel" = "Stations List";
-
 /* Title in the nav bar of the Stations List view */
 "StationsListNavBarTitle" = "Stations";
 
@@ -84,16 +87,23 @@
 /* Button that opens the iOS Settings app so the user can grant location access */
 "GeneralButtonOpenSettings" = "Open Settings";
 
-// MARK: - Map View
+/* VoiceOver label for the control above the station list showing the current bike
+   network. Tapping it opens the network picker. */
+"StationsPanelChangeNetworkAccessibilityLabel" = "Change bike network";
 
-/* Name of the tab bar item for the Map view */
-"MapTabBarItemLabel" = "Map";
+// MARK: - Map View
 
 /* Label prefix for what time the data was last updated at. Should be followed by a time */
 "MapUpdatedAtLabel" = "Updated at";
 
-/* Button label on the map station selection card to open the full station detail */
-"MapStationDetailsButton" = "Details";
+/* VoiceOver label for the button that closes the map's station selection card */
+"MapDeselectStationAccessibilityLabel" = "Close station details";
+
+/* VoiceOver label for the map button that recentres on the user's own location */
+"MapCenterOnLocationAccessibilityLabel" = "Center on my location";
+
+/* VoiceOver label for the map button that switches between street and satellite */
+"MapToggleStyleAccessibilityLabel" = "Switch map style";
 
 /* VoiceOver label for a map pin standing in for several stations too close together
    to draw separately. %d is how many stations it covers. Tapping it zooms in. */
@@ -114,9 +124,6 @@
 "StationDetailDocksAvailable" = "Docks Open";
 
 // MARK: - Settings
-
-/* Name of the tab bar item for the Settings view */
-"SettingsTabBarItemLabel" = "Settings";
 
 /* Title in the nav bar of the Settings view */
 "SettingsNavBarTitle" = "Settings";

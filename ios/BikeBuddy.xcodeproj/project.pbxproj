@@ -42,6 +42,11 @@
 		PRIVACY_MANIFEST_BUILD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIVACY_MANIFEST_REF /* PrivacyInfo.xcprivacy */; };
 		SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP /* BikeBuddyApp.swift */; };
 		SWIFTUI_BF_ADAPTIVE /* AdaptiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */; };
+		SWIFTUI_BF_CAM_FRAME /* MapCameraFraming.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */; };
+		SWIFTUI_BF_SEL_CARD /* StationSelectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SEL_CARD /* StationSelectionCard.swift */; };
+		SWIFTUI_BF_ROOT /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ROOT /* RootView.swift */; };
+		SWIFTUI_BF_PANEL /* StationsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_PANEL /* StationsPanel.swift */; };
+		SWIFTUI_BF_ST_ACTIONS /* StationActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ST_ACTIONS /* StationActions.swift */; };
 		SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */; };
 		SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP_VM /* AppViewModel.swift */; };
 		SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CONTENT /* ContentView.swift */; };
@@ -59,8 +64,6 @@
 		SWIFTUI_BF_SETTINGS_ABOUT /* SettingsAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */; };
 		SWIFTUI_BF_SETTINGS_NET /* SettingsSelectNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */; };
 		SWIFTUI_BF_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */; };
-		SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATIONS /* StationsListView.swift */; };
-		SWIFTUI_BF_TAB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_TAB /* MainTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +161,11 @@
 		PRIVACY_MANIFEST_REF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		SWIFTUI_APP /* BikeBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBuddyApp.swift; sourceTree = "<group>"; };
 		SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveLayout.swift; sourceTree = "<group>"; };
+		SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraFraming.swift; sourceTree = "<group>"; };
+		SWIFTUI_SEL_CARD /* StationSelectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSelectionCard.swift; sourceTree = "<group>"; };
+		SWIFTUI_ROOT /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		SWIFTUI_PANEL /* StationsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsPanel.swift; sourceTree = "<group>"; };
+		SWIFTUI_ST_ACTIONS /* StationActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationActions.swift; sourceTree = "<group>"; };
 		SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
 		SWIFTUI_APP_VM /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		SWIFTUI_CONTENT /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,9 +182,7 @@
 		SWIFTUI_SETTINGS_ABOUT /* SettingsAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutView.swift; sourceTree = "<group>"; };
 		SWIFTUI_SETTINGS_NET /* SettingsSelectNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelectNetworkView.swift; sourceTree = "<group>"; };
 		SWIFTUI_SETTINGS_NUM /* SettingsNumberOfClosestStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNumberOfClosestStationsView.swift; sourceTree = "<group>"; };
-		SWIFTUI_STATIONS /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		SWIFTUI_STATION_DETAIL /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
-		SWIFTUI_TAB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,18 +280,21 @@
 			isa = PBXGroup;
 			children = (
 				SWIFTUI_ADAPTIVE /* AdaptiveLayout.swift */,
+				SWIFTUI_CAM_FRAME /* MapCameraFraming.swift */,
+				SWIFTUI_SEL_CARD /* StationSelectionCard.swift */,
+				SWIFTUI_ROOT /* RootView.swift */,
+				SWIFTUI_PANEL /* StationsPanel.swift */,
+				SWIFTUI_ST_ACTIONS /* StationActions.swift */,
 				SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */,
 				SWIFTUI_APP_VM /* AppViewModel.swift */,
 				SWIFTUI_APP /* BikeBuddyApp.swift */,
 				SWIFTUI_CONTENT /* ContentView.swift */,
-				SWIFTUI_TAB /* MainTabView.swift */,
 				SWIFTUI_FTU_VM /* FTUViewModel.swift */,
 				SWIFTUI_FTU_WELCOME /* FTUWelcomeView.swift */,
 				SWIFTUI_FTU_LOCATION /* FTULocationAccessView.swift */,
 				SWIFTUI_FTU_NETWORK /* FTUSelectNetworkView.swift */,
 				SWIFTUI_FTU_FINISH /* FTUFinishedView.swift */,
 				SWIFTUI_LOCMGR /* LocationManager.swift */,
-				SWIFTUI_STATIONS /* StationsListView.swift */,
 				SWIFTUI_MAP /* MapView.swift */,
 				SWIFTUI_CLUSTER /* StationClustering.swift */,
 				SWIFTUI_MOCK /* ScreenshotMockData.swift */,
@@ -632,18 +641,21 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				SWIFTUI_BF_ADAPTIVE /* AdaptiveLayout.swift in Sources */,
+				SWIFTUI_BF_CAM_FRAME /* MapCameraFraming.swift in Sources */,
+				SWIFTUI_BF_SEL_CARD /* StationSelectionCard.swift in Sources */,
+				SWIFTUI_BF_ROOT /* RootView.swift in Sources */,
+				SWIFTUI_BF_PANEL /* StationsPanel.swift in Sources */,
+				SWIFTUI_BF_ST_ACTIONS /* StationActions.swift in Sources */,
 				SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */,
 				SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */,
 				SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */,
 				SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */,
-				SWIFTUI_BF_TAB /* MainTabView.swift in Sources */,
 				SWIFTUI_BF_FTU_VM /* FTUViewModel.swift in Sources */,
 				SWIFTUI_BF_FTU_WELCOME /* FTUWelcomeView.swift in Sources */,
 				SWIFTUI_BF_FTU_LOCATION /* FTULocationAccessView.swift in Sources */,
 				SWIFTUI_BF_FTU_NETWORK /* FTUSelectNetworkView.swift in Sources */,
 				SWIFTUI_BF_FTU_FINISH /* FTUFinishedView.swift in Sources */,
 				SWIFTUI_BF_LOCMGR /* LocationManager.swift in Sources */,
-				SWIFTUI_BF_STATIONS /* StationsListView.swift in Sources */,
 				SWIFTUI_BF_MAP /* MapView.swift in Sources */,
 				SWIFTUI_BF_CLUSTER /* StationClustering.swift in Sources */,
 				SWIFTUI_BF_MOCK /* ScreenshotMockData.swift in Sources */,
