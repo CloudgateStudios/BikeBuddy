@@ -203,15 +203,19 @@ final class DuoLayoutTests: XCTestCase {
     /// get the app onto it.
     ///
     /// A skip rather than an omission, because the gap is worth seeing in the test
-    /// report: at 669pt the inner display is wide enough to land in the regular
-    /// size class, which would give it the split view rather than the sheet — a
-    /// different layout from everything above, and entirely unverified.
+    /// report. At 669pt the inner display lands in the regular size class, so
+    /// unfolding swaps the sheet for the split view — a different layout from
+    /// everything above. That layout is covered by `RegularWidthLayoutTests`,
+    /// which runs it on the iPads that can reach it; what stays unverified here is
+    /// this display's particular geometry, and the swap itself.
     func testUnfoldedDisplayIsNotReachableFromTests() throws {
         throw XCTSkip(
             "The Duo's inner display (screen 3, 669x951pt) cannot be driven: no "
             + "fold control exists in simctl, CoreSimulator or XCUITest as of "
-            + "Xcode 27.1. At that width it would resolve to the regular-width "
-            + "split view, so this is a real coverage gap. Check it by hand."
+            + "Xcode 27.1. At 669pt it resolves to the regular-width split view, "
+            + "and that flow is covered by RegularWidthLayoutTests on the iPads "
+            + "that do reach it — an iPad mini at 744pt being the closest match. "
+            + "What is unverified is this display's own geometry, not the layout."
         )
     }
 

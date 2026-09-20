@@ -12,6 +12,7 @@
 		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
 		94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D804A88A7804454B80E585B /* ScreenshotTests.swift */; };
 		DUOTESTS_BF /* DuoLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DUOTESTS_REF /* DuoLayoutTests.swift */; };
+		REGTESTS_BF /* RegularWidthLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = REGTESTS_REF /* RegularWidthLayoutTests.swift */; };
 		C516EFF41B0CE6CB00CF4468 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C516EFF31B0CE6CB00CF4468 /* Images.xcassets */; };
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
 		D11DDDDE1D988E0300BBB480 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDDD1D988E0300BBB480 /* Station.swift */; };
@@ -125,6 +126,7 @@
 		40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		8D804A88A7804454B80E585B /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
 		DUOTESTS_REF /* DuoLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoLayoutTests.swift; sourceTree = "<group>"; };
+		REGTESTS_REF /* RegularWidthLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWidthLayoutTests.swift; sourceTree = "<group>"; };
 		C516EFE51B0CE6CB00CF4468 /* BikeBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C516EFE91B0CE6CB00CF4468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C516EFF31B0CE6CB00CF4468 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */,
 				8D804A88A7804454B80E585B /* ScreenshotTests.swift */,
 				DUOTESTS_REF /* DuoLayoutTests.swift */,
+				REGTESTS_REF /* RegularWidthLayoutTests.swift */,
 			);
 			path = BikeBuddyUITests;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */,
 				94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */,
 				DUOTESTS_BF /* DuoLayoutTests.swift in Sources */,
+				REGTESTS_BF /* RegularWidthLayoutTests.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */

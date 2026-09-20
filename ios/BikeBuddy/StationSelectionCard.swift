@@ -85,8 +85,13 @@ struct StationSelectionCard: View {
                 Image(systemName: "xmark")
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(.secondary)
+                    // The circle reads better small, but the target cannot be: 28pt
+                    // is well under the 44pt minimum, so the glyph keeps its size
+                    // inside a frame that does not.
                     .frame(width: 28, height: 28)
                     .background(Color(.tertiarySystemFill), in: Circle())
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .hoverEffect(.lift)
