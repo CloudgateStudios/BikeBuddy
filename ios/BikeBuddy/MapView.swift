@@ -43,6 +43,7 @@ struct MapView: View {
 
     @Environment(AppViewModel.self) private var appViewModel
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var locationManager = LocationManager()
 
     @State private var cameraPosition: MapCameraPosition = .automatic
@@ -63,6 +64,13 @@ struct MapView: View {
     /// (Station is a value type, so this doesn't mutate the shared list).
     private var selectedStation: Station? {
         appViewModel.selectedStation
+    }
+
+    /// Whether the stations sheet is sitting over the bottom of the map. Only on an
+    /// upright phone: iPad and a phone in landscape put the stations beside the map,
+    /// so there is nothing to frame around.
+    private var isCoveredBySheet: Bool {
+        horizontalSizeClass != .regular && verticalSizeClass != .compact
     }
 
     // MARK: - Clustering
@@ -111,7 +119,7 @@ struct MapView: View {
     /// some zoom but shows the network rather than the half of it that fits.
     private var networkRegion: MKCoordinateRegion? {
         guard let region = StationClustering.region(enclosing: appViewModel.stations) else { return nil }
-        guard horizontalSizeClass != .regular else { return region }
+        guard isCoveredBySheet else { return region }
 
         return MapCameraFraming.region(region, framedAbove: StationsSheet.restingFraction)
     }
@@ -332,8 +340,8 @@ struct MapView: View {
         }
     }
 
-    /// Zooms to the chosen station, and on a phone puts it in the strip above the
-    /// sheet rather than behind it.
+    /// Zooms to the chosen station, and on an upright phone puts it in the strip above
+    /// the sheet rather than behind it.
     ///
     /// This only ever zooms in. Picking a row while looking at a whole network needs
     /// to actually arrive somewhere — holding the span made the station a dot in a
@@ -345,13 +353,13 @@ struct MapView: View {
         guard let station = appViewModel.selectedStation else { return }
 
         let span = MapCameraFraming.selectionSpan(from: visibleRegion?.span)
-        let center = horizontalSizeClass == .regular
-            ? station.coordinate
-            : MapCameraFraming.center(
+        let center = isCoveredBySheet
+            ? MapCameraFraming.center(
                 station.coordinate,
                 clearing: StationsSheet.restingFraction,
                 latitudeDelta: span.latitudeDelta
             )
+            : station.coordinate
 
         withAnimation(.easeInOut(duration: 0.35)) {
             cameraPosition = .region(MKCoordinateRegion(center: center, span: span))
