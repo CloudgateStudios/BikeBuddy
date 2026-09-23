@@ -25,6 +25,7 @@ struct StationsPanelHeader: View {
     static let settingsButtonIdentifier = "stationsPanel.settingsButton"
 
     @Environment(AppViewModel.self) private var appViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     let onOpenNetworkPicker: () -> Void
     let onOpenSettings: () -> Void
@@ -76,8 +77,16 @@ struct StationsPanelHeader: View {
             .accessibilityIdentifier(StationsPanelHeader.settingsButtonIdentifier)
         }
         .padding(.horizontal, 20)
-        .padding(.top, 8)
+        .padding(.top, topPadding)
         .padding(.bottom, 12)
+    }
+
+    /// On a phone the header is the top of a sheet whose corners are rounded to match
+    /// the display's, and the drag indicator sits in the middle of that same edge.
+    /// Eight points put the title right up in the curve of the corner, so compact
+    /// width clears both. The iPad sidebar already starts below the safe area.
+    private var topPadding: CGFloat {
+        horizontalSizeClass == .regular ? 8 : 20
     }
 }
 

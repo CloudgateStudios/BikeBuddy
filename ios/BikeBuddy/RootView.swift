@@ -60,43 +60,79 @@ enum StationsSheet {
 /// Map behind, stations on a sheet over it. The sheet is always presented — it is the
 /// app's primary surface, not a modal — so it cannot be dismissed, only dragged down
 /// to its smallest detent.
+///
+/// Except in landscape. A phone on its side has compact height, and iOS ignores the
+/// detents there and presents every sheet at full height — which buried the map with
+/// no way back to it. So at compact height the stations move into a column beside
+/// the map instead, and the sheet stands down until the phone is upright again.
 private struct PhoneLayout: View {
 
     @Environment(AppViewModel.self) private var appViewModel
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     @State private var detent: PresentationDetent = .fraction(StationsSheet.restingFraction)
 
     private static let peek: PresentationDetent = .height(StationsSheet.peekHeight)
     private static let resting: PresentationDetent = .fraction(StationsSheet.restingFraction)
 
-    var body: some View {
-        @Bindable var appViewModel = appViewModel
+    /// Wide enough for a station name beside both counts, narrow enough that the map
+    /// keeps the larger share of a landscape phone.
+    private static let sideColumnWidth: CGFloat = 360
 
-        MapView()
-            .sheet(isPresented: .constant(!appViewModel.showFirstTimeUse)) {
-                NavigationStack {
-                    StationsPanel()
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar(.hidden, for: .navigationBar)
-                        .navigationDestination(item: $appViewModel.selectedStationID) { id in
-                            if let station = appViewModel.station(withID: id) {
-                                // The real map is right behind this sheet.
-                                StationDetailView(station: station, showsMapHeader: false)
-                            }
-                        }
-                }
+    private var isLandscape: Bool { verticalSizeClass == .compact }
+
+    var body: some View {
+        // One HStack in both orientations, with the column in a slot that is simply
+        // empty when upright, so MapView keeps its identity — and with it the camera
+        // and the user's place on the map — across a rotation.
+        HStack(spacing: 0) {
+            if isLandscape && !appViewModel.showFirstTimeUse {
+                StationsNavigationStack()
+                    .frame(width: Self.sideColumnWidth)
+                    .background(Color(.systemGroupedBackground).ignoresSafeArea())
+                Divider()
+                    .ignoresSafeArea()
+            }
+
+            MapView()
+        }
+        .sheet(isPresented: .constant(!appViewModel.showFirstTimeUse && !isLandscape)) {
+            StationsNavigationStack()
                 .presentationDetents([Self.peek, Self.resting, .large], selection: $detent)
                 .presentationDragIndicator(.visible)
                 .presentationBackgroundInteraction(.enabled(upThrough: Self.resting))
                 .interactiveDismissDisabled()
+        }
+        // Choosing a pin while the sheet is parked at the peek would push the
+        // detail behind the fold, so meet the selection halfway up.
+        .onChange(of: appViewModel.selectedStationID) { _, id in
+            if id != nil && detent == Self.peek {
+                detent = Self.resting
             }
-            // Choosing a pin while the sheet is parked at the peek would push the
-            // detail behind the fold, so meet the selection halfway up.
-            .onChange(of: appViewModel.selectedStationID) { _, id in
-                if id != nil && detent == Self.peek {
-                    detent = Self.resting
+        }
+    }
+}
+
+/// The stations panel with the selected station pushed on top of it: the whole of
+/// the phone's stations surface, whether that is the sheet or the landscape column.
+private struct StationsNavigationStack: View {
+
+    @Environment(AppViewModel.self) private var appViewModel
+
+    var body: some View {
+        @Bindable var appViewModel = appViewModel
+
+        NavigationStack {
+            StationsPanel()
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar(.hidden, for: .navigationBar)
+                .navigationDestination(item: $appViewModel.selectedStationID) { id in
+                    if let station = appViewModel.station(withID: id) {
+                        // The real map is right beside or behind this.
+                        StationDetailView(station: station, showsMapHeader: false)
+                    }
                 }
-            }
+        }
     }
 }
 
