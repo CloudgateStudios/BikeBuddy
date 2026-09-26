@@ -67,7 +67,7 @@ struct SettingsView: View {
                 }
 
                 ShareLink(
-                    item: String(localized: "SettingsShareMessageContent", bundle: .bikeBuddyKit) + " " + Constants.ExtneralURL.AppStoreDeepLink
+                    item: String(localized: "SettingsShareMessageContent", bundle: .bikeBuddyKit) + " " + Constants.ExternalURL.AppStoreDeepLink
                 ) {
                     Text("SettingsGeneralTellYourFriends", bundle: .bikeBuddyKit)
                         .foregroundStyle(.primary)
@@ -98,7 +98,7 @@ struct SettingsView: View {
     // MARK: - Actions
 
     private func goToAppStorePage() {
-        if let url = URL(string: Constants.ExtneralURL.AppStoreDeepLink) {
+        if let url = URL(string: Constants.ExternalURL.AppStoreDeepLink) {
             openURL(url)
         }
     }

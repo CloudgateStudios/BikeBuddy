@@ -2,7 +2,7 @@
 
 **Scope:** Full modernization
 **Minimum supported OS:** iOS 27 (dropping iOS 26 — no `#available` gating needed)
-**Status:** Phases 0–4 complete (iOS 27 readiness done) — Phase 5 remaining as post-readiness cleanup
+**Status:** Complete. Phases 0–5 and the CI enablement items have all landed on `main`; kept as a record of what changed and why.
 
 > All work lands on `feat/iOS27-support` (long-lived integration branch) via per-phase PRs. Each phase gets its own working branch and PR targeting `feat/iOS27-support`.
 
@@ -85,13 +85,13 @@ The app is already in strong shape for iOS 27. No hard-deprecated APIs are in us
 
 Convert `Station` from a mutable `NSObject` reference type to an immutable `struct`. This is a data-model redesign, not iOS 27 API work, so it's sequenced last and can land independently of the launch timeline.
 
-- [ ] Convert `Station` (and nested `StationExtra`) to a `struct` conforming to `Codable, Identifiable, Sendable` — drops the `@unchecked Sendable` escape hatch added in Phase 2
-- [ ] Drop `NSObject` + `MKAnnotation` (only declared, never used — the modern `Map` uses `Marker(coordinate:)`)
-- [ ] Replace `setDistanceFromUser` mutation with a functional distance computation in `Stations.getClosestStations` (produce sorted copies rather than mutating in place)
-- [ ] Delete `MapView`'s `IdentifiableStation` wrapper — a struct `Station` is `Identifiable` directly
-- [ ] Simplify `StationRowView` equality (struct gets synthesized `Equatable`; revisit the custom `==`)
-- [ ] Consider the same value-type treatment for `Network` for consistency
-- [ ] Build & verify; confirm strict concurrency stays clean with **no** `@unchecked`
+- [x] Convert `Station` (and nested `StationExtra`) to a `struct` conforming to `Codable, Identifiable, Sendable` — drops the `@unchecked Sendable` escape hatch added in Phase 2
+- [x] Drop `NSObject` + `MKAnnotation` (only declared, never used — the modern `Map` uses `Marker(coordinate:)`)
+- [x] Replace `setDistanceFromUser` mutation with a functional distance computation in `Stations.getClosestStations` (produce sorted copies rather than mutating in place)
+- [x] Delete `MapView`'s `IdentifiableStation` wrapper — a struct `Station` is `Identifiable` directly
+- [x] Simplify `StationRowView` equality — revisited and kept custom: it compares only the fields the row draws
+- ~~Consider the same value-type treatment for `Network` for consistency~~ — not pursued; `Network` is still a class
+- [x] Build & verify; confirm strict concurrency stays clean with **no** `@unchecked`
 
 **Why separate:** larger blast radius (model API, `Stations` helpers, Map wrapper, tests) and purely a correctness/clarity improvement — keeping it out of the iOS 27 phases keeps those PRs focused and reviewable.
 
@@ -99,9 +99,9 @@ Convert `Station` from a mutable `NSObject` reference type to an immutable `stru
 
 The integration PR (`feat/iOS27-support` → `main`, #45) does run CI. The **Lint** and **PR-title** jobs pass; the **Build & Test** job is **expected-red until GitHub ships an Xcode 27 runner** (see Toolchain below) — **do not merge #45 to `main` until it's green**.
 
-- [ ] **Trigger:** the workflow fires only on `pull_request` into `main`/`master`; add `feat/iOS27-support` so phase PRs run. (Remove again before/at the final merge to `main`.)
-- [ ] **Toolchain (blocking #45):** the runner currently only has **Xcode 26.3 / 26.6 RC2 — no iOS 27 SDK**, so `build-and-test` can't compile the iOS-27-only APIs (e.g. `toolbarMinimizeBehavior(.onScrollDown)`). When GitHub's macOS image ships **Xcode 27**, bump the job's `xcode-version` to it and the `-destination` `OS=` to an iOS 27 simulator. No code/`#available` workaround exists — SDK-27 symbols don't exist to compile against on SDK 26.
-- [ ] **`xcpretty` → `xcbeautify`:** `xcpretty` is unmaintained and predates Swift Testing, so it renders the migrated `StationTests` output poorly (it does **not** affect pass/fail — the job relies on `${PIPESTATUS[0]}`). `xcbeautify` understands Swift Testing output. Swap it in the build and test steps once the runner is actually executing the tests.
+- ~~**Trigger:** the workflow fires only on `pull_request` into `main`/`master`; add `feat/iOS27-support` so phase PRs run. (Remove again before/at the final merge to `main`.)~~ — moot now the integration branch has merged
+- [x] **Toolchain (blocking #45):** the runner currently only has **Xcode 26.3 / 26.6 RC2 — no iOS 27 SDK**, so `build-and-test` can't compile the iOS-27-only APIs (e.g. `toolbarMinimizeBehavior(.onScrollDown)`). When GitHub's macOS image ships **Xcode 27**, bump the job's `xcode-version` to it and the `-destination` `OS=` to an iOS 27 simulator. No code/`#available` workaround exists — SDK-27 symbols don't exist to compile against on SDK 26. *Done: `build-and-test` now runs on the `xcode-27` image.*
+- [x] **`xcpretty` → `xcbeautify`:** `xcpretty` is unmaintained and predates Swift Testing, so it renders the migrated `StationTests` output poorly (it does **not** affect pass/fail — the job relies on `${PIPESTATUS[0]}`). `xcbeautify` understands Swift Testing output. Swap it in the build and test steps once the runner is actually executing the tests.
 
 > **Done (this PR):** SwiftLint `--strict` flagged `static_over_final_class` on the 5 `class func`s in `Stations`/`Networks` (a consequence of the Phase 2 `final` change). Converted them to `static func`; the Lint job is now clean.
 

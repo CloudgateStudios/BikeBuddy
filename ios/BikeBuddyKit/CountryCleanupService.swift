@@ -14,7 +14,7 @@ public final class CountryCleanupService {
     private var countryMappingDictonary = NSMutableDictionary()
 
     /**
-     The shared instanace that should be used to access all members of the service.
+     The shared instance that should be used to access all members of the service.
      */
     public static let sharedInstance = CountryCleanupService()
 

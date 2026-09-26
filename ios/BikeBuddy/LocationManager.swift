@@ -11,7 +11,7 @@ import CoreLocation
 import Observation
 
 /// Observable wrapper around CLLocationManager.
-/// Used by StationsListView and MapView to get the user's current location.
+/// Used by StationsPanel and MapView to get the user's current location.
 @MainActor
 @Observable
 class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -40,7 +40,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         // Only publish a new coordinate when the user moves at least 10 metres.
         // Without this, GPS fires multiple times per second and causes the entire
-        // StationsListView (including the closest-stations sort) to re-render
+        // StationsPanel (including the closest-stations sort) to re-render
         // on every tick, which is the primary source of UI sluggishness.
         locationManager.distanceFilter = 10
 

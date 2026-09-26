@@ -31,7 +31,7 @@ struct SettingsAboutView: View {
 
             // MARK: Privacy policy
             Section {
-                if let privacyURL = URL(string: Constants.ExtneralURL.PrivacyPolicyURL) {
+                if let privacyURL = URL(string: Constants.ExternalURL.PrivacyPolicyURL) {
                     Link(destination: privacyURL) {
                         Text("SettingsAboutPrivacyPolicyLabel", bundle: .bikeBuddyKit)
                     }

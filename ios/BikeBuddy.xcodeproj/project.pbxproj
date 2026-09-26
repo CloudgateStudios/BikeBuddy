@@ -17,7 +17,7 @@
 		C516F01B1B0DAA7C00CF4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C516F01A1B0DAA7C00CF4468 /* MapKit.framework */; };
 		D11DDDDE1D988E0300BBB480 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDDD1D988E0300BBB480 /* Station.swift */; };
 		D11DDDE21D988F3400BBB480 /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE11D988F3400BBB480 /* Stations.swift */; };
-		D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE31D988F7D00BBB480 /* SetingsService.swift */; };
+		D11DDDE41D988F7D00BBB480 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE31D988F7D00BBB480 /* SettingsService.swift */; };
 		D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE51D98901A00BBB480 /* StationsDataService.swift */; };
 		D11DDDE91D98906700BBB480 /* StationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DDDE81D98906700BBB480 /* StationTests.swift */; };
 		D1BB010000000000000000A2 /* NetworksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB010000000000000000A1 /* NetworksTests.swift */; };
@@ -131,10 +131,9 @@
 		C516EFE91B0CE6CB00CF4468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C516EFF31B0CE6CB00CF4468 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C516F01A1B0DAA7C00CF4468 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BikeBuddy-Bridging-Header.h"; sourceTree = "<group>"; };
 		D11DDDDD1D988E0300BBB480 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		D11DDDE11D988F3400BBB480 /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
-		D11DDDE31D988F7D00BBB480 /* SetingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingsService.swift; sourceTree = "<group>"; };
+		D11DDDE31D988F7D00BBB480 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		D11DDDE51D98901A00BBB480 /* StationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsDataService.swift; sourceTree = "<group>"; };
 		D11DDDE81D98906700BBB480 /* StationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTests.swift; sourceTree = "<group>"; };
 		D1BB010000000000000000A1 /* NetworksTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworksTests.swift; sourceTree = "<group>"; };
@@ -275,7 +274,6 @@
 			children = (
 				C516EFF31B0CE6CB00CF4468 /* Images.xcassets */,
 				C516EFE91B0CE6CB00CF4468 /* Info.plist */,
-				C5328C081B0E262100B47840 /* BikeBuddy-Bridging-Header.h */,
 				D1F7E14122BE4AC600E0BDCB /* Colors.xcassets */,
 				PRIVACY_MANIFEST_REF /* PrivacyInfo.xcprivacy */,
 			);
@@ -397,7 +395,7 @@
 		D18F4B2B1D92283D00972AF2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D11DDDE31D988F7D00BBB480 /* SetingsService.swift */,
+				D11DDDE31D988F7D00BBB480 /* SettingsService.swift */,
 				D11DDDE51D98901A00BBB480 /* StationsDataService.swift */,
 				D1920CDB1DE66450003FBCB4 /* NetworksDataService.swift */,
 				D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */,
@@ -693,7 +691,7 @@
 				D11DDDE21D988F3400BBB480 /* Stations.swift in Sources */,
 				D1920CD41DE660CE003FBCB4 /* CityBikesNetworkDetailResponse.swift in Sources */,
 				D11DDDE61D98901A00BBB480 /* StationsDataService.swift in Sources */,
-				D11DDDE41D988F7D00BBB480 /* SetingsService.swift in Sources */,
+				D11DDDE41D988F7D00BBB480 /* SettingsService.swift in Sources */,
 			);
 		};
 		D18F4B0E1D9225FC00972AF2 /* Sources */ = {
@@ -925,7 +923,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "BikeBuddy/BikeBuddy-Bridging-Header.h";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -957,7 +954,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cloudgatestudios.Bike-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "BikeBuddy/BikeBuddy-Bridging-Header.h";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

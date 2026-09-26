@@ -1,5 +1,5 @@
 //
-//  SetingsService.swift
+//  SettingsService.swift
 //  Bike Buddy
 //
 //  Created by Tom Arra on 9/25/16.
@@ -13,12 +13,12 @@ public final class SettingsService {
     private var defaults: UserDefaults
 
     /**
-     The shared instanace that should be used to access all members of the service.
+     The shared instance that should be used to access all members of the service.
      */
     public static let sharedInstance = SettingsService()
 
     /**
-     **Should not be used. Call StationsDataService.sharedInstance instead.**
+     **Should not be used. Call SettingsService.sharedInstance instead.**
      */
     private init() {
         defaults = UserDefaults(suiteName: Constants.SettingsGeneral.ShareGroupName)!

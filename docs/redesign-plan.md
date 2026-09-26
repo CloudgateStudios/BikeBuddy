@@ -1,5 +1,7 @@
 # BikeBuddy — iOS 26 / Liquid Glass Redesign Plan
 
+> **Status: complete, historical.** Every phase below has shipped, and the app has since moved to an iOS 27 minimum (see `ios/iOS27-Modernization-Plan.md`) and a map-first layout. File and type names here — `MainTabView`, `StationsListView`, `MapViewController` and others — no longer exist.
+
 ## Overview
 
 A phased redesign of BikeBuddy to align with iOS 26 design paradigms (Liquid Glass materials, SwiftUI-first architecture, native system components). The app targets iOS 26 as its minimum deployment target, which unlocks full use of modern APIs and makes all UIKit compatibility layers obsolete.
