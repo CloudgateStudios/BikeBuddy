@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		APPTESTS_BF_VM /* AppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPTESTS_FR_VM /* AppViewModelTests.swift */; };
+		APPTESTS_BF_AVAIL /* AvailabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPTESTS_FR_AVAIL /* AvailabilityTests.swift */; };
 		0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */; };
 		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
 		94C09A41852D45D4ABC82D9E /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D804A88A7804454B80E585B /* ScreenshotTests.swift */; };
@@ -33,6 +34,7 @@
 		D1920CD81DE66180003FBCB4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CD71DE66180003FBCB4 /* Location.swift */; };
 		D1920CDA1DE6628D003FBCB4 /* StationExtra.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CD91DE6628D003FBCB4 /* StationExtra.swift */; };
 		D1920CDC1DE66450003FBCB4 /* NetworksDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CDB1DE66450003FBCB4 /* NetworksDataService.swift */; };
+		D1BB020000000000000000C2 /* CityBikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB020000000000000000C1 /* CityBikesRequest.swift */; };
 		D1920CDE1DE66497003FBCB4 /* CityBikesNetworksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CDD1DE66497003FBCB4 /* CityBikesNetworksResponse.swift */; };
 		D1920CE01DE75428003FBCB4 /* CountryCleanupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */; };
 		D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1920CE61DE871C0003FBCB4 /* Networks.swift */; };
@@ -50,6 +52,7 @@
 		SWIFTUI_BF_ROOT /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ROOT /* RootView.swift */; };
 		SWIFTUI_BF_PANEL /* StationsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_PANEL /* StationsPanel.swift */; };
 		SWIFTUI_BF_ST_ACTIONS /* StationActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_ST_ACTIONS /* StationActions.swift */; };
+		SWIFTUI_BF_AVAIL_COUNT /* AvailabilityCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_AVAIL_COUNT /* AvailabilityCount.swift */; };
 		SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */; };
 		SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP_VM /* AppViewModel.swift */; };
 		SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CONTENT /* ContentView.swift */; };
@@ -121,6 +124,7 @@
 
 /* Begin PBXFileReference section */
 		APPTESTS_FR_VM /* AppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModelTests.swift; sourceTree = "<group>"; };
+		APPTESTS_FR_AVAIL /* AvailabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityTests.swift; sourceTree = "<group>"; };
 		APPTESTS_PRODUCT /* BikeBuddyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeBuddyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
 		40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 		D1920CD71DE66180003FBCB4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D1920CD91DE6628D003FBCB4 /* StationExtra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationExtra.swift; sourceTree = "<group>"; };
 		D1920CDB1DE66450003FBCB4 /* NetworksDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworksDataService.swift; sourceTree = "<group>"; };
+		D1BB020000000000000000C1 /* CityBikesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBikesRequest.swift; sourceTree = "<group>"; };
 		D1920CDD1DE66497003FBCB4 /* CityBikesNetworksResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityBikesNetworksResponse.swift; sourceTree = "<group>"; };
 		D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCleanupService.swift; sourceTree = "<group>"; };
 		D1920CE61DE871C0003FBCB4 /* Networks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networks.swift; sourceTree = "<group>"; };
@@ -171,6 +176,7 @@
 		SWIFTUI_ROOT /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		SWIFTUI_PANEL /* StationsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsPanel.swift; sourceTree = "<group>"; };
 		SWIFTUI_ST_ACTIONS /* StationActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationActions.swift; sourceTree = "<group>"; };
+		SWIFTUI_AVAIL_COUNT /* AvailabilityCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityCount.swift; sourceTree = "<group>"; };
 		SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
 		SWIFTUI_APP_VM /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		SWIFTUI_CONTENT /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				APPTESTS_FR_VM /* AppViewModelTests.swift */,
+				APPTESTS_FR_AVAIL /* AvailabilityTests.swift */,
 			);
 			path = BikeBuddyAppTests;
 			sourceTree = "<group>";
@@ -290,6 +297,7 @@
 				SWIFTUI_ROOT /* RootView.swift */,
 				SWIFTUI_PANEL /* StationsPanel.swift */,
 				SWIFTUI_ST_ACTIONS /* StationActions.swift */,
+				SWIFTUI_AVAIL_COUNT /* AvailabilityCount.swift */,
 				SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */,
 				SWIFTUI_APP_VM /* AppViewModel.swift */,
 				SWIFTUI_APP /* BikeBuddyApp.swift */,
@@ -398,6 +406,7 @@
 				D11DDDE31D988F7D00BBB480 /* SettingsService.swift */,
 				D11DDDE51D98901A00BBB480 /* StationsDataService.swift */,
 				D1920CDB1DE66450003FBCB4 /* NetworksDataService.swift */,
+				D1BB020000000000000000C1 /* CityBikesRequest.swift */,
 				D1920CDF1DE75428003FBCB4 /* CountryCleanupService.swift */,
 			);
 			name = Services;
@@ -641,6 +650,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				APPTESTS_BF_VM /* AppViewModelTests.swift in Sources */,
+				APPTESTS_BF_AVAIL /* AvailabilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +664,7 @@
 				SWIFTUI_BF_ROOT /* RootView.swift in Sources */,
 				SWIFTUI_BF_PANEL /* StationsPanel.swift in Sources */,
 				SWIFTUI_BF_ST_ACTIONS /* StationActions.swift in Sources */,
+				SWIFTUI_BF_AVAIL_COUNT /* AvailabilityCount.swift in Sources */,
 				SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */,
 				SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */,
 				SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */,
@@ -680,6 +691,7 @@
 			files = (
 				D14D9C511DB839EC008D0656 /* BundleExtension.swift in Sources */,
 				D1920CDC1DE66450003FBCB4 /* NetworksDataService.swift in Sources */,
+				D1BB020000000000000000C2 /* CityBikesRequest.swift in Sources */,
 				D1920CDA1DE6628D003FBCB4 /* StationExtra.swift in Sources */,
 				D1920CE71DE871C0003FBCB4 /* Networks.swift in Sources */,
 				D1920CD81DE66180003FBCB4 /* Location.swift in Sources */,

@@ -20,7 +20,7 @@ struct StationsPanel: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.openURL) private var openURL
 
-    @State private var locationManager = LocationManager()
+    @Environment(LocationManager.self) private var locationManager
     @State private var isShowingSettings = false
     @State private var isShowingNetworkPicker = false
 
@@ -60,11 +60,6 @@ struct StationsPanel: View {
             }
         }
         .background(Color(.systemGroupedBackground))
-        .onAppear { locationManager.startUpdatingLocation() }
-        .onDisappear { locationManager.stopUpdatingLocation() }
-        .onChange(of: locationManager.coordinate.latitude, initial: true) { _, _ in
-            appViewModel.userCoordinate = locationManager.coordinate
-        }
         .sheet(isPresented: $isShowingSettings) {
             SettingsSheet()
         }
@@ -264,46 +259,22 @@ struct StationRowView: View, Equatable {
 
             // Availability badges
             HStack(spacing: 20) {
-                availabilityBadge(
-                    count: station.availableBikes,
-                    icon: "bicycle",
-                    color: availabilityColor(station.availableBikes)
-                )
-                availabilityBadge(
-                    count: station.availableDocks,
-                    icon: "arrow.down.to.line",
-                    color: availabilityColor(station.availableDocks)
-                )
+                availabilityBadge(count: station.availableBikes, icon: "bicycle")
+                availabilityBadge(count: station.availableDocks, icon: "arrow.down.to.line")
             }
         }
         .padding(.vertical, 6)
     }
 
     @ViewBuilder
-    private func availabilityBadge(count: Int, icon: String, color: Color) -> some View {
+    private func availabilityBadge(count: Int, icon: String) -> some View {
         VStack(spacing: 3) {
-            Group {
-                if count < 0 {
-                    Text(verbatim: "—")
-                } else {
-                    Text(count, format: .number)
-                }
-            }
+            AvailabilityCount(count: count)
                 .font(.title3.weight(.semibold))
-                .foregroundStyle(color)
-                .monospacedDigit()
             Image(systemName: icon)
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
         .frame(minWidth: 36)
-    }
-
-    private func availabilityColor(_ count: Int) -> Color {
-        switch count {
-        case 0:     .red
-        case 1...2: .orange
-        default:    .primary
-        }
     }
 }

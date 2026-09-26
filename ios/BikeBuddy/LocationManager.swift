@@ -11,7 +11,9 @@ import CoreLocation
 import Observation
 
 /// Observable wrapper around CLLocationManager.
-/// Used by StationsPanel and MapView to get the user's current location.
+///
+/// There is one, created by BikeBuddyApp and handed to StationsPanel and MapView
+/// through the environment. ContentView starts and stops it with the scene.
 @MainActor
 @Observable
 class LocationManager: NSObject, CLLocationManagerDelegate {

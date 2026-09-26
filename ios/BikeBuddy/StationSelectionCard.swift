@@ -46,18 +46,10 @@ struct StationSelectionCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
 
             // Bikes count
-            availabilityPill(
-                count: station.availableBikes,
-                icon: "bicycle",
-                color: bikesColor
-            )
+            availabilityPill(count: station.availableBikes, icon: "bicycle")
 
             // Docks count
-            availabilityPill(
-                count: station.availableDocks,
-                icon: "arrow.down.to.line",
-                color: .primary
-            )
+            availabilityPill(count: station.availableDocks, icon: "arrow.down.to.line")
 
             Button {
                 station.openInMaps()
@@ -103,30 +95,14 @@ struct StationSelectionCard: View {
     }
 
     @ViewBuilder
-    private func availabilityPill(count: Int, icon: String, color: Color) -> some View {
+    private func availabilityPill(count: Int, icon: String) -> some View {
         VStack(spacing: 3) {
-            Group {
-                if count < 0 {
-                    Text(verbatim: "—")
-                } else {
-                    Text(count, format: .number)
-                }
-            }
+            AvailabilityCount(count: count)
                 .font(.title3.weight(.bold))
-                .foregroundStyle(color)
-                .monospacedDigit()
             Image(systemName: icon)
                 .font(.caption2)
                 .foregroundStyle(.secondary)
         }
         .frame(minWidth: 34)
-    }
-
-    private var bikesColor: Color {
-        switch station.availableBikes {
-        case 0:     .red
-        case 1...2: .orange
-        default:    .primary
-        }
     }
 }

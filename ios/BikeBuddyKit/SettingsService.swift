@@ -10,7 +10,7 @@ import Foundation
 
 @MainActor
 public final class SettingsService {
-    private var defaults: UserDefaults
+    private let defaults: UserDefaults
 
     /**
      The shared instance that should be used to access all members of the service.
@@ -51,7 +51,7 @@ public final class SettingsService {
                 continue
             }
 
-            self.saveSetting(key: key, value: value as AnyObject)
+            self.saveSetting(key: key, value: value)
         }
     }
     
@@ -61,7 +61,7 @@ public final class SettingsService {
     private func checkForSettingsVersionMigration() {
         // First migration was just getting to the Share Group and setting it to version 1. No data changes need yet.
         if self.getSettingAsInt(key: .settingsVersionNumber) == 0 {
-            self.saveSetting(key: .settingsVersionNumber, value: 1 as AnyObject)
+            self.saveSetting(key: .settingsVersionNumber, value: 1)
         }
         // If were doing an upgrade to 1.3 we need to clear out settings and have the user do a setup again so they are ready for the new CityBikes API usage
         if self.getSettingAsInt(key: .settingsVersionNumber) == 1 {
@@ -69,16 +69,16 @@ public final class SettingsService {
             // settings-based check re-triggers the FTU flow on next launch — no
             // notification needed (the old StartFirstTimeUse post had no observers).
             self.clearAllSettings()
-            self.saveSetting(key: .settingsVersionNumber, value: 2 as AnyObject)
+            self.saveSetting(key: .settingsVersionNumber, value: 2)
         }
         if self.getSettingAsInt(key: .settingsVersionNumber) == 2 {
             var numberOfStationsSetting = self.getSettingAsInt(key: .numberOfClosestStations)
             if numberOfStationsSetting < 5 {
                 numberOfStationsSetting = Constants.SettingsDefault.NumberOfClosestStations
             }
-            self.saveSetting(key: .numberOfClosestStations, value: numberOfStationsSetting as AnyObject)
+            self.saveSetting(key: .numberOfClosestStations, value: numberOfStationsSetting)
             
-            self.saveSetting(key: .settingsVersionNumber, value: 3 as AnyObject)
+            self.saveSetting(key: .settingsVersionNumber, value: 3)
         }
     }
     
@@ -87,7 +87,7 @@ public final class SettingsService {
      */
     private func setupDefaults() {
         if self.getSettingAsInt(key: .numberOfClosestStations) == 0 {
-            self.saveSetting(key: .numberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations as AnyObject)
+            self.saveSetting(key: .numberOfClosestStations, value: Constants.SettingsDefault.NumberOfClosestStations)
         }
     }
     
@@ -100,42 +100,19 @@ public final class SettingsService {
         // standard app domain instead and left the settings the app actually reads
         // completely untouched.
         defaults.removePersistentDomain(forName: Constants.SettingsGeneral.ShareGroupName)
-        defaults.synchronize()
     }
     
     /**
      Quickly save a setting in the settings store.
-     
+
      - parameter key: The key that should be used to save the setting.
-     - parameter value: The value that should be stored. This can be any object and saveSetting will determine the best way to save it
+     - parameter value: The value to store. Anything a property list can hold — UserDefaults
+       bridges numbers, strings and bools itself, so there is no need to box it first.
      */
-    public func saveSetting(key: Constants.SettingsKey, value: AnyObject) {
-        // Need to determine type of object
-        switch value {
-        case is Int:
-            if let intValue = value as? Int {
-                defaults.set(intValue, forKey: key.rawValue)
-            }
-        case is Float:
-            if let floatValue = value as? Float {
-                defaults.set(floatValue, forKey: key.rawValue)
-            }
-        case is Double:
-            if let doubleValue = value as? Double {
-                defaults.set(doubleValue, forKey: key.rawValue)
-            }
-        case is Bool:
-            if let boolValue = value as? Bool {
-                defaults.set(boolValue, forKey: key.rawValue)
-            }
-        default:
-            defaults.set(value, forKey: key.rawValue)
-            
-        }
-        
-        defaults.synchronize()
+    public func saveSetting(key: Constants.SettingsKey, value: Any) {
+        defaults.set(value, forKey: key.rawValue)
     }
-    
+
     /**
      Get a setting that was saved as a Bool value. Will return false if the there is no value for the key that is supplied
      
