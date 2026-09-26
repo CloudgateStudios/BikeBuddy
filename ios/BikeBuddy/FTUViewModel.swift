@@ -53,6 +53,11 @@ class FTUViewModel {
         switch status {
         case .notDetermined:
             let delegate = FTULocationDelegate { [weak self] newStatus in
+                // CoreLocation also reports the current status when the delegate is
+                // assigned, before the prompt has been answered. That is not a denial,
+                // and treating it as one put the alert up over the system prompt.
+                guard newStatus != .notDetermined else { return }
+
                 Task { @MainActor in
                     if newStatus == .authorizedWhenInUse || newStatus == .authorizedAlways {
                         self?.goToSelectNetwork()

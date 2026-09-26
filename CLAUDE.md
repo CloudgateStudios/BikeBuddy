@@ -36,10 +36,9 @@ Better to just open it correctly the first time.
 
 ## Building and testing
 
-**Requires Xcode 27.** `IPHONEOS_DEPLOYMENT_TARGET` is 27.0 and `StationsListView` uses
-iOS-27-only SwiftUI APIs such as `toolbarMinimizationBehavior`, which the 26.x SDK cannot
-compile. Xcode 27 is GA, so the default toolchain is all you need — no `DEVELOPER_DIR`
-override:
+**Requires Xcode 27.** `IPHONEOS_DEPLOYMENT_TARGET` is 27.0 on every target, which the
+26.x SDK cannot build for. Xcode 27 is GA, so the default toolchain is all you need — no
+`DEVELOPER_DIR` override:
 
 ```bash
 xcodebuild -project ios/BikeBuddy.xcodeproj -scheme BikeBuddy \
@@ -84,8 +83,8 @@ The project has no synchronized file groups, so **a new test file must be added 
 owning `PBXGroup`, and an entry in the test target's `PBXSourcesBuildPhase`. Validate with
 `plutil -lint ios/BikeBuddy.xcodeproj/project.pbxproj` afterwards.
 
-`Networks`, `NetworksDataService`, `StationsDataService`, `SettingsService`, and
-`CountryCleanupService` are all `@MainActor` singletons. Any suite mutating
+`Networks`, `Stations`, `NetworksDataService`, `StationsDataService`, `SettingsService`,
+and `CountryCleanupService` are all `@MainActor` singletons. Any suite mutating
 `Networks.sharedInstance.list` must be `@Suite(.serialized)` — and note that `.serialized`
 only orders tests *within* one suite while Swift Testing parallelizes *across* suites, so
 keep all mutation of a given singleton inside a single suite.

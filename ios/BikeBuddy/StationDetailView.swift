@@ -64,14 +64,12 @@ struct StationDetailView: View {
                         availabilityCard(
                             count: station.availableBikes,
                             icon: "bicycle",
-                            label: String(localized: "StationDetailBikesAvailable", bundle: .bikeBuddyKit),
-                            color: bikesColor
+                            label: String(localized: "StationDetailBikesAvailable", bundle: .bikeBuddyKit)
                         )
                         availabilityCard(
                             count: station.availableDocks,
                             icon: "arrow.down.to.line",
-                            label: String(localized: "StationDetailDocksAvailable", bundle: .bikeBuddyKit),
-                            color: .primary
+                            label: String(localized: "StationDetailDocksAvailable", bundle: .bikeBuddyKit)
                         )
                     }
 
@@ -168,18 +166,10 @@ struct StationDetailView: View {
     // MARK: - Availability card
 
     @ViewBuilder
-    private func availabilityCard(count: Int, icon: String, label: String, color: Color) -> some View {
+    private func availabilityCard(count: Int, icon: String, label: String) -> some View {
         VStack(spacing: 8) {
-            Group {
-                if count < 0 {
-                    Text(verbatim: "—")
-                } else {
-                    Text(count, format: .number)
-                }
-            }
+            AvailabilityCount(count: count)
                 .font(.system(size: 48, weight: .bold, design: .rounded))
-                .foregroundStyle(color)
-                .monospacedDigit()
             Image(systemName: icon)
                 .font(.title3)
                 .foregroundStyle(.secondary)
@@ -191,14 +181,6 @@ struct StationDetailView: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 20)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
-    }
-
-    private var bikesColor: Color {
-        switch station.availableBikes {
-        case 0:     .red
-        case 1...2: .orange
-        default:    .primary
-        }
     }
 
     // MARK: - Actions

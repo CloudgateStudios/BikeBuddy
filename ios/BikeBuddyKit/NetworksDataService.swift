@@ -12,7 +12,7 @@ import Foundation
 public final class NetworksDataService {
 
     /**
-     The shared instanace that should be used to access all members of the service.
+     The shared instance that should be used to access all members of the service.
      */
     public static let sharedInstance = NetworksDataService()
 
@@ -31,23 +31,8 @@ public final class NetworksDataService {
      - throws: Network or decoding errors
      */
     public func getAllNetworkData(apiUrl: String) async throws -> [Network] {
-        guard let url = URL(string: apiUrl) else {
-            throw URLError(.badURL)
-        }
-
-        let (data, response) = try await URLSession.shared.data(from: url)
-
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200...299).contains(httpResponse.statusCode) else {
-            throw URLError(.badServerResponse)
-        }
-
-        guard let mime = httpResponse.mimeType, mime == "application/json" else {
-            throw URLError(.cannotParseResponse)
-        }
-
-        let decoder = JSONDecoder()
-        let model = try decoder.decode(CityBikesNetworksResponse.self, from: data)
+        let data = try await CityBikesRequest.data(from: apiUrl)
+        let model = try JSONDecoder().decode(CityBikesNetworksResponse.self, from: data)
 
         return model.networks ?? []
     }

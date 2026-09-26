@@ -15,10 +15,16 @@ struct BikeBuddyApp: App {
     // AppViewModel drives all top-level state; shared via environment.
     @State private var appViewModel = AppViewModel.shared
 
+    // One location source for the whole app. The stations panel and the map each
+    // used to make their own, which ran two CLLocationManagers side by side and let
+    // the two views disagree about where the user was.
+    @State private var locationManager = LocationManager()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(appViewModel)
+                .environment(locationManager)
                 .tint(Color("BikeBuddyBlue"))
                 .preferredColorScheme(appViewModel.appearanceMode.colorScheme)
                 .onContinueUserActivity(Constants.UserActivity.StationActivityTypeIdentifier) { activity in

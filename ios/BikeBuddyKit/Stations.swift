@@ -15,11 +15,11 @@ public final class Stations {
     
     public var list = [Station]() {
         didSet {
-            self.lastUpdated = NSDate()
+            self.lastUpdated = Date()
         }
     }
     
-    public private(set) var lastUpdated = NSDate()
+    public private(set) var lastUpdated = Date()
     
     private init() {
     }
@@ -53,12 +53,8 @@ public final class Stations {
     }
     
     public static func shouldBeUpdated() -> Bool {
-        let elapsedTime = NSDate().timeIntervalSince(Stations.sharedInstance.lastUpdated as Date)
-        
-        if elapsedTime > Constants.Timers.RefreshStationsDataDifferenceInSeconds {
-            return true
-        } else {
-            return false
-        }
+        let elapsedTime = Date().timeIntervalSince(Stations.sharedInstance.lastUpdated)
+
+        return elapsedTime > Constants.Timers.RefreshStationsDataDifferenceInSeconds
     }
 }
