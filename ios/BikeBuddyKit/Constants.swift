@@ -49,7 +49,7 @@ public struct Constants {
     }
 
     // MARK: - External URL's
-    public struct ExtneralURL {
+    public struct ExternalURL {
         public static let AppStoreDeepLink = "https://itunes.apple.com/us/app/apple-store/id998776734?mt=8"
         // The URL the App Store listing points at, per
         // fastlane/metadata/en-US/privacy_url.txt. The app used to link somewhere else

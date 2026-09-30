@@ -1,5 +1,5 @@
 //
-//  CityBikeNetworkDetailsResponse.swift
+//  CityBikesNetworkDetailResponse.swift
 //  Bike Buddy
 //
 //  Created by Tom Arra on 11/23/16.

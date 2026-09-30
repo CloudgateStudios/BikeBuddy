@@ -23,7 +23,7 @@ Small effort, ships fast, immediate user value. These fit in existing files with
 - Show the address as a secondary line in `StationRowView` and beneath the distance label in `StationDetailView`.
 - Include it in the share text (the localization key `StationModelShareAddress` already exists in `Localizable.strings`).
 
-**Files:** `ios/BikeBuddyKit/Station.swift`, `ios/BikeBuddy/StationsListView.swift`, `ios/BikeBuddy/StationDetailView.swift`
+**Files:** `ios/BikeBuddyKit/Station.swift`, `ios/BikeBuddy/StationsPanel.swift`, `ios/BikeBuddy/StationDetailView.swift`
 
 ---
 
@@ -37,7 +37,7 @@ Small effort, ships fast, immediate user value. These fit in existing files with
 - In `StationRowView`, overlay an "Out of Service" pill (orange or gray) when `!isRenting`.
 - In `StationDetailView`, show a prominent warning card above the availability cards when the station is not renting.
 
-**Files:** `ios/BikeBuddyKit/Station.swift`, `ios/BikeBuddy/StationsListView.swift`, `ios/BikeBuddy/StationDetailView.swift`
+**Files:** `ios/BikeBuddyKit/Station.swift`, `ios/BikeBuddy/StationsPanel.swift`, `ios/BikeBuddy/StationDetailView.swift`
 
 ---
 
@@ -47,9 +47,9 @@ Small effort, ships fast, immediate user value. These fit in existing files with
 
 **What to do:**
 - Change `Constants.Timers.RefreshStationsDataDifferenceInSeconds` from `300.0` to `90.0`.
-- Add a `TimelineView`-based "Updated X seconds ago" label to `StationsListView`. Color it orange when data is >2 minutes old, red when >5 minutes old.
+- Add a `TimelineView`-based "Updated X seconds ago" label to `StationsPanel`. Color it orange when data is >2 minutes old, red when >5 minutes old.
 
-**Files:** `ios/BikeBuddyKit/Constants.swift`, `ios/BikeBuddy/StationsListView.swift`
+**Files:** `ios/BikeBuddyKit/Constants.swift`, `ios/BikeBuddy/StationsPanel.swift`
 
 ---
 
@@ -72,10 +72,10 @@ Small effort, ships fast, immediate user value. These fit in existing files with
 **User problem:** A commuter who knows they want "the station at Penn Station" cannot find it quickly when it is not the physically closest station to them.
 
 **What to do:**
-- Add `@State private var searchText = ""` and `.searchable(text: $searchText)` to `StationsListView`.
+- Add `@State private var searchText = ""` and `.searchable(text: $searchText)` to `StationsPanel`.
 - When `searchText` is non-empty, search across all stations (not just the closest N) and sort results by distance. This makes search useful even when the target station falls outside the normal radius.
 
-**Files:** `ios/BikeBuddy/StationsListView.swift`
+**Files:** `ios/BikeBuddy/StationsPanel.swift`
 
 ---
 
@@ -124,10 +124,10 @@ Medium effort, high value. These are what make BikeBuddy the best bike-share fin
 **What to do:**
 - The `favoriteNavBarIcon` and `notFavoriteNavBarIcon` assets already exist in `Images.xcassets` — this was clearly planned.
 - Store favorite station IDs in App Group UserDefaults as `[String]`.
-- Split `StationsListView` into a "Favorites" section (ordered by distance) and a "Nearby" section.
+- Split `StationsPanel` into a "Favorites" section (ordered by distance) and a "Nearby" section.
 - Add a toolbar toggle button in `StationDetailView` using the existing assets.
 
-**Files:** `ios/BikeBuddyKit/SettingsService.swift`, `ios/BikeBuddy/StationsListView.swift`, `ios/BikeBuddy/StationDetailView.swift`
+**Files:** `ios/BikeBuddyKit/SettingsService.swift`, `ios/BikeBuddy/StationsPanel.swift`, `ios/BikeBuddy/StationDetailView.swift`
 
 ---
 
@@ -140,7 +140,7 @@ Medium effort, high value. These are what make BikeBuddy the best bike-share fin
 - Add a segmented control or toggle to the station list view to switch between "Find a Bike" and "Find a Dock" modes.
 - For destination input, use `MKLocalSearch` to resolve an address string to coordinates, or allow the user to drop a pin on the map.
 
-**Files:** `ios/BikeBuddy/StationsListView.swift`, `ios/BikeBuddy/AppViewModel.swift`
+**Files:** `ios/BikeBuddy/StationsPanel.swift`, `ios/BikeBuddy/AppViewModel.swift`
 
 ---
 
@@ -151,9 +151,9 @@ Medium effort, high value. These are what make BikeBuddy the best bike-share fin
 **What to do:**
 - After location permission is granted in FTU, compute the distance between the user's coordinate and each `Network.location` coordinate. Select the closest.
 - If within ~50km, show a confirmation screen ("We found Citi Bike in New York — is this right?") instead of the full picker.
-- Add a "You might be in a different city" banner in `StationsListView` when the user's location is >100km from their configured network's center coordinate. Tapping opens `SettingsSelectNetworkView`.
+- Add a "You might be in a different city" banner in `StationsPanel` when the user's location is >100km from their configured network's center coordinate. Tapping opens `SettingsSelectNetworkView`.
 
-**Files:** `ios/BikeBuddy/FTUViewModel.swift`, `ios/BikeBuddy/StationsListView.swift`
+**Files:** `ios/BikeBuddy/FTUViewModel.swift`, `ios/BikeBuddy/StationsPanel.swift`
 
 ---
 
@@ -164,7 +164,7 @@ Medium effort, high value. These are what make BikeBuddy the best bike-share fin
 **What to do:**
 - After a successful fetch, encode the `[Station]` array with `JSONEncoder` and write it to the App Group shared container as `stations_cache.json`.
 - On a network failure in `AppViewModel.refreshStations()`, load the cache and set `stationsAreStale = true`.
-- Show a yellow "Offline — showing data from [timestamp]" banner in `StationsListView` when stale.
+- Show a yellow "Offline — showing data from [timestamp]" banner in `StationsPanel` when stale.
 - Invalidate the cache when the selected network changes.
 
 **Files:** `ios/BikeBuddy/AppViewModel.swift`, `ios/BikeBuddyKit/StationsDataService.swift`

@@ -15,11 +15,12 @@ ios/               Xcode project, app source, and iOS tooling
   BikeBuddy.xcodeproj
   BikeBuddy/       App target
   BikeBuddyKit/    Shared framework
-  BikeBuddyKitTests/
-  BikeBuddyUITests/
+  BikeBuddyKitTests/   Unit tests for BikeBuddyKit (Swift Testing)
+  BikeBuddyAppTests/   Unit tests for the app target (Swift Testing)
+  BikeBuddyUITests/    Layout and screenshot UI tests
+  AppStore/        Raw captures, composed App Store screenshots, compose.py
   fastlane/        Screenshot automation and App Store delivery
 design/            Photoshop source files and App Icon templates
-app-store-assets/  App Store screenshots by version
 scripts/           Utility scripts (localization validation)
 docs/              Additional documentation
 ```
@@ -48,9 +49,16 @@ All Fastlane commands should be run from the `ios/` directory:
 ```sh
 cd ios
 
-# Capture new App Store screenshots
+# Capture light and dark screenshots into AppStore/captures
 bundle exec fastlane screenshots
 
-# Re-frame existing screenshots without re-capturing
-bundle exec fastlane framed_screenshots
+# Re-copy the last snapshot output into AppStore/captures without re-capturing
+bundle exec fastlane collect_captures
+```
+
+Then, from the repo root, compose the store images from the captures (see
+`ios/AppStore/README.md`):
+
+```sh
+python3 ios/AppStore/compose.py
 ```

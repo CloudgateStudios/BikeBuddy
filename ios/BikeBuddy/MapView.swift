@@ -44,7 +44,7 @@ struct MapView: View {
     @Environment(AppViewModel.self) private var appViewModel
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
-    @State private var locationManager = LocationManager()
+    @Environment(LocationManager.self) private var locationManager
 
     @State private var cameraPosition: MapCameraPosition = .automatic
     @State private var updatedAtText: String = ""
@@ -190,11 +190,7 @@ struct MapView: View {
         }
         .onAppear {
             updateTimestampLabel()
-            locationManager.startUpdatingLocation()
             establishCameraIfNeeded()
-        }
-        .onDisappear {
-            locationManager.stopUpdatingLocation()
         }
     }
 

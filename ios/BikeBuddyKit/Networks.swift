@@ -14,13 +14,13 @@ public final class Networks {
     
     public var list = [Network]() {
         didSet {
-            self.lastUpdated = NSDate()
+            self.lastUpdated = Date()
 
             setupNetworksBySection()
         }
     }
     
-    public private(set) var lastUpdated = NSDate()
+    public private(set) var lastUpdated = Date()
     public private(set) var networksBySection = [(key: String, value: [Network])]()
     
     private init() {

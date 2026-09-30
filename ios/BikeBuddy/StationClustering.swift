@@ -79,8 +79,6 @@ struct StationCluster: Identifiable {
 
 enum StationClustering {
 
-    /// Buckets stations into grid cells sized off the visible span, so the pin count
-    /// is bounded by the grid rather than by how big the network is.
     /// The region that just contains these stations, with a little room around them.
     ///
     /// Shared by a cluster zooming to its own members and by the map framing a whole
@@ -110,6 +108,8 @@ enum StationClustering {
         )
     }
 
+    /// Buckets stations into grid cells sized off the visible span, so the pin count
+    /// is bounded by the grid rather than by how big the network is.
     static func clusters(for stations: [Station], in region: MKCoordinateRegion) -> [StationCluster] {
         let latitudeSpan = region.span.latitudeDelta
         let longitudeSpan = region.span.longitudeDelta
