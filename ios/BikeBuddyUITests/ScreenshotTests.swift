@@ -24,6 +24,9 @@ final class ScreenshotTests: XCTestCase {
 
     override func setUp() async throws {
         continueAfterFailure = false
+        // DuoLayoutTests sweeps every orientation on the same simulator, and a run
+        // that dies mid-sweep leaves it sideways for whoever boots it next.
+        XCUIDevice.shared.orientation = .portrait
         setupSnapshot(app)
         // Use += to preserve fastlane's required args (-FASTLANE_SNAPSHOT, -AppleLanguages,
         // -AppleLocale, etc.) that setupSnapshot() appended above.

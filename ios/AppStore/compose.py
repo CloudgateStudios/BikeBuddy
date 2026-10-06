@@ -44,14 +44,50 @@ FAMILIES = {
         devw=1300, devtop=800, bezel=22, devr=62, scrr=40,
         glowsize=2900, gshift=-260, lanesize=2300, lshift=430,
     ),
+    # The Duo's cover display, which is a third shape again: 0.69:1, nearer the iPad
+    # than any iPhone, so it gets the iPad's arrangement at its own measurements.
+    #
+    # Its corners are asymmetric -- 8pt on the spine edge, 59pt on the other -- and the
+    # frame has to say so, or the capture's own corners get clipped on one side and
+    # show a wedge of backing on the other. devr/scrr are the open edge; spiner and
+    # spinescr are the spine, which is on the left of the cover in portrait.
+    "duo": dict(
+        stage=(1398, 2034), captures="iPhone Duo",
+        padtop=104, padx=96,
+        eyesize=25, eyegap=22, eyemb=36,
+        hsize=112, subsize=34, submt=26, submax=1060,
+        devw=900, devtop=610, bezel=14, devr=124, scrr=110,
+        spiner=29, spinescr=15,
+        glowsize=1900, gshift=-180, lanesize=1500, lshift=240,
+    ),
+    # The Duo unfolded, and the only landscape stage here: 1.42:1. The arrangement is
+    # still headline over device -- the device is just wide and short, so it takes
+    # 60% of the stage's width rather than most of it and the copy runs on one line.
+    "duo-inner": dict(
+        stage=(2853, 2007), captures="iPhone Duo (inner)",
+        padtop=112, padx=150,
+        eyesize=34, eyegap=28, eyemb=40,
+        hsize=138, subsize=44, submt=30, submax=1750,
+        devw=1740, devtop=640, bezel=20, devr=84, scrr=64,
+        glowsize=2900, gshift=-320, lanesize=2300, lshift=200,
+    ),
 }
 
 # Which slots exist depends on the listing, so check App Store Connect rather than
 # assuming. Both of these are native: the capture device's screen IS the slot, so
 # nothing inside a device frame is ever upscaled.
+#
+# The Duo slot takes either display, in either orientation: 1398x2034 (outer) or
+# 2007x2853 (inner). They are different layouts, not two sizes of one -- the cover is
+# compact width and gets the sheet, the inner display is regular and gets the split
+# view -- so each has its own captures. The inner set is landscape, which is how the
+# unfolded device is held, and is captured by capture-duo-inner.sh rather than
+# fastlane.
 SIZES = {
     "6.9": ("phone", 1320, 2868),   # iPhone 17 Pro Max
     "13": ("pad", 2064, 2752),      # iPad Pro 13-inch
+    "duo": ("duo", 1398, 2034),     # iPhone Duo, outer display
+    "duo-inner": ("duo-inner", 2853, 2007),   # iPhone Duo, inner display, landscape
 }
 
 # Contrast measured against each theme's ground rather than eyeballed, because these
@@ -144,10 +180,10 @@ h1 em{font-style:normal;color:%(accent)s}
   background:radial-gradient(ellipse,%(pool)s 0%%,transparent 72%%)}
 
 .phone{position:absolute;left:50%%;top:%(devtop)spx;width:%(devw)spx;
-  margin-left:-%(devhalf)spx;padding:%(bezel)spx;border-radius:%(devr)spx;
+  margin-left:-%(devhalf)spx;padding:%(bezel)spx;border-radius:%(devradius)s;
   background:linear-gradient(160deg,#4A4E55 0%%,#24272C 38%%,#16181C 100%%);
   box-shadow:%(shadow)s}
-.screen{position:relative;border-radius:%(scrr)spx;overflow:hidden;
+.screen{position:relative;border-radius:%(scrradius)s;overflow:hidden;
   height:%(croph)spx;background:#000}
 .screen img{position:absolute;left:0;top:%(cropshift)spx;width:100%%;display:block}
 
@@ -220,7 +256,25 @@ SPECS = {
      "Bike share in more than 50 countries, from Citi Bike to the scheme in the town "
      "you are visiting next week. Search by city or by name."),
  ],
+ # The cover display is the phone layout -- the sheet, not the split view -- so the
+ # Duo tells the phone's story in the phone's order.
+ "duo": [
+    ("01-stations", "Nearby", "Bikes near you,<br><em>right now.</em>",
+     "The closest stations, sorted by how far you actually have to walk &mdash; with how "
+     "many bikes and docks each one has this minute."),
+    ("02-map", "Map", "Street map,<br><em>or satellite.</em>",
+     "Switch the map when the corner matters &mdash; which side of the street the rack "
+     "is on, which park path actually gets you there."),
+    ("03-detail", "Station", "Bikes, docks,<br><em>and the walk.</em>",
+     "Tap any station for its counts and a walking route straight into Maps."),
+    ("04-networks", "Coverage", "800+ networks.<br><em>One app.</em>",
+     "Bike share in more than 50 countries, from Citi Bike to the scheme in the town "
+     "you are visiting next week. Search by city or by name."),
+ ],
 }
+
+# Unfolded, the Duo shows the split view, so it tells the iPad's story.
+SPECS["duo-inner"] = SPECS["pad"]
 
 # fastlane names captures <device>/<lang>-<NN_Name>.png; compose refers to shots by the
 # spec name, so map one to the other in one place.
@@ -260,12 +314,20 @@ def build(theme, size, name, eyebrow, headline, sub, *,
     pooltop = devtop + croph + (16 if crop else -26)
     poolw = round(devw * 1.02)
 
+    # One radius all round unless the family names a different one for its spine edge,
+    # which is the left side: top-left and bottom-left.
+    def radius(open_edge, spine):
+        s = f.get(spine, f[open_edge])
+        return f"{s}px {f[open_edge]}px {f[open_edge]}px {s}px"
+
     css = CSS % dict(W=W, H=H, SW=stage_w, SH=stage_h, k=round(W / stage_w, 6),
                      devw=devw, devtop=devtop, devhalf=devw // 2,
                      glowtop=devtop + f["gshift"], glowhalf=f["glowsize"] // 2,
                      lanetop=devtop + f["lshift"], lanehalf=f["lanesize"] // 2,
                      croph=croph, cropshift=cropshift, fade=fade,
                      pooltop=pooltop, poolw=poolw, poolhalf=poolw // 2,
+                     devradius=radius("devr", "spiner"),
+                     scrradius=radius("scrr", "spinescr"),
                      **{k: f[k] for k in ("padtop", "padx", "eyesize", "eyegap",
                                           "eyemb", "hsize", "subsize", "submt",
                                           "submax", "bezel", "devr", "scrr",

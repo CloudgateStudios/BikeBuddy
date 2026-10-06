@@ -65,6 +65,10 @@ struct StationsPanel: View {
         .onChange(of: locationManager.coordinate.latitude, initial: true) { _, _ in
             appViewModel.userCoordinate = locationManager.coordinate
         }
+        .task {
+            // See `ScreenshotMockData.Scene`.
+            if ScreenshotMockData.scene == .networks { isShowingNetworkPicker = true }
+        }
         .sheet(isPresented: $isShowingSettings) {
             SettingsSheet()
         }
