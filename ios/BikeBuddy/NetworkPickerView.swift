@@ -172,11 +172,13 @@ struct NetworkPickerView: View {
         }
     }
 
+    /// "City, Country", dropping whichever half the API left out rather than showing a
+    /// stray comma for it.
     private func locationString(for network: Network) -> String {
         let city = network.location?.city ?? ""
         let country = CountryCleanupService.sharedInstance.mapCountryCodeToString(
             countryCode: network.location?.country ?? ""
         )
-        return "\(city), \(country)"
+        return [city, country].filter { !$0.isEmpty }.joined(separator: ", ")
     }
 }

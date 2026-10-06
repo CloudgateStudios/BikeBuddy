@@ -12,7 +12,7 @@ jobs:
   # ─────────────────────────────────────────────
   # Job 1: Validate semantic PR title
   # ─────────────────────────────────────────────
-  valdiate_pr_title:
+  validate_pr_title:
     name: Validate PR Title
     runs-on: ubuntu-latest
     steps:
@@ -30,7 +30,7 @@ jobs:
             chore
             revert
           requireScope: false
-          
+
   # ─────────────────────────────────────────────
   # Job 2: Lint — SwiftLint + localization check
   # ─────────────────────────────────────────────
@@ -62,11 +62,10 @@ jobs:
   build-and-test:
     name: Build & Test
     # iOS 27 is the deployment target, so we need the Xcode 27 SDK + an iOS 27
-    # simulator to compile the iOS-27-only SwiftUI APIs (e.g.
-    # `toolbarMinimizationBehavior`). The standard `macos-26` image still tops
-    # out at Xcode 26.6, so use the dedicated `xcode-27` beta image, which ships
-    # Xcode 27.0 (default) and the iOS 27.0 simulator runtime. Switch back to
-    # `macos-latest` once Xcode 27 lands on the GA image.
+    # simulator; Xcode 26.x cannot build for it at all. The standard `macos-26`
+    # image still tops out at Xcode 26.6, so use the dedicated `xcode-27` preview
+    # image, which ships Xcode 27.0 (default) and the iOS 27.0 simulator runtime.
+    # Switch back to `macos-latest` once Xcode 27 lands on the GA image.
     runs-on: xcode-27
 
     steps:
@@ -76,8 +75,8 @@ jobs:
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@v1.7.0
         with:
-          # `latest` selects the highest installed Xcode — 27.0 (beta) on the
-          # xcode-27 image.
+          # `latest` selects the highest installed Xcode — 27.0 on the xcode-27
+          # image.
           xcode-version: latest
 
       - name: Install xcbeautify

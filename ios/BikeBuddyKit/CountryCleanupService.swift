@@ -11,10 +11,13 @@ import Foundation
 @MainActor
 public final class CountryCleanupService {
 
-    private var countryMappingDictonary = NSMutableDictionary()
+    /// Code to localized name, built once up front. The network picker's search looks
+    /// a name up for every network on every keystroke, so this stays a dictionary
+    /// lookup rather than a trip into the locale data each time.
+    private let countryNames: [String: String]
 
     /**
-     The shared instanace that should be used to access all members of the service.
+     The shared instance that should be used to access all members of the service.
      */
     public static let sharedInstance = CountryCleanupService()
 
@@ -22,14 +25,16 @@ public final class CountryCleanupService {
      **Should not be used. Call CountryCleanupService.sharedInstance instead.**
      */
     private init() {
-        let countryCodes = NSLocale.isoCountryCodes
-        for code in countryCodes {
-            let country = NSLocale(localeIdentifier: NSLocale.current.identifier).displayName(forKey: NSLocale.Key.countryCode, value: code)
-            self.countryMappingDictonary.setValue(country, forKey: code)
+        let locale = Locale.current
+        var names = [String: String]()
+
+        for code in NSLocale.isoCountryCodes {
+            names[code] = locale.localizedString(forRegionCode: code)
         }
 
+        countryNames = names
     }
-    
+
     /**
      Takes a country short code and turns it into a full string of the countries name. This uses the built in platform API's so values returned will be localized to the locale of the devices settings.
      
@@ -38,12 +43,6 @@ public final class CountryCleanupService {
      - returns: A string of the full country name based on the locale settings of the device.
     */
     public func mapCountryCodeToString(countryCode: String) -> String {
-        if let countryString = self.countryMappingDictonary.value(forKey: countryCode) {
-            if let temp = countryString as? String {
-                return temp
-            }
-        }
-        
-        return countryCode
+        return countryNames[countryCode] ?? countryCode
     }
 }
