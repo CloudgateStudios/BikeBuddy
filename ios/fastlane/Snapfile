@@ -4,9 +4,16 @@
 # 2064x2752 (the 13" slot). Apple scales within a family, and AppStore/compose.py
 # renders any other slot at its own resolution, so extra capture devices would only
 # be more to re-shoot on every change.
+#
+# iPhone Duo is its own family rather than another iPhone size: its cover display is
+# 1398x2034, which is 0.69:1 against the 0.46:1 every other iPhone shares, so neither
+# the capture nor the composition can be scaled from the Pro Max. This captures the
+# cover only: XCUITest cannot reach the inner display, which
+# AppStore/capture-duo-inner.sh shoots instead.
 devices([
   "iPhone 17 Pro Max",
-  "iPad Pro 13-inch (M5)"
+  "iPad Pro 13-inch (M5)",
+  "iPhone Duo"
 ])
 
 languages(["en-US"])

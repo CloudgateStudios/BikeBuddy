@@ -192,6 +192,20 @@ struct MapView: View {
             updateTimestampLabel()
             establishCameraIfNeeded()
         }
+        .task { await applyScreenshotScene() }
+    }
+
+    /// See `ScreenshotMockData.Scene`. A no-op on every launch that names no scene.
+    private func applyScreenshotScene() async {
+        switch ScreenshotMockData.scene {
+        case .map:
+            mapStyleOption = .satellite
+        case .detail:
+            // After the opening camera settles, so the map centres on this instead.
+            try? await Task.sleep(for: .seconds(1))
+            appViewModel.selectedStationID = ScreenshotMockData.nearestStationID
+        case .networks, nil: break
+        }
     }
 
     // MARK: - Bottom bar

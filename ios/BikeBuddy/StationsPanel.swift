@@ -60,6 +60,10 @@ struct StationsPanel: View {
             }
         }
         .background(Color(.systemGroupedBackground))
+        .task {
+            // See `ScreenshotMockData.Scene`.
+            if ScreenshotMockData.scene == .networks { isShowingNetworkPicker = true }
+        }
         .sheet(isPresented: $isShowingSettings) {
             SettingsSheet()
         }

@@ -45,6 +45,29 @@ enum ScreenshotMockData {
         return Calendar.current.date(from: components) ?? Date()
     }
 
+    /// A screen the app opens on by itself, named with `-ScreenshotScene <name>` on
+    /// the command line.
+    ///
+    /// Exists for the iPhone Duo's inner display. `ScreenshotTests` reaches the same
+    /// three screens by tapping, and nothing can tap that display: XCUITest drives
+    /// the cover, and running it folds the simulator shut. So for that one capture
+    /// the app is launched straight into each state and photographed from outside.
+    enum Scene: String {
+        case detail, map, networks
+    }
+
+    /// Nil on every ordinary launch, and on a screenshot run that names no scene —
+    /// which is all of them under `fastlane snapshot`.
+    @MainActor static var scene: Scene? {
+        guard AppViewModel.isScreenshotRun else { return nil }
+        // "-key value" launch arguments land in UserDefaults' argument domain.
+        return UserDefaults.standard.string(forKey: "ScreenshotScene").flatMap(Scene.init)
+    }
+
+    /// The first row of the list, and the station `Scene.detail` selects. Matches
+    /// `ScreenshotTests.nearestStation`, which finds the same one by name.
+    static let nearestStationID = "m01"
+
     private struct MockStation {
         let id: String
         let name: String

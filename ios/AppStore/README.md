@@ -1,6 +1,7 @@
 # App Store screenshots
 
-Composed screenshots for the two slots this listing needs — one iPhone, one iPad.
+Composed screenshots for the three slots this listing fills — iPhone, iPad and
+iPhone Duo.
 App Store Connect keeps a separate set per device family, so "one size scales down to
 the rest" holds *within* a family and not across them.
 
@@ -8,6 +9,8 @@ the rest" holds *within* a family and not across them.
     screenshots/6.9/street/      what the iPhone slot wants
     screenshots/6.9/dusk/        the dark alternative
     screenshots/13/…             the iPad set
+    screenshots/duo/…            the iPhone Duo set, folded
+    screenshots/duo-inner/…      the iPhone Duo set, unfolded
     compose.py                   puts one inside the other
     build/                       generated HTML, throwaway (gitignored)
 
@@ -38,6 +41,8 @@ because it is the reason to keep the app rather than the reason to open it.
 python3 ios/AppStore/compose.py                             # every size and theme
 python3 ios/AppStore/compose.py --size 6.9 --theme street   # just the one to upload
 python3 ios/AppStore/compose.py --size 13                   # the iPad set
+python3 ios/AppStore/compose.py --size duo                  # the iPhone Duo, folded
+python3 ios/AppStore/compose.py --size duo-inner            # the iPhone Duo, unfolded
 ```
 
 Reads `captures/`, writes `screenshots/<size>/<theme>/`. One folder per upload, so
@@ -54,6 +59,8 @@ Store Connect slot within a family.
 
     phone   stage 1320 x 2868   →  slot 6.9"
     pad     stage 2064 x 2752   →  slot 13"
+    duo         stage 1398 x 2034   →  slot iPhone Duo (outer display)
+    duo-inner   stage 2853 x 2007   →  slot iPhone Duo (inner display, landscape)
 
 Within a family the design is authored once and scaled to the target slot by a single
 CSS transform on the whole stage, *before* rasterising. So each size is rendered at
@@ -69,9 +76,50 @@ Hence `FAMILIES`. What the two share is the part that makes them look like one a
 the ground, the lighting, the palette and the type pairing. What they do not share is
 any measurement.
 
-Both slots are captured native — an iPhone 17 Pro Max screen is exactly 1320 x 2868
-and an iPad Pro 13-inch is exactly 2064 x 2752 — so nothing inside a device frame is
-ever upscaled.
+**Why the Duo is a family too.** Its cover display is 0.69:1, which is neither of
+the above, and its corners are asymmetric — 8pt on the spine edge, 59pt on the other —
+so it needs a frame that is not a rounded rectangle. `spiner` and `spinescr` carry the
+spine-side radii; a family that leaves them out gets one radius all round.
+
+App Store Connect's Duo slot accepts either display, in either orientation:
+1398 x 2034 (outer) or 2007 x 2853 (inner). Both are here, as two families, because
+they are two layouts and not two sizes of one. The cover is compact width and gets
+the sheet; the inner display is regular width and gets the split view, so `duo-inner`
+uses the iPad's copy and is composed in landscape, which is how the unfolded device
+is held.
+
+Every slot is captured native — an iPhone 17 Pro Max screen is exactly 1320 x 2868,
+an iPad Pro 13-inch is exactly 2064 x 2752, and the Duo is exactly 1398 x 2034
+folded and 2853 x 2007 unfolded — so nothing inside a device frame is ever upscaled.
+
+## Header and search results
+
+App Store Connect's *Header and Search Results* tab takes creative assets, which are
+separate from screenshots and have their own sizes:
+
+    creative/street/header.png   3840 x 1646   product page header (21:9)
+    creative/street/search.png   3840 x 2560   search results (3:2)
+    creative/dusk/…              the dark alternatives
+
+```
+python3 ios/AppStore/creative.py                      # both assets, both themes
+python3 ios/AppStore/creative.py --asset header --theme street
+```
+
+`creative.py` borrows the themes from `compose.py` and the iPhone stations capture, so
+these match the screenshots under them. The difference is that App Store Connect crops
+a creative asset differently per device and orientation, so nothing that matters is
+placed near an edge: the headline and the device are held inside the middle of the
+frame (`safe`), and only the ground runs to the edges. Check the result with the
+Preview button on that tab before submitting — Apple publishes the sizes but not the
+crop, so the safe area here is a judgment, not a spec.
+
+The header is too short to stand a phone up in, so the phone runs off the top and
+bottom and the strip shows the middle of the screen. Search shows the whole phone and
+carries a supporting line, because that is where someone is deciding what the app is.
+
+There is also a 16:9 "universal" size that serves both placements from one image. It
+is not used: the two placements want different compositions.
 
 ## Recapturing
 
@@ -80,9 +128,24 @@ cd ios
 bundle exec fastlane screenshots
 ```
 
-That runs `snapshot` twice (light, then dark) across both capture devices, then
+That runs `snapshot` twice (light, then dark) across all three capture devices, then
 copies the numbered PNGs into `AppStore/captures/`. To re-collect from an existing
 snapshot run without re-capturing: `bundle exec fastlane collect_captures`.
+
+### The Duo's inner display
+
+`fastlane screenshots` cannot capture it. XCUITest photographs and taps the cover
+display, and the run folds the simulator shut. Instead:
+
+```
+ios/AppStore/capture-duo-inner.sh
+```
+
+Unfold the simulator by hand first, in landscape — nothing in simctl does it. The
+script builds the app, launches it once per screen with `-ScreenshotScene
+detail|map|networks` so it opens there without being tapped, and photographs display 3
+with `simctl io screenshot`. The scenes are read only when `UI_TESTING_SCREENSHOTS` is
+set, so an ordinary launch ignores the argument.
 
 Everything the shots need is arranged by the app itself under the
 `UI_TESTING_SCREENSHOTS` flag, so there is no tapping and no live network:
