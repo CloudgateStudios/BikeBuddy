@@ -92,6 +92,35 @@ Every slot is captured native — an iPhone 17 Pro Max screen is exactly 1320 x 
 an iPad Pro 13-inch is exactly 2064 x 2752, and the Duo is exactly 1398 x 2034
 folded and 2853 x 2007 unfolded — so nothing inside a device frame is ever upscaled.
 
+## Header and search results
+
+App Store Connect's *Header and Search Results* tab takes creative assets, which are
+separate from screenshots and have their own sizes:
+
+    creative/street/header.png   3840 x 1646   product page header (21:9)
+    creative/street/search.png   3840 x 2560   search results (3:2)
+    creative/dusk/…              the dark alternatives
+
+```
+python3 ios/AppStore/creative.py                      # both assets, both themes
+python3 ios/AppStore/creative.py --asset header --theme street
+```
+
+`creative.py` borrows the themes from `compose.py` and the iPhone stations capture, so
+these match the screenshots under them. The difference is that App Store Connect crops
+a creative asset differently per device and orientation, so nothing that matters is
+placed near an edge: the headline and the device are held inside the middle of the
+frame (`safe`), and only the ground runs to the edges. Check the result with the
+Preview button on that tab before submitting — Apple publishes the sizes but not the
+crop, so the safe area here is a judgment, not a spec.
+
+The header is too short to stand a phone up in, so the phone runs off the top and
+bottom and the strip shows the middle of the screen. Search shows the whole phone and
+carries a supporting line, because that is where someone is deciding what the app is.
+
+There is also a 16:9 "universal" size that serves both placements from one image. It
+is not used: the two placements want different compositions.
+
 ## Recapturing
 
 ```
