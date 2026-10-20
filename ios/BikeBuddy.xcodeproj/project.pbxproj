@@ -559,7 +559,7 @@
 				TargetAttributes = {
 					C516EFE41B0CE6CB00CF4468 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = KXYM4B4J29;
+						DevelopmentTeam = W3W39P827M;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -570,13 +570,13 @@
 					};
 					D18F4B091D9225FC00972AF2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = KXYM4B4J29;
+						DevelopmentTeam = W3W39P827M;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					D18F4B111D9225FC00972AF2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = KXYM4B4J29;
+						DevelopmentTeam = W3W39P827M;
 						ProvisioningStyle = Automatic;
 					};
 					D1B6DD191C9EC3E3008543A3 = {
@@ -760,7 +760,7 @@
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = KXYM4B4J29;
+				DEVELOPMENT_TEAM = W3W39P827M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -781,7 +781,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = KXYM4B4J29;
+				DEVELOPMENT_TEAM = W3W39P827M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -919,7 +919,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 69;
-				DEVELOPMENT_TEAM = KXYM4B4J29;
+				DEVELOPMENT_TEAM = W3W39P827M;
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -949,7 +949,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 69;
-				DEVELOPMENT_TEAM = KXYM4B4J29;
+				DEVELOPMENT_TEAM = W3W39P827M;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1060,7 +1060,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = KXYM4B4J29;
+				DEVELOPMENT_TEAM = W3W39P827M;
 				INFOPLIST_FILE = BikeBuddyKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1083,7 +1083,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = KXYM4B4J29;
+				DEVELOPMENT_TEAM = W3W39P827M;
 				INFOPLIST_FILE = BikeBuddyKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
