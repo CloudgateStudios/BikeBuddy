@@ -20,6 +20,8 @@ struct StationSelectionCard: View {
     let station: Station
     let onDismiss: () -> Void
 
+    @Environment(AppViewModel.self) private var appViewModel
+
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
 
@@ -52,6 +54,7 @@ struct StationSelectionCard: View {
             availabilityPill(count: station.availableDocks, icon: "arrow.down.to.line")
 
             Button {
+                appViewModel.recordDirectionsRequested()
                 station.openInMaps()
             } label: {
                 Text("StationDetailDirectionsButton", bundle: .bikeBuddyKit)
@@ -72,6 +75,8 @@ struct StationSelectionCard: View {
             .controlSize(.small)
             .hoverEffect(.lift)
             .accessibilityLabel(Text("StationDetailShareButton", bundle: .bikeBuddyKit))
+            // ShareLink has no action of its own to hook.
+            .simultaneousGesture(TapGesture().onEnded { appViewModel.recordStationShared() })
 
             Button(action: onDismiss) {
                 Image(systemName: "xmark")

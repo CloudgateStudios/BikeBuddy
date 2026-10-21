@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import StoreKit
 import BikeBuddyKit
 
 /// Root view: shows the map-and-stations layout, presenting the FTU flow as a
@@ -16,6 +17,7 @@ struct ContentView: View {
     @Environment(AppViewModel.self) private var appViewModel
     @Environment(LocationManager.self) private var locationManager
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.requestReview) private var requestReview
 
     var body: some View {
         @Bindable var appViewModel = appViewModel
@@ -43,8 +45,17 @@ struct ContentView: View {
                 switch phase {
                 case .active:
                     locationManager.startUpdatingLocation()
+                    if appViewModel.consumeReviewPromptIfDue() {
+                        // Let the app finish coming back before asking, so the prompt
+                        // lands on a settled screen rather than mid-transition.
+                        Task {
+                            try? await Task.sleep(for: .seconds(1))
+                            requestReview()
+                        }
+                    }
                 case .background:
                     locationManager.stopUpdatingLocation()
+                    appViewModel.appDidEnterBackground()
                 default:
                     break
                 }

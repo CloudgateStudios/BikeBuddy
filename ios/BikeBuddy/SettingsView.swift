@@ -98,7 +98,7 @@ struct SettingsView: View {
     // MARK: - Actions
 
     private func goToAppStorePage() {
-        if let url = URL(string: Constants.ExternalURL.AppStoreDeepLink) {
+        if let url = URL(string: Constants.ExternalURL.AppStoreWriteReviewURL) {
             openURL(url)
         }
     }
