@@ -260,6 +260,35 @@ class AppViewModel {
         isLoadingStations = false
     }
 
+    // MARK: - Review prompt
+
+    /// Lazy so constructing a view model — which the tests do freely — does not start
+    /// the review clock in the shared settings.
+    @ObservationIgnored private lazy var reviewPrompt = ReviewPromptService()
+
+    func recordDirectionsRequested() {
+        guard !AppViewModel.isScreenshotRun else { return }
+        reviewPrompt.recordDirectionsRequested()
+    }
+
+    func recordStationShared() {
+        guard !AppViewModel.isScreenshotRun else { return }
+        reviewPrompt.recordSignificantAction()
+    }
+
+    func appDidEnterBackground() {
+        guard !AppViewModel.isScreenshotRun else { return }
+        reviewPrompt.appDidEnterBackground()
+    }
+
+    /// True when the caller should request a review now. See `ReviewPromptService`.
+    func consumeReviewPromptIfDue() -> Bool {
+        guard !AppViewModel.isScreenshotRun, !showFirstTimeUse else { return false }
+
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+        return reviewPrompt.consumePromptIfDue(appVersion: version, hasLoadError: stationsLoadError != nil)
+    }
+
     // MARK: - Closest stations helper (location-aware)
 
     func closestStations(latitude: Double, longitude: Double) -> [Station] {

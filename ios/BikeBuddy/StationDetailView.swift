@@ -26,6 +26,7 @@ struct StationDetailView: View {
     /// also costs a second MKMapView for the privilege.
     var showsMapHeader: Bool = true
 
+    @Environment(AppViewModel.self) private var appViewModel
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     private var isRegularWidth: Bool { horizontalSizeClass == .regular }
@@ -96,6 +97,8 @@ struct StationDetailView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .contentShape(Rectangle())
                         }
+                        // ShareLink has no action of its own to hook.
+                        .simultaneousGesture(TapGesture().onEnded { appViewModel.recordStationShared() })
                         .padding(.vertical, 14)
                         .padding(.horizontal, 16)
                     }
@@ -186,6 +189,7 @@ struct StationDetailView: View {
     // MARK: - Actions
 
     private func openDirections() {
+        appViewModel.recordDirectionsRequested()
         station.openInMaps()
     }
 }

@@ -29,6 +29,11 @@ public struct Constants {
         case bikeServiceName = "BikeServiceName"
         case numberOfClosestStations = "NumberOfClosestStations"
         case appearanceMode = "AppearanceMode"
+        case reviewFirstSeenDate = "ReviewFirstSeenDate"
+        case reviewSignificantActionCount = "ReviewSignificantActionCount"
+        case reviewActiveDayCount = "ReviewActiveDayCount"
+        case reviewLastActiveDay = "ReviewLastActiveDay"
+        case reviewLastPromptedVersion = "ReviewLastPromptedVersion"
     }
 
     // MARK: - Settings Defaults
@@ -51,6 +56,10 @@ public struct Constants {
     // MARK: - External URL's
     public struct ExternalURL {
         public static let AppStoreDeepLink = "https://itunes.apple.com/us/app/apple-store/id998776734?mt=8"
+        // Opens the listing straight on its review form. The system prompt is
+        // rate-limited and may show nothing, so a button the user taps on purpose
+        // has to go here instead.
+        public static let AppStoreWriteReviewURL = "https://apps.apple.com/app/id998776734?action=write-review"
         // The URL the App Store listing points at, per
         // fastlane/metadata/en-US/privacy_url.txt. The app used to link somewhere else
         // entirely, which had never been published and returned 404 from Settings ›

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		APPTESTS_BF_VM /* AppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPTESTS_FR_VM /* AppViewModelTests.swift */; };
+		APPTESTS_BF_REVIEW /* ReviewPromptServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPTESTS_FR_REVIEW /* ReviewPromptServiceTests.swift */; };
 		APPTESTS_BF_AVAIL /* AvailabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPTESTS_FR_AVAIL /* AvailabilityTests.swift */; };
 		0328A554C2CE412F94F9A170 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C17350A5BB44E3BE3EFB8E /* SnapshotHelper.swift */; };
 		37AD919D36EF4AC2BA00F38B /* NetworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */; };
@@ -55,6 +56,7 @@
 		SWIFTUI_BF_AVAIL_COUNT /* AvailabilityCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_AVAIL_COUNT /* AvailabilityCount.swift */; };
 		SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */; };
 		SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_APP_VM /* AppViewModel.swift */; };
+		SWIFTUI_BF_REVIEW_PROMPT /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_REVIEW_PROMPT /* ReviewPromptService.swift */; };
 		SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_CONTENT /* ContentView.swift */; };
 		SWIFTUI_BF_DETAIL /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_STATION_DETAIL /* StationDetailView.swift */; };
 		SWIFTUI_BF_FTU_FINISH /* FTUFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SWIFTUI_FTU_FINISH /* FTUFinishedView.swift */; };
@@ -124,6 +126,7 @@
 
 /* Begin PBXFileReference section */
 		APPTESTS_FR_VM /* AppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModelTests.swift; sourceTree = "<group>"; };
+		APPTESTS_FR_REVIEW /* ReviewPromptServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptServiceTests.swift; sourceTree = "<group>"; };
 		APPTESTS_FR_AVAIL /* AvailabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityTests.swift; sourceTree = "<group>"; };
 		APPTESTS_PRODUCT /* BikeBuddyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeBuddyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08919FEB0BEC43F7B77FFC22 /* NetworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPickerView.swift; sourceTree = "<group>"; };
@@ -179,6 +182,7 @@
 		SWIFTUI_AVAIL_COUNT /* AvailabilityCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityCount.swift; sourceTree = "<group>"; };
 		SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
 		SWIFTUI_APP_VM /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		SWIFTUI_REVIEW_PROMPT /* ReviewPromptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptService.swift; sourceTree = "<group>"; };
 		SWIFTUI_CONTENT /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		SWIFTUI_FTU_FINISH /* FTUFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUFinishedView.swift; sourceTree = "<group>"; };
 		SWIFTUI_FTU_LOCATION /* FTULocationAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTULocationAccessView.swift; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				APPTESTS_FR_VM /* AppViewModelTests.swift */,
+				APPTESTS_FR_REVIEW /* ReviewPromptServiceTests.swift */,
 				APPTESTS_FR_AVAIL /* AvailabilityTests.swift */,
 			);
 			path = BikeBuddyAppTests;
@@ -300,6 +305,7 @@
 				SWIFTUI_AVAIL_COUNT /* AvailabilityCount.swift */,
 				SWIFTUI_APPEAR_MODE /* AppearanceMode.swift */,
 				SWIFTUI_APP_VM /* AppViewModel.swift */,
+				SWIFTUI_REVIEW_PROMPT /* ReviewPromptService.swift */,
 				SWIFTUI_APP /* BikeBuddyApp.swift */,
 				SWIFTUI_CONTENT /* ContentView.swift */,
 				SWIFTUI_FTU_VM /* FTUViewModel.swift */,
@@ -650,6 +656,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				APPTESTS_BF_VM /* AppViewModelTests.swift in Sources */,
+				APPTESTS_BF_REVIEW /* ReviewPromptServiceTests.swift in Sources */,
 				APPTESTS_BF_AVAIL /* AvailabilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,6 +674,7 @@
 				SWIFTUI_BF_AVAIL_COUNT /* AvailabilityCount.swift in Sources */,
 				SWIFTUI_BF_APPEAR_MODE /* AppearanceMode.swift in Sources */,
 				SWIFTUI_BF_APP_VM /* AppViewModel.swift in Sources */,
+				SWIFTUI_BF_REVIEW_PROMPT /* ReviewPromptService.swift in Sources */,
 				SWIFTUI_BF_APP /* BikeBuddyApp.swift in Sources */,
 				SWIFTUI_BF_CONTENT /* ContentView.swift in Sources */,
 				SWIFTUI_BF_FTU_VM /* FTUViewModel.swift in Sources */,
