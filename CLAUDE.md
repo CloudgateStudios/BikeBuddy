@@ -59,6 +59,24 @@ Redirect to a log and check `xcodebuild`'s own status instead.
 The other two CI jobs are `SwiftLint --strict --config ios/.swiftlint.yml` (warnings fail
 the build) and `python3 scripts/StringsChecker.py -p .` for localization coverage.
 
+## Releasing
+
+Run the **Version Bump** workflow from the Actions tab and pick `patch`, `minor` or
+`major`. It bumps `MARKETING_VERSION`, pushes `chore(release): vX.Y.Z` straight to main
+with a `vX.Y.Z` tag, and creates the GitHub Release. Xcode Cloud starts on that tag,
+builds, and uploads to App Store Connect.
+
+- **Only the marketing version is ours.** Xcode Cloud assigns the build number at
+  upload, so `CURRENT_PROJECT_VERSION` stays put and is only what local builds show.
+- **Versions live in one place.** `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are
+  set at *project* level; every Info.plist reads `$(MARKETING_VERSION)` /
+  `$(CURRENT_PROJECT_VERSION)`. Don't add per-target overrides or literal values in a
+  plist, and don't use `agvtool` — `new-marketing-version` writes literals back into
+  the plists.
+- **Pushing to main** uses the release GitHub App, a bypass actor on the main ruleset
+  (`RELEASE_APP_CLIENT_ID` variable, `RELEASE_APP_PRIVATE_KEY` secret).
+- Releases up to 3.2.0 are tagged in the old `release/<version>/<build>` format.
+
 ## Tests
 
 Unit tests live in two bundles, both using **Swift Testing** (`@Test`, `#expect`,
@@ -68,8 +86,8 @@ Unit tests live in two bundles, both using **Swift Testing** (`@Test`, `#expect`
 - `ios/BikeBuddyAppTests` — tests the `BikeBuddy` app target (`AppViewModel` and
   friends). Hosted by the app via `TEST_HOST`/`BUNDLE_LOADER`, so it can
   `@testable import BikeBuddy`. Its Info.plist is generated
-  (`GENERATE_INFOPLIST_FILE`) so `agvtool` and `version-bump.yml` have nothing extra
-  to track.
+  (`GENERATE_INFOPLIST_FILE`), and picks up the project-level version settings like
+  every other target.
 
 CI runs both via two `-only-testing:` flags. Add a new bundle to that list or it will
 build but never gate anything.
