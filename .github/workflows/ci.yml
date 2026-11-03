@@ -108,7 +108,7 @@ jobs:
       # Upload the full .xcresult so failures can be inspected locally.
       # (kishikawakatsumi/xcresulttool dropped — no Node 24 support)
       - name: Upload xcresult
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
           name: test-results
